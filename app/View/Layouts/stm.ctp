@@ -29,7 +29,6 @@
 	<?php
 		echo $this-> Html ->meta('icon');
 		echo $this -> Html -> script( 'jquery-1.9.1.min', array( 'inline' => false ) );
-		echo $this -> Html -> script( 'jquery.webcam', array( 'inline' => false ) );
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');

@@ -1,111 +1,80 @@
+<?php
+echo $this -> Html -> script( 'grid', array( 'inline' => false ) );
+echo $this -> Html -> script( 'version', array( 'inline' => false ) );
+echo $this -> Html -> script( 'detector', array( 'inline' => false ) );
+echo $this -> Html -> script( 'formatinf', array( 'inline' => false ) );
+echo $this -> Html -> script( 'errorlevel', array( 'inline' => false ) );
+echo $this -> Html -> script( 'bitmat', array( 'inline' => false ) );
+echo $this -> Html -> script( 'datablock', array( 'inline' => false ) );
+echo $this -> Html -> script( 'bmparser', array( 'inline' => false ) );
+echo $this -> Html -> script( 'datamask', array( 'inline' => false ) );
+echo $this -> Html -> script( 'rsdecoder', array( 'inline' => false ) );
+echo $this -> Html -> script( 'gf256poly', array( 'inline' => false ) );
+echo $this -> Html -> script( 'gf256', array( 'inline' => false ) );
+echo $this -> Html -> script( 'decoder', array( 'inline' => false ) );
+echo $this -> Html -> script( 'qrcode', array( 'inline' => false ) );
+echo $this -> Html -> script( 'findpat', array( 'inline' => false ) );
+echo $this -> Html -> script( 'alignpat', array( 'inline' => false ) );
+echo $this -> Html -> script( 'databr', array( 'inline' => false ) );
+?>
 <script type="text/javascript">
 $(function(){
-    
-    var canvas = document.getElementById('canvas');
-    if (!canvas || !canvas.getContext){
-        alert("canvas未対応")
-        return;
+    var video = document.querySelector('video');
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    var localMediaStream = null;
+
+    //カメラ使えるかチェック
+    var hasGetUserMedia = function() {
+        return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia || navigator.msGetUserMedia);
     }
     
-    ctx = canvas.getContext('2d');
-    width = 320;
-    height = 240;
-    count =0;
-    str="";
-    imgdata = new Array();
-    for (var i =0 ; i<width ; i++){
-        imgdata[i] = new Array();
-        for (var j=0; j<height; j++){
-            imgdata[i][j] = new Array();
-            imgdata[i][j]['r']=0;
-            imgdata[i][j]['g']=0;
-            imgdata[i][j]['b']=0;
+    //カメラ画像キャプチャ
+    var snapshot = function() {
+        if (localMediaStream) {
+            ctx.drawImage(video, 0, 0);
+            // QRコード取得開始
+            qrcode.decode(canvas.toDataURL('image/webp'));        
+  
         }
     }
-    
-    
-    $("#jquery_camera").webcam({
-        width: width, // webcamの横サイズ
-        height: height,// webcamの縦サイズ
-        swffile: "swf/jscam_canvas_only.swf",
-        onLoad: function() {
-            var cams = webcam.getCameraList();
-            for(var i in cams) {
-                $("#cams").append("<li>" + cams[i] + "</li>");
-            }
-            for(var i in webcam) {
-                $("#cams").append("<li>" + i + "</li>");
-            }
-        },
-        onSave: function(data){
-            
-            var rows=data.split(";");
-            var r,g,b;
-            
-            for(var i=0; i<rows.length ; i++){
-                imgdata[i][count%width]['r'] = (rows[i] >> 16) & 0xFF;
-                imgdata[i][count%width]['g'] = (rows[i] >> 8) & 0xFF;
-                imgdata[i][count%width]['b'] = (rows[i] >> 0) & 0xFF;
-                //str+="("+r+","+g+","+b+")";
-            }
-            
-            //var img = base64_decode(data);
-            //ctx.drawImage(img,width,height);
-            if (count % width == 0){
-                var img = ctx.createImageData(width,height);
-                var byteArray = img.data;
-                for (var i =0 ; i<width ; i++){                 
-                    for (var j=0; j<height; j++){
-                        var idx = (j + i * width) * 3;
-                        byteArray[idx+0] = imgdata[i][j]['r'];
-                        byteArray[idx+1] = imgdata[i][j]['g'];
-                        byteArray[idx+2] = imgdata[i][j]['b'];
-                        byteArray[idx+3] = 255;
-                    }
-                }
-                ctx.putImageData(imgData, 0, 0);
-                
-                //$("#data").html(str); 
-                //str = "";
-            }
-            count++;
-        }
+
+    if (hasGetUserMedia()) {
+        console.log("カメラ OK");
+    } else {
+        alert("未対応ブラウザです。");
+    }
+
+
+    window.URL = window.URL || window.webkitURL;
+    navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                              navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+    navigator.getUserMedia({video: true},
+    function(stream) {
+      video.src = window.URL.createObjectURL(stream);
+      localMediaStream = stream;
+    },
+    function(err){
+        alert("未対応ブラウザです。");
     });
 
-    $("#button").click(function(){
-        webcam.capture();
+    // QRコード取得時のコールバックを設定
+    qrcode.callback = function(result) {
+      // QRコード取得結果を表示
+      $('#result').text(result);
+    };
+      
+    //ボタンイベント
+    $("video").click(function() {
+        snapshot();
     });
 
-    /*
-    setInterval(function(){
-        webcam.capture();
-    },1000);
-    */
-    /*
-    $("#camarastatus").click(function(){
-        alert("aa");
-        webcam.capture();
-    });
-    */
-       
-})
+});
 </script>
-        
-<strong>Webカメラから画像を設定</strong>
-<div id="jquery_camera"></div>
-
-<input type="button" id="button" value="キャプチャ">
-
-<div id="camerastatus" style="margin-left: 10px;">
-    <strong>カメラリスト</strong>
-    <ul id="cams"></ul>
-    <div id="status"></div>
-</div>
-
-<div id="data">
-</div>
-
-<div>
-    <canvas id ="canvas"></canvas>
-</div>
+    
+<video autoplay width="320" height="240"></video> 
+<div id="result"></div>
+<canvas style="display:none;" width="640" height="480"></canvas>
 
