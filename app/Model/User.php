@@ -11,12 +11,5 @@ class User extends AppModel
 	public $column_list = array();
 	public $validate = array();
     
-    public function QRCodeLogin($name, $id){
-        //選手名と選手idで認証
-        if ($this->findByUsernameAndPlayerId($name,$id)){
-            //return "OK";
-        }else{
-            return "ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません。";
-        }
-    }
+ 
 }

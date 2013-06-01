@@ -21,8 +21,8 @@ echo $this -> Html -> script( 'webcam/databr', array( 'inline' => false ) );
     
 function AuthQRCodeAjax(name,id) {
 	
-	var url = "<?php echo $this->Html->webroot . 'users/ajax_qrlogin'; ?>";
-    var data = { name : name , id : id };
+	var url = "<?php echo $this->Html->webroot . 'users/login'; ?>";
+    var data = { User : {username : name , player_id : id }};
     
 	$.ajax({
 		type: "POST",
@@ -77,7 +77,7 @@ $(function(){
       // QRコード取得結果を表示
       if (result != null) {
         //$('#result').text(result);
-        AuthQRCodeAjax($("#player_id").val(),result);
+        AuthQRCodeAjax($("#UserUsername").val(),result);
       }else{
           $('#result').text("ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません。");
       }
@@ -95,9 +95,12 @@ $(function(){
 });
 </script>
 
+<!--<?php echo $this->Form->create('User'); ?> -->
 <div>選手名を入力してください</div>
-<?php echo $this->Form->text('player_id',array('label' => false)); ?>
-
+<?php echo $this->Form->text('username',array('label' => false)); ?>
+<div>パスワードを入力してください</div>
+<!--<?php echo $this->Form->password('password',array('label' => false)); ?>-->
+<!--<?php echo $this->Form->submit('パスワードでログイン',array('label' => false)); ?>-->
 <div>選手カードにあるQRコードをかざしてログインボタンを押してください</div>
 <div id="camera">
     <video id="video" autoplay width="320" height="240"></video> 
@@ -105,3 +108,5 @@ $(function(){
 </div>
 <?php echo $this->Form->button('ログイン',array('div' => false, 'id' => 'read')) ?>
 <div  class="error" id="result"></div>
+
+<?php echo $this->Html->link('ログアウト',array('action' => 'logout')) ?>
