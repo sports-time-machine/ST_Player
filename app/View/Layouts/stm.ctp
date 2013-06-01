@@ -27,8 +27,11 @@
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
-		echo $this-> Html ->meta('icon');
-		echo $this -> Html -> script( 'jquery-1.9.1.min', array( 'inline' => false ) );
+		echo $this->Html->meta('icon');
+		echo $this->Html-> script( 'jquery-1.9.1.min', array( 'inline' => false ) );
+   		echo $this->Html->script('bootstrap.min', array('inline' => false));
+		echo $this->Html->css('bootstrap.min');
+        echo $this->Html->css('style');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');

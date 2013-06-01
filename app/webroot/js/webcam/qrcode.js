@@ -75,7 +75,7 @@ qrcode.decode = function(src){
             catch(e)
             {
 				console.log(e);
-                qrcode.result = "QRコードが読み取れませんでした。もう一度スキャンしてみてください！";
+                qrcode.result = null;
             }
 			if(qrcode.callback!=null)
 				qrcode.callback(qrcode.result);
