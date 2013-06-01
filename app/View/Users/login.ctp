@@ -30,7 +30,11 @@ function AuthQRCodeAjax(name,id) {
 		data: data,
 		async: true,
 		success: function(html){
-            $('#result').text(html);
+            if (html=="Login:OK"){
+                location.href = "<?php echo $this->Html->webroot . 'users/'; ?>";
+            }else{
+                $('#result').text(html);
+            }
         },
         error: function(a,b,c){
             alert(c);

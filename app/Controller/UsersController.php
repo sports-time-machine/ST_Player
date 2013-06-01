@@ -29,7 +29,8 @@ class UsersController extends AppController {
             }
   
             if ($this->Auth->login()) {
-                $this->redirect($this->Auth->redirect());
+                echo "Login:OK";
+                //$this->redirect($this->Auth->redirect());
             } else {
                //pr($this->request->data);
                echo "ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません。";
