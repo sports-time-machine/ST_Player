@@ -54,14 +54,21 @@ $(function(){
 
     // QRコード取得時のコールバックを設定
     qrcode.callback = function(result) {
+         
       // QRコード取得結果を表示
       if (result != null) {
-        //実際はここでQRコード出力値のバリデーションを行わなければならない
-        $('#result').text("読み込みに成功しました！選手名を入力して、登録ボタンを押してください。");
-        $('#disp_id').text("選手ID:"+result);
-        $('#UserPlayerId').val(result);
-        $('#register_name').css("display", "block");
-        $('#read').css("display", "none");
+        //QRコード出力値のバリデーションを行わなければならない
+        var reg = /[A-Z0-9]{4}/;    //文字アルファベット４つだとマッチ
+        
+        if (result.match(reg)){
+            $('#result').text("読み込みに成功しました！選手名を入力して、登録ボタンを押してください。");
+            $('#disp_id').text("選手ID:"+result);
+            $('#UserPlayerId').val(result);
+            $('#register_name').css("display", "block");
+            $('#read').css("display", "none");
+        }else{
+            $('#result').text("読み込みに失敗しました。QRコードの内容が違うか、正しく読み取られていません。");
+        }
       }else{
           $('#result').text("読み込みに失敗しました。QRコードの内容が違うか、正しく読み取られていません。");
       }
@@ -92,8 +99,9 @@ $(function(){
 <div id="register_name">
     <div id="disp_id"></div>
     <div>選手名を入力してください</div>
-    <?php echo $this->Form->text('username',array('label' => false)); ?>
+    <?php echo $this->Form->text('username',array('label' => false, 'value' => "")); ?>
     <?php echo $this->Form->hidden('player_id'); ?>
     <?php echo $this->Form->submit('登録',array('label' => false)); ?>
     </div>
 <div  class="error" id="result"></div>
+<?php echo $this->Html->link('選手ログイン画面へ',array('action' => 'login')) ?>

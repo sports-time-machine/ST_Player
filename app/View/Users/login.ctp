@@ -80,7 +80,6 @@ $(function(){
     qrcode.callback = function(result) {
       // QRコード取得結果を表示
       if (result != null) {
-        //$('#result').text(result);
         AuthQRCodeAjax($("#UserUsername").val(),result);
       }else{
           $('#result').text("ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません。");
@@ -103,7 +102,7 @@ $(function(){
 
 <!--<?php echo $this->Form->create('User'); ?>-->
 <div>選手名を入力してください</div>
-<?php echo $this->Form->text('username',array('label' => false)); ?>
+<?php echo $this->Form->text('username',array('label' => false, 'value' => "")); ?>
 <div>選手カードにあるQRコードをかざしてログインボタンを押してください</div>
 <div id="camera">
     <video id="video" autoplay width="320" height="240"></video> 
@@ -115,3 +114,5 @@ $(function(){
 <!--<?php echo $this->Form->password('password',array('label' => false)); ?>-->
 <!--<?php echo $this->Form->submit('パスワードでログイン',array('label' => false)); ?>-->
 <?php echo $this->Html->link('ログアウト',array('action' => 'logout')) ?>
+<span>/</span>
+<?php echo $this->Html->link('選手の追加',array('action' => 'add')) ?>
