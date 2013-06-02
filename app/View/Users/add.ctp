@@ -18,30 +18,6 @@ echo $this -> Html -> script( 'webcam/alignpat', array( 'inline' => false ) );
 echo $this -> Html -> script( 'webcam/databr', array( 'inline' => false ) );
 ?>
 <script type="text/javascript">
-    
-function AuthQRCodeAjax(name,id) {
-	
-	var url = "<?php echo $this->Html->webroot . 'users/login'; ?>";
-    var data = { User : {username : name , player_id : id }};
-    
-	$.ajax({
-		type: "POST",
-		url: url + '?time=' + (new Date).getTime(),
-		data: data,
-		async: true,
-		success: function(html){
-            if (html=="OK"){
-                location.href = "<?php echo $this->Html->webroot . 'users/'; ?>";
-            }else{
-                $('#result').text("ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません。");
-            }
-        },
-        error: function(a,b,c){
-            alert(c);
-        }
-	});
-}
-
 $(function(){
     var video = document.getElementById('video');
     var canvas = document.getElementById('canvas');
@@ -60,7 +36,7 @@ $(function(){
     }
 
     if (!hasGetUserMedia()) {
-        alert("未対応ブラウザです");
+        alert("未対応ブラウザです。");
     }
     window.URL = window.URL || window.webkitURL;
     navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
@@ -72,7 +48,7 @@ $(function(){
           localMediaStream = stream;
         },
         function(err){
-            alert("セットアップ中にエラーが発生しました");
+            alert("未対応ブラウザです。");
         }
     );
 
@@ -80,10 +56,14 @@ $(function(){
     qrcode.callback = function(result) {
       // QRコード取得結果を表示
       if (result != null) {
-        //$('#result').text(result);
-        AuthQRCodeAjax($("#UserUsername").val(),result);
+        //実際はここでQRコード出力値のバリデーションを行わなければならない
+        $('#result').text("読み込みに成功しました！選手名を入力して、登録ボタンを押してください。");
+        $('#disp_id').text("選手ID:"+result);
+        $('#UserPlayerId').val(result);
+        $('#register_name').css("display", "block");
+        $('#read').css("display", "none");
       }else{
-          $('#result').text("ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません。");
+          $('#result').text("読み込みに失敗しました。QRコードの内容が違うか、正しく読み取られていません。");
       }
     };
       
@@ -101,17 +81,19 @@ $(function(){
 });
 </script>
 
-<!--<?php echo $this->Form->create('User'); ?>-->
-<div>選手名を入力してください</div>
-<?php echo $this->Form->text('username',array('label' => false)); ?>
-<div>選手カードにあるQRコードをかざしてログインボタンを押してください</div>
+<?php echo $this->Form->create('User'); ?>
+<div>選手カードにあるQRコードをかざしてボタンを押してください</div>
 <div id="camera">
     <video id="video" autoplay width="320" height="240"></video> 
     <canvas id="canvas" ></canvas>
 </div>
-<?php echo $this->Form->button('ログイン',array('type' => 'button', 'div' => false, 'id' => 'read')) ?>
+<?php echo $this->Form->button('読み込み',array('type' => 'button', 'div' => false, 'id' => 'read')) ?>
+
+<div id="register_name">
+    <div id="disp_id"></div>
+    <div>選手名を入力してください</div>
+    <?php echo $this->Form->text('username',array('label' => false)); ?>
+    <?php echo $this->Form->hidden('player_id'); ?>
+    <?php echo $this->Form->submit('登録',array('label' => false)); ?>
+    </div>
 <div  class="error" id="result"></div>
-<!--<div>パスワードをすでに入力している方はパスワードでもログインできます</div>-->
-<!--<?php echo $this->Form->password('password',array('label' => false)); ?>-->
-<!--<?php echo $this->Form->submit('パスワードでログイン',array('label' => false)); ?>-->
-<?php echo $this->Html->link('ログアウト',array('action' => 'logout')) ?>

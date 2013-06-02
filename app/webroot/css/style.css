@@ -47,3 +47,7 @@ input { border: 0; }
 #camera canvas{
     display:none;
 }
+
+#register_name{
+    display:none;
+}
