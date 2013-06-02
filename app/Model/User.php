@@ -17,11 +17,11 @@ class User extends AppModel
                 'message' => '入力必須項目です',
                 'allowEmpty' => false,
             ),
-            'rule1' => array(
-                'rule' => 'isUnique',
-                'message' => 'この選手名はすでに使われています',
-                'allowEmpty' => false,
-            )
+            //'rule1' => array(
+            //    'rule' => 'isUnique',
+            //    'message' => 'この選手名はすでに使われています',
+            //    'allowEmpty' => false,
+            //)
         ),
         'player_id' => array(
             'rule0' => array(

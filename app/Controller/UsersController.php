@@ -36,8 +36,7 @@ class UsersController extends AppController {
             }
             
         }else if ($this->request->is('post')) {
-            //パスワードを利用してログイン
-            
+            //パスワードを利用してログイン           
             if ($this->Auth->login()) {
                 $this->redirect($this->Auth->redirect());
             } else {   
@@ -65,9 +64,11 @@ class UsersController extends AppController {
             $this->request->data['User']['player_id'] = AuthComponent::password($this->request->data['User']['player_id']);
             $this->User->set($this->request->data);
  
-            if ($this->User->valiidates()) {
+            if ($this->User->validates()) {
                 $this->User->save($this->request->data);
                 $this->Session->setFlash('選手登録が完了しました！');
+            }else{
+                $this->Session->setFlash('選手登録に失敗しました。この選手IDはすでに登録されています。');
             }
          
         }
