@@ -108,5 +108,13 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
+
+// for PHPUnit Install
+CakePlugin::load('PearLocal');
+
+// for PHPUnit
+App::import('Vendor', 'pear' . DS . 'pear_init'); // pear_local auto set
+App::import('Vendor', 'PHPUnit', array('file' => 'PHPUnit.php')); // pear_local auto set
+
 // for Debug Kit
 CakePlugin::load('DebugKit');
