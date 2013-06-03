@@ -39,15 +39,11 @@
 
 </head>
 <body>
-	<div id="header">
-            <?php //echo $this->element('header'); ?>
-        </div>
-        <div id="content" class="clear">
-                <?php echo $this->Session->flash(); ?>
-                <?php echo $this->fetch('content'); ?>
-        </div>
-        <div id="footer">
-            <?php //echo $this->element('footer'); ?>
-        </div>
+    <?php echo $this->element('header'); ?>
+
+    <div id="content" class="clear">
+        <?php echo $this->fetch('content'); ?>
+    </div>
+    <?php echo $this->element('footer'); ?>
 </body>
 </html>

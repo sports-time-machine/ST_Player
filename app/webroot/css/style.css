@@ -5,6 +5,15 @@ body {
     color: #4c4c4c;
     background: #fff;
     border-top: 6px solid #666666;
+    padding: 16px;
+    margin: 0 auto;
+    width:950px;
+}
+#header {
+    height: 32px;
+}
+
+#content {
     text-align: center;
 }
 

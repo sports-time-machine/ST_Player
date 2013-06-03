@@ -7,21 +7,27 @@ class UsersController extends AppController {
     public $layout='stm';
 
 	public function beforeFilter() {
-        $this->Auth->allow('login', 'logout', 'add');
-	}
+        $this->Auth->allow('login', 'logout');  //ログインとログアウトしか許可しない
+    }
 	
 	public function beforeRender() {
 		parent::beforeRender();
-
+    
+        //認証されたユーザデータがあればデータ読み込み
+        $user = $this->Auth->user();
+        $this->set('user', $user);
 	}
 	
 	function index(){ 
+        
+        
 	}
     
     /**
      * ログイン機能
      */
     function login() {
+        
         
         if ($this->request->is('ajax')) {
             //QRコードを利用してログイン
@@ -55,6 +61,7 @@ class UsersController extends AppController {
     /**
      * 選手追加機能
      */
+    /* 選手追加は別アプリで対応予定
     function add() {
         
         if ($this->request->is('post')) {
@@ -74,6 +81,7 @@ class UsersController extends AppController {
         }
         
     }
+     */
     
     
 }

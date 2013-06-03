@@ -113,6 +113,3 @@ $(function(){
 <!--<div>パスワードをすでに入力している方はパスワードでもログインできます</div>-->
 <!--<?php echo $this->Form->password('password',array('label' => false)); ?>-->
 <!--<?php echo $this->Form->submit('パスワードでログイン',array('label' => false)); ?>-->
-<?php echo $this->Html->link('ログアウト',array('action' => 'logout')) ?>
-<span>/</span>
-<?php echo $this->Html->link('選手の追加',array('action' => 'add')) ?>
