@@ -22,13 +22,11 @@ class UsersController extends AppController {
         
         
 	}
-    
+     
     /**
      * ログイン機能
      */
-    function login() {
-        
-        
+    function login() {              
         if ($this->request->is('ajax')) {
             //QRコードを利用してログイン
             

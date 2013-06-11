@@ -35,9 +35,9 @@ class AppController extends Controller {
     public $components = array(
         'DebugKit.Toolbar',
         'Auth' => Array(
-            'loginRedirect' => Array('controller'  => 'users', 'action' => 'index'),
-            'logoutRedirect' => Array('controller' => 'users', 'action' => 'login'),
-            'loginAction' => Array('controller' => 'users', 'action' => 'login'),
+            'loginRedirect' => Array('controller'  => 'users', 'action' => 'index'),    //ログイン成功時リダイレクト先
+            'logoutRedirect' => Array('controller' => 'users', 'action' => 'login'),    //ログアウト時リダイレクト先
+            'loginAction' => Array('controller' => 'users', 'action' => 'login'),       
             'authenticate' => Array('Form' => Array('fields' => Array('username' => 'username', 'password' => 'player_id')))         
         ),
         'Session');
