@@ -28,7 +28,6 @@ class UsersController extends AppController {
 	public function login() {
 		if ($this->request->is('ajax')) {
 			//QRコードを利用してログイン
-
 			$this->autoRender = false;
 			// POSTデータがなかったらNG
 			if (empty($this->request->data)) {
@@ -96,31 +95,6 @@ class UsersController extends AppController {
 	public function logout() {
 		$this->redirect($this->Auth->logout());
 	}
-
-	/**
-	 * 選手追加機能
-	 */
-	/* 選手追加は別アプリで対応予定
-	  function add() {
-
-	  if ($this->request->is('post')) {
-	  $this->User->create();
-
-	  //プレイヤーIDをハッシュ化
-	  $this->request->data['User']['player_id'] = AuthComponent::password($this->request->data['User']['player_id']);
-	  $this->User->set($this->request->data);
-
-	  if ($this->User->validates()) {
-	  $this->User->save($this->request->data);
-	  $this->Session->setFlash('選手登録が完了しました！');
-	  }else{
-	  $this->Session->setFlash('選手登録に失敗しました。この選手IDはすでに登録されています。');
-	  }
-
-	  }
-
-	  }
-	 */
 }
 
 ?>

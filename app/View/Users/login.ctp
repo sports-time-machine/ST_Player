@@ -40,7 +40,6 @@ function AuthQRCodeAjax(name, id) {
 		},
 		error: function(a,b,c){
 			showErrorMessage(c);
-			//alert(c);
 		}
 	});
 }
@@ -64,7 +63,6 @@ $(function(){
 
 	if (!hasGetUserMedia()) {
 		showErrorMessage('ご利用のブラウザはWebカメラに対応していません。<a href="<?php echo $this->Html->webroot . 'users/passwordLogin'; ?>">パスワード認証</a>をご利用ください');
-		//alert("未対応ブラウザです");
 	}
 	window.URL = window.URL || window.webkitURL;
 	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
@@ -76,7 +74,6 @@ $(function(){
 			localMediaStream = stream;
 		},
 		function(err) {
-			//alert("セットアップ中にエラーが発生しました");
 			showErrorMessage('webカメラが利用できません。<a href="<?php echo $this->Html->webroot . 'users/passwordLogin'; ?>">パスワード認証</a>をご利用ください');
 		}
 	);
@@ -85,41 +82,21 @@ $(function(){
 	qrcode.callback = function(result) {
 		// QRコード取得結果を表示
 		if (result != null) {
-			AuthQRCodeAjax($("#UserUsername").val(), result);
+			AuthQRCodeAjax($("#username").val(), result);
 		} else {
 			$('#result').text("ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません。");
 		}
 	};
 
-	// QRコード取得時のコールバックを設定
-	qrcode.callback = function(result) {
-		if (result != null) {
-			AuthQRCodeAjax($("#UserUsername").val(),result);
-		} else {
-		
-		}
-	};
-	  
 	//ボタンイベント
 	$("#read").click(function() {
-		$("#read").attr('disabled', true);
-		$('#result').text("QRコードを読み取り中です…");
-		
-		//0.5秒毎に読み込み
-		var readqrcode = setInterval(function(){
-			if (localMediaStream) {
-				ctx.drawImage(video, 0, 0);
-				// QRコード取得開始
-				qrcode.decode(canvas.toDataURL('image/webp'));
-			}
-		},500);
-		
-		//十秒後にタイムアウト
-		setTimeout(function(){
-			$('#read').removeAttr('disabled');
-			$('#result').text("ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません。");
-			clearInterval(readqrcode);
-		},10000);
+        $('#result').text("QRコードを読み取り中です…");
+        
+        if (localMediaStream) {
+            ctx.drawImage(video, 0, 0);
+            // QRコード取得開始
+            qrcode.decode(canvas.toDataURL('image/webp'));        
+        }
 	});
 
 });

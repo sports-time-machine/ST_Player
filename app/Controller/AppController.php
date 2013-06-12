@@ -39,7 +39,7 @@ class AppController extends Controller {
             'loginRedirect' => Array('controller'  => 'users', 'action' => 'index'),    //ログイン成功時リダイレクト先
             'logoutRedirect' => Array('controller' => 'users', 'action' => 'login'),    //ログアウト時リダイレクト先
             'loginAction' => Array('controller' => 'users', 'action' => 'login'),       
-            'authenticate' => Array('Form' => Array('fields' => Array('username' => 'username', 'password' => 'player_id')))         
+            'authenticate' => Array('QRCode' => Array('fields' => Array('username' => 'username', 'password' => 'player_id')))         
         ),
 	);
 	public $helpers = array('UploadPack.Upload');
