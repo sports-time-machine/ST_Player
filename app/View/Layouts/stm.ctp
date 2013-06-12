@@ -36,16 +36,36 @@
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
-
 </head>
 <body>
-	<?php echo $this->element('header'); ?>
+<div id="container">
+	<!-- header -->
+	<div id="header">
+		<div class="logo">スポーツタイムマシン</div>
+		<div class="loginuser">
+			<?php if ($user['User']['username']){ ?>
+			<span>ようこそ！<?php echo $user['User']['username']; ?>選手！</span>
+			<?php } ?>
+		</div>
+		<div class="logout">
+			<?php if ($user['User']['username']){ ?>
+				<?php echo $this->Html->link('ログアウト',array('action' => 'logout')) ?>
+			<?php } ?>
+		</div>
+	</div>
 
-	<div id="content" class="clear">
+
+	<!-- contents -->
+	<div id="contents" class="clear">
 		<?php echo $this->Session->flash(); ?>
 		<?php echo $this->fetch('content'); ?>
 	</div>
 
-	<?php echo $this->element('footer'); ?>
+
+	<!-- hooter -->
+	<div id="footer">
+		<div id="copyright" style="text-align: center; margin-top: 10px;">Sports Time Machine !</div>
+	</div>
+</div>
 </body>
 </html>

@@ -76,7 +76,7 @@ $(function(){
 			</div>
 		</div>
 	</div>
-	<div id="content" class="clear">
+	<div id="contents" class="clear">
 		<?php echo $this->Session->flash(); ?>
 		<?php echo $this->fetch('content'); ?>
 	</div>

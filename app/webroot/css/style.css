@@ -1,22 +1,133 @@
-* { margin: 0; padding: 0; outline:0; }
-
-body {
-    font-size: 14px;
-    color: #4c4c4c;
-    background: #fff;
-    border-top: 6px solid #666666;
-    padding: 16px;
-    margin: 0 auto;
-    width:950px;
-}
-#header {
-    height: 32px;
+/* ------------------------------------------------------------
+ * 画面レイアウト
+ * ------------------------------------------------------------ */
+* {
+	margin: 0;
+	padding: 0;
 }
 
-#content {
-    text-align: center;
+html {
+	overflow-y: scroll;
+}
+html, body {
+	height: 100%;
+	margin: 0px auto;
+}
+div#container {
+	width:  100%;
+	margin: 0px auto;
+	position: relative;
+	height: auto;
+	min-height: 100%;
+	/*
+	border-left:  1px solid rgba(0, 0, 0, .2);
+	border-right: 1px solid rgba(0, 0, 0, .2);
+	-webkit-box-shadow:rgba(32, 32, 32, 0.5) 1px 1px 7px;
+	-moz-box-shadow:rgba(32, 32, 32, 0.5) 1px 1px 7px;
+	box-shadow:rgba(32, 32, 32, 0.5) 1px 1px 7px;
+	*/
+}
+* html div#container {
+	height: 100%; /* IE6 */
+}
+div#header {
+	width:  100%;
+	height: 80px;
+	margin: 0px 0px;
+}
+div#contents {
+	margin: 0px 32px;
+	padding-top: 24px;
+	padding-bottom: 104px;
+}
+div#footer {
+	position: absolute;
+	bottom: 0px;
+	height: 40px;
+	width:  100%;
+	margin: 0px 0px;
+}
+/* clearfix */
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+/* ------------------------------------------------------------
+ * 基本カラー
+ * ------------------------------------------------------------ */
+html, body {
+	background-color: #ffffff;
+}
+div#header {
+	background-color: #dddddd;
+}
+div#container {
+	background-color: #fcfaf8;
+}
+div#footer {
+	background-color: #dddddd;
 }
 
+/* ------------------------------------------------------------
+ * フォント
+ * ------------------------------------------------------------ */
+body, textarea { font-family: "メイリオ", "ＭＳ Ｐゴシック", sans-serif; }
+input, select { font-family: Arial, "ＭＳ Ｐゴシック", sans-serif; }
+table .number {
+	text-align: right;
+	font-family: sans-serif;
+}
+
+
+/* ------------------------------------------------------------
+ * 個別のカスタマイズ
+ * ------------------------------------------------------------ */
+/* ヘッダー */
+#header .logo {
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	font-size: 14pt;
+}
+#header .loginuser {
+	position: absolute;
+	top: 50px;
+	left: 8px;
+}
+#header .logout {
+	position: absolute;
+	top: 50px;
+	right: 8px;
+}
+
+/* ログイン画面 */
+#camera {
+	width: 340px;
+	height: 260px;
+	/*margin: 0 auto;*/
+}
+
+#camera video {
+	width: 320px;
+	height: 240px;
+	border: 3px solid #cccccc;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px; 
+}
+
+
+
+/*
 a { color: #0252aa; text-decoration: none; cursor:pointer; }
 a:hover { text-decoration: underline; }
 a img { border: 0; }
@@ -34,29 +145,9 @@ input { border: 0; }
 .last { margin-right: 0 !important; }
 
 .error {
-    color: #ff0033;
-}
-
-
-#camera{
-    width: 340px;
-    height: 260px;
-    margin: 0 auto;
-}
-
-#camera video{
-    width: 320px;
-    height: 240px;
-    border: 3px solid #cccccc;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px; 
-}
-
-#camera canvas{
-    display:none;
+	color: #ff0033;
 }
 
 #register_name{
-    display:none;
-}
+	display:none;
+}*/

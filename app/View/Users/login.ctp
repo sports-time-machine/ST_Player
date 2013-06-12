@@ -19,7 +19,7 @@ echo $this->Html->script('webcam/databr', array('inline' => false));
 ?>
 <script type="text/javascript">
 function showErrorMessage(msg) {
-	$('#errorMessage').text(msg);
+	$('#errorMessage').html(msg);
 	$('#errorDialog').show();
 }
 function AuthQRCodeAjax(name, id) {
@@ -63,7 +63,7 @@ $(function(){
 	}
 
 	if (!hasGetUserMedia()) {
-		showErrorMessage('ご利用のブラウザは対応していません。最新バージョンのChromeブラウザをご利用ください');
+		showErrorMessage('ご利用のブラウザはWebカメラに対応していません。<a href="<?php echo $this->Html->webroot . 'users/passwordLogin'; ?>">パスワード認証</a>をご利用ください');
 		//alert("未対応ブラウザです");
 	}
 	window.URL = window.URL || window.webkitURL;
@@ -77,7 +77,7 @@ $(function(){
 		},
 		function(err) {
 			//alert("セットアップ中にエラーが発生しました");
-			showErrorMessage('webカメラが利用できません');
+			showErrorMessage('webカメラが利用できません。<a href="<?php echo $this->Html->webroot . 'users/passwordLogin'; ?>">パスワード認証</a>をご利用ください');
 		}
 	);
 
@@ -118,7 +118,7 @@ $(function(){
 <div>選手カードにあるQRコードをかざしてログインボタンを押してください</div>
 <div id="camera">
 	<video id="video" autoplay width="320" height="240"></video> 
-	<canvas id="canvas" ></canvas>
+	<canvas id="canvas" style="display: none;"></canvas>
 </div>
 
 <?php echo $this->Form->button('ログイン',array('type' => 'button', 'div' => false, 'id' => 'read', 'class' => 'btn')) ?>
