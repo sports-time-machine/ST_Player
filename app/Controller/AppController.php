@@ -33,6 +33,7 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
     public $components = array(
+		'Session' => array('className' => 'MySession'), // classNameを変更するものは先に読み込む
         'DebugKit.Toolbar',
         'Auth' => Array(
             'loginRedirect' => Array('controller'  => 'users', 'action' => 'index'),
@@ -40,6 +41,5 @@ class AppController extends Controller {
             'loginAction' => Array('controller' => 'users', 'action' => 'login'),
             'authenticate' => Array('Form' => Array('fields' => Array('username' => 'username', 'password' => 'player_id')))         
         ),
-        'Session');
-  
+	);
 }

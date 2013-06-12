@@ -28,10 +28,10 @@
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-		echo $this->Html-> script( 'jquery-1.9.1.min', array( 'inline' => false ) );
-   		echo $this->Html->script('bootstrap.min', array('inline' => false));
+		echo $this->Html->script('jquery-1.9.1.min', array('inline' => false));
+		echo $this->Html->script('bootstrap.min', array('inline' => false));
 		echo $this->Html->css('bootstrap.min');
-        echo $this->Html->css('style');
+		echo $this->Html->css('style');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -39,11 +39,13 @@
 
 </head>
 <body>
-    <?php echo $this->element('header'); ?>
+	<?php echo $this->element('header'); ?>
 
-    <div id="content" class="clear">
-        <?php echo $this->fetch('content'); ?>
-    </div>
-    <?php echo $this->element('footer'); ?>
+	<div id="content" class="clear">
+		<?php echo $this->Session->flash(); ?>
+		<?php echo $this->fetch('content'); ?>
+	</div>
+
+	<?php echo $this->element('footer'); ?>
 </body>
 </html>

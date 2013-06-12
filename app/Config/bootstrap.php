@@ -121,3 +121,6 @@ CakePlugin::load('DebugKit');
 
 // for UploadPack
 CakePlugin::load('UploadPack');
+
+// アプリ用の定数定義
+config('const');
