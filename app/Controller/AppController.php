@@ -42,4 +42,5 @@ class AppController extends Controller {
             'authenticate' => Array('Form' => Array('fields' => Array('username' => 'username', 'password' => 'player_id')))         
         ),
 	);
+	public $helpers = array('UploadPack.Upload');
 }

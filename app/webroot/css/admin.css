@@ -1,0 +1,11 @@
+#content {
+	margin: 0px 16px;
+}
+#footer {
+	margin: 0px 16px;
+}
+
+/* admin/bean */
+div.beans.view th, div.beanImages.view th {
+	width: 300px;
+}
