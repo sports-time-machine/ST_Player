@@ -118,3 +118,6 @@ App::import('Vendor', 'PHPUnit', array('file' => 'PHPUnit.php')); // pear_local 
 
 // for Debug Kit
 CakePlugin::load('DebugKit');
+
+// for UploadPack
+CakePlugin::load('UploadPack');
