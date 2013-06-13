@@ -114,5 +114,56 @@ class ApiControllerTest extends ControllerTestCase {
 			);
 		$this->assertEquals($expected, json_decode($r, true));
 		
+		
+		// 記録データ登録
+		echo "playDataSaveDebug - OK";
+		$array = array(
+			'User' => array( // 選手を特定するデータ
+				'username'  => 'やまぐちたろう',	// 選手名 文字列
+				'player_id' => 'ABCD',			// 選手ID 文字列
+				),
+			'Record' => array( // 走った記録
+				'movie_path'   => '',			// 動画のパス 文字列
+				'movie_length' => '',			// 動画の長さ 文字列 
+				'register_date' => '',			// 登録日 'YYYY-MM-DD HH:MM:SS' 空なら現在時刻を生成
+				'data' => '',					// 記録データ 文字列
+				'partner_id' => 'EFGH',			// 一緒に走った相手のID 文字列
+				'tags' => '小学生,男子',			// タグ カンマ区切りの文字列
+				'comment' => '',				// コメント 文字列
+				'pattern' => 'まだら',			// 自分の色 文字列
+				'sound' => 'ぽっぷ',				// 音 文字列
+				'pattern' => '宇宙',				// 背景 文字列
+				),
+			'Image' => array( // 画像 6枚
+				0 => array(
+					'filename' => 'ABCD-1',		// ファイル名 文字列
+					'ext' => 'jpg',				// 拡張子 文字列
+					'mime' => 'image/jpeg',		// jpgはimage/jpeg、pngはimage/png
+					'width' => 1024,			// 画像の幅 数値
+					'height' => 768,			// 画像の高さ 数値
+					'data' => '...',			// 画像データをBASE64エンコードしたもの 文字列
+					),
+				1 => array(
+					'filename' => 'ABCD-2',		// ファイル名 文字列
+					'ext' => 'jpg',				// 拡張子 文字列
+					'mime' => 'image/jpeg',		// jpgはimage/jpeg、pngはimage/png
+					'width' => 1024,			// 画像の幅 数値
+					'height' => 768,			// 画像の高さ 数値
+					'data' => '...',			// 画像データをBASE64エンコードしたもの 文字列
+					),
+				// ... 6枚登録？
+				),
+			);
+		$data = array('json' => json_encode($array));
+		$r = $this->myTestAction('/api/playDataSaveDebug', array('data' => $data, 'method' => 'post'));
+		pr($r);
+		/*
+		$expected = array(
+			'code' => '200',
+			'result' => array('message' => 'success', 'data' => null),
+			);
+		$this->assertEquals($expected, json_decode($r, true));
+		*/
+		
 	}
 }
