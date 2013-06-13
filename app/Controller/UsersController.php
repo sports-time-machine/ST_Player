@@ -26,6 +26,11 @@ class UsersController extends AppController {
 	 * ログイン機能
 	 */
 	public function login() {
+        
+        //既にログインしているのであればindexへリダイレクト
+        if ($this->Auth->user()) $this->redirect(array('action' => 'index'));
+        
+        
 		if ($this->request->is('ajax')) {
 			//QRコードを利用してログイン
 			$this->autoRender = false;
