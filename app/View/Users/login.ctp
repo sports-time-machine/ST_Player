@@ -22,6 +22,13 @@ function showErrorMessage(msg) {
 	$('#errorMessage').html(msg);
 	$('#errorDialog').show();
 }
+
+//エラーをモーダルで表示
+function showModal(mes){
+    $('#result').text(mes); 
+    $("#errorModal").modal("show");
+}
+
 function AuthQRCodeAjax(name, id) {
 	var url = "<?php echo $this->Html->webroot . 'users/login'; ?>";
 	var data = { User : {username : name , player_id : id }};
@@ -35,7 +42,7 @@ function AuthQRCodeAjax(name, id) {
 			if (html == "OK"){
 				location.href = "<?php echo $this->Html->webroot . 'users/'; ?>";
 			} else {
-				$('#result').text("ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません。");
+				showModal("ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません");
 			}
 		},
 		error: function(a,b,c){
@@ -68,7 +75,7 @@ $(function(){
 	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
 							  navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
-	navigator.getUserMedia({video: true},
+	navigator.getUserMedia({video: true, audio: false},
 		function(stream) {
 			video.src = window.URL.createObjectURL(stream);
 			localMediaStream = stream;
@@ -83,21 +90,43 @@ $(function(){
 		// QRコード取得結果を表示
 		if (result != null) {
 			AuthQRCodeAjax($("#username").val(), result);
-		} else {
-			$('#result').text("ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません。");
 		}
 	};
 
-	//ボタンイベント
-	$("#read").click(function() {
-        $('#result').text("QRコードを読み取り中です…");
-        
-        if (localMediaStream) {
-            ctx.drawImage(video, 0, 0);
-            // QRコード取得開始
-            qrcode.decode(canvas.toDataURL('image/webp'));        
-        }
-	});
+    //ボタンイベント
+    $("#read").click(function() {
+    
+        intervalId = setInterval(function(){
+          
+            if (localMediaStream) {
+                ctx.drawImage(video, 0, 0);
+                // QRコード取得開始
+                qrcode.decode(canvas.toDataURL('image/webp'));        
+            }     
+            
+        },500);
+
+        //10秒経過するとタイムアウト
+        timeoutId = setTimeout(function(){
+            showModal("読み込みに失敗しました。QRコードを読み取れませんでした");
+        },10000);
+
+        $("#read").attr('disabled', true);
+        $('#info').text("QRコードを読み取り中です…");
+       
+    });
+    
+    //エラー表示時には読み込みイベントを停止
+    $("#errorModal").on('show',function(){
+        clearInterval(intervalId);
+        clearTimeout(timeoutId);        
+    });
+    
+    //モーダルを閉じる時にボタンを利用可に
+    $("#errorModal").on('hidden',function(){
+        $('#read').removeAttr('disabled');
+        $('#info').text("");  
+    });
 
 });
 </script>
@@ -120,4 +149,7 @@ $(function(){
 
 <?php echo $this->Form->button('ログイン',array('type' => 'button', 'div' => false, 'id' => 'read', 'class' => 'btn')) ?>
 
-<div class="error" id="result"></div>
+<div id="info"></div>
+<div class="modal hide fade" id="errorModal">
+    <div class="error modal-body" id="result"></div>
+</div>
