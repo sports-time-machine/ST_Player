@@ -86,6 +86,14 @@ class ApiController extends AppController {
 		print_r($data);
 		print_r("\n------------------------------------------------------------\n");
 		
+		print_r("Image Path\n");
+		print_r("------------------------------------------------------------\n");
+		foreach($data['Image'] as $image) {
+			$path = $this->Stm->generateImagePathFromPlayerId($data['User']['player_id']);
+			print_r($path . DS . $image['filename'] . '.' . $image['ext'] . "\n");
+		}
+		print_r("------------------------------------------------------------\n");
+		
 		return;
 	}
 	
