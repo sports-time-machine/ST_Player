@@ -33,4 +33,21 @@ App::uses('Model', 'Model');
  */
 class AppModel extends Model {
     
+	/**
+	 * MySQLトランザクション用
+	 */
+	function begin() {
+		$db = ConnectionManager::getDataSource($this->useDbConfig);
+		$db->begin($this);
+	}
+
+	function commit() {
+		$db = ConnectionManager::getDataSource($this->useDbConfig);
+		$db->commit($this);
+	}
+
+	function rollback() {
+		$db = ConnectionManager::getDataSource($this->useDbConfig);
+		$db->rollback($this);
+	}
 }
