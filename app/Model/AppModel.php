@@ -32,7 +32,20 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
-    
+	
+	function __construct($id = false, $table = null, $ds = null) {
+		parent::__construct($id, $table, $ds);
+		
+		// 外部ファイルが存在すれば、バリデーションを初期化
+		$filename = APP . 'Config' . DS . 'validate' . DS . $this->name . '.php';
+		if (file_exists($filename)) {
+			require_once($filename);
+			$this->validate = Configure::read(strtoupper('VALIDATE_' . $this->name));
+		}
+		
+	}
+	
+	
 	/**
 	 * MySQLトランザクション用
 	 */
