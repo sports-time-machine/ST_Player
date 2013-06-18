@@ -21,6 +21,10 @@ Thumbs.db
 
 # Cake TMP Dirs #
 #################
+/app/webroot/upload/*
+!app/webroot/upload
+!app/webroot/upload/empty
+
 /app/tmp/*
 !/app/tmp/
  
