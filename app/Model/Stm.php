@@ -133,7 +133,7 @@ class Stm extends AppModel
 		// 画像を保存
 		if (!empty($data['Image'])) {
 			// ディレクトリを作成
-			$path = $this->generateImagePathFromRecordId($data['Record']['record_id']);
+			$path = $this->generateImagePathFromPlayerId($data['User']['player_id']);
 			$fullPath = $this->IMAGE_DIR . DS . $path;
 			@mkdir($fullPath, 0755, true);
 			
@@ -150,7 +150,7 @@ class Stm extends AppModel
 
 	// 各プレイヤーの画像ディレクトリのパスを生成
 	// ABCD → D\C\B\A
-	public function generateImagePathFromRecordId($record_id) {
+	public function generateImagePathFromPlayerId($record_id) {
 		// 正規化
 		// TODO あとで共通化
 		$record_id = strtoupper($record_id);
