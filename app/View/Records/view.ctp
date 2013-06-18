@@ -56,10 +56,10 @@
 			
 			<?php foreach ($record['RecordImage'] as $key => $recordImage): ?>
 			<li class="span3">
-				<a href="#" class="sumbnail"><?php echo $this->Stm->image($record['Record']['record_id'], $recordImage['Image']['filename']); ?></a>
+				<a href="#" class="sumbnail"><?php echo $this->Stm->image($record['Record']['record_id'], $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], array('title' => $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'])); ?></a>
 			</li>
 			<?php endforeach; ?>
-			
+
 		</ul>
 	</div>
 </div>
