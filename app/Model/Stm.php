@@ -73,7 +73,7 @@ class Stm extends AppModel
 		// 記録を保存する
 		
 		// 関連付けるUserデータ
-		$conditions = array('username' => $data['User']['username'], 'player_id' => $data['User']['player_id']);
+		$conditions = array('player_id' => $data['User']['player_id']);
 		$user = $this->User->find('first', array('conditions' => $conditions));
 		
 		// TODO データがないときの処理
