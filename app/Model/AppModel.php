@@ -45,6 +45,22 @@ class AppModel extends Model {
 		
 	}
 	
+	// モデルを読み込んでインスタンスを作成
+	public function loadModel($models) {
+		if (empty($models)) {
+			return;
+		}
+		
+		if (is_array($models)) {
+			foreach($models as $model) {
+				App::uses($model, 'Model');
+				$this->{$model} = new $model;
+			}
+		} else {
+			App::uses($models, 'Model');
+			$this->{$models} = new $models;
+		}
+	}
 	
 	/**
 	 * MySQLトランザクション用

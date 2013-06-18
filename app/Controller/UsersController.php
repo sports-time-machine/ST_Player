@@ -9,17 +9,10 @@ class UsersController extends AppController {
 	public function beforeFilter() {
 		$this->Auth->allow('login', 'passwordLogin', 'adminLogin', 'logout');  //ログインとログアウトしか許可しない
 	}
-
-	public function beforeRender() {
-		parent::beforeRender();
-
-		//認証されたユーザデータがあればデータ読み込み
-		$user = $this->Auth->user();
-		$this->set('user', $user);
-	}
-
+	
+	// Myページへ
 	function index() {
-		
+		$this->redirect(array('controller' => 'My', 'action' => 'index'));
 	}
 
 	/**

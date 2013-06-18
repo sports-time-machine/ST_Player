@@ -120,10 +120,10 @@ class ApiControllerTest extends ControllerTestCase {
 		//pr($image);
 		
 		// 記録データ登録
-		echo "playDataSaveDebug - OK";
+		echo "recordSaveDebug - OK";
 		$array = array(
 			'User' => array( // 選手を特定するデータ
-				'username'  => 'やまぐちたろう',	// 選手名 文字列
+				'username'  => 'fukuda',	// 選手名 文字列
 				'player_id' => 'ABCD',			// 選手ID 文字列
 				),
 			'Record' => array( // 走った記録
@@ -165,8 +165,8 @@ class ApiControllerTest extends ControllerTestCase {
 				),
 			);
 		$data = array('json' => json_encode($array));
-		//$r = $this->myTestAction('/api/playDataSaveDebug', array('data' => $data, 'method' => 'post'));
-		$r = $this->myTestAction('/api/playDataSave', array('data' => $data, 'method' => 'post'));
+		//$r = $this->myTestAction('/api/recordSaveDebug', array('data' => $data, 'method' => 'post'));
+		$r = $this->myTestAction('/api/recordSave', array('data' => $data, 'method' => 'post'));
 		pr($r);
 		/*
 		$expected = array(

@@ -43,4 +43,12 @@ class AppController extends Controller {
         ),
 	);
 	public $helpers = array('UploadPack.Upload');
+
+	public function beforeRender() {
+		parent::beforeRender();
+		
+		// 認証データをビューに渡す
+		$user = $this->Auth->user();
+		$this->set('LOGIN_USER', $user);
+	}
 }

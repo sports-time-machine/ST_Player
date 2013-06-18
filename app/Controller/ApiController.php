@@ -6,6 +6,7 @@ define('API_SUCCESS',				0);
 define('API_ERROR_NOMETHOD',		1);
 define('API_ERROR_NODATA',			2);
 define('API_ERROR_INVALID_DATA',	3);
+define('API_ERROR_EXIST_DATA',		4);
 
 class ApiController extends AppController {
     public $uses = array('Stm');
@@ -39,30 +40,45 @@ class ApiController extends AppController {
 	public function index(){
 	}
 	
-	// 走った記録の保存
+	// 走った記録の保存（旧。後で消す）
 	public function playDataSave() {
+		return $this->recordSave();
+	}
+	// 走った記録の保存
+	public function recordSave() {
 		$json = null;
 		if (!empty($this->request->data['json'])) {
 			$json = $this->request->data['json'];
 		}
 		$data = json_decode($json, true);
 		
+		// データがあるかどうか
 		if (empty($data)) {
 			return $this->outputHandler(API_ERROR_NODATA);
 		}
 		
-		if (!$this->Stm->isValidPlayData($data)) {
+		// 正しいデータかどうか
+		if (!$this->Stm->isValidRecord($data)) {
 			return $this->outputHandler(API_ERROR_INVALID_DATA);
 		}
 		
-		// TODO 登録処理
-		$r = $this->Stm->playDataSave($data);
+		// 新しい記録データかどうか
+		if (!$this->Stm->isNewRecord($data)) {
+			return $this->outputHandler(API_ERROR_EXIST_DATA);
+		}
+		
+		// 登録処理
+		$r = $this->Stm->recordSave($data);
 		
 		return $this->outputHandler(API_SUCCESS);
 	}
 	
-	// 走った記録の保存デバッグ用
+	// 走った記録の保存デバッグ用（旧。後で消す）
 	public function playDataSaveDebug() {
+		return $this->recordSaveDebug();
+	}
+	// 走った記録の保存デバッグ用
+	public function recordSaveDebug() {
 		// POSTデータ
 		print_r("POST DATA\n");
 		print_r("------------------------------------------------------------\n");
@@ -145,6 +161,9 @@ class ApiController extends AppController {
 		} else if ($errorCode == API_ERROR_INVALID_DATA) {
 			$result['code'] = '403';
 			$result['result']['message'] = 'invalid data';
+		} else if ($errorCode == API_ERROR_EXIST_DATA) {
+			$result['code'] = '404';
+			$result['result']['message'] = 'exist data';
 		} else {
 			$result['code'] = '400';
 			$result['result']['message'] = 'Error';
