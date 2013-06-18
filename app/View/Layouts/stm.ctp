@@ -43,12 +43,12 @@
 	<div id="header">
 		<div class="logo">スポーツタイムマシン</div>
 		<div class="loginuser">
-			<?php if ($user){ ?>
-			<span>ようこそ！<?php echo $user['username']; ?>選手！</span>
+			<?php if (!empty($LOGIN_USER)) { ?>
+			<span>ようこそ！<?php echo $LOGIN_USER['username']; ?>選手！</span>
 			<?php } ?>
 		</div>
 		<div class="logout">
-			<?php if ($user){ ?>
+			<?php if (!empty($LOGIN_USER)) { ?>
 				<?php echo $this->Html->link('ログアウト',array('action' => 'logout')) ?>
 			<?php } ?>
 		</div>
