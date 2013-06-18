@@ -48,6 +48,7 @@ class Stm extends AppModel
 	
 	// 走った記録を保存する
 	public function recordSave($data) {
+		$this->log($data);
 		$this->loadModel(array('User', 'Record', 'Recordimage', 'Partner', 'Image'));
 		$result = true;
 		

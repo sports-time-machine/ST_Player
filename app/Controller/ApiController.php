@@ -64,7 +64,7 @@ class ApiController extends AppController {
 		
 		// 新しい記録データかどうか
 		if (!$this->Stm->isNewRecord($data)) {
-			return $this->outputHandler(API_ERROR_EXIST_DATA);
+			//return $this->outputHandler(API_ERROR_EXIST_DATA);
 		}
 		
 		// 登録処理
