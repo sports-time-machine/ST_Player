@@ -6,7 +6,8 @@ define('API_SUCCESS',				0);
 define('API_ERROR_NOMETHOD',		1);
 define('API_ERROR_NODATA',			2);
 define('API_ERROR_INVALID_DATA',	3);
-define('API_ERROR_EXIST_DATA',		4);
+define('API_ERROR_INVALID_HASH',	4);
+define('API_ERROR_EXIST_DATA',		5);
 
 class ApiController extends AppController {
     public $uses = array('Stm');
@@ -60,6 +61,11 @@ class ApiController extends AppController {
 		// 正しいデータかどうか
 		if (!$this->Stm->isValidRecord($data)) {
 			return $this->outputHandler(API_ERROR_INVALID_DATA);
+		}
+		
+		// 正しいデータかどうか
+		if (!$this->Stm->isValidRecordHash($data)) {
+			return $this->outputHandler(API_ERROR_INVALID_HASH);
 		}
 		
 		// 新しい記録データかどうか
@@ -161,8 +167,11 @@ class ApiController extends AppController {
 		} else if ($errorCode == API_ERROR_INVALID_DATA) {
 			$result['code'] = '403';
 			$result['result']['message'] = 'invalid data';
-		} else if ($errorCode == API_ERROR_EXIST_DATA) {
+		} else if ($errorCode == API_ERROR_INVALID_HASH) {
 			$result['code'] = '404';
+			$result['result']['message'] = 'invalid hash';
+		} else if ($errorCode == API_ERROR_EXIST_DATA) {
+			$result['code'] = '405';
 			$result['result']['message'] = 'exist data';
 		} else {
 			$result['code'] = '400';

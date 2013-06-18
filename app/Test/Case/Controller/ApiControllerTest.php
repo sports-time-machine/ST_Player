@@ -127,6 +127,7 @@ class ApiControllerTest extends ControllerTestCase {
 				'player_id' => 'ABCD',			// 選手ID 文字列
 				),
 			'Record' => array( // 走った記録
+				'player_id' => 'ABCD',			// 選手ID 文字列
 				'record_id' => 'ABCD3',			// 記録ID(QRコード)
 				'movie_path'   => '',			// 動画のパス 文字列
 				'movie_length' => '',			// 動画の長さ 文字列 
@@ -164,6 +165,8 @@ class ApiControllerTest extends ControllerTestCase {
 				// ... 6枚登録？
 				),
 			);
+		$array['Record']['md5hex'] = md5($array['Record']['player_id'] . ', ' . $array['Record']['record_id'] . ', ' . $array['Record']['register_date']);
+		
 		$data = array('json' => json_encode($array));
 		//$r = $this->myTestAction('/api/recordSaveDebug', array('data' => $data, 'method' => 'post'));
 		$r = $this->myTestAction('/api/recordSave', array('data' => $data, 'method' => 'post'));

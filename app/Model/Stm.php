@@ -36,6 +36,21 @@ class Stm extends AppModel
 		return true;
 	}
 	
+	// 走った記録のバリデーションチェック
+	public function isValidRecordHash($data) {
+		// MD5チェック
+		$md5src = $this->generateRecordMd5($data);
+		if ($md5src != $data['Record']['md5hex']) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public function generateRecordMd5($data) {
+		return md5($data['Record']['player_id'] . ', ' . $data['Record']['record_id'] . ', ' . $data['Record']['register_date']);
+	}
+	
 	// 新しい記録データかどうか
 	public function isNewRecord($data) {
 		$this->loadModel('Record');
