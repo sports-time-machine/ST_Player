@@ -26,13 +26,17 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
+	// /ABCD3 のような、選手ID直打ちの場合のルーティング
+	// 大文字のA-Z、数字の1-9から始まるときにマッチ
+	Router::connect('/:player_id', array('controller' => 'Records', 'action' => 'view', 'player_id'), array('player_id' => '[A-Z1-9]+'));
+	
 	//Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
   	Router::connect('/', array('controller' => 'users', 'action' => 'login'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
-
+	
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
