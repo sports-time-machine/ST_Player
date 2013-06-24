@@ -122,5 +122,8 @@ CakePlugin::load('DebugKit');
 // for UploadPack
 CakePlugin::load('UploadPack');
 
+// for Search Plugin
+CakePlugin::load('Search');
+
 // アプリ用の定数定義
 config('const');
