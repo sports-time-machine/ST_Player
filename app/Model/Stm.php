@@ -59,7 +59,7 @@ class Stm extends AppModel
 		// 関連付けるUserデータ
 		$conditions = array('player_id' => $data['User']['player_id']);
 		$user = $this->User->find('first', array('conditions' => $conditions));
-		pr($user);
+		
 		// 保存するフィールド
 		$fields = array('player_id', 'username', 'created', 'modified');
 		
