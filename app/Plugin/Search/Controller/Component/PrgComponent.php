@@ -92,7 +92,7 @@ class PrgComponent extends Component {
 		if (!empty($settings['model'])) {
 			$model = $settings['model'];
 		}
-
+		
 		if ($this->controller->presetVars === true) {
 			// auto-set the presetVars based on search definitions in model
 			$this->controller->presetVars = array();

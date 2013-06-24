@@ -70,7 +70,7 @@ $(function(){
 				<a class="brand" href="#" onclick="return false;">ST_Player管理画面</a>
 				<ul class="nav">
 					<li class="users"><a href="<?php echo $this->Html->url("/admin/users"); ?>">選手</a></li>
-					<li class="search"><a href="<?php echo $this->Html->url("/log/search"); ?>">ログ</a></li>
+					<li class="search"><a href="<?php echo $this->Html->url("/logs/search"); ?>">ログ</a></li>
 					<li><a href="<?php echo $this->Html->url("/users/logout"); ?>">ログアウト</a></li>
 				</ul>
 			</div>

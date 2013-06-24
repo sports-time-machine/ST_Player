@@ -6,7 +6,7 @@
 }
 
 div.search_form {
-	background-color: #ecefe8;
+	background-color: #f0f0f0;
 }
 /* bootstrap の上書き */
 .table-striped tbody tr:nth-child(odd) td,
@@ -14,7 +14,8 @@ div.search_form {
 	background-color: #f0f0f0;
 }
 
-/* admin/bean */
-div.beans.view th, div.beanImages.view th {
-	width: 300px;
+/* admin */
+h2 {
+	font-size: 14pt;
+	border-bottom: 1px solid gray;
 }

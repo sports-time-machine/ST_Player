@@ -7,6 +7,12 @@ class User extends AppModel
 	public $useTable = 'users';
 	public $primaryKey = 'id';
 
+	// for Search Plugin
+	public $actsAs = array('Search.Searchable');
+	public $filterArgs = array(
+		'keyword' => array('type' => 'like', 'field' => array('User.player_id', 'User.username')),
+	);
+	
     public $validate = array(
         'id' => array(
 

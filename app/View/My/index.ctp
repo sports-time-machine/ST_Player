@@ -1,4 +1,4 @@
-<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">選手</h2>
+<h2>選手</h2>
 
 <table class="table table-striped table-bordered">
 	<tr>
@@ -12,7 +12,7 @@
 </table>
 
 
-<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">記録</h2>
+<h2>記録</h2>
 
 <ul>
 	<?php foreach ($user['Record'] as $record): ?>

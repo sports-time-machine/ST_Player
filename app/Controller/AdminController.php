@@ -5,13 +5,19 @@ class AdminController extends AppController {
 	public $uses = array(
 			'User',
 		);
+	public $components = array('Search.Prg' => array(
+		'model' => 'User', // SearchPluginで使うモデルを指定
+		/*'presetForm' => array(
+	        'paramType' => 'named', // or 'querystring'
+	        'model' => 'User', // or a default model name
+	    ),*/
+	));
+	public $presetVars = true;
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
 		
-		// TODO admin ユーザーだけ許可する
-		//$this->Auth->allow(); // 仮
-		
+		// admin ユーザーだけ許可
 		$loginUser = $this->Auth->user('User');
 		if (!in_array($loginUser['username'], Configure::read('ADMIN_USERNAME_LIST'))) {
 			// 本番環境ではメッセージは表示しない
@@ -26,12 +32,13 @@ class AdminController extends AppController {
 	
 	// 選手一覧
 	public function users() {
-		/*
-		$this->paginate = array(
-			'limit' => 20,
-			);
-		*/
-		$users = $this->paginate('User');
+		// 検索フォームのバリデーションを無効化
+		$this->User->validate = array();
+		
+		// 検索
+		$this->Prg->commonProcess();
+		$conditions = $this->User->parseCriteria($this->passedArgs);
+		$users = $this->paginate('User', $conditions);
 		$this->set('users', $users);
 	}
 	

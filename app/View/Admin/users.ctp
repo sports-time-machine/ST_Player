@@ -1,9 +1,28 @@
-<div class="user index">
-	<h3>選手一覧</h3>
+<script type="text/javascript">
+$(function() {
+	// 初期フォーカス
+	$('#UserKeyword').focus();
+});
+</script>
 
+<div class="admin users">
+	<h2>選手一覧</h2>
+
+	<!--
 	<div style="margin: 20px 0px;">
 		<a class="btn" href="<?php echo $this->Html->url('/admin/userAdd'); ?>">選手新規登録</a>
 	</div>
+	-->
+	<?php
+	echo $this->Form->create('User', array(
+		'url' => array('controller' => 'admin', 'action' => 'users'),
+		//'url' => array('controller' => 'admin', 'action' => 'users', 'validates' => false), // 'validates' => false が効かない
+	));
+	echo $this->Form->label('選手番号 または 選手名');
+	echo $this->Form->text('keyword');
+	echo $this->Form->submit('検索', array('class' => 'btn btn-primary'));
+	echo $this->Form->end();
+	?>
 
 	<table class="table table-striped table-bordered">
 	<tr>
@@ -25,7 +44,7 @@
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'userDelete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
 		</td>
 	</tr>
-<?php endforeach; ?>
+	<?php endforeach; ?>
 	</table>
 	
 	<!-- pagination -->
