@@ -26,7 +26,66 @@ class Stm extends AppModel
 		return $data;
 	}
 	
-	// 走った記録のバリデーションチェック
+	// ------------------------------------------------------------
+	// 選手の登録・更新
+	// ------------------------------------------------------------
+	// 選手データのチェック
+	public function isValidUser($data) {
+		if (empty($data['User']['player_id'])) {
+			return false;
+		}
+		return true;
+	}
+	
+	// 選手データのハッシュチェック
+	public function isValidUserHash($data) {
+		// MD5チェック
+		$md5src = $this->generateUserMd5($data);
+		if ($md5src != $data['user']['md5hex']) {
+			return false;
+		}
+		
+		return true;
+	}
+	public function generateUserMd5($data) {
+		// TODO 登録日のカラム名？
+		return md5($data['User']['player_id'] . ', ' . $data['User']['register_date']);
+	}
+	
+	// 選手データを保存する
+	public function userSave($data) {
+		$this->loadModel(array('User'));
+		
+		// 関連付けるUserデータ
+		$conditions = array('player_id' => $data['User']['player_id']);
+		$user = $this->User->find('first', array('conditions' => $conditions));
+		pr($user);
+		// 保存するフィールド
+		$fields = array('player_id', 'username', 'created', 'modified');
+		
+		if (empty($user)) {
+			// 未登録の場合は新規登録
+			$this->User->create();
+			$result = $this->User->save($data['User'], true, $fields);
+		} else {
+			// 登録済みの場合は更新
+			$this->User->id = $user['User']['id'];
+			$result = $this->User->save($data['User'], true, $fields);
+		}
+		
+		if (!is_array($result)) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	
+	// ------------------------------------------------------------
+	// 記録の登録
+	// ------------------------------------------------------------
+	// 走った記録データのチェック
 	public function isValidRecord($data) {
 		if (empty($data['User']['player_id'])) {
 			return false;
@@ -36,7 +95,7 @@ class Stm extends AppModel
 		return true;
 	}
 	
-	// 走った記録のバリデーションチェック
+	// 走った記録データのハッシュチェック
 	public function isValidRecordHash($data) {
 		// MD5チェック
 		$md5src = $this->generateRecordMd5($data);
@@ -46,7 +105,6 @@ class Stm extends AppModel
 		
 		return true;
 	}
-	
 	public function generateRecordMd5($data) {
 		return md5($data['Record']['player_id'] . ', ' . $data['Record']['record_id'] . ', ' . $data['Record']['register_date']);
 	}
@@ -118,10 +176,7 @@ class Stm extends AppModel
 				$result = false;
 			}
 		}
-		
-		
-		pr($data);
-		
+		//pr($data);
 		
 		// トランザクション終了
 		if ($result === false) {
@@ -160,4 +215,7 @@ class Stm extends AppModel
 		$path = implode(DS, $char_array);
 		return $path;
 	}
+	
+	
+	
 }

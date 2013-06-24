@@ -41,10 +41,6 @@ class ApiController extends AppController {
 	public function index(){
 	}
 	
-	// 走った記録の保存（旧。後で消す）
-	public function playDataSave() {
-		return $this->recordSave();
-	}
 	// 走った記録の保存
 	public function recordSave() {
 		$json = null;
@@ -70,7 +66,7 @@ class ApiController extends AppController {
 		
 		// 新しい記録データかどうか
 		if (!$this->Stm->isNewRecord($data)) {
-			//return $this->outputHandler(API_ERROR_EXIST_DATA);
+			return $this->outputHandler(API_ERROR_EXIST_DATA);
 		}
 		
 		// 登録処理
@@ -79,10 +75,6 @@ class ApiController extends AppController {
 		return $this->outputHandler(API_SUCCESS);
 	}
 	
-	// 走った記録の保存デバッグ用（旧。後で消す）
-	public function playDataSaveDebug() {
-		return $this->recordSaveDebug();
-	}
 	// 走った記録の保存デバッグ用
 	public function recordSaveDebug() {
 		// POSTデータ
@@ -119,21 +111,41 @@ class ApiController extends AppController {
 		return;
 	}
 	
-	// プレイヤー登録
-	public function playerAdd() {
-		$json = $this->request->data['json'];
+	// 選手登録
+	// 未登録の場合は新規登録
+	// 登録済みの場合は選手名をアップデート
+	public function userSave() {
+		$json = null;
+		if (!empty($this->request->data['json'])) {
+			$json = $this->request->data['json'];
+		}
 		$data = json_decode($json, true);
+		
+		// データがあるかどうか
 		if (empty($data)) {
 			return $this->outputHandler(API_ERROR_NODATA);
 		}
 		
-		// TODO 登録処理
+		// 正しいデータかどうか
+		if (!$this->Stm->isValidUser($data)) {
+			return $this->outputHandler(API_ERROR_INVALID_DATA);
+		}
+		
+		// 正しいデータかどうか
+		if (!$this->Stm->isValidUserHash($data)) {
+			return $this->outputHandler(API_ERROR_INVALID_HASH);
+		}
+		
+		// 登録処理
+		$r = $this->Stm->userSave($data);
 		
 		return $this->outputHandler(API_SUCCESS);
 	}
 	
-	// プレイヤー削除
-	public function playerDelete() {
+	// 選手削除
+	// APIでは提供しない
+	/*
+	public function userDelete() {
 		$json = $this->request->data['json'];
 		$data = json_decode($json, true);
 		if (empty($data)) {
@@ -144,6 +156,7 @@ class ApiController extends AppController {
 		
 		return $this->outputHandler(API_SUCCESS);
 	}
+	*/
 	
 	// メソッドが無いとき用のダミーアクション
 	public function dummy() {

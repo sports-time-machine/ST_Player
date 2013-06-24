@@ -55,10 +55,13 @@ class AppModel extends Model {
 			foreach($models as $model) {
 				App::uses($model, 'Model');
 				$this->{$model} = new $model;
+				$this->{$model}->useDbConfig = $this->useDbConfig; // for UnitTest useDbConfigを引き継ぐ
+
 			}
 		} else {
 			App::uses($models, 'Model');
 			$this->{$models} = new $models;
+			$this->{$model}->useDbConfig = $this->useDbConfig; // for UnitTest useDbConfigを引き継ぐ
 		}
 	}
 	

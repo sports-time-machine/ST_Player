@@ -73,7 +73,7 @@ class DATABASE_CONFIG {
 		'host' => 'www4235ui.sakura.ne.jp',
 		'login' => 'st_player',
 		'password' => 'z1EJWIgvKxIzGIrX6Yxz',
-		'database' => 'st_player',
+		'database' => 'st_player_test',
 		'prefix' => '',
 		'port' => '3306',
 		'encoding' => 'utf8',
