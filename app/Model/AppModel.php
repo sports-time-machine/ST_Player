@@ -61,7 +61,7 @@ class AppModel extends Model {
 		} else {
 			App::uses($models, 'Model');
 			$this->{$models} = new $models;
-			$this->{$model}->useDbConfig = $this->useDbConfig; // for UnitTest useDbConfigを引き継ぐ
+			$this->{$models}->useDbConfig = $this->useDbConfig; // for UnitTest useDbConfigを引き継ぐ
 		}
 	}
 	

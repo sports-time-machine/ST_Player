@@ -121,8 +121,11 @@ class Stm extends AppModel
 	
 	// 走った記録を保存する
 	public function recordSave($data) {
-		$this->log($data);
-		$this->loadModel(array('User', 'Record', 'Recordimage', 'Partner', 'Image'));
+		// 重複チェック
+		if (!$this->isNewRecord($data)) {
+			return false;
+		}
+		$this->loadModel(array('User', 'Record', 'RecordImage', 'Partner', 'Image'));
 		$result = true;
 		
 		// トランザクション開始
@@ -160,8 +163,8 @@ class Stm extends AppModel
 			
 			// 画像と記録の関連付け
 			$recordImage = array('record_id' => $this->Record->id, 'image_id' => $this->Image->id);
-			$this->Recordimage->create();
-			$r = $this->Recordimage->save($recordImage);
+			$this->RecordImage->create();
+			$r = $this->RecordImage->save($recordImage);
 			if ($r === false) {
 				$result = false;
 			}
@@ -199,6 +202,14 @@ class Stm extends AppModel
 				file_put_contents($file, $data);
 			}
 		}
+		
+		return true;
+	}
+	
+	// 走った記録を削除する
+	public function recordDelete($record_id) {
+		
+		// TODO 削除機能を実装
 		
 		return true;
 	}
