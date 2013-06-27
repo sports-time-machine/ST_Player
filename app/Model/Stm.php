@@ -41,7 +41,7 @@ class Stm extends AppModel
 	public function isValidUserHash($data) {
 		// MD5チェック
 		$md5src = $this->generateUserMd5($data);
-		if ($md5src != $data['user']['md5hex']) {
+		if ($md5src != $data['User']['md5hex']) {
 			return false;
 		}
 		
@@ -49,7 +49,7 @@ class Stm extends AppModel
 	}
 	public function generateUserMd5($data) {
 		// TODO 登録日のカラム名？
-		return md5($data['User']['player_id'] . ', ' . $data['User']['register_date']);
+		return md5($data['User']['player_id']);
 	}
 	
 	// 選手データを保存する
@@ -81,6 +81,47 @@ class Stm extends AppModel
 	}
 	
 	
+	
+	// ------------------------------------------------------------
+	// 記録の呼び出し
+	// ------------------------------------------------------------
+	public function record($record_id) {
+		$this->loadModel(array('User', 'Record', 'RecordImage', 'Partner', 'Image'));
+		
+		// image呼び出し用
+		$this->Record->recursive = 2;
+		$r = $this->Record->findByRecord_id($record_id);
+		if (empty($r)) {
+			return array();
+		}
+		//pr($r);
+		$u = $this->User->findById($r['Record']['user_id']);
+		
+		// 整形
+		$data = array(
+			'User' => $u['User'],
+			'Record' => $r['Record'],
+			'Partner' => array(),
+			'Image' => array(),
+		);
+		foreach ($r['Partner'] as $k => $v) {
+			$data['Partner'][] = array('partner_id' => $v['partner_id']);
+		}
+		foreach ($r['RecordImage'] as $k => $v) {
+			$data['Image'][] = array(
+				'filename' => $v['Image']['filename'],
+				'ext'      => $v['Image']['ext'],
+				'mime'     => $v['Image']['mime'],
+				'size'     => $v['Image']['size'],
+				'width'    => $v['Image']['width'],
+				'height'   => $v['Image']['height'],
+				);
+			
+		}
+		//pr($data);
+		
+		return $data;
+	}
 	
 	// ------------------------------------------------------------
 	// 記録の登録
@@ -137,7 +178,14 @@ class Stm extends AppModel
 		$conditions = array('player_id' => $data['User']['player_id']);
 		$user = $this->User->find('first', array('conditions' => $conditions));
 		
-		// TODO データがないときの処理
+		// Userデータがないとき、新規登録する
+		if (empty($user)) {
+			$r = $this->userSave($data);
+			if ($r === false) {
+				return false;
+			}
+			$user = $this->User->find('first', array('conditions' => $conditions));
+		}
 		
 		// 記録の保存
 		$record = $data['Record'];

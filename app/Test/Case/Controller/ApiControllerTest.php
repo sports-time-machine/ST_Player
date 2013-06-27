@@ -29,6 +29,14 @@ class ApiControllerTest extends ControllerTestCase {
  */
 	public function setUp() {
 		parent::setUp();
+		$this->Stm = ClassRegistry::init('Stm');
+		// テーブルを空にする
+		$this->Stm->query('DELETE FROM users;');
+		$this->Stm->query('DELETE FROM profiles;');
+		$this->Stm->query('DELETE FROM records;');
+		$this->Stm->query('DELETE FROM record_images;');
+		$this->Stm->query('DELETE FROM partners;');
+		$this->Stm->query('DELETE FROM images;');
 	}
 
 /**
@@ -71,42 +79,28 @@ class ApiControllerTest extends ControllerTestCase {
 		
 		
 		// 適切なデータを渡さなかった場合はエラー
-		echo "playerAdd - NG";
+		echo "userSave - NG";
 		$array = array();
 		$data = array('json' => json_encode($array));
-		$r = $this->myTestAction('/api/playerAdd', array('data' => $data, 'method' => 'post'));
+		$r = $this->myTestAction('/api/userSave', array('data' => $data, 'method' => 'post'));
 		pr($r);
 		$expected = array(
 			'code' => '402',
 			'result' => array('message' => 'No data posted', 'data' => null),
-			);
+		);
 		$this->assertEquals($expected, json_decode($r, true));
 		
 		
 		// 選手データ登録
-		echo "playerAdd - OK";
+		echo "userSave - OK";
 		$array = array(
-			'user_id'  => '12345678',
-			'username' => 'たろう',
-			'tag'      => '小学生,男子,犬',
-			);
+			'User' => array(
+				'player_id'  => 'ABCD',
+				'username' => 'やまぐちたろう',
+			),
+		);
 		$data = array('json' => json_encode($array));
-		$r = $this->myTestAction('/api/playerAdd', array('data' => $data, 'method' => 'post'));
-		pr($r);
-		$expected = array(
-			'code' => '200',
-			'result' => array('message' => 'success', 'data' => null),
-			);
-		$this->assertEquals($expected, json_decode($r, true));
-		
-		
-		// 選手データ削除
-		echo "playerDelete - OK";
-		$array = array(
-			'user_id'  => '12345678',
-			);
-		$data = array('json' => json_encode($array));
-		$r = $this->myTestAction('/api/playerDelete', array('data' => $data, 'method' => 'post'));
+		$r = $this->myTestAction('/api/userSave', array('data' => $data, 'method' => 'post'));
 		pr($r);
 		$expected = array(
 			'code' => '200',
@@ -120,10 +114,9 @@ class ApiControllerTest extends ControllerTestCase {
 		//pr($image);
 		
 		// 記録データ登録
-		echo "recordSaveDebug - OK";
+		echo "recordSave - OK";
 		$array = array(
 			'User' => array( // 選手を特定するデータ
-				'username'  => 'fukuda',	// 選手名 文字列
 				'player_id' => 'ABCD',			// 選手ID 文字列
 				),
 			'Record' => array( // 走った記録
@@ -142,6 +135,9 @@ class ApiControllerTest extends ControllerTestCase {
 			'Partner' => array( // 一緒に走った相手
 				0 => array(
 					'partner_id' => 'ABCD2',			// 一緒に走った相手のID 文字列
+					),
+				1 => array(
+					'partner_id' => 'ABCD3',			// 一緒に走った相手のID 文字列
 					),
 				// ... 当面は1人
 				),
@@ -171,13 +167,44 @@ class ApiControllerTest extends ControllerTestCase {
 		//$r = $this->myTestAction('/api/recordSaveDebug', array('data' => $data, 'method' => 'post'));
 		$r = $this->myTestAction('/api/recordSave', array('data' => $data, 'method' => 'post'));
 		pr($r);
-		/*
 		$expected = array(
 			'code' => '200',
 			'result' => array('message' => 'success', 'data' => null),
 			);
 		$this->assertEquals($expected, json_decode($r, true));
-		*/
 		
+		
+		// 同じ記録は2回登録できない
+		echo "recordSave - NG";
+		$r = $this->myTestAction('/api/recordSave', array('data' => $data, 'method' => 'post'));
+		pr($r);
+		$expected = array(
+			'code' => '405',
+			'result' => array('message' => 'exist data', 'data' => null),
+			);
+		$this->assertEquals($expected, json_decode($r, true));
+		
+		
+		// 記録の呼び出し
+		echo "record - NG";
+		$r = $this->myTestAction('/api/record/NOT_EXIST_RECORD_ID', array('data' => $data, 'method' => 'post'));
+		pr($r);
+		$expected = array(
+			'code' => '411',
+			'result' => array('message' => 'No data found', 'data' => null),
+			);
+		$this->assertEquals($expected, json_decode($r, true));
+		
+		
+		// 記録の呼び出し
+		echo "record - OK";
+		$r = $this->myTestAction('/api/record/ABCD3', array('method' => 'get'));
+		pr($r);
+		$expected = array(
+			'code' => '200',
+			'result' => array('message' => 'success', 'data' => null),
+			);
+		$result = json_decode($r, true);
+		$this->assertEquals($expected['code'], $result['code']);
 	}
 }

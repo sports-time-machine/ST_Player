@@ -16,6 +16,10 @@ class Record extends AppModel
 			'className' => 'RecordImage',
 			'fields' => array('record_id', 'image_id'),
 			//'order' => 'RecordImage.no',
+		),
+		'Partner' => array(
+			'className' => 'Partner',
+			'fields' => array('record_id', 'partner_id'),
 		)
 	);
 }

@@ -3,11 +3,14 @@ App::uses('AppController', 'Controller');
 
 // コード定数
 define('API_SUCCESS',				0);
-define('API_ERROR_NOMETHOD',		1);
-define('API_ERROR_NODATA',			2);
+// 保存
+define('API_ERROR_NO_METHOD',		1);
+define('API_ERROR_NO_POST_DATA',	2);
 define('API_ERROR_INVALID_DATA',	3);
 define('API_ERROR_INVALID_HASH',	4);
 define('API_ERROR_EXIST_DATA',		5);
+// 呼び出し
+define('API_ERROR_NO_DATA',			11);
 
 class ApiController extends AppController {
     public $uses = array('Stm');
@@ -34,11 +37,22 @@ class ApiController extends AppController {
 			
 			// APIが存在しないとき用のアクションへ
 			$this->action = 'dummy';
-			return $this->outputHandler(API_ERROR_NOMETHOD);
+			return $this->outputHandler(API_ERROR_NO_METHOD);
 		}
 	}
 	
 	public function index(){
+	}
+
+	// 走った記録の呼び出し
+	public function record($record_id) {
+		// データがあるかどうか
+		$data = $this->Stm->record($record_id);
+		if (empty($data)) {
+			return $this->outputHandler(API_ERROR_NO_DATA);
+		}
+		
+		return $this->outputHandler(API_SUCCESS, $data);
 	}
 	
 	// 走った記録の保存
@@ -51,7 +65,7 @@ class ApiController extends AppController {
 		
 		// データがあるかどうか
 		if (empty($data)) {
-			return $this->outputHandler(API_ERROR_NODATA);
+			return $this->outputHandler(API_ERROR_NO_POST_DATA);
 		}
 		
 		// 正しいデータかどうか
@@ -123,7 +137,7 @@ class ApiController extends AppController {
 		
 		// データがあるかどうか
 		if (empty($data)) {
-			return $this->outputHandler(API_ERROR_NODATA);
+			return $this->outputHandler(API_ERROR_NO_POST_DATA);
 		}
 		
 		// 正しいデータかどうか
@@ -132,9 +146,11 @@ class ApiController extends AppController {
 		}
 		
 		// 正しいデータかどうか
+		/* TODO ハッシュ値をチェックするかどうか？
 		if (!$this->Stm->isValidUserHash($data)) {
 			return $this->outputHandler(API_ERROR_INVALID_HASH);
 		}
+		*/
 		
 		// 登録処理
 		$r = $this->Stm->userSave($data);
@@ -149,7 +165,7 @@ class ApiController extends AppController {
 		$json = $this->request->data['json'];
 		$data = json_decode($json, true);
 		if (empty($data)) {
-			return $this->outputHandler(API_ERROR_NODATA);
+			return $this->outputHandler(API_ERROR_NO_POST_DATA);
 		}
 		
 		// TODO 削除処理
@@ -171,25 +187,29 @@ class ApiController extends AppController {
 		if ($errorCode == API_SUCCESS) {
 			$result['code'] = '200';
 			$result['result']['message'] = 'success';
-		} else if ($errorCode == API_ERROR_NOMETHOD) {
-			$result['code'] = '401';
+		} else if ($errorCode == API_ERROR_NO_METHOD) {
+			$result['code'] = 400 + API_ERROR_NO_METHOD;
 			$result['result']['message'] = 'API Method was not found';
-		} else if ($errorCode == API_ERROR_NODATA) {
-			$result['code'] = '402';
+		} else if ($errorCode == API_ERROR_NO_POST_DATA) {
+			$result['code'] = 400 + API_ERROR_NO_POST_DATA;
 			$result['result']['message'] = 'No data posted';
 		} else if ($errorCode == API_ERROR_INVALID_DATA) {
-			$result['code'] = '403';
+			$result['code'] = 400 + API_ERROR_INVALID_DATA;
 			$result['result']['message'] = 'invalid data';
 		} else if ($errorCode == API_ERROR_INVALID_HASH) {
-			$result['code'] = '404';
+			$result['code'] = 400 + API_ERROR_INVALID_HASH;
 			$result['result']['message'] = 'invalid hash';
 		} else if ($errorCode == API_ERROR_EXIST_DATA) {
-			$result['code'] = '405';
+			$result['code'] = 400 + API_ERROR_EXIST_DATA;
 			$result['result']['message'] = 'exist data';
+		} else if ($errorCode == API_ERROR_NO_DATA) {
+			$result['code'] = 400 + API_ERROR_NO_DATA;
+			$result['result']['message'] = 'No data found';
 		} else {
 			$result['code'] = '400';
 			$result['result']['message'] = 'Error';
 		}
+		$result['code'] = (string)$result['code'];
 		echo json_encode($result);
 		return;
 	}
