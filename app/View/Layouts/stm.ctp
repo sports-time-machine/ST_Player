@@ -62,7 +62,7 @@ $(function() {
 		</div>
 		<div class="logout">
 			<?php if (!empty($LOGIN_USER)) { ?>
-				<?php echo $this->Html->link('ログアウト',array('action' => 'logout')) ?>
+				<?php echo $this->Html->link('ログアウト',array('controller' => 'users' , 'action' => 'logout')) ?>
 			<?php } ?>
 		</div>
 	</div>

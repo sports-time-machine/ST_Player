@@ -117,15 +117,14 @@ h2 {
 }
 
 /* ログイン画面 */
-#camera {
-	width: 340px;
-	height: 260px;
-	/*margin: 0 auto;*/
+#camera{
+    width: 480px;
+    height: 360px;
 }
 
-#camera video {
-	width: 320px;
-	height: 240px;
+#camera video{
+    width: 480px;
+    height: 360px;
 	border: 3px solid #cccccc;
 	border-radius: 10px;
 	-webkit-border-radius: 10px;

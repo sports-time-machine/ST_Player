@@ -45,9 +45,6 @@ function AuthQRCodeAjax(name, id) {
 				showModal("ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません");
 			}
 		},
-		error: function(a,b,c){
-			showErrorMessage(c);
-		}
 	});
 }
 
@@ -77,7 +74,11 @@ $(function(){
 
 	navigator.getUserMedia({video: true, audio: false},
 		function(stream) {
-			video.src = window.URL.createObjectURL(stream);
+            if(navigator.userAgent.indexOf("Opera") != -1){
+                video.src = stream; //Operaは直接streamを流し込む
+            }else{
+                video.src = window.URL.createObjectURL(stream);
+            }
 			localMediaStream = stream;
 		},
 		function(err) {
@@ -143,13 +144,13 @@ $(function(){
 
 <div>選手カードにあるQRコードをかざしてログインボタンを押してください</div>
 <div id="camera">
-	<video id="video" autoplay width="320" height="240"></video> 
+	<video id="video" autoplay width="480" height="360"></video> 
 	<canvas id="canvas" style="display: none;"></canvas>
 </div>
 
+<div id="info"></div>
 <?php echo $this->Form->button('ログイン',array('type' => 'button', 'div' => false, 'id' => 'read', 'class' => 'btn')) ?>
 
-<div id="info"></div>
 <div class="modal hide fade" id="errorModal">
     <div class="error modal-body" id="result"></div>
 </div>
