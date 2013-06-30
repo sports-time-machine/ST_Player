@@ -25,7 +25,7 @@ function showErrorMessage(msg) {
 
 //エラーをモーダルで表示
 function showModal(mes){
-    $('#result').text(mes); 
+    $('#result').html(mes); 
     $("#errorModal").modal("show");
 }
 
@@ -42,9 +42,9 @@ function AuthQRCodeAjax(name, id) {
 			if (html == "OK"){
 				location.href = "<?php echo $this->Html->webroot . 'users/'; ?>";
 			} else {
-				showModal("ログインに失敗しました。選手名が違うか、QRコードが正しく読み取られていません");
+				showModal("<div>ログインに失敗しました</div>選手名が違うか、QRコードが正しく読み取られていません");
 			}
-		},
+		}
 	});
 }
 
@@ -90,6 +90,10 @@ $(function(){
 	qrcode.callback = function(result) {
 		// QRコード取得結果を表示
 		if (result != null) {
+            //読み込みできたら時間経過のイベント消去
+            //非同期通信時にタイムアウトや読み込みを防ぐため
+            clearInterval(intervalId);
+            clearTimeout(timeoutId);        
 			AuthQRCodeAjax($("#username").val(), result);
 		}
 	};
@@ -109,11 +113,11 @@ $(function(){
 
         //10秒経過するとタイムアウト
         timeoutId = setTimeout(function(){
-            showModal("読み込みに失敗しました。QRコードを読み取れませんでした");
+            showModal("<div>読み込みに失敗しました</div>QRコードを読み取れませんでした");
         },10000);
 
         $("#read").attr('disabled', true);
-        $('#info').text("QRコードを読み取り中です…");
+        $('#info').html("<div>読み取り中です…</div><div>選手カードのQRコードをうつしてください</div>");
        
     });
     
@@ -125,8 +129,8 @@ $(function(){
     
     //モーダルを閉じる時にボタンを利用可に
     $("#errorModal").on('hidden',function(){
-        $('#read').removeAttr('disabled');
-        $('#info').text("");  
+        $('#read').removeAttr('disabled'); 
+        $('#info').html("<div>選手カードにあるQRコードをかざして</div><div>ログインボタンを押してください</div>"); 
     });
 
 });
@@ -142,13 +146,15 @@ $(function(){
 <div>選手名を入力してください</div>
 <?php echo $this->Form->text('username', array('label' => false, 'value' => "")); ?>
 
-<div>選手カードにあるQRコードをかざしてログインボタンを押してください</div>
 <div id="camera">
 	<video id="video" autoplay width="480" height="360"></video> 
 	<canvas id="canvas" style="display: none;"></canvas>
 </div>
 
-<div id="info"></div>
+<div id="info">
+    <div>選手カードにあるQRコードをかざして</div>
+    <div>ログインボタンを押してください</div>
+</div>
 <?php echo $this->Form->button('ログイン',array('type' => 'button', 'div' => false, 'id' => 'read', 'class' => 'btn')) ?>
 
 <div class="modal hide fade" id="errorModal">
