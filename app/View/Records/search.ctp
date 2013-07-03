@@ -11,7 +11,6 @@ $(function() {
 
 	<table class="table table-striped table-bordered">
 	<tr>
-			<th><?php echo $this->Paginator->sort('User.username', 'せんしゅめい'); ?></th>
 			<th><?php echo $this->Paginator->sort('record_id', 'きろくID'); ?></th>
 			<th><?php echo $this->Paginator->sort('comment', 'コメント'); ?></th>
 			<th><?php echo $this->Paginator->sort('tags', 'タグ'); ?></th>
@@ -19,8 +18,6 @@ $(function() {
 	</tr>
 	<?php foreach ($records as $record): ?>
 	<tr>
-		<!-- <?php echo h($record['Record']['id']); ?> -->
-		<td><?php echo h($record['User']['username']); ?></td>
 		<td><?php echo $this->Html->link(h($record['Record']['record_id']), array('action' => 'view', $record['Record']['record_id'])); ?></td>
 		<td><?php echo h($record['Record']['comment']); ?>&nbsp;</td>
 		<td>

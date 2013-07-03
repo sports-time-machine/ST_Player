@@ -13,17 +13,8 @@ class Record extends AppModel
 
 	// for Search Plugin
 	public $actsAs = array('Search.Searchable');
-    /*
-	public $filterArgs = array(
-		'keyword' => array(
-            'type' => 'like',
-            'field' => array('User.username', 'Record.tags'),
-            'connectorAnd' => ' ',
-            'connectorOr' => null,
-         )
-	);*/
     public $filterArgs = array(
-        //ヘッダでの検索。選手名とタグについて検索を行う
+        //ヘッダでの検索。コメントとタグについて検索を行う
 		'keyword' => array(
             'type' => 'query',
             'method' => 'multiWordSearch'
@@ -44,7 +35,7 @@ class Record extends AppModel
         if(count($keywords) < 2) {
             $conditions = array(
                 'OR' => array(
-                    'User.username LIKE' => '%' . $keyword . '%',
+                    'Record.comment LIKE' => '%' . $keyword . '%',
                     'Record.tags LIKE' => '%' . $keyword . '%',
                 )
             );
@@ -53,7 +44,7 @@ class Record extends AppModel
             foreach($keywords as $count => $keyword) {
                 $condition = array(
                     'OR' => array(
-                        'User.username LIKE' => '%' . $keyword . '%',
+                        'Record.comment LIKE' => '%' . $keyword . '%',
                         'Record.tags LIKE' => '%' . $keyword . '%',
                     )
                 );
@@ -80,6 +71,7 @@ class Record extends AppModel
     
 	// search用bind
 	public function bindForSearch() {
+        
 		$bind = array(
 			'belongsTo' => array(
 				'User' => array(
