@@ -51,7 +51,8 @@ class Record extends AppModel
                 array_push($conditions['AND'], $condition);
             }
         }
-        return $conditions;
+        
+        return $conditions;     
         
     }
     

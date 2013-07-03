@@ -8,6 +8,7 @@ class RecordsController extends AppController {
 	public $components = array('Search.Prg' => array(
 		'model' => 'Record', // SearchPluginで使うモデルを指定
 	));
+    public $paginate = array('order' => 'Record.register_date ASC');
 	public $presetVars = true;
 
 	public function beforeFilter() {
@@ -33,6 +34,7 @@ class RecordsController extends AppController {
 		$records = $this->paginate('Record', $conditions);
         
         for ($i=0; $i<count($records); $i++){
+            //タグの加工
             //タグを","で分割
             $tags_str = explode(",", $records[$i]['Record']['tags']);
             
@@ -40,6 +42,12 @@ class RecordsController extends AppController {
             for ($j=0; $j<count($tags_str); $j++){
                 $records[$i]['Record']['tags'][$j] = trim(mb_convert_kana($tags_str[$j], "s", "UTF-8"));
             }
+            
+            //日付の加工
+            $date = strtotime($records[$i]['Record']['register_date']);
+            $records[$i]['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
+                    .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒";
+            
         }
         //pr ($records);
 		$this->set('records', $records);
