@@ -23,16 +23,22 @@ class Record extends AppModel
          )
 	);*/
     public $filterArgs = array(
+        //ヘッダでの検索。選手名とタグについて検索を行う
 		'keyword' => array(
             'type' => 'query',
             'method' => 'multiWordSearch'
+         ),
+        //タグの検索。タグのリンクから検索させる
+        'tag' => array(
+            'type' => 'query',
+            'method' => 'tagSearch'
          )
 	);
     
     //複数条件検索
     public function multiWordSearch($data = array()){
 
-        $keyword = mb_convert_kana($data['keyword'], "s", "UTF-8");
+        $keyword = trim(mb_convert_kana($data['keyword'], "s", "UTF-8"));
         $keywords = explode(' ', $keyword);
         
         if(count($keywords) < 2) {
@@ -58,6 +64,19 @@ class Record extends AppModel
         
     }
     
+    // タグ検索
+    public function tagSearch($data = array()){
+
+        $tag = trim(mb_convert_kana($data['tag'], "s", "UTF-8"));
+        
+        
+        $condition = array(
+            'Record.tags LIKE' => '%' . $tag . '%'
+        );
+      
+        return $condition;
+       
+    }
     
 	// search用bind
 	public function bindForSearch() {

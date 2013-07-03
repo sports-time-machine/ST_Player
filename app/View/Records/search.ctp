@@ -23,8 +23,15 @@ $(function() {
 		<td><?php echo h($record['User']['username']); ?></td>
 		<td><?php echo $this->Html->link(h($record['Record']['record_id']), array('action' => 'view', $record['Record']['record_id'])); ?></td>
 		<td><?php echo h($record['Record']['comment']); ?>&nbsp;</td>
-		<td><?php echo h($record['Record']['tags']); ?>&nbsp;</td>
-		<td><?php echo h($record['Record']['register_date']); ?>&nbsp;</td>
+		<td>
+            <?php 
+            foreach ($record['Record']['tags'] as $tag){
+                echo $this->Html->link(h($tag), array('action' => 'search', 'tag' => h($tag)));
+                echo " ";
+            }
+            ?>
+        </td>
+		<td><?php echo h($record['Record']['register_date']); ?></td>
 	</tr>
 	<?php endforeach; ?>
 	</table>
