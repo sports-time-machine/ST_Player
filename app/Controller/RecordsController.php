@@ -8,7 +8,7 @@ class RecordsController extends AppController {
 	public $components = array('Search.Prg' => array(
 		'model' => 'Record', // SearchPluginで使うモデルを指定
 	));
-    public $paginate = array('order' => 'Record.register_date ASC');
+    public $paginate = array('order' => 'Record.register_date DESC');
 	public $presetVars = true;
 
 	public function beforeFilter() {
