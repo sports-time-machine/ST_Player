@@ -23,7 +23,7 @@
 </tr>
 <?php foreach ($records as $record): ?>
 <tr>
-    <td><?php echo $this->Html->link(h($record['Record']['record_id']), array('action' => 'view', $record['Record']['record_id'])); ?></td>
+    <td><?php echo $this->Html->link(h($record['Record']['record_id']), array('controller' => 'records', 'action' => 'view', $record['Record']['record_id'])); ?></td>
     <td><?php echo h($record['Record']['comment']); ?>&nbsp;</td>
     <td>
         <?php 
