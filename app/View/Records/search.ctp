@@ -23,7 +23,7 @@ $(function() {
 		<td>
             <?php 
             foreach ($record['Record']['tags'] as $tag){
-                echo $this->Html->link(h($tag), array('action' => 'search', 'tag' => h($tag)));
+                echo $this->Html->link(h($tag), array('controller' => 'records', 'action' => 'search', 'tag' => h($tag)));
                 echo " ";
             }
             ?>

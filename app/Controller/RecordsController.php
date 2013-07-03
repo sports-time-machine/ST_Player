@@ -33,6 +33,7 @@ class RecordsController extends AppController {
 		//pr($conditions);
 		$records = $this->paginate('Record', $conditions);
         
+        //表示のための加工(共通化してModelにいれるつもり)
         for ($i=0; $i<count($records); $i++){
             //タグの加工
             //タグを","で分割
