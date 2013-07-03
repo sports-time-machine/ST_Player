@@ -135,6 +135,7 @@ h2 {
 	left: 8px;
 }
 #header .logout {
+    text-align: right;
 	position: absolute;
 	top: 50px;
 	right: 8px;
