@@ -54,17 +54,7 @@ $(function() {
 <div id="container">
 	<!-- header -->
 	<div id="header">
-		<div class="logo">スポーツタイムマシン</div>
-		<div class="loginuser">
-			<?php if (!empty($LOGIN_USER)) { ?>
-			<span>ようこそ！<?php echo $LOGIN_USER['username']; ?>選手！</span>
-			<?php } ?>
-		</div>
-		<div class="logout">
-			<?php if (!empty($LOGIN_USER)) { ?>
-				<?php echo $this->Html->link('ログアウト',array('controller' => 'users' , 'action' => 'logout')) ?>
-			<?php } ?>
-		</div>
+        <?php echo $this->element('header'); ?>
 	</div>
 
 

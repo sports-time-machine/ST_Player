@@ -6,17 +6,6 @@ $(function() {
 </script>
 
 <div class="records search">
-	<?php
-	echo $this->Form->create('Record', array(
-		'url' => array('controller' => 'records', 'action' => 'search'),
-	));
-	echo $this->Form->label('せんしゅめい');
-	echo $this->Form->text('username');
-	echo $this->Form->label('タグ');
-	echo $this->Form->text('tags');
-	echo $this->Form->submit('検索', array('class' => 'btn btn-primary'));
-	echo $this->Form->end();
-	?>
 
 	<h2>記録一覧</h2>
 

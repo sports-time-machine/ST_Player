@@ -13,11 +13,52 @@ class Record extends AppModel
 
 	// for Search Plugin
 	public $actsAs = array('Search.Searchable');
+    /*
 	public $filterArgs = array(
-		'username' => array('type' => 'like', 'field' => array('User.username')),
-		'tags' => array('type' => 'like', 'field' => array('Record.tags')),
+		'keyword' => array(
+            'type' => 'like',
+            'field' => array('User.username', 'Record.tags'),
+            'connectorAnd' => ' ',
+            'connectorOr' => null,
+         )
+	);*/
+    public $filterArgs = array(
+		'keyword' => array(
+            'type' => 'query',
+            'method' => 'multiWordSearch'
+         )
 	);
-	
+    
+    //複数条件検索
+    public function multiWordSearch($data = array()){
+
+        $keyword = mb_convert_kana($data['keyword'], "s", "UTF-8");
+        $keywords = explode(' ', $keyword);
+        
+        if(count($keywords) < 2) {
+            $conditions = array(
+                'OR' => array(
+                    'User.username LIKE' => '%' . $keyword . '%',
+                    'Record.tags LIKE' => '%' . $keyword . '%',
+                )
+            );
+        }else{
+        $conditions['AND'] = array();
+            foreach($keywords as $count => $keyword) {
+                $condition = array(
+                    'OR' => array(
+                        'User.username LIKE' => '%' . $keyword . '%',
+                        'Record.tags LIKE' => '%' . $keyword . '%',
+                    )
+                );
+                array_push($conditions['AND'], $condition);
+            }
+        }
+        return $conditions;
+        
+    }
+    
+    
 	// search用bind
 	public function bindForSearch() {
 		$bind = array(

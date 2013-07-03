@@ -2,7 +2,7 @@
 
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span3">player_id</th>
+		<th class="span3"></th>
 		<td><?php echo $user['User']['player_id']; ?></td>
 	</tr>
 	<tr>
