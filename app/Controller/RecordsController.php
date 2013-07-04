@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 
 class RecordsController extends AppController {
 
-	public $uses = array('Record', 'User');
+	public $uses = array('Record'/*, 'User'*/);
 	public $layout = 'stm';
 	public $components = array('Search.Prg' => array(
 		'model' => 'Record', // SearchPluginで使うモデルを指定

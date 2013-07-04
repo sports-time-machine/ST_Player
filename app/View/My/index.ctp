@@ -1,4 +1,4 @@
-<h2>選手</h2>
+<h2>せんしゅ</h2>
 
 <table class="table table-striped table-bordered">
 	<tr>
@@ -12,7 +12,7 @@
 </table>
 
 
-<h2>記録</h2>
+<h2>きろく</h2>
 
 <table class="table table-striped table-bordered">
 <tr>

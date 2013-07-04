@@ -3,6 +3,7 @@
     <div class="logo">スポーツタイムマシン</div>
     <div class="loginuser">
     <?php 
+    
     if ($this->name != 'Users') {   //Usersコントローラ時は非表示
         echo $this->Form->create('Record', array(
             'url' => array('controller' => 'records', 'action' => 'search'),
