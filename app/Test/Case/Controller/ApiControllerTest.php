@@ -109,6 +109,24 @@ class ApiControllerTest extends ControllerTestCase {
 		$this->assertEquals($expected, json_decode($r, true));
 		
 		
+		// 選手データ登録
+		echo "userSave - OK 重複は更新";
+		$array = array(
+			'User' => array(
+				'player_id'  => 'ABCD',
+				'username' => 'やまぐちたろう2',
+			),
+		);
+		$data = array('json' => json_encode($array));
+		$r = $this->myTestAction('/api/userSave', array('data' => $data, 'method' => 'post'));
+		pr($r);
+		$expected = array(
+			'code' => '200',
+			'result' => array('message' => 'success', 'data' => null),
+			);
+		$this->assertEquals($expected, json_decode($r, true));
+		
+		
 		// テスト用画像データ
 		$image = base64_encode(file_get_contents(APP . 'webroot' . DS . 'img' . DS . 'test-pass-icon.png'));
 		//pr($image);
