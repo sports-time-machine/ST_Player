@@ -17,8 +17,7 @@ class MyController extends AppController {
 		$user_id = $this->Auth->user('id');
 		$r = $this->User->findById($user_id);
 		$player_id = $r['User']['player_id'];
-
-                
+              
 		$conditions = array('user_id' => $user_id);
 		//pr($conditions);
 		$records = $this->paginate('Record', $conditions);
@@ -39,27 +38,25 @@ class MyController extends AppController {
 		*/
         
         //表示のための加工(共通化してModelにいれるつもり)
-        for ($i=0; $i<count($records); $i++){
+        foreach ($records as &$record) {
             //タグの加工
             //タグを","で分割
-            $tags_str = explode(",", $records[$i]['Record']['tags']);
-            
-            $records[$i]['Record']['tags'] = array();
-            for ($j=0; $j<count($tags_str); $j++){
-                $records[$i]['Record']['tags'][$j] = trim(mb_convert_kana($tags_str[$j], "s", "UTF-8"));
+            $tags_str = explode(",", $record['Record']['tags']);          
+            $record['Record']['tags'] = array();
+            for ($i=0; $i<count($tags_str); $i++){
+                $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "s", "UTF-8"));
             }
-            
+          
             //日付の加工
-            $date = strtotime($records[$i]['Record']['register_date']);
-            $records[$i]['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
-                    .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒";
-            
+            $date = strtotime($record['Record']['register_date']);
+            $record['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
+                    .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒"; 
         }
+        $this->set('records',$records);
         
 		$user = $this->User->findByPlayer_id($player_id);
-		
 		$this->set(compact('user'));
-        $this->set('records',$records);
+
 	}
 }
 
