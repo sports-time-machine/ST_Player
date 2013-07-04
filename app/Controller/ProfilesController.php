@@ -14,10 +14,9 @@ class ProfilesController extends AppController {
 	function view($player_id) {
         
         //小文字を大文字に変換
-        $player_id = strtoupper($player_id);
-        $user = $this->User->findByPlayer_id($player_id);
+        $player_id = strtoupper($player_id);  
         
-        /*
+        //Profileとのアソシエーション
         $bind = array(
 			'hasOne' => array(
 				'Profile' => array(
@@ -27,7 +26,9 @@ class ProfilesController extends AppController {
 			),
 		);
 		$this->User->bindModel($bind);
-         */
+        
+        $user = $this->User->findByPlayer_id($player_id);
+        $this->set(compact('user'));
         
         $conditions = array('user_id' => $user['User']['id']);
 		$records = $this->paginate('Record', $conditions);
@@ -49,7 +50,7 @@ class ProfilesController extends AppController {
         $this->set('records',$records);
         
      
-		$this->set(compact('user'));
+
 	}
 }
 

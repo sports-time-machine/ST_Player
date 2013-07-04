@@ -5,6 +5,10 @@
 		<th class="span3">選手ID</th>
 		<td><?php echo $user['User']['player_id']; ?></td>
 	</tr>
+    <tr>
+		<th>コメント</th>
+		<td><?php echo h($user['Profile']['comment']); ?></td>
+	</tr>
 </table>
 
 

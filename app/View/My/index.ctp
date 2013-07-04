@@ -1,13 +1,19 @@
 <h2>せんしゅ</h2>
-
+<?php 
+echo $this->Html->link('へんしゅうする', "/My/edit");
+?>
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span3">player_id</th>
+		<th class="span3">せんしゅID</th>
 		<td><?php echo $user['User']['player_id']; ?></td>
 	</tr>
 	<tr>
-		<th>username</th>
+		<th>せんしゅ名</th>
 		<td><?php echo h($user['User']['username']); ?></td>
+	</tr>
+	<tr>
+		<th>コメント</th>
+		<td><?php echo h($user['Profile']['comment']); ?></td>
 	</tr>
 </table>
 

@@ -92,10 +92,6 @@ class RecordsController extends AppController {
             $this->Record->save();
             $this->redirect('/records/view/'.h($record['Record']['record_id']));
         }
-        
-		// bind
-		$this->Record->bindForView();
-		
 		// DBから読み込む
 		$record = $this->Record->findByRecord_id($record_id);
         

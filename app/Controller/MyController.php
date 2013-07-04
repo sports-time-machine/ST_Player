@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 
 class MyController extends AppController {
 
-	public $uses = array('User', 'Record', 'Stm');
+	public $uses = array('User', 'Record', 'Stm', 'Profile');
 	public $layout = 'stm';
     public $paginate = array('order' => 'Record.register_date DESC');
 
@@ -36,6 +36,80 @@ class MyController extends AppController {
 		);
 		$this->User->bindModel($bind);
 		*/
+        //Profileとのアソシエーション
+        $bind = array(
+			'hasOne' => array(
+				'Profile' => array(
+					'className' => 'Profile',
+					'foreignKey' => 'user_id',
+				),
+			),
+		);
+		$this->User->bindModel($bind);
+   		$user = $this->User->findByPlayer_id($player_id);
+		$this->set(compact('user'));
+        
+        //表示のための加工(共通化してModelにいれるつもり)
+        foreach ($records as &$record) {
+            //タグの加工
+            //タグを","で分割
+            $tags_str = explode(",", $record['Record']['tags']);          
+            $record['Record']['tags'] = array();
+            for ($i=0; $i<count($tags_str); $i++){
+                $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "s", "UTF-8"));
+            }
+          
+            //日付の加工
+            $date = strtotime($record['Record']['register_date']);
+            $record['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
+                    .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒"; 
+        }
+        $this->set('records',$records);
+     
+	}
+    
+    // 選手名編集
+    function edit() {
+        
+        //編集結果が来たら
+        if ($this->request->is('post')) {
+            
+            //pr($this->request->data);
+            $user = $this->User->findById($this->Auth->user('id'));
+            $user['User']['username'] = h($this->request->data['User']['username']);
+            
+            $profile = $this->Profile->findByUserId($this->Auth->user('id'));
+            $profile['Profile']['user_id'] = $this->Auth->user('id');
+            $profile['Profile']['comment'] = h($this->request->data['User']['comment']);
+           // pr($user);
+      
+            $this->User->set($user);
+            $this->User->save();
+            $this->Profile->set($profile);
+            $this->Profile->save();
+            $this->redirect('/My');
+        }
+        
+		// player_id が直接取れない？
+		$user_id = $this->Auth->user('id');
+		$r = $this->User->findById($user_id);
+		$player_id = $r['User']['player_id'];
+              
+		$conditions = array('user_id' => $user_id);
+		//pr($conditions);
+		$records = $this->paginate('Record', $conditions);
+        //pr($records);
+          
+        //Profileとのアソシエーション
+        $bind = array(
+			'hasOne' => array(
+				'Profile' => array(
+					'className' => 'Profile',
+					'foreignKey' => 'user_id',
+				),
+			),
+		);
+		$this->User->bindModel($bind);
         
         //表示のための加工(共通化してModelにいれるつもり)
         foreach ($records as &$record) {
@@ -56,8 +130,9 @@ class MyController extends AppController {
         
 		$user = $this->User->findByPlayer_id($player_id);
 		$this->set(compact('user'));
-
-	}
+	
+        
+    }
 }
 
 ?>
