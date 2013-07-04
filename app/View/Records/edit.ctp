@@ -49,5 +49,5 @@
 		<td><?php echo h($record['Record']['background']); ?></td>
 	</tr>
 </table>
-<?php echo $this->Form->hidden('user_id',array('value' => $record['Record']['user_id'])) ?>
+<?php echo $this->Form->hidden('id',array('value' => $record['Record']['id'])) ?>
 <?php echo $this->Form->end("けってい"); ?>

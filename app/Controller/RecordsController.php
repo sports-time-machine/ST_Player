@@ -84,7 +84,7 @@ class RecordsController extends AppController {
         if ($this->request->is('post')) {
             
             //pr($this->request->data);
-            $record = $this->Record->findByUserId(h($this->request->data['Record']['user_id']));
+            $record = $this->Record->findById(h($this->request->data['Record']['id']));
             $record['Record']['comment'] = h($this->request->data['Record']['comment']);
             //pr($record);
       
