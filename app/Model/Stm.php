@@ -89,12 +89,12 @@ class Stm extends AppModel
 		$this->loadModel(array('User', 'Record', 'RecordImage', 'Partner', 'Image'));
 		
 		// image呼び出し用
-		$this->Record->recursive = 2;
+		$this->Record->bindForView();
 		$r = $this->Record->findByRecord_id($record_id);
 		if (empty($r)) {
 			return array();
 		}
-		//pr($r);
+		//pr($r);exit;
 		$u = $this->User->findById($r['Record']['user_id']);
 		
 		// 整形

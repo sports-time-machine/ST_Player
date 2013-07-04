@@ -62,6 +62,9 @@ class StmTest extends CakeTestCase {
 		pr("選手データの登録 - 成功");
 		$this->assertTrue($this->Stm->userSave($USER_DATA));
 		
+		pr("選手データの登録 - 存在する場合は更新");
+		$this->assertTrue($this->Stm->userSave($USER_DATA));
+		
 		
 		pr("記録データの登録 - 成功");
 		// テスト用画像データ
