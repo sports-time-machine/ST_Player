@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 
 class RecordsController extends AppController {
 
-	public $uses = array('Record'/*, 'User'*/);
+	public $uses = array('Record', 'User');
 	public $layout = 'stm';
 	public $components = array('Search.Prg' => array(
 		'model' => 'Record', // SearchPluginで使うモデルを指定
@@ -60,6 +60,45 @@ class RecordsController extends AppController {
 		$record = $this->Record->findByRecord_id($record_id);
         
 
+        //タグの加工
+        //タグを","で分割
+        $tags_str = explode(",", $record['Record']['tags']);          
+        $record['Record']['tags'] = array();
+        for ($i=0; $i<count($tags_str); $i++){
+            $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "s", "UTF-8"));
+        }
+
+        //日付の加工
+        $date = strtotime($record['Record']['register_date']);
+        $record['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
+                .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒"; 
+        
+        
+		$this->set(compact('record'));
+	}
+    
+   	// 記録の編集
+	public function edit($record_id) {
+        
+        //編集結果が来たら
+        if ($this->request->is('post')) {
+            
+            //pr($this->request->data);
+            $record = $this->Record->findByUserId(h($this->request->data['Record']['user_id']));
+            $record['Record']['comment'] = h($this->request->data['Record']['comment']);
+            //pr($record);
+      
+            $this->Record->set($record);
+            $this->Record->save();
+            $this->redirect('/records/view/'.h($record['Record']['record_id']));
+        }
+        
+		// bind
+		$this->Record->bindForView();
+		
+		// DBから読み込む
+		$record = $this->Record->findByRecord_id($record_id);
+        
         //タグの加工
         //タグを","で分割
         $tags_str = explode(",", $record['Record']['tags']);          

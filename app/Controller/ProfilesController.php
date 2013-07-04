@@ -16,7 +16,19 @@ class ProfilesController extends AppController {
         //小文字を大文字に変換
         $player_id = strtoupper($player_id);
         $user = $this->User->findByPlayer_id($player_id);
-
+        
+        /*
+        $bind = array(
+			'hasOne' => array(
+				'Profile' => array(
+					'className' => 'Profile',
+					'foreignKey' => 'user_id',
+				),
+			),
+		);
+		$this->User->bindModel($bind);
+         */
+        
         $conditions = array('user_id' => $user['User']['id']);
 		$records = $this->paginate('Record', $conditions);
         //表示のための加工(共通化してModelにいれるつもり)
