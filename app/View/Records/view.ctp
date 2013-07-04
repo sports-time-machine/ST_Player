@@ -3,7 +3,11 @@
 <table class="table table-striped table-bordered">
 	<tr>
 		<th class="span3">選手ID</th>
-		<td><?php echo h($record['Record']['player_id']); ?></td>
+		<td>
+            <?php
+            echo $this->Html->link(h($record['Record']['player_id']),"/P/".h($record['Record']['player_id']));
+            ?>
+        </td>
 	</tr>
 	<tr>
 		<th>記録ID</th>
@@ -15,7 +19,14 @@
 	</tr>
 	<tr>
 		<th>タグ</th>
-		<td><?php echo h($record['Record']['tags']); ?></td>
+		<td>       
+            <?php 
+            foreach ($record['Record']['tags'] as $tag){
+                echo $this->Html->link(h($tag), array('controller' => 'records', 'action' => 'search', 'tag' => h($tag)));
+                echo " ";
+            }
+            ?>
+        </td>
 	</tr>
 	<tr>
 		<th>コメント</th>

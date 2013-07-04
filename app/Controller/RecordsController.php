@@ -58,6 +58,22 @@ class RecordsController extends AppController {
 		
 		// DBから読み込む
 		$record = $this->Record->findByRecord_id($record_id);
+        
+
+        //タグの加工
+        //タグを","で分割
+        $tags_str = explode(",", $record['Record']['tags']);          
+        $record['Record']['tags'] = array();
+        for ($i=0; $i<count($tags_str); $i++){
+            $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "s", "UTF-8"));
+        }
+
+        //日付の加工
+        $date = strtotime($record['Record']['register_date']);
+        $record['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
+                .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒"; 
+        
+        
 		$this->set(compact('record'));
 	}
 }
