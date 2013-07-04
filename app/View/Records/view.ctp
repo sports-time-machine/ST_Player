@@ -2,47 +2,35 @@
 
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span3">player_id</th>
+		<th class="span3">選手ID</th>
 		<td><?php echo h($record['Record']['player_id']); ?></td>
 	</tr>
 	<tr>
-		<th>record_id</th>
+		<th>記録ID</th>
 		<td><?php echo h($record['Record']['record_id']); ?></td>
 	</tr>
 	<tr>
-		<th>movie_path</th>
-		<td><?php echo h($record['Record']['movie_path']); ?></td>
-	</tr>
-	<tr>
-		<th>movie_length</th>
-		<td><?php echo h($record['Record']['movie_length']); ?></td>
-	</tr>
-	<tr>
-		<th>register_date</th>
+		<th>走った日</th>
 		<td><?php echo h($record['Record']['register_date']); ?></td>
 	</tr>
 	<tr>
-		<th>data</th>
-		<td><?php echo h($record['Record']['data']); ?></td>
-	</tr>
-	<tr>
-		<th>tags</th>
+		<th>タグ</th>
 		<td><?php echo h($record['Record']['tags']); ?></td>
 	</tr>
 	<tr>
-		<th>comment</th>
+		<th>コメント</th>
 		<td><?php echo h($record['Record']['comment']); ?></td>
 	</tr>
 	<tr>
-		<th>pattern</th>
+		<th>パターン</th>
 		<td><?php echo h($record['Record']['pattern']); ?></td>
 	</tr>
 	<tr>
-		<th>sound</th>
+		<th>音楽</th>
 		<td><?php echo h($record['Record']['sound']); ?></td>
 	</tr>
 	<tr>
-		<th>background</th>
+		<th>背景</th>
 		<td><?php echo h($record['Record']['background']); ?></td>
 	</tr>
 </table>

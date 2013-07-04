@@ -34,7 +34,7 @@ class RecordsController extends AppController {
 		$records = $this->paginate('Record', $conditions);
         
         //表示のための加工(共通化してModelにいれるつもり)
-        for ($i=0; $i<count($records); $i++){
+        for ($i=0; $i<count($records); $i++) {
             //タグの加工
             //タグを","で分割
             $tags_str = explode(",", $records[$i]['Record']['tags']);

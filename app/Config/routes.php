@@ -28,8 +28,10 @@
  */
 	// /P/ABCD3 のような、選手ID直打ちの場合のルーティング
 	// 大文字のA-Z、数字の1-9から始まるときにマッチ
-	Router::connect('/P/:player_id', array('controller' => 'Profiles', 'action' => 'view'), array('pass' => array('player_id'), 'player_id' => '[A-Z1-9]+'));
-	
+    // 大文字小文字区別なくアクセスできる
+	Router::connect('/P/:player_id', array('controller' => 'Profiles', 'action' => 'view'), array('pass' => array('player_id'), 'player_id' => '[a-zA-Z1-9]+'));
+	Router::connect('/p/:player_id', array('controller' => 'Profiles', 'action' => 'view'), array('pass' => array('player_id'), 'player_id' => '[a-zA-Z1-9]+'));
+    
 	//Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
   	Router::connect('/', array('controller' => 'users', 'action' => 'login'));
 /**

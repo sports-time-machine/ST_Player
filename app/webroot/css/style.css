@@ -134,6 +134,14 @@ h2 {
 	top: 50px;
 	left: 8px;
 }
+
+#header .login {
+    text-align: right;
+	position: absolute;
+	top: 50px;
+	right: 8px;
+}
+
 #header .logout {
     text-align: right;
 	position: absolute;

@@ -12,6 +12,10 @@ class ProfilesController extends AppController {
 	
 	// ユーザーページ
 	function view($player_id) {
+        
+        //小文字を大文字に変換
+        $player_id = strtoupper($player_id);
+        
 		// bind
 		$bind = array(
 			'hasMany' => array(
