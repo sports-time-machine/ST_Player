@@ -190,7 +190,7 @@ class Stm extends AppModel
 		// 記録の保存
 		$record = $data['Record'];
 		$record['user_id']   = $user['User']['id'];
-		$record['player_id'] = $user['User']['player_id'];
+		$record['player_id'] = generateShortPlayerId($user['User']['player_id']);
 		$this->Record->create();
 		$r = $this->Record->save($record);
 		//pr($record);
