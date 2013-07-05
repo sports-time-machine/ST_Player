@@ -1,6 +1,7 @@
+<h1>はしったきろく</h1>
 
-<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">
-    きろく
+<h2>
+    きろくデータ
 </h2>
 
 <table class="table table-striped table-bordered">
@@ -46,7 +47,7 @@
 	</tr>
 </table>
 
-<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">サムネイル</h2>
+<h2>サムネイル</h2>
 
 <div class="row">
 	<div class="span9">

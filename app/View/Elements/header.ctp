@@ -9,7 +9,7 @@
             'class' => 'form-search',
         ));
         echo $this->Form->text('keyword');
-        echo $this->Form->submit('検索', array('class' => 'btn btn-primary', 'style' => 'margin-left: 8px;', 'div' => false));
+        echo $this->Form->submit('けんさく', array('class' => 'btn btn-primary', 'style' => 'margin-left: 8px;', 'div' => false));
         echo $this->Form->end();
     } 
     ?>
@@ -17,7 +17,7 @@
     
     <?php if (!empty($LOGIN_USER)) { ?>
         <div class="welcome">
-            ようこそ！ <a href="<?php echo $this->Html->url('/My/index'); ?>"><?php echo $LOGIN_USER['username']; ?></a> 選手！
+            ようこそ！ <a href="<?php echo $this->Html->url('/My/index'); ?>"><?php echo $LOGIN_USER['username']; ?></a> せんしゅ！
         </div>
         <div class="logout">
             <a class="btn" href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a>

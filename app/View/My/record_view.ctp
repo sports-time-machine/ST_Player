@@ -1,11 +1,9 @@
+<h1>マイページ</h1>
 
-<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">
-    きろく
+<h2>
+    きろくデータ
 </h2>
 
-<?php if ( $record['Record']['user_id'] == $LOGIN_USER['id']) : ?>
-    <p><a class="btn" href="<?php echo $this->Html->url("/My/record_edit/".h($record['Record']['record_id'])); ?>">へんしゅうする</a></p>
-<?php endif?>
 <table class="table table-striped table-bordered">
 	<tr>
 		<th class="span3">きろくID</th>
@@ -40,8 +38,11 @@
 		<td><?php echo h($record['Record']['comment']); ?></td>
 	</tr>
 </table>
+<?php if ( $record['Record']['user_id'] == $LOGIN_USER['id']) : ?>
+    <p><a class="btn" href="<?php echo $this->Html->url("/My/record_edit/".h($record['Record']['record_id'])); ?>">きろくデータへんこう</a></p>
+<?php endif?>
 
-<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">サムネイル</h2>
+<h2>サムネイル</h2>
 
 <div class="row">
 	<div class="span9">
@@ -56,3 +57,5 @@
 		</ul>
 	</div>
 </div>
+
+        

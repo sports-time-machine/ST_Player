@@ -1,4 +1,6 @@
-<h2>せんしゅ</h2>
+<h1>マイページ</h1>
+
+<h2>プロフィールへんこう</h2>
 
 <?php echo $this->Form->create('User',array('type' => 'post', 'url' => '/My/edit')); ?>
 <table class="table table-striped table-bordered">

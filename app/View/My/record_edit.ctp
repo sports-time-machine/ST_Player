@@ -1,5 +1,7 @@
-<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">
-    きろく
+<h1>マイページ</h1>
+
+<h2>
+    きろくデータへんこう
 </h2>
 
 <?php echo $this->Form->create('Record',array('type' => 'post', 'url' => '/My/record_edit/'.h($record['Record']['record_id']) )); ?>

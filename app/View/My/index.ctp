@@ -1,6 +1,6 @@
-<h2>せんしゅ</h2>
+<h1>マイページ</h1>
 
-<p><a class="btn" href="<?php echo $this->Html->url("/My/edit"); ?>">へんしゅうする</a></p>
+<h2><?php echo h($user['User']['username']);?> せんしゅ</h2>
 
 <table class="table table-striped table-bordered">
 	<tr>
@@ -16,9 +16,10 @@
 		<td><?php echo h($user['Profile']['comment']); ?></td>
 	</tr>
 </table>
+<p><a class="btn" href="<?php echo $this->Html->url("/My/edit"); ?>">プロフィールへんこう</a></p>
 
 
-<h2>きろく</h2>
+<h2><?php echo h($user['User']['username']);?> せんしゅがはしったきろく</h2>
 
 <table class="table table-striped table-bordered">
 <tr>

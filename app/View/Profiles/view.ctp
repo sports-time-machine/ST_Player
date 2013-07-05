@@ -1,5 +1,7 @@
-<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">
-    せんしゅ
+<h1>せんしゅページ</h1>
+
+<h2>
+    せんしゅデータ
 </h2>
 
 <table class="table table-striped table-bordered">
@@ -14,7 +16,7 @@
 </table>
 
 
-<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">きろく</h2>
+<h2>はしったきろく</h2>
 
 <table class="table table-striped table-bordered">
 <tr>
