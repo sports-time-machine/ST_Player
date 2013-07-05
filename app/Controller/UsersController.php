@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
 
-	public $uses = array('User');
+	public $uses = array('User', 'Stm');
 	public $layout = 'stm';
 
 	public function beforeFilter() {
@@ -32,10 +32,18 @@ class UsersController extends AppController {
 	 * ログイン機能
 	 */
 	public function login() {
-        
         //既にログインしているのであればindexへリダイレクト
         if ($this->Auth->user()) $this->redirect(array('action' => 'index'));
         
+		// player_idをショートIDに統一
+		if (!empty($this->request->data['User']['player_id'])) {
+			$this->request->data['User']['player_id'] = $this->Stm->generateShortPlayerId($this->request->data['User']['player_id']);
+		}
+		// せんしゅ名をtrim
+		if (!empty($this->request->data['User']['username'])) {
+			$this->request->data['User']['username'] = trim($this->request->data['User']['username']);
+		}
+			
         
 		if ($this->request->is('ajax')) {
 			//QRコードを利用してログイン
@@ -44,6 +52,9 @@ class UsersController extends AppController {
 			if (empty($this->request->data)) {
 				echo "NG";
 			}
+			
+			$this->log($this->request->data);
+			
 			if ($this->Auth->login()) {
 				echo "OK";
 			} else {

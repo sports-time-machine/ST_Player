@@ -275,6 +275,12 @@ class Stm extends AppModel
 		return $path;
 	}
 	
-	
+	public function generateShortPlayerId($player_id) {
+		$player_id = strtoupper($player_id);
+		$player_id = ltrim($player_id, 'P0');
+		$player_id = ltrim($player_id, '0');
+		
+		return $player_id;
+	}
 	
 }
