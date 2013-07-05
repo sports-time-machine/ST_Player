@@ -47,4 +47,5 @@
 	</tr>
 </table>
 <?php echo $this->Form->hidden('id',array('value' => $record['Record']['id'])) ?>
-<?php echo $this->Form->end("けってい"); ?>
+<?php echo $this->Form->submit("けってい", array('class' => 'btn')); ?>
+<?php echo $this->Form->end(); ?>
