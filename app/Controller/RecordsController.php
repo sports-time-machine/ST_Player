@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Vendor', 'phpqrcode/qrlib');   //QRコード表示
 
 class RecordsController extends AppController {
 
@@ -52,10 +53,8 @@ class RecordsController extends AppController {
         //編集結果が来たら
         if ($this->request->is('post')) {
             
-            //pr($this->request->data);
             $record = $this->Record->findById(h($this->request->data['Record']['id']));
             $record['Record']['comment'] = h($this->request->data['Record']['comment']);
-            //pr($record);
       
             $this->Record->set($record);
             $this->Record->save();

@@ -14,7 +14,16 @@
 	</tr>
 	<tr>
 		<th>きろくID</th>
-		<td><?php echo h($record['Record']['record_id']); ?></td>
+		<td>
+        <?php 
+            echo h($record['Record']['record_id']); 
+            ob_start();
+            QRCode::png(h($record['Record']['record_id']), null, 'H', 5, 2);
+            $img_base64 = base64_encode( ob_get_contents() );
+            ob_end_clean();
+            echo $this->Html->div('qrcode', "<img src='" .sprintf('data:image/png;base64,%s', $img_base64). "'/>");
+        ?>
+        </td>
 	</tr>
 	<tr>
 		<th>はしった日</th>
