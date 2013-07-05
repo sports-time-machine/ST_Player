@@ -113,6 +113,7 @@ class Record extends AppModel
 		);
 		$this->bindModel($bind, false);
 	}
+    
 	public function unbindForView() {
 		// Imageを読み込むため recursive = 2
 		$this->recursive = -1;
@@ -125,6 +126,28 @@ class Record extends AppModel
 		);
 		$this->unbindModel($bind, false);
 	}
+    
+    // Viewに渡すために整形
+    public function setForView($records){
+
+        foreach ($records as &$record) {
+            //タグの加工
+            //タグを","で分割
+            $tags_str = explode(",", $record['Record']['tags']);          
+            $record['Record']['tags'] = array();
+            for ($i=0; $i<count($tags_str); $i++){
+                $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "s", "UTF-8"));
+            }
+
+            //日付の加工
+            $date = strtotime($record['Record']['register_date']);
+            $record['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
+                    .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒"; 
+        }
+
+        return $records;
+        
+    }
     
 
 }
