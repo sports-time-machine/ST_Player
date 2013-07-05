@@ -7,13 +7,21 @@ class UsersController extends AppController {
 	public $layout = 'stm';
 
 	public function beforeFilter() {
-		$this->Auth->allow('login', 'passwordLogin', 'adminLogin', 'logout');  //ログインとログアウトしか許可しない
+		$this->Auth->allow('index2', 'login', 'passwordLogin', 'adminLogin', 'logout');  //ログインとログアウトしか許可しない
+	}
+	
+	// トップページ
+	function index2() {
+		// レンダリングを行わない
+		$this->autoLayout = false;
+		$this->autoRender = true;
 	}
 	
 	// Myページへ
 	function index() {
 		$this->redirect(array('controller' => 'My', 'action' => 'index'));
 	}
+
 
 	/**
 	 * ログイン機能

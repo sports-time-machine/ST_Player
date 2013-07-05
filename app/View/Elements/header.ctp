@@ -7,9 +7,10 @@
     if ($this->name != 'Users') {   //Usersコントローラ時は非表示
         echo $this->Form->create('Record', array(
             'url' => array('controller' => 'records', 'action' => 'search'),
+            'class' => 'form-search',
         ));
         echo $this->Form->text('keyword');
-        echo $this->Form->submit('検索', array('class' => 'btn btn-primary','div' => false));
+        echo $this->Form->submit('検索', array('class' => 'btn btn-primary', 'style' => 'margin-left: 8px;', 'div' => false));
         echo $this->Form->end();
     } 
     ?>
