@@ -5,15 +5,7 @@
 <?php echo $this->Form->create('Record',array('type' => 'post', 'url' => '/My/record_edit/'.h($record['Record']['record_id']) )); ?>
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span3">せんしゅID</th>
-		<td>
-            <?php
-            echo $this->Html->link(h($record['Record']['player_id']),"/P/".h($record['Record']['player_id']));
-            ?>
-        </td>
-	</tr>
-	<tr>
-		<th>きろくID</th>
+		<th class="span3">きろくID</th>
 		<td>
         <?php 
             echo h($record['Record']['record_id']); 
@@ -51,8 +43,7 @@
 </table>
 <?php echo $this->Form->hidden('id',array('value' => $record['Record']['id'])) ?>
 
-<div class="decide">
-<?php echo $this->Form->submit("けってい", array('class' => 'btn', 'div' => false)); ?>
-<a class="btn" href="<?php echo $this->Html->url("/My/record_view/".h($record['Record']['record_id'])); ?>">もどる</a>
-</div>
+<?php echo $this->Form->submit("けってい", array('class' => 'btn decide', 'div' => false)); ?>
+<a class="btn decide" href="<?php echo $this->Html->url("/My/record_view/".h($record['Record']['record_id'])); ?>">もどる</a>
+
 <?php echo $this->Form->end(); ?>
