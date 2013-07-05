@@ -36,18 +36,6 @@
 		<td><?php echo $this->Form->text('comment', array('default' => h($record['Record']['comment']), 
             'style' => 'width:900px')); ?></td>
 	</tr>
-	<tr>
-		<th>パターン</th>
-		<td><?php echo h($record['Record']['pattern']); ?></td>
-	</tr>
-	<tr>
-		<th>音楽</th>
-		<td><?php echo h($record['Record']['sound']); ?></td>
-	</tr>
-	<tr>
-		<th>背景</th>
-		<td><?php echo h($record['Record']['background']); ?></td>
-	</tr>
 </table>
 <?php echo $this->Form->hidden('id',array('value' => $record['Record']['id'])) ?>
 <?php echo $this->Form->end("けってい"); ?>
