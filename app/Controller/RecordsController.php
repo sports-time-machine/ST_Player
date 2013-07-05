@@ -42,6 +42,12 @@ class RecordsController extends AppController {
 		
 		// DBから読み込む
 		$records = $this->Record->findAllByRecord_id($record_id);
+		if (empty($records)) {
+			// データが無いときは検索画面へ
+			$this->Session->setFlash('記録データがみつかりません', SET_FLASH_WARNING);
+			$this->redirect(array('controller' => 'records', 'action' => 'search'));
+		}
+		
   		// 記録データの整形
         $records = $this->Record->setForView($records);     
 		$this->set('record',$records[0]);

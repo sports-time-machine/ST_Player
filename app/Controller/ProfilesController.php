@@ -28,6 +28,12 @@ class ProfilesController extends AppController {
 		$this->User->bindModel($bind);
         
         $user = $this->User->findByPlayer_id($player_id);
+		if (empty($user)) {
+			// データが無いときはマイページへ
+			$this->Session->setFlash('せんしゅデータがみつかりません', SET_FLASH_WARNING);
+			$this->redirect(array('controller' => 'My', 'action' => 'index'));
+		}
+		
         $this->set(compact('user'));
         
         $conditions = array('user_id' => $user['User']['id']);
