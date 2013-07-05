@@ -53,7 +53,14 @@ class RecordsController extends AppController {
         //編集結果が来たら
         if ($this->request->is('post')) {
             
+            //タグデータを文字列に変換      
+            foreach($this->request->data['Record']['tags'] as &$tag ){
+                $tag = trim(mb_convert_kana(h($tag), "s", "UTF-8"));
+            }
+            $tags_str = implode(',', h($this->request->data['Record']['tags']));
+
             $record = $this->Record->findById(h($this->request->data['Record']['id']));
+            $record['Record']['tags'] = h($tags_str);
             $record['Record']['comment'] = h($this->request->data['Record']['comment']);
       
             $this->Record->set($record);

@@ -33,17 +33,24 @@
 		<th>タグ</th>
 		<td>       
             <?php 
+            $i=0;
             foreach ($record['Record']['tags'] as $tag){
-                echo $this->Html->link(h($tag), array('controller' => 'records', 'action' => 'search', 'tag' => h($tag)));
+                echo $this->Form->text('Record.tags.'.$i, array('default' => h($tag), 
+                    'style' => 'width:150px')); 
                 echo " ";
+                $i++;
             }
             ?>
         </td>
 	</tr>
 	<tr>
 		<th>コメント</th>
-		<td><?php echo $this->Form->text('comment', array('default' => h($record['Record']['comment']), 
-            'style' => 'width:900px')); ?></td>
+		<td>
+        <?php 
+            echo $this->Form->text('comment', array('default' => h($record['Record']['comment']), 
+                'style' => 'width:900px')); 
+        ?>
+        </td>
 	</tr>
 </table>
 <?php echo $this->Form->hidden('id',array('value' => $record['Record']['id'])) ?>
