@@ -52,12 +52,9 @@ class RecordsController extends AppController {
         
         //編集結果が来たら
         if ($this->request->is('post')) {
-            
-            //タグデータを文字列に変換      
-            foreach($this->request->data['Record']['tags'] as &$tag ){
-                $tag = trim(mb_convert_kana(h($tag), "s", "UTF-8"));
-            }
-            $tags_str = implode(',', h($this->request->data['Record']['tags']));
+            //タグデータを文字列に変換 
+            $tags_str = trim(mb_convert_kana(h($this->request->data['Record']['tags']), "s", "UTF-8"));
+            $tags_str = preg_replace("/\s+/",' ',$tags_str);
 
             $record = $this->Record->findById(h($this->request->data['Record']['id']));
             $record['Record']['tags'] = h($tags_str);
@@ -73,6 +70,8 @@ class RecordsController extends AppController {
 		$records = $this->Record->findAllByRecord_id($record_id);      
   		// 記録データの整形
         $records = $this->Record->setForView($records); 
+        // タグをスペースで区切る
+        $records[0]['Record']['tags'] = implode(',', $records[0]['Record']['tags']);
 		$this->set('record',$records[0]);
 	}
 }

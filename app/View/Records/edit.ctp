@@ -33,14 +33,10 @@
 		<th>タグ</th>
 		<td>       
             <?php 
-            $i=0;
-            foreach ($record['Record']['tags'] as $tag){
-                echo $this->Form->text('Record.tags.'.$i, array('default' => h($tag), 
-                    'style' => 'width:150px')); 
-                echo " ";
-                $i++;
-            }
+                echo $this->Form->text('tags', array('default' => h($record['Record']['tags']), 
+                    'style' => 'width:950px')); 
             ?>
+            タグはカンマで区切って入力してください（例：小学生,男子,山口）
         </td>
 	</tr>
 	<tr>
