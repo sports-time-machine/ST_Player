@@ -23,31 +23,14 @@ class RecordsController extends AppController {
 	public function search() {
 		// 検索フォームのバリデーションを無効化
 		$this->Record->validate = array();
-		
 		// bind
 		$this->Record->bindForSearch();
 		
 		// 検索
 		$this->Prg->commonProcess();
 		$conditions = $this->Record->parseCriteria($this->passedArgs);
-		//pr($conditions);
-		$records = $this->paginate('Record', $conditions);
-        
-        //表示のための加工(共通化してModelにいれるつもり)
-        foreach ($records as &$record) {
-            //タグの加工
-            //タグを","で分割
-            $tags_str = explode(",", $record['Record']['tags']);          
-            $record['Record']['tags'] = array();
-            for ($i=0; $i<count($tags_str); $i++){
-                $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "s", "UTF-8"));
-            }
-          
-            //日付の加工
-            $date = strtotime($record['Record']['register_date']);
-            $record['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
-                    .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒"; 
-        }
+		// ページネーションと記録データの整形
+        $records = $this->Record->setForView($this->paginate('Record', $conditions));
         $this->set('records',$records);
 	}
 	
@@ -57,24 +40,10 @@ class RecordsController extends AppController {
 		$this->Record->bindForView();
 		
 		// DBから読み込む
-		$record = $this->Record->findByRecord_id($record_id);
-        
-
-        //タグの加工
-        //タグを","で分割
-        $tags_str = explode(",", $record['Record']['tags']);          
-        $record['Record']['tags'] = array();
-        for ($i=0; $i<count($tags_str); $i++){
-            $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "s", "UTF-8"));
-        }
-
-        //日付の加工
-        $date = strtotime($record['Record']['register_date']);
-        $record['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
-                .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒"; 
-        
-        
-		$this->set(compact('record'));
+		$records = $this->Record->findAllByRecord_id($record_id);
+  		// 記録データの整形
+        $records = $this->Record->setForView($records);     
+		$this->set('record',$records[0]);
 	}
     
    	// 記録の編集
@@ -90,26 +59,15 @@ class RecordsController extends AppController {
       
             $this->Record->set($record);
             $this->Record->save();
+            $this->Session->setFlash('きろくデータをへんこうしました！', SET_FLASH_SUCCESS);
             $this->redirect('/records/view/'.h($record['Record']['record_id']));
         }
+        
 		// DBから読み込む
-		$record = $this->Record->findByRecord_id($record_id);
-        
-        //タグの加工
-        //タグを","で分割
-        $tags_str = explode(",", $record['Record']['tags']);          
-        $record['Record']['tags'] = array();
-        for ($i=0; $i<count($tags_str); $i++){
-            $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "s", "UTF-8"));
-        }
-
-        //日付の加工
-        $date = strtotime($record['Record']['register_date']);
-        $record['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
-                .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒"; 
-        
-        
-		$this->set(compact('record'));
+		$records = $this->Record->findAllByRecord_id($record_id);      
+  		// 記録データの整形
+        $records = $this->Record->setForView($records); 
+		$this->set('record',$records[0]);
 	}
 }
 

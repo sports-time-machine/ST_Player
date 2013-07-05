@@ -7,7 +7,7 @@ $(function() {
 
 <div class="records search">
 
-	<h2>記録一覧</h2>
+	<h2>きろくいちらん</h2>
 
 	<table class="table table-striped table-bordered">
 	<tr>

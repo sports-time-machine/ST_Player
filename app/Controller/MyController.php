@@ -19,10 +19,9 @@ class MyController extends AppController {
 		$player_id = $r['User']['player_id'];
               
 		$conditions = array('user_id' => $user_id);
-		//pr($conditions);
-		$records = $this->paginate('Record', $conditions);
-        //pr($records);
-        
+        // ページネーションと記録データの整形
+        $records = $this->Record->setForView($this->paginate('Record', $conditions));
+ 
 		// TODO 以下を共通化
 		// bind
 		/* ページングで記録は取得するのでここでは不要？
@@ -48,22 +47,9 @@ class MyController extends AppController {
 		$this->User->bindModel($bind);
    		$user = $this->User->findByPlayer_id($player_id);
 		$this->set(compact('user'));
+
         
-        //表示のための加工(共通化してModelにいれるつもり)
-        foreach ($records as &$record) {
-            //タグの加工
-            //タグを","で分割
-            $tags_str = explode(",", $record['Record']['tags']);          
-            $record['Record']['tags'] = array();
-            for ($i=0; $i<count($tags_str); $i++){
-                $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "s", "UTF-8"));
-            }
-          
-            //日付の加工
-            $date = strtotime($record['Record']['register_date']);
-            $record['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
-                    .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒"; 
-        }
+
         $this->set('records',$records);
      
 	}
@@ -81,12 +67,12 @@ class MyController extends AppController {
             $profile = $this->Profile->findByUserId($this->Auth->user('id'));
             $profile['Profile']['user_id'] = $this->Auth->user('id');
             $profile['Profile']['comment'] = h($this->request->data['User']['comment']);
-           // pr($user);
       
             $this->User->set($user);
             $this->User->save();
             $this->Profile->set($profile);
             $this->Profile->save();
+            $this->Session->setFlash('プロフィールをへんこうしました！', SET_FLASH_SUCCESS);
             $this->redirect('/My');
         }
         
@@ -96,9 +82,8 @@ class MyController extends AppController {
 		$player_id = $r['User']['player_id'];
               
 		$conditions = array('user_id' => $user_id);
-		//pr($conditions);
-		$records = $this->paginate('Record', $conditions);
-        //pr($records);
+        // ページネーションと記録データの整形
+        $records = $this->Record->setForView($this->paginate('Record', $conditions));
           
         //Profileとのアソシエーション
         $bind = array(
@@ -111,23 +96,8 @@ class MyController extends AppController {
 		);
 		$this->User->bindModel($bind);
         
-        //表示のための加工(共通化してModelにいれるつもり)
-        foreach ($records as &$record) {
-            //タグの加工
-            //タグを","で分割
-            $tags_str = explode(",", $record['Record']['tags']);          
-            $record['Record']['tags'] = array();
-            for ($i=0; $i<count($tags_str); $i++){
-                $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "s", "UTF-8"));
-            }
-          
-            //日付の加工
-            $date = strtotime($record['Record']['register_date']);
-            $record['Record']['register_date'] = date('Y',$date)."年".date('n',$date)."月"
-                    .date('j',$date)."日 ".date('G',$date)."時".date('i',$date)."分".date('s',$date)."秒"; 
-        }
         $this->set('records',$records);
-        
+    
 		$user = $this->User->findByPlayer_id($player_id);
 		$this->set(compact('user'));
 	
