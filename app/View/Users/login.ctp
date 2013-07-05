@@ -66,7 +66,7 @@ $(function(){
 	}
 
 	if (!hasGetUserMedia()) {
-		showErrorMessage('ご利用のブラウザはWebカメラに対応していません。<a href="<?php echo $this->Html->webroot . 'users/passwordLogin'; ?>">パスワード認証</a>をご利用ください');
+		showErrorMessage('ご利用のブラウザはWebカメラに対応していません。<a href="<?php echo $this->Html->webroot . 'users/passwordLogin'; ?>">選手番号ログイン</a>をご利用ください');
 	}
 	window.URL = window.URL || window.webkitURL;
 	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
@@ -82,7 +82,7 @@ $(function(){
 			localMediaStream = stream;
 		},
 		function(err) {
-			showErrorMessage('webカメラが利用できません。<a href="<?php echo $this->Html->webroot . 'users/passwordLogin'; ?>">パスワード認証</a>をご利用ください');
+			showErrorMessage('webカメラが利用できません。<a href="<?php echo $this->Html->webroot . 'users/passwordLogin'; ?>">選手番号ログイン</a>をご利用ください');
 		}
 	);
 

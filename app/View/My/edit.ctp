@@ -21,4 +21,8 @@
         </td>
 	</tr>
 </table>
-<?php echo $this->Form->end("けってい"); ?>
+
+<p>※せんしゅ名を変えると、もとのせんしゅ名でログインできなくなります。きをつけてへんこうしてください。</p>
+
+<?php echo $this->Form->submit("けってい", array('class' => 'btn')); ?>
+<?php echo $this->Form->end(); ?>
