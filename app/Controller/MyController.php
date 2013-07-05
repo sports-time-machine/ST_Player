@@ -13,7 +13,6 @@ class MyController extends AppController {
 	
 	// Myページ
 	function index() {
-        
 		// player_id が直接取れない？
 		$user_id = $this->Auth->user('id');
 		$r = $this->User->findById($user_id);
@@ -131,11 +130,21 @@ class MyController extends AppController {
         
 		// DBから読み込む
 		$records = $this->Record->findAllByRecord_id($record_id);  
+        
+        // player_id が直接取れない？
+		$user_id = $this->Auth->user('id');
+
         if (empty($records)) {
 			// データが無いときはマイページへ
 			$this->Session->setFlash('記録データがみつかりません', SET_FLASH_WARNING);
 			$this->redirect(array('controller' => 'My', 'action' => 'index'));
 		}
+ 
+        if ($user_id !== $records[0]['Record']['user_id']){
+            //違うユーザからのアクセスだったらマイページに戻す
+            $this->Session->setFlash('記録データをへんしゅうできません', SET_FLASH_WARNING);
+			$this->redirect(array('controller' => 'My', 'action' => 'index'));
+        }
         
   		// 記録データの整形
         $records = $this->Record->setForView($records); 
