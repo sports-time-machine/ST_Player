@@ -1,9 +1,8 @@
 <!-- Header -->
 <div id="header">
     <div class="logo">スポーツタイムマシン</div>
-    <div class="loginuser">
+    <div class="search">
     <?php 
-    
     if ($this->name != 'Users') {   //Usersコントローラ時は非表示
         echo $this->Form->create('Record', array(
             'url' => array('controller' => 'records', 'action' => 'search'),
@@ -16,25 +15,18 @@
     ?>
     </div>
     
-        
-        
-<?php if (!empty($LOGIN_USER)) { ?>
-<div class="logout">
-    <?php
-       //echo $LOGIN_USER['password'];
-    echo "ようこそ！".$this->Html->link($LOGIN_USER['username'] ,array('controller' => 'My', 'action' => 'index'))."選手！";
-    echo "<br />";
-    echo $this->Html->link('ログアウト',array('controller' => 'users' , 'action' => 'logout'));
-    ?>
-</div>
-<?php }else { ?>
-<div class="login">
-    <?php
-    echo $this->Html->link('ログイン',array('controller' => 'users' , 'action' => 'login'));
-    ?>
-</div>
-<?php } ?>
-       
+    <?php if (!empty($LOGIN_USER)) { ?>
+        <div class="welcome">
+            ようこそ！ <a href="<?php echo $this->Html->url('/My/index'); ?>"><?php echo $LOGIN_USER['username']; ?></a> 選手！
+        </div>
+        <div class="logout">
+            <a class="btn" href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a>
+        </div>
+    <?php } else { ?>
+        <div class="login">
+            <a class="btn" href="<?php echo $this->Html->url('/users/index2'); ?>">トップにもどる</a>
+        </div>
+    <?php } ?>
     
 </div>
 <!-- Header -->

@@ -37,7 +37,7 @@ class AppController extends Controller {
         'DebugKit.Toolbar',
         'Auth' => Array(
             'loginRedirect' => Array('controller'  => 'users', 'action' => 'index'),    //ログイン成功時リダイレクト先
-            'logoutRedirect' => Array('controller' => 'users', 'action' => 'login'),    //ログアウト時リダイレクト先
+            'logoutRedirect' => Array('controller' => 'users', 'action' => 'index2'),    //ログアウト時リダイレクト先
             'loginAction' => Array('controller' => 'users', 'action' => 'login'),       
             'authenticate' => Array('QRCode' => Array('fields' => Array('username' => 'username', 'password' => 'player_id')))         
         ),

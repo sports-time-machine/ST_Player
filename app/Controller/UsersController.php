@@ -15,6 +15,11 @@ class UsersController extends AppController {
 		// レンダリングを行わない
 		$this->autoLayout = false;
 		$this->autoRender = true;
+		
+		// user/index2 が指定されたときは / へリダイレクト
+		if ($this->request->url == 'users/index2') {
+			$this->redirect(FULL_BASE_URL . $this->webroot);
+		}
 	}
 	
 	// Myページへ

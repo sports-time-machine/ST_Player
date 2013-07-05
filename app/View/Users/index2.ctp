@@ -98,7 +98,7 @@ a:hover{
 <!-- header -->
 <div class="header">
   <div class="wrapper-inner right">
-    <a href="http://sptmy.net/users/login">ログイン</a>
+    <a href="<?php echo $this->Html->url('/users/login'); ?>">ログイン</a>
   </div>
 </div><!-- /header -->
 
