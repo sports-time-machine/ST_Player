@@ -1,8 +1,10 @@
-<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">選手</h2>
+<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">
+    せんしゅ
+</h2>
 
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span3">選手ID</th>
+		<th class="span3">せんしゅID</th>
 		<td><?php echo $user['User']['player_id']; ?></td>
 	</tr>
     <tr>
@@ -12,7 +14,7 @@
 </table>
 
 
-<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">記録</h2>
+<h2 style="font-size: 14pt; border-bottom: 1px solid gray;">きろく</h2>
 
 <table class="table table-striped table-bordered">
 <tr>

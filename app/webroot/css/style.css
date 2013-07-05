@@ -25,7 +25,7 @@ div#container {
 }
 div#header {
 	width:  100%;
-	height: 80px;
+	height: 100px;
 	margin: 0px 0px;
 }
 div#contents {
@@ -66,16 +66,16 @@ html, body {
     background-color: #f47321;
 }
 div#header {
-    background-color: #f47321;
+    background-color: #2caedc;
 	/*background-color: #dddddd;*/
 }
 div#container {
-    background-color: #f47321;
+    background-color: #64c2e4;
 
 }
 div#footer {
-    background-color: #f47321;
-	/*background-color: #dddddd;*/
+    background-color: #2caedc;
+    /*background-color: #dddddd;*/
 }
 
  /*
@@ -84,13 +84,13 @@ div#footer {
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
     color: #000000;
-    background-color: #ff9900;
+    background-color: #eeeeff;
 }
 
 .table-striped tbody > tr:nth-child(even) > td,
 .table-striped tbody > tr:nth-child(even) > th {
     color: #000000;
-    background-color: #ffcc33;
+    background-color: #eeffff;
 }
 
 /* ------------------------------------------------------------
@@ -98,11 +98,11 @@ div#footer {
  * ------------------------------------------------------------ */
 body, textarea { 
     color: #ffffff;
-    font-family: "メイリオ", "ＭＳ Ｐゴシック", sans-serif;
+    font-family: "Lucida Grande","Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック",Verdana,Arial,sans-serif;
     font-size: 18px;
 }
 input, select { 
-    font-family: Arial, "ＭＳ Ｐゴシック", sans-serif; 
+    font-family: "Lucida Grande","Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック",Verdana,Arial,sans-serif;
     font-size: 18px;
 }
 table .number {
@@ -112,13 +112,24 @@ table .number {
 
 .error {
     color: #ff0033;
-    font-family: Arial, "ＭＳ Ｐゴシック", sans-serif; 
+    font-family: "Lucida Grande","Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック",Verdana,Arial,sans-serif;
     font-size: 18px;
 }
+
+#header a:not(.btn)  { color: #ff9900; text-decoration: none; cursor:pointer; }
+#header a:hover:not(.btn)  { text-decoration: underline; }
+#header a img:not(.btn)  { border: 0; }
 
 /* ------------------------------------------------------------
  * 基本要素
  * ------------------------------------------------------------ */
+h1 {
+    color: #ffffff;
+	font-size: 28pt;
+    background: #2caedc;
+    padding: 7px 2px;
+}
+
 h2 {
 	font-size: 20pt;
 	border-bottom: 1px solid gray;
