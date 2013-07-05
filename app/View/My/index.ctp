@@ -1,7 +1,7 @@
 <h2>せんしゅ</h2>
-<?php 
-echo $this->Html->link('へんしゅうする', "/My/edit");
-?>
+
+<p><a class="btn" href="<?php echo $this->Html->url("/My/edit"); ?>">へんしゅうする</a></p>
+
 <table class="table table-striped table-bordered">
 	<tr>
 		<th class="span3">せんしゅID</th>
