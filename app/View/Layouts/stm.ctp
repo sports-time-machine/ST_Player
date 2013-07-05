@@ -23,8 +23,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo "スポーツタイムマシン" ?>:
-		<?php echo $title_for_layout; ?>
+		<?php echo "スポーツタイムマシン" ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');

@@ -3,6 +3,9 @@
     きろく
 </h2>
 
+<?php if ( $record['Record']['user_id'] == $LOGIN_USER['id']) : ?>
+    <p><a class="btn" href="<?php echo $this->Html->url("/My/record_edit/".h($record['Record']['record_id'])); ?>">へんしゅうする</a></p>
+<?php endif?>
 <table class="table table-striped table-bordered">
 	<tr>
 		<th class="span3">せんしゅID</th>

@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Vendor', 'phpqrcode/qrlib');   //QRコード表示
 
 class MyController extends AppController {
 
@@ -90,6 +91,58 @@ class MyController extends AppController {
 	
         
     }
+    
+    // 記録の表示
+	public function record_view($record_id) {
+		// bind
+		$this->Record->bindForView();
+		
+		// DBから読み込む
+		$records = $this->Record->findAllByRecord_id($record_id);
+		if (empty($records)) {
+			// データが無いときは検索画面へ
+			$this->Session->setFlash('記録データがみつかりません', SET_FLASH_WARNING);
+			$this->redirect(array('controller' => 'My', 'action' => 'index'));
+		}
+		
+  		// 記録データの整形
+        $records = $this->Record->setForView($records);     
+		$this->set('record',$records[0]);
+	}
+    
+    // 記録の編集
+	public function record_edit($record_id) {
+        
+        //編集結果が来たら
+        if ($this->request->is('post')) {
+            //タグデータを文字列に変換 
+            $tags_str = trim(mb_convert_kana(h($this->request->data['Record']['tags']), "s", "UTF-8"));
+            $tags_str = preg_replace("/\s+/",' ',$tags_str);
+
+            $record = $this->Record->findById(h($this->request->data['Record']['id']));
+            $record['Record']['tags'] = h($tags_str);
+            $record['Record']['comment'] = h($this->request->data['Record']['comment']);
+      
+            $this->Record->set($record);
+            $this->Record->save();
+            $this->Session->setFlash('きろくデータをへんこうしました！', SET_FLASH_SUCCESS);
+            $this->redirect('/My/record_view/'.h($record['Record']['record_id']));
+        }
+        
+		// DBから読み込む
+		$records = $this->Record->findAllByRecord_id($record_id);  
+        if (empty($records)) {
+			// データが無いときはマイページへ
+			$this->Session->setFlash('記録データがみつかりません', SET_FLASH_WARNING);
+			$this->redirect(array('controller' => 'My', 'action' => 'index'));
+		}
+        
+  		// 記録データの整形
+        $records = $this->Record->setForView($records); 
+        // タグをスペースで区切る
+        $records[0]['Record']['tags'] = implode(',', $records[0]['Record']['tags']);
+		$this->set('record',$records[0]);
+	}
 }
 
 ?>
