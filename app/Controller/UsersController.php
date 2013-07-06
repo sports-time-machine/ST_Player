@@ -72,9 +72,8 @@ class UsersController extends AppController {
             
             //小文字を大文字に変換
             $this->request->data['User']['player_id'] = strtoupper($this->request->data['User']['player_id']);  
-            
 			if ($this->Auth->login()) {
-				$this->redirect($this->Auth->redirect());
+				$this->redirect("/My/index");
 			} else {
 				$this->Session->setFlash('ログインに失敗しました。選手名と選手番号を確認してもう一度入力してください', SET_FLASH_ERROR);
 			}
