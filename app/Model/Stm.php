@@ -57,7 +57,7 @@ class Stm extends AppModel
 		$this->loadModel(array('User'));
 		
 		// 関連付けるUserデータ
-		$conditions = array('player_id' => $data['User']['player_id']);
+		$conditions = array('player_id' => $this->generateShortPlayerId($data['User']['player_id']));
 		$user = $this->User->find('first', array('conditions' => $conditions));
 		
 		// 保存するフィールド
