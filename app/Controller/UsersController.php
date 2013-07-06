@@ -69,6 +69,10 @@ class UsersController extends AppController {
 	//パスワードを利用してログイン           
 	public function passwordLogin() {
 		if ($this->request->is('post')) {
+            
+            //小文字を大文字に変換
+            $this->request->data['User']['player_id'] = strtoupper($this->request->data['User']['player_id']);  
+            
 			if ($this->Auth->login()) {
 				$this->redirect($this->Auth->redirect());
 			} else {
