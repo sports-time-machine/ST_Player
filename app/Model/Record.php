@@ -29,7 +29,7 @@ class Record extends AppModel
     //複数条件検索
     public function multiWordSearch($data = array()){
 
-        $keyword = trim(mb_convert_kana($data['keyword'], "s", "UTF-8"));
+        $keyword = trim(mb_convert_kana($data['keyword'], "as", "UTF-8"));
         $keywords = explode(' ', $keyword);
         
         if(count($keywords) < 2) {
@@ -59,7 +59,7 @@ class Record extends AppModel
     // タグ検索
     public function tagSearch($data = array()){
 
-        $tag = trim(mb_convert_kana($data['tag'], "s", "UTF-8"));
+        $tag = trim(mb_convert_kana($data['tag'], "as", "UTF-8"));
         
         
         $condition = array(
@@ -136,7 +136,7 @@ class Record extends AppModel
             $tags_str = explode(",", $record['Record']['tags']);          
             $record['Record']['tags'] = array();
             for ($i=0; $i<count($tags_str); $i++){
-                $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "s", "UTF-8"));
+                $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "as", "UTF-8"));
             }
 
             //日付の加工

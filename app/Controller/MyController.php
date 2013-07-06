@@ -115,7 +115,7 @@ class MyController extends AppController {
         //編集結果が来たら
         if ($this->request->is('post')) {
             //タグデータを文字列に変換 
-            $tags_str = trim(mb_convert_kana(h($this->request->data['Record']['tags']), "s", "UTF-8"));
+            $tags_str = trim(mb_convert_kana(h($this->request->data['Record']['tags']), "as", "UTF-8"));
             $tags_str = preg_replace("/\s+/",' ',$tags_str);
 
             $record = $this->Record->findById(h($this->request->data['Record']['id']));
