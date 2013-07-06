@@ -175,7 +175,7 @@ class Stm extends AppModel
 		// 記録を保存する
 		
 		// 関連付けるUserデータ
-		$conditions = array('player_id' => $data['User']['player_id']);
+		$conditions = array('player_id' => $this->generateShortPlayerId($data['User']['player_id']));
 		$user = $this->User->find('first', array('conditions' => $conditions));
 		
 		// Userデータがないとき、新規登録する
