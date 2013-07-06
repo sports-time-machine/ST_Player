@@ -32,6 +32,8 @@ class UsersController extends AppController {
 	 * ログイン機能
 	 */
 	public function login() {
+       
+        
         //既にログインしているのであればindexへリダイレクト
         if ($this->Auth->user()) $this->redirect(array('action' => 'index'));
         
