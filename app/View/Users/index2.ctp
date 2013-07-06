@@ -31,6 +31,7 @@ a:hover{
   text-decoration:underline;
 }
 .header{ 
+  position:relative;
   line-height:90px;
   border-bottom:1px solid #ddd;  
 }
@@ -38,7 +39,8 @@ a:hover{
   border-bottom:1px solid #ddd;  
   padding:50px 0;
 }
-.wrapper-inner { 
+.wrapper-inner {
+  position:relative; 
   max-width: 950px; 
   margin:0 auto; 
 }
@@ -79,6 +81,11 @@ a:hover{
   text-decoration: none;
 }
 
+#card{
+  position:absolute;
+  top:15px;
+  right:120px;
+}
 .fade{
   display:none;
 }
@@ -98,7 +105,10 @@ a:hover{
 <!-- header -->
 <div class="header">
   <div class="wrapper-inner right">
-    <a href="<?php echo $this->Html->url('/users/login'); ?>">ログイン</a>
+    <span id="card">
+      <img src="./img/card.png" />
+    </span>
+    <a href="<?php echo $this->Html->url('/users/login'); ?>" class="btn">ログイン</a>
   </div>
 </div><!-- /header -->
 
@@ -162,7 +172,7 @@ a:hover{
       </p>
     </div>
     <div class="w50">
-      <img src="./img/play2.jpg" />
+      <img src="./img/play2.png" />
     </div>    
     <div class="w50">
       <img src="./img/play3.png" />
