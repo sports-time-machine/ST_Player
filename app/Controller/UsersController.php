@@ -35,7 +35,7 @@ class UsersController extends AppController {
        
         
         //既にログインしているのであればindexへリダイレクト
-        if ($this->Auth->user()) $this->redirect(array('action' => 'index'));
+        if ($this->Auth->user()) $this->redirect(array('contorller' => 'My','action' => 'index'));
         
 		// player_idをショートIDに統一
 		if (!empty($this->request->data['User']['player_id'])) {

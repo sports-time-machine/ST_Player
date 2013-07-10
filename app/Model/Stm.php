@@ -62,7 +62,9 @@ class Stm extends AppModel
 		
 		// 保存するフィールド
 		$fields = array('player_id', 'username', 'created', 'modified');
-		
+	
+        $data['User']['player_id'] = $this->generateShortPlayerId($data['User']['player_id']);
+
 		if (empty($user)) {
 			// 未登録の場合は新規登録
 			$this->User->create();
@@ -72,7 +74,7 @@ class Stm extends AppModel
 			$this->User->id = $user['User']['id'];
 			$result = $this->User->save($data['User'], true, $fields);
 		}
-		
+        
 		if (!is_array($result)) {
 			return false;
 		}
@@ -276,6 +278,7 @@ class Stm extends AppModel
 	}
 	
 	public function generateShortPlayerId($player_id) {
+        
 		$player_id = strtoupper($player_id);
 		$player_id = preg_replace("/^P/",'',$player_id);    //最初のPを取り除く
         $player_id = preg_replace("/^0+/",'',$player_id);    //先頭から連続する０を取り除く

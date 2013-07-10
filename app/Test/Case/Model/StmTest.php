@@ -50,7 +50,7 @@ class StmTest extends CakeTestCase {
 	
 	
 	public function test_Stm() {
-		$USER_DATA = array('User' => array('player_id' => 'ABCD', 'username' => 'やまぐちたろう'));
+		$USER_DATA = array('User' => array('player_id' => 'P0000ABCD', 'username' => 'やまぐちたろう'));
 		
 		pr("選手データのチェック - 失敗");
 		$data = array();
@@ -65,6 +65,21 @@ class StmTest extends CakeTestCase {
 		pr("選手データの登録 - 存在する場合は更新");
 		$this->assertTrue($this->Stm->userSave($USER_DATA));
 		
+        pr("選手名が空欄の時");
+        $USER_DATA = array('User' => array('player_id' => 'P0000BCDE', 'username' => ''));
+		
+		pr("選手データのチェック - 失敗");
+		$data = array();
+		$this->assertFalse($this->Stm->isValidUser($data));
+		
+		pr("選手データのチェック - 成功");
+		$this->assertTrue($this->Stm->isValidUser($USER_DATA));
+		
+		pr("選手データの登録 - 成功");
+		$this->assertTrue($this->Stm->userSave($USER_DATA));
+		
+		pr("選手データの登録 - 存在する場合は更新");
+		$this->assertTrue($this->Stm->userSave($USER_DATA));
 		
 		pr("記録データの登録 - 成功");
 		// テスト用画像データ
