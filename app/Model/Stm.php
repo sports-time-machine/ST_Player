@@ -63,6 +63,7 @@ class Stm extends AppModel
 		// 保存するフィールド
 		$fields = array('player_id', 'username', 'created', 'modified');
 	
+        //ロングIDをショートIDに変換
         $data['User']['player_id'] = $this->generateShortPlayerId($data['User']['player_id']);
 
 		if (empty($user)) {
@@ -178,6 +179,11 @@ class Stm extends AppModel
 		
 		// 関連付けるUserデータ
 		$conditions = array('player_id' => $this->generateShortPlayerId($data['User']['player_id']));
+        
+        //ロングIDをショートIDに変換
+        $data['User']['player_id'] = $this->generateShortPlayerId($data['User']['player_id']);
+        $data['Record']['player_id'] = $this->generateShortPlayerId($data['Record']['player_id']);
+        
 		$user = $this->User->find('first', array('conditions' => $conditions));
 		
 		// Userデータがないとき、新規登録する
@@ -186,8 +192,10 @@ class Stm extends AppModel
 			if ($r === false) {
 				return false;
 			}
+            pr($data);
 			$user = $this->User->find('first', array('conditions' => $conditions));
 		}
+        
 		
 		// 記録の保存
 		$record = $data['Record'];

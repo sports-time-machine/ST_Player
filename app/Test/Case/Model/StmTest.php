@@ -52,6 +52,7 @@ class StmTest extends CakeTestCase {
 	public function test_Stm() {
 		$USER_DATA = array('User' => array('player_id' => 'P0000ABCD', 'username' => 'やまぐちたろう'));
 		
+        /*
 		pr("選手データのチェック - 失敗");
 		$data = array();
 		$this->assertFalse($this->Stm->isValidUser($data));
@@ -82,16 +83,17 @@ class StmTest extends CakeTestCase {
 		$this->assertTrue($this->Stm->userSave($USER_DATA));
 		
 		pr("記録データの登録 - 成功");
+         */
 		// テスト用画像データ
 		$image = base64_encode(file_get_contents(APP . 'webroot' . DS . 'img' . DS . 'test-pass-icon.png'));
 		// 記録データ
 		$RECORD_DATA = array(
 			'User' => array( // 選手を特定するデータ
 				'username'  => 'やまぐちたろう',	// 選手名 文字列
-				'player_id' => 'ABCD',			// 選手ID 文字列
+				'player_id' => 'P0000ABCD',			// 選手ID 文字列
 				),
 			'Record' => array( // 走った記録
-				'player_id' => 'ABCD',			// 選手ID 文字列
+				'player_id' => 'P0000ABCD',			// 選手ID 文字列
 				'record_id' => 'ABCD3',			// 記録ID(QRコード)
 				'movie_path'   => '',			// 動画のパス 文字列
 				'movie_length' => '',			// 動画の長さ 文字列 
