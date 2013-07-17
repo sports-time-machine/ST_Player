@@ -7,6 +7,8 @@ class ProfilesController extends AppController {
 	public $layout = 'stm';
 
 	public function beforeFilter() {
+		parent::beforeFilter();
+		
 		$this->Auth->allow('view');
 	}
 	

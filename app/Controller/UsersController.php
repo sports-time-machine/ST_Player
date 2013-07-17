@@ -7,6 +7,8 @@ class UsersController extends AppController {
 	public $layout = 'stm';
 
 	public function beforeFilter() {
+		parent::beforeFilter();
+		
 		$this->Auth->allow('index2', 'login', 'passwordLogin', 'adminLogin', 'logout');  //ログインとログアウトしか許可しない
 	}
 	

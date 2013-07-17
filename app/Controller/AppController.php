@@ -44,6 +44,15 @@ class AppController extends Controller {
 	);
 	public $helpers = array('UploadPack.Upload');
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		
+		// 認証情報をモデルに渡す
+		if (!empty($this->Auth)) {
+			Configure::write('LOGIN_USER', $this->Auth->user());
+		}
+	}
+	
 	public function beforeRender() {
 		parent::beforeRender();
 		

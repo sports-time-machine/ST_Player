@@ -9,6 +9,7 @@ class MyController extends AppController {
     public $paginate = array('order' => 'Record.register_date DESC');
 
 	public function beforeFilter() {
+		parent::beforeFilter();
 	}
 	
 	// Myページ

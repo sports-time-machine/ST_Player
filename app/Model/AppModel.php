@@ -55,14 +55,38 @@ class AppModel extends Model {
 			foreach($models as $model) {
 				App::uses($model, 'Model');
 				$this->{$model} = new $model;
-				$this->{$model}->useDbConfig = $this->useDbConfig; // for UnitTest useDbConfigを引き継ぐ
+				if ($this->useDbConfig == 'test') {
+					$this->{$model}->useDbConfig = $this->useDbConfig; // for UnitTest useDbConfigを引き継ぐ
+				}
 
 			}
 		} else {
 			App::uses($models, 'Model');
 			$this->{$models} = new $models;
-			$this->{$models}->useDbConfig = $this->useDbConfig; // for UnitTest useDbConfigを引き継ぐ
+			if ($this->useDbConfig == 'test') {
+				$this->{$models}->useDbConfig = $this->useDbConfig; // for UnitTest useDbConfigを引き継ぐ
+			}
 		}
+	}
+	
+	// ログインユーザーを返す
+	public function getLoginUser() {
+		return Configure::read('LOGIN_USER');
+	}
+	
+	// create_user の挿入
+	public function beforeSave($options = array()) {
+		parent::beforeSave($options);
+		
+		$loginUser = $this->getLoginUser();
+		if (!empty($loginUser['User']['id'])) {
+			$this->data[$this->name]['create_user'] = $loginUser['User']['id'];
+		}
+		if (!empty($loginUser['id'])) {
+			$this->data[$this->name]['create_user'] = $loginUser['id'];
+		}
+		
+		return true;
 	}
 	
 	/**

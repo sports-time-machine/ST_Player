@@ -13,6 +13,8 @@ class RecordsController extends AppController {
 	public $presetVars = true;
 
 	public function beforeFilter() {
+		parent::beforeFilter();
+		
 		// ログインなしで実行できるアクション
 		$this->Auth->allow();
 	}
