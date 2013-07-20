@@ -125,5 +125,25 @@ CakePlugin::load('UploadPack');
 // for Search Plugin
 CakePlugin::load('Search');
 
+// 本番環境の判定
+// ------------------------------------------------------------
+// 本番環境の切り替え
+// ------------------------------------------------------------
+if (stripos($_SERVER['SERVER_ADDR'], '127.') === 0
+		|| stripos($_SERVER['SERVER_ADDR'], '192.168.') === 0
+		|| $_SERVER['SERVER_ADDR'] === '::1'
+		) {
+	define('PRODUCTION', false);
+} else {
+	define('PRODUCTION', true);
+	Configure::write('debug', 0); // debug = 0 にする
+	// エラーハンドリングを追加
+	Configure::write('Exception', array(
+		'handler' => 'ErrorHandler::handleException',
+		'renderer' => 'MyExceptionRenderer',
+		'log' => true
+	));
+}
+
 // アプリ用の定数定義
 config('const');
