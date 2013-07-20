@@ -24,10 +24,10 @@ $(function() {
 	echo $this->Form->end();
 	?>
 
-	<table class="table table-striped table-bordered">
+	<table class="table table-striped table-bordered table-condensed">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('player_id', 'Player_id'); ?></th>
+			<th style="width: 60px;"><?php echo $this->Paginator->sort('id'); ?></th>
+			<th style="width: 80px;"><?php echo $this->Paginator->sort('player_id', 'Player_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('username'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -48,16 +48,5 @@ $(function() {
 	</table>
 	
 	<!-- pagination -->
-	<div class="pagination">
-		<p>
-			<?php echo $this->Paginator->counter(array('format' => __('{:count} 件中 {:start} ～ {:end} 件'))); ?>
-		</p>
-		<ul>
-		<?php
-			echo $this->Paginator->prev('< 前へ', array('tag' => 'li'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
-			echo $this->Paginator->numbers(array('tag' => 'li', 'separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
-			echo $this->Paginator->next('次へ >', array('tag' => 'li', 'currentClass' => 'disabled'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
-		?>
-		</ul>
-	</div>
+	<?php echo $this->element('pagination'); ?>
 </div>

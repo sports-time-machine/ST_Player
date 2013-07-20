@@ -107,10 +107,13 @@ class UsersController extends AppController {
 					$data = array('User' => array('username' => $login['username'], 'password' => '-1'));
 					$this->User->save($data);
 				}
+				$this->User->bindForView();
 				$loginUser = $this->User->findByUsername($login['username']);
 				//pr($loginUser);exit;
 				
 				if ($this->Auth->login($loginUser)) {
+					// ユーザー情報をセッションにセット
+					$this->Session->write('LOGIN_USER', $loginUser);
 					// 管理画面にリダイレクト
 					$this->redirect(array('controller'  => 'admin', 'action' => 'index'));
 				} else {

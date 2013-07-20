@@ -33,6 +33,11 @@ class LogsController extends AppController {
 	}
 	
 	public function search($type = null) {
+		// ソート順の指定
+		$this->paginate = array(
+			'order' => array('created' => 'DESC'),
+		);
+		
 		// 検索
 		$this->Prg->commonProcess();
 		$conditions = $this->Log->parseCriteria($this->passedArgs);

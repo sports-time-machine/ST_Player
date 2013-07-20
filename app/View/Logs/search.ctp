@@ -19,7 +19,7 @@ $(function() {
 	?>
 
 
-	<table class="table table-striped table-bordered">
+	<table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th style="width: 70px;"><?php echo $this->Paginator->sort('id', 'ユーザー名'); ?></th>
 		<th><?php echo $this->Paginator->sort('log', 'ログ'); ?></th>
@@ -45,16 +45,5 @@ $(function() {
 	</table>
 	
 	<!-- pagination -->
-	<div class="pagination">
-		<p>
-			<?php echo $this->Paginator->counter(array('format' => __('{:count} 件中 {:start} ～ {:end} 件'))); ?>
-		</p>
-		<ul>
-		<?php
-			echo $this->Paginator->prev('< 前へ', array('tag' => 'li'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
-			echo $this->Paginator->numbers(array('tag' => 'li', 'separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1));
-			echo $this->Paginator->next('次へ >', array('tag' => 'li', 'currentClass' => 'disabled'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
-		?>
-		</ul>
-	</div>
+	<?php echo $this->element('pagination'); ?>
 </div>
