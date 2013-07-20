@@ -15,9 +15,9 @@
     ?>
     </div>
     
-    <?php if (!empty($LOGIN_USER['User'])) { ?>
+    <?php if (!empty($LOGIN_USER)) { ?>
         <div class="welcome">
-            ようこそ！ <a href="<?php echo $this->Html->url('/My/index'); ?>"><?php echo $LOGIN_USER['User']['username']; ?></a> せんしゅ！
+            ようこそ！ <a href="<?php echo $this->Html->url('/My/index'); ?>"><?php echo $LOGIN_USER['username']; ?></a> せんしゅ！
         </div>
         <div class="logout">
             <a class="btn" href="<?php echo $this->Html->url('/users/logout'); ?>">ログアウト</a>

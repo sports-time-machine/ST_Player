@@ -23,7 +23,16 @@ class MyController extends AppController {
         // ページネーションと記録データの整形
         $records = $this->Record->setForView($this->paginate('Record', $conditions));
 
-		$this->User->bindForView();
+        //Profileとのアソシエーション
+        $bind = array(
+			'hasOne' => array(
+				'Profile' => array(
+					'className' => 'Profile',
+					'foreignKey' => 'user_id',
+				),
+			),
+		);
+		$this->User->bindModel($bind);
    		$user = $this->User->findByPlayer_id($player_id);
 		$this->set(compact('user'));
 

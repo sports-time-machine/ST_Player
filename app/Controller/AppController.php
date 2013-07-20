@@ -49,7 +49,7 @@ class AppController extends Controller {
 		
 		// 認証情報をモデルに渡す
 		if (!empty($this->Auth)) {
-			Configure::write('LOGIN_USER', $this->Session->read('LOGIN_USER'));
+			Configure::write('LOGIN_USER', $this->Auth->user());
 		}
 	}
 	
@@ -57,6 +57,7 @@ class AppController extends Controller {
 		parent::beforeRender();
 		
 		// 認証データをビューに渡す
-		$this->set('LOGIN_USER', $this->Session->read('LOGIN_USER'));
+		$user = $this->Auth->user();
+		$this->set('LOGIN_USER', $user);
 	}
 }
