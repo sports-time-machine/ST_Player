@@ -34,11 +34,11 @@ class UsersController extends AppController {
 	 * ログイン機能
 	 */
 	public function login() {
-       
-        
-        //既にログインしているのであればindexへリダイレクト
-        if ($this->Auth->user()) $this->redirect(array('contorller' => 'My','action' => 'index'));
-        
+		//既にログインしているのであればindexへリダイレクト
+		if ($this->Auth->user()) {
+			$this->redirect(array('contorller' => 'My','action' => 'index'));
+		}
+		
 		// player_idをショートIDに統一
 		if (!empty($this->request->data['User']['player_id'])) {
 			$this->request->data['User']['player_id'] = $this->Stm->generateShortPlayerId($this->request->data['User']['player_id']);
@@ -47,8 +47,8 @@ class UsersController extends AppController {
 		if (!empty($this->request->data['User']['username'])) {
 			$this->request->data['User']['username'] = trim($this->request->data['User']['username']);
 		}
-			
-        
+		
+		
 		if ($this->request->is('ajax')) {
 			//QRコードを利用してログイン
 			$this->autoRender = false;
@@ -60,6 +60,8 @@ class UsersController extends AppController {
 			$this->log($this->request->data);
 			
 			if ($this->Auth->login()) {
+				// ユーザー情報をセッションにセット
+				$this->_setLoginUser($this->request->data['User']['player_id']);
 				echo "OK";
 			} else {
 				echo "NG";
@@ -70,13 +72,16 @@ class UsersController extends AppController {
 		}
 	}
 	
-	//パスワードを利用してログイン           
+	//パスワードを利用してログイン
 	public function passwordLogin() {
 		if ($this->request->is('post')) {
-            
-            //小文字を大文字に変換
-            $this->request->data['User']['player_id'] = strtoupper($this->request->data['User']['player_id']);  
+			
+			//小文字を大文字に変換
+			$this->request->data['User']['player_id'] = strtoupper($this->request->data['User']['player_id']);  
 			if ($this->Auth->login()) {
+				// ユーザー情報をセッションにセット
+				$this->_setLoginUser($this->request->data['User']['player_id']);
+				
 				$this->redirect("/My/index");
 			} else {
 				$this->Session->setFlash('ログインに失敗しました。選手名と選手番号を確認してもう一度入力してください', SET_FLASH_ERROR);
@@ -116,6 +121,14 @@ class UsersController extends AppController {
 			}
 			
 		}
+	}
+	
+	public function _setLoginUser($player_id) {
+		// ユーザー情報をセッションにセット
+		$this->User->bindForView();
+		$user = $this->User->findByPlayer_id($player_id);
+		//pr($user);exit;
+		$this->Session->write('LOGIN_USER', $user);
 	}
 	
 	/**
