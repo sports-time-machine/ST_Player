@@ -11,10 +11,10 @@ $(function() {
 	<?php
 	echo $this->Form->create('Log', array(
 		'url' => array('controller' => 'logs', 'action' => 'search'),
+		'class' => 'form-search',
 	));
-	echo $this->Form->label('log');
-	echo $this->Form->text('log');
-	echo $this->Form->submit('Search', array('class' => 'btn btn-primary'));
+	echo $this->Form->text('keyword');
+	echo $this->Form->submit('Search', array('class' => 'btn btn-primary', 'style' => 'margin-left: 8px;', 'div' => false));
 	echo $this->Form->end();
 	?>
 
@@ -23,7 +23,7 @@ $(function() {
 	<tr>
 		<th style="width: 70px;"><?php echo $this->Paginator->sort('id', 'player_id'); ?></th>
 		<th><?php echo $this->Paginator->sort('log', 'ログ'); ?></th>
-		<th><?php echo $this->Paginator->sort('loglevel', 'ログレベル'); ?></th>
+		<th><?php echo $this->Paginator->sort('loglevel', 'Level'); ?></th>
 		<th style="width: 70px;"><?php echo $this->Paginator->sort('action', '操作'); ?></th>
 		<th><?php echo $this->Paginator->sort('model', '画面'); ?></th>
 		<th><?php echo $this->Paginator->sort('affected_id', 'データID'); ?></th>

@@ -9,7 +9,7 @@ class LogsController extends AppController {
 	        'model' => 'Log', // or a default model name
 	    ),
 	));
-	public $presetVars = true;
+	//public $presetVars = true; // 個別に指定する
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -33,6 +33,10 @@ class LogsController extends AppController {
 	}
 	
 	public function search($type = null) {
+		// 検索条件をビューでセットするための指定
+		$this->presetVars = array(
+			array('field' => 'keyword', 'type' => 'value'),
+		);
 		// ソート順の指定
 		$this->paginate = array(
 			'order' => array('created' => 'DESC'),

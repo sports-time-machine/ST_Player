@@ -10,7 +10,6 @@ class RecordsController extends AppController {
 		'model' => 'Record', // SearchPluginで使うモデルを指定
 	));
     public $paginate = array('order' => 'Record.register_date DESC');
-	public $presetVars = true;
 
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -26,6 +25,10 @@ class RecordsController extends AppController {
 	public function search() {
 		// 検索フォームのバリデーションを無効化
 		$this->Record->validate = array();
+		// 検索条件をビューでセットするための指定
+		$this->presetVars = array(
+			array('field' => 'keyword', 'type' => 'value'),
+		);
 		// bind
 		$this->Record->bindForSearch();
 		

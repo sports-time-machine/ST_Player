@@ -6,7 +6,7 @@ class Log extends AppModel {
 	// for Search Plugin
 	public $actsAs = array('Search.Searchable');
 	public $filterArgs = array(
-		'log' => array('type' => 'like', 'field' => array('Log.log')),
+		'keyword' => array('type' => 'like', 'field' => array('Log.log')),
 	);
 
 	public function _log($log, $logtype, $loglevel = LOG_ERROR, $model = null, $action = null, $affected_id = null) {

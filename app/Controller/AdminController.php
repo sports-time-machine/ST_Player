@@ -12,7 +12,7 @@ class AdminController extends AppController {
 	        'model' => 'User', // or a default model name
 	    ),*/
 	));
-	//public $presetVars = true;
+	//public $presetVars = true; // 個別に指定する
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -35,6 +35,10 @@ class AdminController extends AppController {
 		// 検索フォームのバリデーションを無効化
 		$this->User->validate = array();
 		
+		// 検索条件をビューでセットするための指定
+		$this->presetVars = array(
+			array('field' => 'keyword', 'type' => 'value'),
+		);
 		// ソート順の指定
 		$this->paginate = array(
 			'order' => array('created' => 'DESC'),

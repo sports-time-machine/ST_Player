@@ -16,11 +16,10 @@ $(function() {
 	<?php
 	echo $this->Form->create('User', array(
 		'url' => array('controller' => 'admin', 'action' => 'users'),
-		//'url' => array('controller' => 'admin', 'action' => 'users', 'validates' => false), // 'validates' => false が効かない
+		'class' => 'form-search',
 	));
-	echo $this->Form->label('選手番号 または 選手名');
 	echo $this->Form->text('keyword');
-	echo $this->Form->submit('検索', array('class' => 'btn btn-primary'));
+	echo $this->Form->submit('検索', array('class' => 'btn btn-primary', 'style' => 'margin-left: 8px;', 'div' => false));
 	echo $this->Form->end();
 	?>
 
