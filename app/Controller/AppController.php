@@ -32,6 +32,7 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	public $uses = array('Log');
     public $components = array(
 		'Session' => array('className' => 'MySession'), // classNameを変更するものは先に読み込む
         'DebugKit.Toolbar',
@@ -39,7 +40,7 @@ class AppController extends Controller {
             'loginRedirect' => Array('controller'  => 'My', 'action' => 'index'),    //ログイン成功時リダイレクト先
             'logoutRedirect' => Array('controller' => 'users', 'action' => 'index2'),    //ログアウト時リダイレクト先
             'loginAction' => Array('controller' => 'users', 'action' => 'login'),       
-            'authenticate' => Array('QRCode' => Array('fields' => Array('username' => 'username', 'password' => 'player_id')))         
+            'authenticate' => Array('QRCode' => Array('fields' => Array('username' => 'username', 'password' => 'player_id')))
         ),
 	);
 	public $helpers = array('UploadPack.Upload');
@@ -55,8 +56,16 @@ class AppController extends Controller {
 	
 	public function beforeRender() {
 		parent::beforeRender();
+		// ------------------------------------------------------------
+		// viewに渡す変数
+		// ------------------------------------------------------------
+		// 本番環境かどうか
+		$this->set('PRODUCTION', PRODUCTION);
 		
-		// 認証データをビューに渡す
+		// デバッグレベル
+		$this->set('debug', Configure::read('debug'));
+		
+		// ログインユーザー情報
 		$this->set('LOGIN_USER', $this->Session->read('LOGIN_USER'));
 	}
 }

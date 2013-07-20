@@ -23,6 +23,7 @@ class LogBehavior extends ModelBehavior {
 	public function afterSave(Model $model, $created) {
 		parent::afterSave($model, $created);
 		//pr($model->data);exit;
+		/* 個別に記録する
 		if ($created) {
 			// INSERTの場合
 			$log = "データを登録しました";
@@ -32,5 +33,6 @@ class LogBehavior extends ModelBehavior {
 			$log = "データを更新しました";
 			$this->userLog($model, $log, LOG_LEVEL_INFO, $model->name, LOG_ACTION_UPDATE, $model->data[$model->name]['id']);
 		}
+		 */
 	}
 }

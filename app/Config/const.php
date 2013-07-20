@@ -34,4 +34,27 @@ define('LOG_ACTION_LOGIN',    5); // ログイン
 define('LOG_ACTION_LOGOUT',   6); // ログアウト
 define('LOG_ACTION_MAIL',     7); // メール
 
+// ログタイプリスト
+Configure::write('LOG_TYPE_LIST', array(
+	LOG_TYPE_SYSTEM => 'SYSTEM',
+	LOG_TYPE_USER => 'USER',
+));
+// ログレベルリスト
+Configure::write('LOG_LEVEL_LIST', array(
+	LOG_LEVEL_ERROR => 'ERROR',
+	LOG_LEVEL_WARN  => 'WARN',
+	LOG_LEVEL_INFO  => 'INFO',
+	LOG_LEVEL_DEBUG => 'DEBUG',
+));
+// ログアクションリスト
+Configure::write('LOG_ACTION_LIST', array(
+	LOG_ACTION_CREATE => '登録',
+	LOG_ACTION_READ   => '表示',
+	LOG_ACTION_UPDATE => '変更',
+	LOG_ACTION_DELETE => '削除',
+	LOG_ACTION_LOGIN  => 'ログイン',
+	LOG_ACTION_LOGOUT => 'ログアウト',
+	LOG_ACTION_MAIL   => 'メール',
+));
+
 ?>

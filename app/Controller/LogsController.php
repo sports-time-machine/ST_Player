@@ -22,10 +22,10 @@ class LogsController extends AppController {
 			$this->redirect(array('controller' => 'users'));
 		}
 		
-		// ログ表示用
-		$this->set('log_type_list',   $this->Log->log_type_list);
-		$this->set('log_level_list',  $this->Log->log_level_list);
-		$this->set('log_action_list', $this->Log->log_action_list);
+		// ログ定数
+		$this->set('LOG_TYPE_LIST',    configure::read('LOG_TYPE_LIST'));
+		$this->set('LOG_LEVEL_LIST',   configure::read('LOG_LEVEL_LIST'));
+		$this->set('LOG_ACTION_LIST',  configure::read('LOG_ACTION_LIST'));
 	}
 	
 	public function index() {

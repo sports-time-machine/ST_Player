@@ -21,7 +21,7 @@ $(function() {
 
 	<table class="table table-striped table-bordered table-condensed">
 	<tr>
-		<th style="width: 70px;"><?php echo $this->Paginator->sort('id', 'ユーザー名'); ?></th>
+		<th style="width: 70px;"><?php echo $this->Paginator->sort('id', 'player_id'); ?></th>
 		<th><?php echo $this->Paginator->sort('log', 'ログ'); ?></th>
 		<th><?php echo $this->Paginator->sort('loglevel', 'ログレベル'); ?></th>
 		<th style="width: 70px;"><?php echo $this->Paginator->sort('action', '操作'); ?></th>
@@ -34,8 +34,8 @@ $(function() {
 	<tr>
 		<td><?php echo h($item['Log']['username']); ?>&nbsp;</td>
 		<td><?php echo h($item['Log']['log']); ?></td>
-		<td><?php echo h($item['Log']['loglevel']); ?>&nbsp;</td>
-		<td><?php echo h($item['Log']['action']); ?>&nbsp;</td>
+		<td><?php echo h(@$LOG_LEVEL_LIST[ $item['Log']['loglevel'] ]); ?>&nbsp;</td>
+		<td><?php echo h(@$LOG_ACTION_LIST[ $item['Log']['action'] ]); ?>&nbsp;</td>
 		<td><?php echo h($item['Log']['model']); ?>&nbsp;</td>
 		<td><?php echo h($item['Log']['affected_id']); ?>&nbsp;</td>
 		<td><?php echo h($item['Log']['ip']); ?>&nbsp;</td>

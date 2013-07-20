@@ -9,28 +9,6 @@ class Log extends AppModel {
 		'log' => array('type' => 'like', 'field' => array('Log.log')),
 	);
 
-	public $log_type_list = array(
-		LOG_TYPE_SYSTEM => 'SYSTEM',
-		LOG_TYPE_USER => 'USER',
-	);
-	
-	public $log_level_list = array(
-		LOG_LEVEL_ERROR => 'ERROR',
-		LOG_LEVEL_WARN  => 'WARN',
-		LOG_LEVEL_INFO  => 'INFO',
-		LOG_LEVEL_DEBUG => 'DEBUG',
-	);
-	
-	public $log_action_list = array(
-		LOG_ACTION_CREATE => '登録',
-		LOG_ACTION_READ   => '表示',
-		LOG_ACTION_UPDATE => '変更',
-		LOG_ACTION_DELETE => '削除',
-		LOG_ACTION_LOGIN  => 'ログイン',
-		LOG_ACTION_LOGOUT => 'ログアウト',
-		LOG_ACTION_MAIL   => 'メール',
-	);
-	
 	public function _log($log, $logtype, $loglevel = LOG_ERROR, $model = null, $action = null, $affected_id = null) {
 		$logtype = $this->empty2null($logtype);
 		$loglevel = $this->empty2null($loglevel);
@@ -38,8 +16,9 @@ class Log extends AppModel {
 		$action = $this->empty2null($action);
 		// usernameを保存する
 		$loginUser = $this->getLoginUser();
-		if (!empty($loginUser['User']['username'])) {
-			$username = $loginUser['User']['username'];
+		//pr($loginUser);exit;
+		if (!empty($loginUser['User']['player_id'])) {
+			$username = $loginUser['User']['player_id'];
 		} else {
 			$username = null;
 		}

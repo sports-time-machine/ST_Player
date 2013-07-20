@@ -84,6 +84,10 @@ class UsersController extends AppController {
 				
 				$this->redirect("/My/index");
 			} else {
+				// ログ
+				$msg = @"ログインに失敗しました [{$this->request->data['User']['username']} / {$this->request->data['User']['player_id']}]";
+				$this->Log->userLog($msg, LOG_LEVEL_WARN, $this->name, LOG_ACTION_LOGIN);
+				
 				$this->Session->setFlash('ログインに失敗しました。選手名と選手番号を確認してもう一度入力してください', SET_FLASH_ERROR);
 			}
 		}
@@ -114,6 +118,9 @@ class UsersController extends AppController {
 				if ($this->Auth->login($loginUser)) {
 					// ユーザー情報をセッションにセット
 					$this->Session->write('LOGIN_USER', $loginUser);
+					// ログ
+					$msg = @"{$loginUser['User']['username']} さんがログインしました";
+					$this->Log->userLog($msg, LOG_LEVEL_INFO, $this->name, LOG_ACTION_LOGIN, $loginUser['User']['id']);
 					// 管理画面にリダイレクト
 					$this->redirect(array('controller'  => 'admin', 'action' => 'index'));
 				} else {
@@ -132,12 +139,29 @@ class UsersController extends AppController {
 		$user = $this->User->findByPlayer_id($player_id);
 		//pr($user);exit;
 		$this->Session->write('LOGIN_USER', $user);
+		Configure::write('LOGIN_USER', $user);
+		
+		// ログ
+		$msg = @"{$user['User']['username']} さんがログインしました";
+		$this->Log->userLog($msg, LOG_LEVEL_INFO, $this->name, LOG_ACTION_LOGIN, $user['User']['id']);
 	}
 	
 	/**
 	 * ログアウト機能
 	 */
 	public function logout() {
+		$user = $this->Session->read('LOGIN_USER');
+		if (!empty($user)) {
+			// ログ
+			$msg = @"{$user['User']['username']} さんがログアウトしました";
+			$this->Log->userLog($msg, LOG_LEVEL_INFO, $this->name, LOG_ACTION_LOGOUT, $user['User']['id']);
+		}
+		
+		// Sessionをクリア
+		$this->Session->write('LOGIN_USER', null);
+		$this->Session->destroy();
+		
+		// ログアウト処理
 		$this->redirect($this->Auth->logout());
 	}
 }
