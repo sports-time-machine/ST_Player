@@ -30,6 +30,31 @@
 		<th>はしった日</th>
 		<td><?php echo h($record['Record']['register_date']); ?></td>
 	</tr>
+    <?php if (isset($partner)) {?>
+    <tr>
+		<th>いっしょにはしった人</th>
+		<td>
+            <?php
+                echo $this->Html->link(h($partner['player_id']),"/P/".h($partner['player_id']));
+            ?>
+        </td>
+	</tr>
+    <tr>
+		<th>いっしょにはしった人のきろくID</th>
+		<td>
+        <?php 
+        if(isset($partner)){
+            echo h($partner['record_id']); 
+            ob_start();
+            QRCode::png(h($partner['record_id']), null, 'H', 5, 2);
+            $img_base64 = base64_encode( ob_get_contents() );
+            ob_end_clean();
+            echo $this->Html->div('qrcode', "<img src='" .sprintf('data:image/png;base64,%s', $img_base64). "'/>");
+        }
+        ?>
+        </td>
+	</tr>
+    <?php } ?>
 	<tr>
 		<th>タグ</th>
 		<td>       
