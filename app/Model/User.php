@@ -12,5 +12,17 @@ class User extends AppModel
 	public $filterArgs = array(
 		'keyword' => array('type' => 'like', 'field' => array('User.player_id', 'User.username')),
 	);
- 
+	
+	// view用bind
+	public function bindForView() {
+        $bind = array(
+			'hasOne' => array(
+				'Profile' => array(
+					'className' => 'Profile',
+					'foreignKey' => 'user_id',
+				),
+			),
+		);
+		$this->bindModel($bind);
+	}
 }

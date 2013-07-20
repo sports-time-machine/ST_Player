@@ -63,7 +63,7 @@
 		<td><?php echo h($record['Record']['comment']); ?></td>
 	</tr>
 </table>
-<?php if ( $record['Record']['user_id'] == $LOGIN_USER['id']) : ?>
+<?php if ($record['Record']['user_id'] == $LOGIN_USER['User']['id']) : ?>
     <p><a class="btn" href="<?php echo $this->Html->url("/My/record_edit/".h($record['Record']['record_id'])); ?>">きろくデータへんこう</a></p>
 <?php endif?>
 
