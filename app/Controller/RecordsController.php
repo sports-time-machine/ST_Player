@@ -52,7 +52,23 @@ class RecordsController extends AppController {
 		
   		// 記録データの整形
         $records = $this->Record->setForView($records);     
+        //Partnerとのアソシエーション
+        $bind = array(
+			'hasOne' => array(
+				'Partner' => array(
+					'className' => 'Partner',
+					'foreignKey' => 'record_id',
+				),
+			),
+		);
+		$this->Record->bindModel($bind);
+        //パートナー情報を検索
+        $partner = $this->Record->findByRecordId($records[0]['Partner'][0]['partner_id']);
+        
 		$this->set('record',$records[0]);
+        if ($partner){
+            $this->set('partner',$partner['Record']);
+        }
 	}
    
 }

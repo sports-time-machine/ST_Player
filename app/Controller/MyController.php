@@ -69,10 +69,6 @@ class MyController extends AppController {
 		$r = $this->User->findById($user_id);
 		$player_id = $r['User']['player_id'];
               
-		$conditions = array('user_id' => $user_id);
-        // ページネーションと記録データの整形
-        $records = $this->Record->setForView($this->paginate('Record', $conditions));
-          
         //Profileとのアソシエーション
         $bind = array(
 			'hasOne' => array(
@@ -84,8 +80,6 @@ class MyController extends AppController {
 		);
 		$this->User->bindModel($bind);
         
-        $this->set('records',$records);
-    
 		$user = $this->User->findByPlayer_id($player_id);
 		$this->set(compact('user'));
 	
@@ -106,8 +100,25 @@ class MyController extends AppController {
 		}
 		
   		// 記録データの整形
-        $records = $this->Record->setForView($records);     
+        $records = $this->Record->setForView($records);    
+
+        //Partnerとのアソシエーション
+        $bind = array(
+			'hasOne' => array(
+				'Partner' => array(
+					'className' => 'Partner',
+					'foreignKey' => 'record_id',
+				),
+			),
+		);
+		$this->Record->bindModel($bind);
+        //パートナー情報を検索
+        $partner = $this->Record->findByRecordId($records[0]['Partner'][0]['partner_id']);
+        
 		$this->set('record',$records[0]);
+        if ($partner){
+            $this->set('partner',$partner['Record']);
+        }
 	}
     
     // 記録の編集
