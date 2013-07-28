@@ -124,6 +124,8 @@ class MyController extends AppController {
             $record = $this->Record->findById(h($this->request->data['Record']['id']));
             $record['Record']['tags'] = h($tags_str);
             $record['Record']['comment'] = h($this->request->data['Record']['comment']);
+            
+            $record['Record']['is_public'] = h($this->request->data['Record']['is_public']);
       
             $this->Record->set($record);
             $this->Record->save();

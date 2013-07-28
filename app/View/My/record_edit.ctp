@@ -42,6 +42,20 @@
         ?>
         </td>
 	</tr>
+    <tr>
+		<th>きろくをこうかいする</th>
+		<td>
+            <?php
+            echo $this->Form->input('is_public',
+                array(
+                    'type' => 'checkbox',
+                    'label' => false,
+                    'default' => h($record['Record']['is_public'])
+                )
+            )
+            ?>
+        </td>
+	</tr>
 </table>
 <?php echo $this->Form->hidden('id',array('value' => $record['Record']['id'])) ?>
 

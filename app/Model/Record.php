@@ -29,6 +29,7 @@ class Record extends AppModel
     //複数条件検索
     public function multiWordSearch($data = array()){
 
+      
         $keyword = trim(mb_convert_kana($data['keyword'], "as", "UTF-8"));
         $keywords = explode(' ', $keyword);
         
@@ -40,7 +41,7 @@ class Record extends AppModel
                 )
             );
         }else{
-        $conditions['AND'] = array();
+            $conditions['AND'] = array();
             foreach($keywords as $count => $keyword) {
                 $condition = array(
                     'OR' => array(
@@ -63,7 +64,9 @@ class Record extends AppModel
         
         
         $condition = array(
-            'Record.tags LIKE' => '%' . $tag . '%'
+            'AND' => array(
+                'Record.tags LIKE' => '%' . $tag . '%',
+            )
         );
       
         return $condition;

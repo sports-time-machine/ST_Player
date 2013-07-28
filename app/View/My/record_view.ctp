@@ -4,6 +4,13 @@
     きろくデータ
 </h2>
 
+<?php if (h($record['Record']['is_public']) == false){ ?>
+<div class="alert alert-block">
+    このきろくデータは、ほかの人がみることができません<br />
+    ほかの人がみることができるようにするには、「きろくデータへんこう」から「きろくをこうかいする」にチェックをいれてください
+</div>
+<?php } ?>
+
 <table class="table table-striped table-bordered">
 	<tr>
 		<th class="span3">きろくID</th>

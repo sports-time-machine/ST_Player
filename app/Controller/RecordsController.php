@@ -35,6 +35,12 @@ class RecordsController extends AppController {
 		// 検索
 		$this->Prg->commonProcess();
 		$conditions = $this->Record->parseCriteria($this->passedArgs);
+        
+        //and検索条件がなければ追加
+        if (!isset($conditions['AND'])) $conditions['AND'] = array();
+        //非公開記録は検索しない
+        array_push($conditions['AND'], array('Record.is_public ' => true));
+        //pr($conditions);
 		// ページネーションと記録データの整形
         $records = $this->Record->setForView($this->paginate('Record', $conditions));
         $this->set('records',$records);
@@ -52,6 +58,12 @@ class RecordsController extends AppController {
 			$this->Session->setFlash('記録データがみつかりません', SET_FLASH_WARNING);
 			$this->redirect(array('controller' => 'records', 'action' => 'search'));
 		}
+        
+        //非公開の記録
+        if ($records[0]['Record']['is_public'] == false){
+            $this->render('private');   //非公開ビューへ変更
+            return;
+        }
 		
   		// 記録データの整形
         $records = $this->Record->setForView($records);     
