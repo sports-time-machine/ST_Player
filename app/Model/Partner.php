@@ -29,8 +29,8 @@ class Partner extends AppModel
                 $str = substr($partner_id,2);   //2文字以降を取り出す
                 $partner['name']="";
                 if (strcmp($str, "CHEETAH-1") == 0) $partner['name'] = "チーター";
-                if (strcmp($str, "ELEPHANT-3") == 0) $partner['name'] = "ぞう";
-                if (strcmp($str, "USAGI") == 0) $partner['name'] = "うさぎ";
+                if (strcmp($str, "ELEPHANT-3") == 0) $partner['name'] = "アフリカゾウ";
+                if (strcmp($str, "MUSAGI") == 0) $partner['name'] = "ミナコウサギ";
                 
                 $partner['record_id'] = $partner_id;
                 $partner['is_linked'] = false;
