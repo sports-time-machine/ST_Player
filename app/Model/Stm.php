@@ -192,7 +192,7 @@ class Stm extends AppModel
 			if ($r === false) {
 				return false;
 			}
-            pr($data);
+            //pr($data);
 			$user = $this->User->find('first', array('conditions' => $conditions));
 		}
         

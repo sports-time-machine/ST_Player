@@ -10,4 +10,34 @@ class Partner extends AppModel
 	// app_model.phpでconfig/column_list/Partner.php, config/validate/Partner.phpを読み込み
 	public $column_list = array();
 	public $validate = array();
+    
+    //パートナー取得
+    public function getPartner($partner_id){
+
+        $partner = null;
+        App::import('Model', 'Record');      
+        $Record = new Record;
+        $data = $Record->findByRecordId($partner_id);
+        
+        //通常の記録の場合
+        if ($data){
+            $partner['record_id'] = $data['Record']['record_id'];
+            $partner['name'] = $data['Record']['player_id'];
+            $partner['is_linked'] = true;
+        }else{
+             if (preg_match("/M:/", $partner_id)){
+                $str = substr($partner_id,2);   //2文字以降を取り出す
+                $partner['name']="";
+                if (strcmp($str, "CHEETAH-1") == 0) $partner['name'] = "チーター";
+                if (strcmp($str, "ELEPHANT-3") == 0) $partner['name'] = "ぞう";
+                if (strcmp($str, "USAGI") == 0) $partner['name'] = "うさぎ";
+                
+                $partner['record_id'] = $partner_id;
+                $partner['is_linked'] = false;
+             }
+        }
+        
+        return $partner;     
+        
+    }
 }

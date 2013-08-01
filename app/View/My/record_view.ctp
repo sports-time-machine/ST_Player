@@ -34,7 +34,11 @@
 		<th>いっしょにはしった人</th>
 		<td>
             <?php
-                echo $this->Html->link(h($partner['player_id']),"/P/".h($partner['player_id']));
+                if ($partner['is_linked'] == true){
+                    echo $this->Html->link(h($partner['name']),"/P/".h($partner['name']));
+                }else{
+                    echo h($partner['name']);
+                }
             ?>
         </td>
 	</tr>

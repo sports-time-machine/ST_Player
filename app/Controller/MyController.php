@@ -4,7 +4,7 @@ App::import('Vendor', 'phpqrcode/qrlib');   //QRコード表示
 
 class MyController extends AppController {
 
-	public $uses = array('User', 'Record', 'Stm', 'Profile');
+	public $uses = array('User', 'Record', 'Stm', 'Profile', 'Partner');
 	public $layout = 'stm';
     public $paginate = array('order' => 'Record.register_date DESC');
 
@@ -104,11 +104,12 @@ class MyController extends AppController {
 		);
 		$this->Record->bindModel($bind);
         //パートナー情報を検索
-        $partner = $this->Record->findByRecordId($records[0]['Partner'][0]['partner_id']);
+        $partner = $this->Partner->getPartner($records[0]['Partner'][0]['partner_id']);
+        //$partner = $this->Record->findByRecordId($records[0]['Partner'][0]['partner_id']);
         
 		$this->set('record',$records[0]);
         if ($partner){
-            $this->set('partner',$partner['Record']);
+            $this->set('partner',$partner);
         }
 	}
     

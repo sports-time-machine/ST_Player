@@ -4,7 +4,7 @@ App::import('Vendor', 'phpqrcode/qrlib');   //QRコード表示
 
 class RecordsController extends AppController {
 
-	public $uses = array('Record'/*, 'User'*/);
+	public $uses = array('Record','Partner'/*, 'User'*/);
 	public $layout = 'stm';
 	public $components = array('Search.Prg' => array(
 		'model' => 'Record', // SearchPluginで使うモデルを指定
@@ -78,11 +78,12 @@ class RecordsController extends AppController {
 		);
 		$this->Record->bindModel($bind);
         //パートナー情報を検索
-        $partner = $this->Record->findByRecordId($records[0]['Partner'][0]['partner_id']);
+        $partner = $this->Partner->getPartner($records[0]['Partner'][0]['partner_id']);
+        //$partner = $this->Record->findByRecordId($records[0]['Partner'][0]['partner_id']);
         
 		$this->set('record',$records[0]);
         if ($partner){
-            $this->set('partner',$partner['Record']);
+            $this->set('partner',$partner);
         }
 	}
    
