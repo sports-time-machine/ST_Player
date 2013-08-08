@@ -9,6 +9,8 @@ define('API_ERROR_NO_POST_DATA',	2);
 define('API_ERROR_INVALID_DATA',	3);
 define('API_ERROR_INVALID_HASH',	4);
 define('API_ERROR_EXIST_DATA',		5);
+define('API_ERROR_NOT_EXIST_DATA',	6);
+
 // 呼び出し
 define('API_ERROR_NO_DATA',			11);
 
@@ -125,6 +127,78 @@ class ApiController extends AppController {
 		return;
 	}
 	
+	// 走った記録に画像を追加
+	public function recordImageAdd() {
+		$json = null;
+		if (!empty($this->request->data['json'])) {
+			$json = $this->request->data['json'];
+		}
+		$data = json_decode($json, true);
+		
+		// データがあるかどうか
+		if (empty($data)) {
+			return $this->outputHandler(API_ERROR_NO_POST_DATA);
+		}
+		
+		// 新しい記録データかどうか
+		if ($this->Stm->isNewRecord($data)) {
+			return $this->outputHandler(API_ERROR_NOT_EXIST_DATA);
+		}
+		
+		// 登録処理
+		$r = $this->Stm->recordImageAdd($data);
+		
+		return $this->outputHandler(API_SUCCESS);
+	}
+	
+	// 走った記録にオブジェクトを追加
+	public function recordObjectAdd() {
+		$json = null;
+		if (!empty($this->request->data['json'])) {
+			$json = $this->request->data['json'];
+		}
+		$data = json_decode($json, true);
+		
+		// データがあるかどうか
+		if (empty($data)) {
+			return $this->outputHandler(API_ERROR_NO_POST_DATA);
+		}
+		
+		// 新しい記録データかどうか
+		if ($this->Stm->isNewRecord($data)) {
+			return $this->outputHandler(API_ERROR_NOT_EXIST_DATA);
+		}
+		
+		// 登録処理
+		$r = $this->Stm->recordObjectAdd($data);
+		
+		return $this->outputHandler(API_SUCCESS);
+	}
+	
+	// 走った記録にオブジェクトを追加（ファイルは保存しない）
+	public function recordObjectAddWithoutFile() {
+		$json = null;
+		if (!empty($this->request->data['json'])) {
+			$json = $this->request->data['json'];
+		}
+		$data = json_decode($json, true);
+		
+		// データがあるかどうか
+		if (empty($data)) {
+			return $this->outputHandler(API_ERROR_NO_POST_DATA);
+		}
+		
+		// 新しい記録データかどうか
+		if ($this->Stm->isNewRecord($data)) {
+			return $this->outputHandler(API_ERROR_NOT_EXIST_DATA);
+		}
+		
+		// 登録処理
+		$r = $this->Stm->recordObjectAdd($data);
+		
+		return $this->outputHandler(API_SUCCESS);
+	}
+	
 	// 選手登録
 	// 未登録の場合は新規登録
 	// 登録済みの場合は選手名をアップデート
@@ -202,6 +276,9 @@ class ApiController extends AppController {
 		} else if ($errorCode == API_ERROR_EXIST_DATA) {
 			$result['code'] = 400 + API_ERROR_EXIST_DATA;
 			$result['result']['message'] = 'exist data';
+		} else if ($errorCode == API_ERROR_NOT_EXIST_DATA) {
+			$result['code'] = 400 + API_ERROR_NOT_EXIST_DATA;
+			$result['result']['message'] = 'not exist data';
 		} else if ($errorCode == API_ERROR_NO_DATA) {
 			$result['code'] = 400 + API_ERROR_NO_DATA;
 			$result['result']['message'] = 'No data found';

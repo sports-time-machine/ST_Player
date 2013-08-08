@@ -34,6 +34,7 @@ class StmTest extends CakeTestCase {
 		$this->Stm->query('DELETE FROM profiles;');
 		$this->Stm->query('DELETE FROM records;');
 		$this->Stm->query('DELETE FROM record_images;');
+		$this->Stm->query('DELETE FROM record_objects;');
 		$this->Stm->query('DELETE FROM partners;');
 		$this->Stm->query('DELETE FROM images;');
 	}
@@ -114,6 +115,42 @@ class StmTest extends CakeTestCase {
 					),
 				// ... 当面は1人
 				),
+			'Image' => array(),
+			/* 最初は画像なし
+			'Image' => array( // 画像 6枚
+				0 => array(
+					'filename' => 'ABCD-1',		// ファイル名 文字列
+					'ext' => 'png',				// 拡張子 文字列
+					'mime' => 'image/png',		// jpgはimage/jpeg、pngはimage/png
+					'width' => 1024,			// 画像の幅 数値
+					'height' => 768,			// 画像の高さ 数値
+					'data' => $image,			// 画像データをBASE64エンコードしたもの 文字列
+					),
+				1 => array(
+					'filename' => 'ABCD-2',		// ファイル名 文字列
+					'ext' => 'png',				// 拡張子 文字列
+					'mime' => 'image/png',		// jpgはimage/jpeg、pngはimage/png
+					'width' => 1024,			// 画像の幅 数値
+					'height' => 768,			// 画像の高さ 数値
+					'data' => $image,			// 画像データをBASE64エンコードしたもの 文字列
+					),
+				// ... 6枚登録？
+				),
+				*/
+			);
+		$RECORD_DATA['Record']['md5hex'] = md5($RECORD_DATA['Record']['player_id'] . ', ' . $RECORD_DATA['Record']['record_id'] . ', ' . $RECORD_DATA['Record']['register_date']);
+		
+		$this->assertTrue($this->Stm->recordSave($RECORD_DATA));  // 1回目は成功
+		$this->assertFalse($this->Stm->recordSave($RECORD_DATA)); // 同じ記録は2回登録できない
+		
+		
+		// テスト用画像データ
+		$image = base64_encode(file_get_contents(APP . 'webroot' . DS . 'img' . DS . 'test-pass-icon.png'));
+		// 記録データ
+		$RECORD_DATA = array(
+			'Record' => array( // 走った記録
+				'record_id' => 'ABCD3',			// 記録ID(QRコード)
+				),
 			'Image' => array( // 画像 6枚
 				0 => array(
 					'filename' => 'ABCD-1',		// ファイル名 文字列
@@ -134,10 +171,35 @@ class StmTest extends CakeTestCase {
 				// ... 6枚登録？
 				),
 			);
-		$RECORD_DATA['Record']['md5hex'] = md5($RECORD_DATA['Record']['player_id'] . ', ' . $RECORD_DATA['Record']['record_id'] . ', ' . $RECORD_DATA['Record']['register_date']);
 		
-		$this->assertTrue($this->Stm->recordSave($RECORD_DATA));  // 1回目は成功
-		$this->assertFalse($this->Stm->recordSave($RECORD_DATA)); // 同じ記録は2回登録できない
+		$this->assertTrue($this->Stm->recordImageAdd($RECORD_DATA));  // 画像を追加
 		
+		
+		// テスト用画像データ
+		$object = base64_encode(file_get_contents(APP . 'webroot' . DS . 'img' . DS . 'test-pass-icon.png'));
+		// 記録データ
+		$RECORD_DATA = array(
+			'Record' => array( // 走った記録
+				'record_id' => 'ABCD3',			// 記録ID(QRコード)
+				),
+			'Object' => array( // 画像 6枚
+				0 => array(
+					'filename' => 'ABCD-1',		// ファイル名 文字列
+					'ext' => 'obj',				// 拡張子 文字列
+					'mime' => 'application/octet-stream',	// 
+					'data' => $object,			// オブジェクトデータをBASE64エンコードしたもの 文字列
+					),
+				1 => array(
+					'filename' => 'ABCD-2',		// ファイル名 文字列
+					'ext' => 'obj',				// 拡張子 文字列
+					'mime' => 'application/octet-stream',		// 
+					'data' => $object,			// オブジェクトデータをBASE64エンコードしたもの 文字列
+					),
+				// ... 6枚登録？
+				),
+			);
+		
+		//$this->assertTrue($this->Stm->recordObjectAdd($RECORD_DATA));  // 画像を追加
+		$this->assertTrue($this->Stm->recordObjectAddWithoutFile($RECORD_DATA));  // 画像を追加
 	}
 }

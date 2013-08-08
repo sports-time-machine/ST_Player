@@ -95,6 +95,18 @@ class Record extends AppModel
 		$this->unbindModel($bind, false);
 	}
 	
+	// addImage用bind
+	public function bindForAddImage() {
+		$bind = array(
+			'belongsTo' => array(
+				'User' => array(
+					'className' => 'User',
+					'fields' => array('player_id', 'username'),
+				),
+			),
+		);
+		$this->bindModel($bind, false);
+	}
 	
 	// view用bind
 	public function bindForView() {

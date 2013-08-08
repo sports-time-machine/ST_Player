@@ -1,13 +1,13 @@
 <?php
 App::uses('AppModel', 'Model');
 
-class RecordImage extends AppModel
+class RecordObject extends AppModel
 {
-	public $name = 'RecordImage';
-	public $useTable = 'record_images';
+	public $name = 'RecordObject';
+	public $useTable = 'record_objects';
 	public $primaryKey = 'id';
 	
-	// app_model.phpでconfig/validate/RecordImage.phpを読み込み
+	// app_model.phpでconfig/validate/RecordObject.phpを読み込み
 	public $validate = array();
 	
 	public $belongsTo = array(

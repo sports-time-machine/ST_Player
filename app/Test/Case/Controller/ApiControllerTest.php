@@ -35,6 +35,7 @@ class ApiControllerTest extends ControllerTestCase {
 		$this->Stm->query('DELETE FROM profiles;');
 		$this->Stm->query('DELETE FROM records;');
 		$this->Stm->query('DELETE FROM record_images;');
+		$this->Stm->query('DELETE FROM record_objects;');
 		$this->Stm->query('DELETE FROM partners;');
 		$this->Stm->query('DELETE FROM images;');
 	}
@@ -224,5 +225,110 @@ class ApiControllerTest extends ControllerTestCase {
 			);
 		$result = json_decode($r, true);
 		$this->assertEquals($expected['code'], $result['code']);
+		
+		
+		
+		// 画像データ追加
+		echo "recordImageAdd - OK";
+		$array = array(
+			'Record' => array( // 走った記録
+				'record_id' => 'ABCD3',			// 記録ID(QRコード)
+				),
+			'Image' => array( // 画像 6枚
+				0 => array(
+					'filename' => 'ABCD-1',		// ファイル名 文字列
+					'ext' => 'png',				// 拡張子 文字列
+					'mime' => 'image/png',		// jpgはimage/jpeg、pngはimage/png
+					'width' => 1024,			// 画像の幅 数値
+					'height' => 768,			// 画像の高さ 数値
+					'data' => $image,			// 画像データをBASE64エンコードしたもの 文字列
+					),
+				1 => array(
+					'filename' => 'ABCD-2',		// ファイル名 文字列
+					'ext' => 'png',				// 拡張子 文字列
+					'mime' => 'image/png',		// jpgはimage/jpeg、pngはimage/png
+					'width' => 1024,			// 画像の幅 数値
+					'height' => 768,			// 画像の高さ 数値
+					'data' => $image,			// 画像データをBASE64エンコードしたもの 文字列
+					),
+				// ... 6枚登録？
+				),
+			);
+		
+		$data = array('json' => json_encode($array));
+		$r = $this->myTestAction('/api/recordImageAdd', array('data' => $data, 'method' => 'post'));
+		pr($r);
+		$expected = array(
+			'code' => '200',
+			'result' => array('message' => 'success', 'data' => null),
+			);
+		$this->assertEquals($expected, json_decode($r, true));
+		
+		
+		// オブジェクトデータ追加
+		echo "recordObjectAdd - OK";
+		$array = array(
+			'Record' => array( // 走った記録
+				'record_id' => 'ABCD3',			// 記録ID(QRコード)
+				),
+			'Object' => array( // 画像 6枚
+				0 => array(
+					'filename' => 'ABCD-1',		// ファイル名 文字列
+					'ext' => 'obj',				// 拡張子 文字列
+					'mime' => 'application/octet-stream',	// 
+					'data' => $image,			// オブジェクトデータをBASE64エンコードしたもの 文字列
+					),
+				1 => array(
+					'filename' => 'ABCD-2',		// ファイル名 文字列
+					'ext' => 'obj',				// 拡張子 文字列
+					'mime' => 'application/octet-stream',		// 
+					'data' => $image,			// オブジェクトデータをBASE64エンコードしたもの 文字列
+					),
+				// ... 6枚登録？
+				),
+			);
+		
+		$data = array('json' => json_encode($array));
+		$r = $this->myTestAction('/api/recordObjectAdd', array('data' => $data, 'method' => 'post'));
+		pr($r);
+		$expected = array(
+			'code' => '200',
+			'result' => array('message' => 'success', 'data' => null),
+			);
+		$this->assertEquals($expected, json_decode($r, true));
+		
+		
+		// オブジェクトデータ追加
+		echo "recordObjectAddWithoutFile - OK";
+		$array = array(
+			'Record' => array( // 走った記録
+				'record_id' => 'ABCD3',			// 記録ID(QRコード)
+				),
+			'Object' => array( // 画像 6枚
+				0 => array(
+					'filename' => 'ABCD-1',		// ファイル名 文字列
+					'ext' => 'obj',				// 拡張子 文字列
+					'mime' => 'application/octet-stream',	// 
+					'data' => $image,			// オブジェクトデータをBASE64エンコードしたもの 文字列
+					),
+				1 => array(
+					'filename' => 'ABCD-2',		// ファイル名 文字列
+					'ext' => 'obj',				// 拡張子 文字列
+					'mime' => 'application/octet-stream',		// 
+					'data' => $image,			// オブジェクトデータをBASE64エンコードしたもの 文字列
+					),
+				// ... 6枚登録？
+				),
+			);
+		
+		$data = array('json' => json_encode($array));
+		$r = $this->myTestAction('/api/recordObjectAddWithoutFile', array('data' => $data, 'method' => 'post'));
+		pr($r);
+		$expected = array(
+			'code' => '200',
+			'result' => array('message' => 'success', 'data' => null),
+			);
+		$this->assertEquals($expected, json_decode($r, true));
+		
 	}
 }

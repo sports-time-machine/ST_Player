@@ -264,6 +264,190 @@ class Stm extends AppModel
 		return true;
 	}
 	
+	// 走った記録に画像を追加する
+	public function recordImageAdd($data) {
+		// 新規データは対象外
+		if ($this->isNewRecord($data)) {
+			return false;
+		}
+		$this->loadModel(array('User', 'Record', 'RecordImage', 'Partner', 'Image'));
+		$result = true;
+		
+		// 記録の呼び出し(Userも呼び出す)
+		$this->Record->bindForAddImage();
+		$record = $this->Record->findByRecord_id($data['Record']['record_id']);
+		//pr($record);exit;
+		
+		// 以前の画像をすべて削除する
+		$this->recordImageDelete($record);
+		
+		
+		// トランザクション開始
+		$this->begin();
+		
+		// 記録画像の保存
+		foreach($data['Image'] as $image) {
+			$this->Image->create();
+			$r = $this->Image->save($image);
+			//pr($image);
+			//pr($this->Image->id);
+			if ($r === false) {
+				$result = false;
+			}
+			
+			// 画像と記録の関連付け
+			$recordImage = array('record_id' => $record['Record']['id'], 'image_id' => $this->Image->id);
+			$this->RecordImage->create();
+			$r = $this->RecordImage->save($recordImage);
+			if ($r === false) {
+				$result = false;
+			}
+		}
+		
+		// トランザクション終了
+		if ($result === false) {
+			$this->rollback();
+			return false;
+		}
+		$this->commit();
+		
+		// 画像を保存
+		if (!empty($data['Image'])) {
+			// ディレクトリを作成
+			$path = $this->generateImagePathFromPlayerId($record['User']['player_id']);
+			$fullPath = $this->IMAGE_DIR . DS . $path;
+			@mkdir($fullPath, 0755, true);
+			
+			foreach($data['Image'] as $image) {
+				$file = $fullPath . DS . $image['filename'] . '.' . $image['ext'];
+				//pr($file);exit;
+				$data = base64_decode($image['data']);
+				file_put_contents($file, $data);
+			}
+		}
+		
+		return true;
+	}
+	
+	// 走った記録にオブジェクトを追加する
+	public function recordObjectAdd($data) {
+		//pr($data);exit;
+		// 新規データは対象外
+		if ($this->isNewRecord($data)) {
+			return false;
+		}
+		$this->loadModel(array('User', 'Record', 'RecordObject', 'Partner', 'Image'));
+		$result = true;
+		
+		// 記録の呼び出し(Userも呼び出す)
+		$this->Record->bindForAddImage();
+		$record = $this->Record->findByRecord_id($data['Record']['record_id']);
+		//pr($record);exit;
+		
+		// 以前のオブジェクトをすべて削除する
+		$this->recordObjectDelete($record);
+		
+		
+		// トランザクション開始
+		$this->begin();
+		
+		// 記録オブジェクトの保存
+		foreach($data['Object'] as $image) {
+			$this->Image->create();
+			$r = $this->Image->save($image);
+			//pr($image);
+			//pr($this->Image->id);
+			if ($r === false) {
+				$result = false;
+			}
+			
+			// オブジェクトと記録の関連付け
+			$recordObject = array('record_id' => $record['Record']['id'], 'image_id' => $this->Image->id);
+			$this->RecordObject->create();
+			$r = $this->RecordObject->save($recordObject);
+			if ($r === false) {
+				$result = false;
+			}
+		}
+		
+		// トランザクション終了
+		if ($result === false) {
+			$this->rollback();
+			return false;
+		}
+		$this->commit();
+		
+		// オブジェクトを保存
+		if (!empty($data['Object'])) {
+			// ディレクトリを作成
+			$path = $this->generateImagePathFromPlayerId($record['User']['player_id']);
+			$fullPath = $this->IMAGE_DIR . DS . $path;
+			@mkdir($fullPath, 0755, true);
+			
+			foreach($data['Object'] as $image) {
+				$file = $fullPath . DS . $image['filename'] . '.' . $image['ext'];
+				//pr($file);
+				$data = base64_decode($image['data']);
+				file_put_contents($file, $data);
+			}
+		}
+		
+		return true;
+	}
+	
+	// 走った記録にオブジェクトを追加する（ファイルは保存しない。さくら用）
+	public function recordObjectAddWithoutFile($data) {
+		//pr($data);exit;
+		// 新規データは対象外
+		if ($this->isNewRecord($data)) {
+			return false;
+		}
+		$this->loadModel(array('User', 'Record', 'RecordObject', 'Partner', 'Image'));
+		$result = true;
+		
+		// 記録の呼び出し(Userも呼び出す)
+		$this->Record->bindForAddImage();
+		$record = $this->Record->findByRecord_id($data['Record']['record_id']);
+		//pr($record);exit;
+		
+		// 以前のオブジェクトをすべて削除する
+		$this->recordObjectDelete($record);
+		
+		
+		// トランザクション開始
+		$this->begin();
+		
+		// 記録オブジェクトの保存
+		foreach($data['Object'] as $image) {
+			$this->Image->create();
+			$r = $this->Image->save($image);
+			//pr($image);
+			//pr($this->Image->id);
+			if ($r === false) {
+				$result = false;
+			}
+			
+			// オブジェクトと記録の関連付け
+			$recordObject = array('record_id' => $record['Record']['id'], 'image_id' => $this->Image->id);
+			$this->RecordObject->create();
+			$r = $this->RecordObject->save($recordObject);
+			if ($r === false) {
+				$result = false;
+			}
+		}
+		
+		// トランザクション終了
+		if ($result === false) {
+			$this->rollback();
+			return false;
+		}
+		$this->commit();
+		
+		// 容量が足りないのでファイルは保存しない
+		
+		return true;
+	}
+	
 	// 走った記録を削除する
 	public function recordDelete($record_id) {
 		
@@ -271,7 +455,45 @@ class Stm extends AppModel
 		
 		return true;
 	}
-
+	
+	// 走った記録の画像を削除する
+	public function recordImageDelete($record) {
+		$this->loadModel(array('RecordImage', 'Image'));
+		$recordImages = $this->RecordImage->find('all', array('conditions' => array('record_id' => $record['Record']['id'])));
+		
+		$path = $this->generateImagePathFromPlayerId($record['User']['player_id']);
+		$fullPath = $this->IMAGE_DIR . DS . $path;
+		
+		foreach($recordImages as $recordImage) {
+			$file = $fullPath . DS . $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'];
+			unlink($file);
+			
+			$this->Image->delete($recordImage['Image']['id']);
+			$this->RecordImage->delete($recordImage['RecordImage']['id']);
+		}
+		
+		return true;
+	}
+	
+	// 走った記録のオブジェクトを削除する
+	public function recordObjectDelete($record) {
+		$this->loadModel(array('RecordObject', 'Image'));
+		$recordImages = $this->RecordObject->find('all', array('conditions' => array('record_id' => $record['Record']['id'])));
+		
+		$path = $this->generateImagePathFromPlayerId($record['User']['player_id']);
+		$fullPath = $this->IMAGE_DIR . DS . $path;
+		
+		foreach($recordImages as $recordImage) {
+			$file = $fullPath . DS . $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'];
+			unlink($file);
+			
+			$this->Image->delete($recordImage['Image']['id']);
+			$this->RecordObject->delete($recordImage['RecordObject']['id']);
+		}
+		
+		return true;
+	}
+	
 	// 各プレイヤーの画像ディレクトリのパスを生成
 	// ABCD → D\C\B\A
 	public function generateImagePathFromPlayerId($record_id) {
