@@ -265,6 +265,10 @@ class ApiControllerTest extends ControllerTestCase {
 		$this->assertEquals($expected, json_decode($r, true));
 		
 		
+		
+		
+		$image = base64_encode(file_get_contents(APP . 'webroot' . DS . 'img' . DS . '00000YDXD1-1.obj'));
+		
 		// オブジェクトデータ追加
 		echo "recordObjectAdd - OK";
 		$array = array(

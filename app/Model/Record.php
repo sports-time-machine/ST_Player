@@ -36,6 +36,7 @@ class Record extends AppModel
         if(count($keywords) < 2) {
             $conditions = array(
                 'OR' => array(
+                    'Record.record_id LIKE' => '%' . $keyword . '%',
                     'Record.comment LIKE' => '%' . $keyword . '%',
                     'Record.tags LIKE' => '%' . $keyword . '%',
                 )
@@ -45,6 +46,7 @@ class Record extends AppModel
             foreach($keywords as $count => $keyword) {
                 $condition = array(
                     'OR' => array(
+	                    'Record.record_id LIKE' => '%' . $keyword . '%',
                         'Record.comment LIKE' => '%' . $keyword . '%',
                         'Record.tags LIKE' => '%' . $keyword . '%',
                     )
@@ -119,6 +121,11 @@ class Record extends AppModel
 					'className' => 'RecordImage',
 					'fields' => array('record_id', 'image_id'),
 					//'order' => 'RecordImage.no',
+				),
+				'RecordObject' => array(
+					'className' => 'RecordObject',
+					'fields' => array('record_id', 'image_id'),
+					//'order' => 'RecordObject.no',
 				),
 				'Partner' => array(
 					'className' => 'Partner',
