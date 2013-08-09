@@ -67,6 +67,18 @@ class RecordsController extends AppController {
 		
   		// 記録データの整形
         $records = $this->Record->setForView($records);     
+		
+		// 画像データの並べ替え
+		if (!empty($records[0]['RecordImage'])) {
+			$recordImage = array();
+			foreach($records[0]['RecordImage'] as $k => $v) {
+				$n = substr($v['Image']['filename'], strrpos($v['Image']['filename'], '-') + 1);
+				$recordImage[$n] = $v;
+			}
+			ksort($recordImage);
+			$records[0]['RecordImage'] = $recordImage;
+		}
+		
         //Partnerとのアソシエーション
         $bind = array(
 			'hasOne' => array(

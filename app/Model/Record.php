@@ -85,6 +85,13 @@ class Record extends AppModel
 					'fields' => array(/*'player_id', */'username'), // IDとパスワードの組みなのでplayer_idは見せないようにする
 				),
 			),
+			'hasMany' => array(
+				'RecordImage' => array(
+					'className' => 'RecordImage',
+					'fields' => array('record_id', 'image_id'),
+					//'order' => 'RecordImage.no',
+				),
+			),
 		);
 		$this->bindModel($bind, false);
 	}

@@ -79,9 +79,7 @@
 <h2>サムネイル</h2>
 
 <div style="width: 1000px;">
-	<?php foreach ($record['RecordImage'] as $key => $recordImage): ?>
-		<?php echo $this->Stm->image($record['Record']['player_id'], $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], array('title' => $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], 'style' => 'width: 160px;')); ?>
-	<?php endforeach; ?>
+	<?php foreach ($record['RecordImage'] as $key => $recordImage): ?><?php echo $this->Stm->image($record['Record']['player_id'], $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], array('title' => $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], 'style' => 'width: 160px; margin-bottom: 6px;')); ?><?php endforeach; ?>
 </div>
 
 <h2>3Dオブジェクト</h2>

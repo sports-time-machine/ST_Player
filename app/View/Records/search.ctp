@@ -13,13 +13,19 @@ $(function() {
 
 	<table class="table table-striped table-bordered">
 	<tr>
-			<th><?php echo $this->Paginator->sort('record_id', 'きろくID'); ?></th>
+			<th style="width: 40px;">画像</th>
+			<th style="width: 140px;"><?php echo $this->Paginator->sort('record_id', 'きろくID'); ?></th>
 			<th><?php echo $this->Paginator->sort('comment', 'コメント'); ?></th>
 			<th><?php echo $this->Paginator->sort('tags', 'タグ'); ?></th>
-			<th><?php echo $this->Paginator->sort('register_date', 'はしった日'); ?></th>
+			<th style="width: 260px;"><?php echo $this->Paginator->sort('register_date', 'はしった日'); ?></th>
 	</tr>
 	<?php foreach ($records as $record): ?>
 	<tr>
+		<td>
+			<?php if (!empty($record['RecordImage'])): ?>
+				★
+			<?php endif; ?>
+		</td>
 		<td><?php echo $this->Html->link(h($record['Record']['record_id']), array('action' => 'view', $record['Record']['record_id'])); ?></td>
 		<td><?php echo h($record['Record']['comment']); ?>&nbsp;</td>
 		<td>
