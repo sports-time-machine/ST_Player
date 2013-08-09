@@ -39,11 +39,11 @@
 <script type="text/javascript">
 $(function() {
 	// uploadPackのリンク切れ画像置き換え
-	$('img').error(function() {
+	$('.thumbnails img').error(function() {
 		$(this).attr({
 			src: '<?php echo $this->Html->url("/img/noimage.png"); ?>',
-			title: 'noimage',
-			style: 'width: 200px;'
+			title: 'noimage'
+			//style: 'width: 160px;'
 		});
 	});
 });
