@@ -5,6 +5,8 @@
 <link rel="canonical" href="http://www.sptmy.net/" />
 <title>スポーツタイムマシン山口事務局</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript" ></script>
+<script src="js/highcharts/highcharts.js" type="text/javascript" ></script>
+<script src="js/highcharts/modules/exporting.js" type="text/javascript" ></script>
 <style type="text/css">
 body {
   font-family: "Lucida Grande","Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック",Verdana,Arial,sans-serif; 
@@ -98,6 +100,55 @@ a:hover{
 	$(document).ready(function() {
 		$('.fade').delay(800).fadeIn("slow");
 	});
+
+$(function () {
+        $('#graph').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'スポーツタイムマシン　登録人数と走った回数'
+            },
+            /*
+            subtitle: {
+                text: 'Source: WorldClimate.com'
+            },
+            */
+            xAxis: {
+                categories: <?php echo json_encode($keys); ?>
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'number'
+                }
+            },/*
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },*/
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: '登録人数',
+                data: <?php echo json_encode($count_users_full); ?>
+    
+            }, {
+                name: '走った回数',
+                data: <?php echo json_encode($count_records_full); ?>
+    
+            }]
+        });
+    });
+
 </script>
 
 </head>
@@ -127,6 +178,17 @@ a:hover{
     <a href="#about" class="center">スポーツタイムマシンとは？</a>
   </div>
 </div><!-- /catch -->
+
+
+<!-- now -->
+<div class="wrapper" id="now">  
+  <p class="center impact">スポーツタイムマシンのいま</p>
+
+  <div class="wrapper-inner center">
+    <p>7月6日から今までの間に <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました</p>
+    <p><div id="graph"></div></p>
+　</div>
+</div><!-- /now -->
 
 
 <!-- about -->
