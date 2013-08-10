@@ -185,7 +185,7 @@ $(function () {
   <p class="center impact">スポーツタイムマシンのいま</p>
 
   <div class="wrapper-inner center">
-    <p>7月6日から今までの間に <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました</p>
+    <p>7月6日から現在までに <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました</p>
     <p><div id="graph"></div></p>
 　</div>
 </div><!-- /now -->
