@@ -80,18 +80,8 @@
 
 <h2>サムネイル</h2>
 
-<div class="row">
-	<div class="span9">
-		<ul class="thumbnails">
-			
-			<?php foreach ($record['RecordImage'] as $key => $recordImage): ?>
-			<li class="span3">
-				<a href="#" class="sumbnail"><?php echo $this->Stm->image($record['Record']['player_id'], $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], array('title' => $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'])); ?></a>
-			</li>
-			<?php endforeach; ?>
-
-		</ul>
-	</div>
+<div style="width: 1000px;">
+	<?php foreach ($record['RecordImage'] as $key => $recordImage): ?><?php echo $this->Stm->image($record['Record']['player_id'], $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], array('title' => $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], 'style' => 'width: 160px; margin-bottom: 6px;')); ?><?php endforeach; ?>
 </div>
 
 <div class="center"><a class="btn" href="<?php echo $this->Html->url("/My/"); ?>">マイページにもどる</a></div>
