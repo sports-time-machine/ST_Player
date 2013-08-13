@@ -107,10 +107,13 @@ class RecordsController extends AppController {
 		// 逆から1文字ずつフォルダ階層にする
 		$char_array = str_split(strrev($record_id));
 		$path = implode('/', $char_array);
-		$filePath = '../upload/' . $path . '/' . $filename;
+		$filePath = 'webroot/upload/' . $path . '/' . $filename;
+        
+        $this->response->type(array('obj' => 'application/stm'));
+        $this->response->type('obj');
         
         $this->response->file($filePath);
-        $this->response->download();
+        $this->response->download($filename);
     }
    
 }
