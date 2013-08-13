@@ -98,6 +98,20 @@ class RecordsController extends AppController {
             $this->set('partner',$partner);
         }
 	}
+    
+    //オブジェクトデータのダウンロード
+    public function download($record_id, $filename) {
+        $this->autoRender = false;
+
+        $record_id = strtoupper($record_id);
+		// 逆から1文字ずつフォルダ階層にする
+		$char_array = str_split(strrev($record_id));
+		$path = implode('/', $char_array);
+		$filePath = '../upload/' . $path . '/' . $filename;
+        
+        $this->response->file($filePath);
+        $this->response->download();
+    }
    
 }
 

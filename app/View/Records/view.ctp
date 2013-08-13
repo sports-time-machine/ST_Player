@@ -87,7 +87,7 @@
 <ul>
 <?php foreach ($record['RecordObject'] as $key => $recordObject): ?>
     <li>
-        <a href="../<?php echo $this->Stm->url($record['Record']['player_id'], $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext']); ?>"><?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext']; ?></a>
+        <a href="../download/<?php echo $record['Record']['player_id'] ?>/<?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext'] ?>" ><?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext']; ?></a>
     </li>
 <?php endforeach; ?>
 </ul>
