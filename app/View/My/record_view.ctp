@@ -81,9 +81,25 @@
 <h2>サムネイル</h2>
 
 <div style="width: 1000px;">
-	<?php foreach ($record['RecordImage'] as $key => $recordImage): ?><?php echo $this->Stm->image($record['Record']['player_id'], $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], array('title' => $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], 'style' => 'width: 160px; margin-bottom: 6px;')); ?><?php endforeach; ?>
+    <?php
+        for ($i = 1; $i <= 6; $i++) {
+            if (!empty($record['RecordImage'][$i])) {
+                $recordImage = $record['RecordImage'][$i];
+                echo $this->Stm->image($record['Record']['player_id'], $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], array('title' => $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], 'style' => 'width: 160px; margin-bottom: 6px;'));
+            } else {
+                echo "<img src='{$this->Html->webroot}/img/space.gif' style='width: 160px; height: 100px;'></img>";
+            }
+        };
+        for ($i = 12; $i >= 7; $i--) {
+            if (!empty($record['RecordImage'][$i])) {
+                $recordImage = $record['RecordImage'][$i];
+                echo $this->Stm->image($record['Record']['player_id'], $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], array('title' => $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'], 'style' => 'width: 160px; margin-bottom: 6px;'));
+            } else {
+                echo "<img src='{$this->Html->webroot}/img/space.gif' style='width: 160px; height: 100px;'></img>";
+            }
+        };
+
+    ?>
 </div>
 
 <div class="center"><a class="btn" href="<?php echo $this->Html->url("/My/"); ?>">マイページにもどる</a></div>
-
-        

@@ -201,3 +201,12 @@ h2 {
 #profile {
     
 }
+
+/* サムネイル */
+.thumbnail {
+	list-style: none;
+}
+.thumbnail li {
+	float: left;
+	width: 160px;
+}
