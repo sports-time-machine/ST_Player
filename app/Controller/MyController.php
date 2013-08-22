@@ -169,6 +169,23 @@ class MyController extends AppController {
         $records[0]['Record']['tags'] = implode(',', $records[0]['Record']['tags']);
 		$this->set('record',$records[0]);
 	}
+    
+    //オブジェクトデータのダウンロード
+    public function download($record_id, $filename) {
+        $this->autoRender = false;
+
+        $record_id = strtoupper($record_id);
+		// 逆から1文字ずつフォルダ階層にする
+		$char_array = str_split(strrev($record_id));
+		$path = implode('/', $char_array);
+		$filePath = 'webroot/upload/' . $path . '/' . $filename;
+        
+        $this->response->type(array('obj' => 'application/stm'));
+        $this->response->type('obj');
+        
+        $this->response->file($filePath);
+        $this->response->download($filename);
+    }
 }
 
 ?>

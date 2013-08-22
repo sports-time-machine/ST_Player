@@ -102,4 +102,14 @@
     ?>
 </div>
 
+<h2>3Dオブジェクト</h2>
+
+<ul>
+<?php foreach ($record['RecordObject'] as $key => $recordObject): ?>
+    <li>
+        <a href="../download/<?php echo $record['Record']['player_id'] ?>/<?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext'] ?>" ><?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext']; ?></a>
+    </li>
+<?php endforeach; ?>
+</ul>
+
 <div class="center"><a class="btn" href="<?php echo $this->Html->url("/My/"); ?>">マイページにもどる</a></div>
