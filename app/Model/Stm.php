@@ -510,8 +510,10 @@ class Stm extends AppModel
 	public function generateShortPlayerId($player_id) {
         
 		$player_id = strtoupper($player_id);
-		$player_id = preg_replace("/^P/",'',$player_id);    //最初のPを取り除く
-        $player_id = preg_replace("/^0+/",'',$player_id);    //先頭から連続する０を取り除く
+		if (strlen($player_id) >= 8) {
+			$player_id = preg_replace("/^P/",'',$player_id);    //最初のPを取り除く
+		    $player_id = preg_replace("/^0+/",'',$player_id);    //先頭から連続する０を取り除く
+		}
 		
 		return $player_id;
 	}

@@ -19,6 +19,7 @@
 
 ?>
 <!DOCTYPE html>
+<?php $this->response->header('Access-Control-Allow-Origin', '*'); ?>
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
