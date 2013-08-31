@@ -36,6 +36,7 @@ class Record extends AppModel
         if(count($keywords) < 2) {
             $conditions = array(
                 'OR' => array(
+                    'Record.player_id LIKE' => '%' . $keyword . '%',
                     'Record.record_id LIKE' => '%' . $keyword . '%',
                     'Record.comment LIKE' => '%' . $keyword . '%',
                     'Record.tags LIKE' => '%' . $keyword . '%',
