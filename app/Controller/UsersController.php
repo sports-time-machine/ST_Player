@@ -23,7 +23,7 @@ class UsersController extends AppController {
 			$this->redirect(FULL_BASE_URL . $this->webroot);
 		}
 		
-		// カウンタ
+		// 日々のデータ
 		$sql = "SELECT DATE_FORMAT(created, '%Y-%m-%d') AS date, count(id) AS count FROM st_player.records WHERE '2013-07-06' < created GROUP BY DATE_FORMAT(created, '%Y%m%d');";
 		$count_records = $this->User->query($sql);
 		$count_records = Set::combine($count_records, '{n}.0.date', '{n}.0.count');
@@ -34,24 +34,34 @@ class UsersController extends AppController {
 		pr($count_records);
 		pr($count_users);
 		*/
+		// カウンター表示用
 		$start_time = strtotime('2013-07-06') + 43200;
-		$end_time   = strtotime('2013-09-01') + 43200;
-		//$end_time   = strtotime(date('Y-m-d')) + 43200 + 86400;
-		//pr($start_time);
-		//pr($end_time);
+		$end_time   = strtotime('2013-12-01') + 43200;
 		
-		//$data = array();
-		$keys = array();
-		$count_records_full = array();
-		$count_users_full   = array();
 		$count_records_sum  = 0;
 		$count_users_sum    = 0;
-		$weekday = array('日', '月', '火', '水', '木', '金', '土', '日');
 		for ($t = $start_time; $t <= $end_time; $t += 86400) {
-			//$key = date('Y年m月d日', $t) . '(' . $weekday[date('w', $t)] . ')';
 			$date = date('Y-m-d', $t);
-			//$data[$key]['records'] = isset($count_records[$date]) ? $count_records[$date] : 0;
-			//$data[$key]['users']   = isset($count_users[$date]) ? $count_users[$date] : 0;
+			
+			$count_records_sum += @$count_records[$date];
+			$count_users_sum   += @$count_users[$date];
+		}
+		$this->set('count_records_sum', $count_records_sum);
+		$this->set('count_users_sum', $count_users_sum);
+		
+		
+		$keys = array();
+		// グラフ表示用
+		$start_time = strtotime('2013-11-01') + 43200;
+		$end_time   = strtotime('2013-12-01') + 43200;
+		$count_records_full = array();
+		$count_users_full   = array();
+		
+		// カウンター用
+		$count_records_sum  = 0;
+		$count_users_sum    = 0;
+		for ($t = $start_time; $t <= $end_time; $t += 86400) {
+			$date = date('Y-m-d', $t);
 			$keys[] = date('n/j', $t);
 			$count_records_full[] = intval(isset($count_records[$date]) ? $count_records[$date] : 0);
 			$count_users_full[]   = intval(isset($count_users[$date]) ? $count_users[$date] : 0);
@@ -59,7 +69,6 @@ class UsersController extends AppController {
 			$count_records_sum += @$count_records[$date];
 			$count_users_sum   += @$count_users[$date];
 		}
-		//pr($data);
 		/*
 		pr($count_records_full);
 		pr($count_users_full);
@@ -70,8 +79,6 @@ class UsersController extends AppController {
 		$this->set('keys', $keys);
 		$this->set('count_records_full', $count_records_full);
 		$this->set('count_users_full', $count_users_full);
-		$this->set('count_records_sum', $count_records_sum);
-		$this->set('count_users_sum', $count_users_sum);
 	}
 	
 	// Myページへ

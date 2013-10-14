@@ -97,58 +97,57 @@ a:hover{
 
 </style>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('.fade').delay(800).fadeIn("slow");
-	});
+$(document).ready(function() {
+	$('.fade').delay(800).fadeIn("slow");
+});
 
 $(function () {
-        $('#graph').highcharts({
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'スポーツタイムマシン　登録人数と走った回数'
-            },
-            /*
-            subtitle: {
-                text: 'Source: WorldClimate.com'
-            },
-            */
-            xAxis: {
-                categories: <?php echo json_encode($keys); ?>
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'number'
-                }
-            },/*
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },*/
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: '登録人数',
-                data: <?php echo json_encode($count_users_full); ?>
-    
-            }, {
-                name: '走った回数',
-                data: <?php echo json_encode($count_records_full); ?>
-    
-            }]
-        });
-    });
-
+	$('#graph').highcharts({
+		chart: {
+			type: 'column'
+		},
+		title: {
+			text: 'スポーツタイムマシン　登録人数と走った回数'
+		},
+		xAxis: {
+			categories: <?php echo json_encode($keys); ?>
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: 'number'
+			}
+		},
+		tooltip: {
+			formatter: function() {
+				var msg = '<span style="font-size:10px">' + this.x + '</span>';
+				$.each(this.points, function(i, point) {
+					if (point.series.index == 0) {
+						msg += '<br/><span style="color:' + point.series.color + '">'+ point.series.name + ': </span><b>' + point.y + ' 人</b>';
+					} else if (point.series.index == 1) {
+						msg += '<br/><span style="color:' + point.series.color + '">'+ point.series.name + ': </span><b>' + point.y + ' 回</b>';
+					}
+				});
+				return msg;
+			},
+			shared: true,
+			useHTML: true
+		},
+		plotOptions: {
+			column: {
+				pointPadding: 0.2,
+				borderWidth: 0
+			}
+		},
+		series: [{
+			name: '登録人数',
+			data: <?php echo json_encode($count_users_full); ?>
+		}, {
+			name: '走った回数',
+			data: <?php echo json_encode($count_records_full); ?>
+		}]
+	});
+});
 </script>
 
 </head>
@@ -186,6 +185,7 @@ $(function () {
 
   <div class="wrapper-inner center">
     <p>7月6日から現在までに <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました</p>
+    <p><div id="graph2"></div></p>
     <p><div id="graph"></div></p>
 　</div>
 </div><!-- /now -->
