@@ -31,6 +31,9 @@
     // 大文字小文字区別なくアクセスできる
 	Router::connect('/P/:player_id', array('controller' => 'Profiles', 'action' => 'view'), array('pass' => array('player_id'), 'player_id' => '[a-zA-Z0-9]+'));
 	Router::connect('/p/:player_id', array('controller' => 'Profiles', 'action' => 'view'), array('pass' => array('player_id'), 'player_id' => '[a-zA-Z0-9]+'));
+	// User.idでのアクセス
+	Router::connect('/N/:user_id', array('controller' => 'Profiles', 'action' => 'viewId'), array('pass' => array('user_id')));
+	Router::connect('/n/:user_id', array('controller' => 'Profiles', 'action' => 'viewId'), array('pass' => array('user_id')));
     
 	//Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
   	Router::connect('/', array('controller' => 'users', 'action' => 'index2'));

@@ -67,5 +67,8 @@ class AppController extends Controller {
 		
 		// ログインユーザー情報
 		$this->set('LOGIN_USER', $this->Session->read('LOGIN_USER'));
+		
+		// 性別リスト
+		$this->set('SEX_LIST', Configure::read('SEX_LIST'));
 	}
 }

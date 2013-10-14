@@ -57,4 +57,10 @@ Configure::write('LOG_ACTION_LIST', array(
 	LOG_ACTION_MAIL   => 'メール',
 ));
 
-?>
+
+// 性別一覧
+Configure::write('SEX_LIST', array(
+	'男' => '男（おとこのこ）',
+	'女' => '女（おんなのこ）',
+	'その他' => 'その他（そのた）',
+));

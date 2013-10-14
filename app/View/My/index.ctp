@@ -12,6 +12,18 @@
 		<td><?php echo h($user['User']['username']); ?></td>
 	</tr>
 	<tr>
+		<th>ニックネーム</th>
+		<td><?php echo h($user['User']['nickname']); ?></td>
+	</tr>
+	<tr>
+		<th>たんじょうび</th>
+		<td><?php echo h($user['Profile']['birthday']); ?></td>
+	</tr>
+	<tr>
+		<th>せいべつ</th>
+		<td><?php echo h($SEX_LIST[ $user['Profile']['sex'] ]); ?></td>
+	</tr>
+	<tr>
 		<th>コメント</th>
 		<td><?php echo h($user['Profile']['comment']); ?></td>
 	</tr>

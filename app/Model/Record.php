@@ -166,6 +166,7 @@ class Record extends AppModel
             $tags_str = explode(",", $record['Record']['tags']);          
             $record['Record']['tags'] = array();
             for ($i=0; $i<count($tags_str); $i++){
+				// a「全角」英数字を「半角」に変換、s「全角」スペースを「半角」に変換
                 $record['Record']['tags'][$i] = trim(mb_convert_kana($tags_str[$i], "as", "UTF-8"));
             }
 

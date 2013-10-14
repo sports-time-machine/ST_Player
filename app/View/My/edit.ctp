@@ -2,21 +2,38 @@
 
 <h2>プロフィールへんこう</h2>
 
-<?php echo $this->Form->create('User',array('type' => 'post', 'url' => '/My/edit')); ?>
+<?php echo $this->Form->create('User',array('type' => 'post', 'url' => '/My/edit', 'class' => 'form-inline')); ?>
 <table class="table table-striped table-bordered">
 	<tr>
 		<th class="span3">せんしゅ名</th>
 		<td>
-            <?php echo $this->Form->text('username', array('default' => h($user['User']['username']), 
-            'style' => 'width:900px')); ?>
-        </td>
+			<?php echo $this->Form->text('User.username', array('style' => '')); ?>
+		</td>
 	</tr>
-    <tr>
+	<tr>
+		<th class="span3">ニックネーム</th>
+		<td>
+			<?php echo $this->Form->text('User.nickname', array('style' => '')); ?>
+		</td>
+	</tr>
+	<tr>
+		<th class="span3">たんじょうび</th>
+		<td>
+			<?php echo $this->Form->text('Profile.birthday', array('style' => '')); ?>
+			例）2000年1月1日生まれのばあい、「2000-01-01」と記入
+		</td>
+	</tr>
+	<tr>
+		<th class="span3">せいべつ</th>
+		<td>
+			<?php echo $this->Form->radio('Profile.sex', $SEX_LIST, array('legend' => false, 'style' => '')); ?>
+		</td>
+	</tr>
+	<tr>
 		<th>コメント</th>
 		<td>
-            <?php echo $this->Form->text('comment', array('default' => h($user['Profile']['comment']), 
-            'style' => 'width:900px')); ?>
-        </td>
+			<?php echo $this->Form->text('Profile.comment', array('style' => 'width: 90%;')); ?>
+		</td>
 	</tr>
 </table>
 
