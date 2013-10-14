@@ -58,7 +58,7 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'www4235ui.sakura.ne.jp',
+		'host' => 'www.sptmy.net',
 		'login' => 'st_player',
 		'password' => 'z1EJWIgvKxIzGIrX6Yxz',
 		'database' => 'st_player',
@@ -70,7 +70,7 @@ class DATABASE_CONFIG {
 	public $test = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'www4235ui.sakura.ne.jp',
+		'host' => 'www.sptmy.net',
 		'login' => 'st_player',
 		'password' => 'z1EJWIgvKxIzGIrX6Yxz',
 		'database' => 'st_player_test',
