@@ -48,6 +48,8 @@ class RecordsController extends AppController {
 	
 	// 記録の表示
 	public function view($record_id) {
+		$data = array();
+		
 		// bind
 		$this->Record->bindForView();
 		
@@ -96,7 +98,11 @@ class RecordsController extends AppController {
 		$this->set('record',$records[0]);
         if ($partner){
             $this->set('partner',$partner);
+			
+			$data['Partner'] = $partner;
         }
+		
+		$this->set('data', $data);
 	}
     
     //オブジェクトデータのダウンロード

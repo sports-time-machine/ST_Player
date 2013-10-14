@@ -124,6 +124,14 @@ class Record extends AppModel
 		$this->recursive = 2;
 		
 		$bind = array(
+			'belongsTo' => array(
+				'User' => array(
+					'className' => 'User',
+					'foreignKey' => 'user_id',
+					//'fields' => array('record_id', 'image_id'),
+					//'order' => 'RecordImage.no',
+				),
+			),
 			'hasMany' => array(
 				'RecordImage' => array(
 					'className' => 'RecordImage',

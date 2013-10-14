@@ -18,4 +18,25 @@ class StmHelper extends AppHelper {
 
 		return $filePath;
 	}
+	
+	// nicknameか、無ければUser.idを表示。非公開の場合は非公開表示
+	/*
+		$data['User']['nickname']	// nickname
+		$data['User']['id']			// User.id
+		$data['Access']['id'] // TODO 追加する
+	*/
+	public function getUserNickname($data) {
+		if (!empty($data['User']['nickname'])) {
+			return $data['User']['nickname'];
+		} else {
+			return $data['User']['id'];
+		}
+	}
+	public function getPartnerNickname($data) {
+		if (!empty($data['Partner']['nickname'])) {
+			return $data['Partner']['nickname'];
+		} else {
+			return $data['Partner']['user_id'];
+		}
+	}
 }
