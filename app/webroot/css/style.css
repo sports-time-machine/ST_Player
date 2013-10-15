@@ -210,3 +210,16 @@ h2 {
 	float: left;
 	width: 160px;
 }
+
+
+/* jQuery-UI datepicker */
+.ui-datepicker-year 
+{
+	width: 40% !important;
+	font-size: 90% !important;
+}
+.ui-datepicker-month
+{
+	width: 40% !important;
+	font-size: 90% !important;
+}

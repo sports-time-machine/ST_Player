@@ -29,8 +29,11 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->script('jquery-1.9.1.min', array('inline' => false));
+		echo $this->Html->script('jquery-ui-1.10.3.custom.min', array('inline' => false));
+		echo $this->Html->script('jquery.ui.datepicker-ja', array('inline' => false));
 		echo $this->Html->script('bootstrap.min', array('inline' => false));
 		echo $this->Html->css('bootstrap.min');
+		echo $this->Html->css('jquery-ui/blitzer/jquery-ui-1.10.3.custom.min.css');
 		echo $this->Html->css('style');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -47,6 +50,16 @@ $(function() {
 			//style: 'width: 160px;'
 		});
 	});
+	// jQuery-UI datepicker
+	if ($('.datepicker').length) { /* IE6 FF */
+		$('.datepicker').datepicker({
+			inline: true,
+			changeMonth: true,
+			changeYear: true,
+			yearRange: 'c-90:c+10',
+			dateFormat: 'yy-mm-dd'
+		});
+	}
 });
 </script>
 </head>

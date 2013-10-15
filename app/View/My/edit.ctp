@@ -19,8 +19,10 @@
 	<tr>
 		<th class="span3">たんじょうび</th>
 		<td>
-			<?php echo $this->Form->text('Profile.birthday', array('style' => '')); ?>
-			例）2000年1月1日生まれのばあい、「2000-01-01」と記入
+			<div class="input-append">
+				<?php echo $this->Form->text('Profile.birthday', array('class' => 'datepicker', 'style' => '')); ?>
+				<button class="btn" type="button" onclick="$('#ProfileBirthday').datepicker('show');"><i class="icon-calendar"></i></button>
+			</div>
 		</td>
 	</tr>
 	<tr>
