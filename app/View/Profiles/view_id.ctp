@@ -35,7 +35,7 @@
 			<?php if (isset($data['Profile']['age_is_disabled'])): ?>
 				<div class="disabled">公開されていません</div>
 			<?php else: ?>
-				<?php if (!is_null($data['Profile']['age_is_'])): ?>
+				<?php if (!is_null($data['Profile']['age'])): ?>
 					<?php echo h($data['Profile']['age']); ?> 歳（さい）
 				<?php endif; ?>
 			<?php endif; ?>
