@@ -11,7 +11,7 @@
 		<th class="span3">ニックネーム</th>
 		<td>
 			<?php if (isset($data['User']['nickname_is_disabled'])): ?>
-				<div class="disabled">公開（こうかい）されていません</div>
+				<div class="disabled">公開されていません</div>
 			<?php else: ?>
 				<?php echo $data['User']['nickname']; ?>
 			<?php endif; ?>
@@ -21,7 +21,7 @@
 		<th>Twitter ID</th>
 		<td>
 			<?php if (isset($data['Profile']['twitter_id_is_disabled'])): ?>
-				<div class="disabled">公開（こうかい）されていません</div>
+				<div class="disabled">公開されていません</div>
 			<?php else: ?>
 				<?php if (!is_null($data['Profile']['twitter_id'])): ?>
 					<a href="https://twitter.com/<?php echo h($data['Profile']['twitter_id']); ?>"><?php echo h($data['Profile']['twitter_id']); ?></a>
@@ -33,7 +33,7 @@
 		<th>ねんれい</th>
 		<td>
 			<?php if (isset($data['Profile']['age_is_disabled'])): ?>
-				<div class="disabled">公開（こうかい）されていません</div>
+				<div class="disabled">公開されていません</div>
 			<?php else: ?>
 				<?php if (!is_null($data['Profile']['age_is_'])): ?>
 					<?php echo h($data['Profile']['age']); ?> 歳（さい）
@@ -45,7 +45,7 @@
 		<th>せいべつ</th>
 		<td>
 			<?php if (isset($data['Profile']['gender_is_disabled'])): ?>
-				<div class="disabled">公開（こうかい）されていません</div>
+				<div class="disabled">公開されていません</div>
 			<?php else: ?>
 				<?php echo h($GENDER_LIST[ $data['Profile']['gender'] ]); ?>
 			<?php endif; ?>
@@ -55,7 +55,7 @@
 		<th>コメント</th>
 		<td>
 			<?php if (isset($data['Profile']['comment_is_disabled'])): ?>
-				<div class="disabled">公開（こうかい）されていません</div>
+				<div class="disabled">公開されていません</div>
 			<?php else: ?>
 				<?php echo h($data['Profile']['comment']); ?>
 			<?php endif; ?>
