@@ -1,3 +1,5 @@
+<div class="profiles viewIdMy">
+
 <h1>マイページ</h1>
 
 <h2><?php echo h($data['User']['username']);?> せんしゅ</h2>
@@ -72,3 +74,4 @@
 	<!-- pagination -->
 	<?php echo $this->element('pagination'); ?>
 
+</div>

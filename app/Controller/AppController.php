@@ -63,7 +63,7 @@ class AppController extends Controller {
 		$this->set('PRODUCTION', PRODUCTION);
 		
 		// デバッグレベル
-		$this->set('debug', Configure::read('debug'));
+		$this->set('DEBUG', Configure::read('debug'));
 		
 		// ログインユーザー情報
 		$this->set('LOGIN_USER', $this->Session->read('LOGIN_USER'));

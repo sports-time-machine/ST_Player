@@ -48,6 +48,8 @@ class ProfilesController extends AppController {
 			$this->redirect(array('controller' => 'My', 'action' => 'index'));
 		}
 		//pr($data);
+		// 見ている人に合わせて、表示項目の公開レベルを適用した結果を表示
+		$data = $this->Profile->applyAccessLevel($data, $loginUser);
 		$this->set('data', $data);
 		
 		
@@ -59,8 +61,8 @@ class ProfilesController extends AppController {
 		$this->set('records', $records);
 		
 		
-		// idが自分自身の場合はマイページをレンダリング
 		if ($user_id == $loginUser['User']['id']) {
+			// idが自分自身の場合はマイページをレンダリング
 			$this->render('view_id_my');
 		}
 	}

@@ -203,6 +203,9 @@ h2 {
 #profile {
     
 }
+div.profiles.viewId .disabled {
+	color: #999999;
+}
 
 /* サムネイル */
 .thumbnail {

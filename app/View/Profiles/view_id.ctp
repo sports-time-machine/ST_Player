@@ -1,3 +1,5 @@
+<div class="profiles viewId">
+
 <h1>せんしゅページ</h1>
 
 <h2>
@@ -6,38 +8,58 @@
 
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span3">せんしゅ名</th>
+		<th class="span3">ニックネーム</th>
 		<td>
-			<?php if (!empty($data['User']['nickname'])): ?>
-				<?php echo $data['User']['nickname']; ?>
+			<?php if (isset($data['User']['nickname_is_disabled'])): ?>
+				<div class="disabled">公開（こうかい）されていません</div>
 			<?php else: ?>
-				<?php echo $data['User']['id']; ?>
+				<?php echo $data['User']['nickname']; ?>
 			<?php endif; ?>
 		</td>
 	</tr>
 	<tr>
 		<th>Twitter ID</th>
 		<td>
-			<?php if (!is_null($data['Profile']['twitter_id'])): ?>
-				<a href="https://twitter.com/<?php echo h($data['Profile']['twitter_id']); ?>"><?php echo h($data['Profile']['twitter_id']); ?></a>
+			<?php if (isset($data['Profile']['twitter_id_is_disabled'])): ?>
+				<div class="disabled">公開（こうかい）されていません</div>
+			<?php else: ?>
+				<?php if (!is_null($data['Profile']['twitter_id'])): ?>
+					<a href="https://twitter.com/<?php echo h($data['Profile']['twitter_id']); ?>"><?php echo h($data['Profile']['twitter_id']); ?></a>
+				<?php endif; ?>
 			<?php endif; ?>
 		</td>
 	</tr>
 	<tr>
 		<th>ねんれい</th>
 		<td>
-			<?php if (!is_null($data['Profile']['age'])): ?>
-				<?php echo h($data['Profile']['age']); ?> 歳（さい）
+			<?php if (isset($data['Profile']['age_is_disabled'])): ?>
+				<div class="disabled">公開（こうかい）されていません</div>
+			<?php else: ?>
+				<?php if (!is_null($data['Profile']['age_is_'])): ?>
+					<?php echo h($data['Profile']['age']); ?> 歳（さい）
+				<?php endif; ?>
 			<?php endif; ?>
 		</td>
 	</tr>
 	<tr>
 		<th>せいべつ</th>
-		<td><?php echo h($GENDER_LIST[ $data['Profile']['gender'] ]); ?></td>
+		<td>
+			<?php if (isset($data['Profile']['gender_is_disabled'])): ?>
+				<div class="disabled">公開（こうかい）されていません</div>
+			<?php else: ?>
+				<?php echo h($GENDER_LIST[ $data['Profile']['gender'] ]); ?>
+			<?php endif; ?>
+		</td>
 	</tr>
 	<tr>
 		<th>コメント</th>
-		<td><?php echo h($data['Profile']['comment']); ?></td>
+		<td>
+			<?php if (isset($data['Profile']['comment_is_disabled'])): ?>
+				<div class="disabled">公開（こうかい）されていません</div>
+			<?php else: ?>
+				<?php echo h($data['Profile']['comment']); ?>
+			<?php endif; ?>
+		</td>
 	</tr>
 </table>
 
@@ -71,3 +93,4 @@
 	<!-- pagination -->
 	<?php echo $this->element('pagination'); ?>
 
+</div>
