@@ -25,7 +25,11 @@
 	</tr>
 	<tr>
 		<th>ねんれい</th>
-		<td><?php echo h($data['Profile']['age']); ?> 歳（さい）</td>
+		<td>
+			<?php if (!is_null($data['Profile']['age'])): ?>
+				<?php echo h($data['Profile']['age']); ?> 歳（さい）
+			<?php endif; ?>
+		</td>
 	</tr>
 	<tr>
 		<th>せいべつ</th>
