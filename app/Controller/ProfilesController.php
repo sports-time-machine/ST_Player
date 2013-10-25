@@ -31,19 +31,19 @@ class ProfilesController extends AppController {
 			$this->redirect(array('controller' => 'My', 'action' => 'index'));
 		}
 		
-		// /n/User.idへリダイレクト
+		// /n/User.id (viewId)へリダイレクト
 		$this->redirect("/n/{$data['User']['id']}");
 	}
 
 	// ユーザーページ User.idで表示
 	public function viewId($user_id) {
-		//pr($user_id); exit;
+		$loginUser = $this->Session->read('LOGIN_USER');
 		
 		// プロフィール
 		$this->User->bindForView();
 		$data = $this->User->findById($user_id);
 		if (empty($data)) {
-			// データが無いときはマイページへ
+			// 指定されたidのデータが無いときはマイページへ
 			$this->Session->setFlash('せんしゅデータがみつかりません', SET_FLASH_WARNING);
 			$this->redirect(array('controller' => 'My', 'action' => 'index'));
 		}
@@ -57,6 +57,12 @@ class ProfilesController extends AppController {
 		$r = $this->paginate('Record', $conditions);
 		$records = $this->Record->setForView($r);
 		$this->set('records', $records);
+		
+		
+		// idが自分自身の場合はマイページをレンダリング
+		if ($user_id == $loginUser['User']['id']) {
+			$this->render('view_id_my');
+		}
 	}
 
 }

@@ -92,8 +92,9 @@ class UsersController extends AppController {
 	 */
 	public function login() {
 		//既にログインしているのであればindexへリダイレクト
-		if ($this->Auth->user()) {
-			$this->redirect(array('contorller' => 'My','action' => 'index'));
+		$loginUser = $this->Session->read('LOGIN_USER');
+		if (!empty($loginUser['User']['id'])) {
+			$this->redirect("/n/{$loginUser['User']['id']}");
 		}
 		
 		// player_idをショートIDに統一
@@ -139,7 +140,7 @@ class UsersController extends AppController {
 				// ユーザー情報をセッションにセット
 				$this->_setLoginUser($this->request->data['User']['player_id']);
 				
-				$this->redirect("/My/index");
+				$this->redirect(array('action' => 'login'));
 			} else {
 				// ログ
 				$msg = @"ログインに失敗しました [{$this->request->data['User']['username']} / {$this->request->data['User']['player_id']}]";
@@ -193,25 +194,25 @@ class UsersController extends AppController {
 	public function _setLoginUser($player_id) {
 		// ユーザー情報をセッションにセット
 		$this->User->bindForView();
-		$user = $this->User->findByPlayer_id($player_id);
-		//pr($user);exit;
-		$this->Session->write('LOGIN_USER', $user);
-		Configure::write('LOGIN_USER', $user);
+		$loginUser = $this->User->findByPlayer_id($player_id);
+		//pr($loginUser);exit;
+		$this->Session->write('LOGIN_USER', $loginUser);
+		Configure::write('LOGIN_USER', $loginUser);
 		
 		// ログ
-		$msg = @"{$user['User']['username']} さんがログインしました";
-		$this->Log->userLog($msg, LOG_LEVEL_INFO, $this->name, LOG_ACTION_LOGIN, $user['User']['id']);
+		$msg = @"{$loginUser['User']['username']} さんがログインしました";
+		$this->Log->userLog($msg, LOG_LEVEL_INFO, $this->name, LOG_ACTION_LOGIN, $loginUser['User']['id']);
 	}
 	
 	/**
 	 * ログアウト機能
 	 */
 	public function logout() {
-		$user = $this->Session->read('LOGIN_USER');
-		if (!empty($user)) {
+		$loginUser = $this->Session->read('LOGIN_USER');
+		if (!empty($loginUser)) {
 			// ログ
-			$msg = @"{$user['User']['username']} さんがログアウトしました";
-			$this->Log->userLog($msg, LOG_LEVEL_INFO, $this->name, LOG_ACTION_LOGOUT, $user['User']['id']);
+			$msg = @"{$loginUser['User']['username']} さんがログアウトしました";
+			$this->Log->userLog($msg, LOG_LEVEL_INFO, $this->name, LOG_ACTION_LOGOUT, $loginUser['User']['id']);
 		}
 		
 		// Sessionをクリア

@@ -133,14 +133,16 @@ table .number {
  * 基本要素
  * ------------------------------------------------------------ */
 h1 {
-    color: #ffffff;
-	font-size: 32pt;
-   
+	color: #ffffff;
+	font-size: 28pt;
+	margin-bottom: 20px;
+	/* border-bottom: 2px solid #ffffff; */
+	border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 h2 {
 	font-size: 20pt;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 /* ------------------------------------------------------------

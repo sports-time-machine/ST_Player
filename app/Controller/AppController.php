@@ -69,6 +69,12 @@ class AppController extends Controller {
 		$this->set('LOGIN_USER', $this->Session->read('LOGIN_USER'));
 		
 		// 性別リスト
-		$this->set('SEX_LIST', Configure::read('SEX_LIST'));
+		$this->set('GENDER_LIST', Configure::read('GENDER_LIST'));
+		// 年齢リスト
+		$this->set('AGE_LIST', Configure::read('AGE_LIST'));
+		$age_select_list = array(null => 'えらんでください') + Configure::read('AGE_LIST');
+		$this->set('AGE_SELECT_LIST', $age_select_list);
+		// 公開レベルリスト
+		$this->set('ACCESS_LEVEL_LIST', Configure::read('ACCESS_LEVEL_LIST'));
 	}
 }

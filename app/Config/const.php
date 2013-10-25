@@ -59,8 +59,22 @@ Configure::write('LOG_ACTION_LIST', array(
 
 
 // 性別一覧
-Configure::write('SEX_LIST', array(
-	'男' => '男（おとこのこ）',
-	'女' => '女（おんなのこ）',
+Configure::write('GENDER_LIST', array(
+	'男性' => '男性（おとこのこ）',
+	'女性' => '女性（おんなのこ）',
 	'その他' => 'その他（そのた）',
+));
+
+// 年齢一覧
+$age_list = array();
+for ($i = 0; $i <= 150; $i++) {
+	$age_list[$i] = $i;
+}
+Configure::write('AGE_LIST', $age_list);
+
+// 公開レベル　じぶん・せんしゅ・全宇宙（うちゅう）
+Configure::write('ACCESS_LEVEL_LIST', array(
+	null => 'じぶん　',
+	1    => 'せんしゅ　',
+	99   => '全宇宙　',
 ));

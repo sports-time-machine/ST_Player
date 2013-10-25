@@ -1,19 +1,19 @@
-<h1>せんしゅページ</h1>
+<h1>マイページ</h1>
 
-<h2>
-	せんしゅデータ
-</h2>
+<h2><?php echo h($data['User']['username']);?> せんしゅ</h2>
 
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span3">せんしゅ名</th>
-		<td>
-			<?php if (!empty($data['User']['nickname'])): ?>
-				<?php echo $data['User']['nickname']; ?>
-			<?php else: ?>
-				<?php echo $data['User']['id']; ?>
-			<?php endif; ?>
-		</td>
+		<th class="span3">せんしゅID</th>
+		<td><?php echo $data['User']['player_id']; ?></td>
+	</tr>
+	<tr>
+		<th>せんしゅ名</th>
+		<td><?php echo h($data['User']['username']); ?></td>
+	</tr>
+	<tr>
+		<th>ニックネーム</th>
+		<td><?php echo h($data['User']['nickname']); ?></td>
 	</tr>
 	<tr>
 		<th>Twitter ID</th>
@@ -36,20 +36,21 @@
 		<td><?php echo h($data['Profile']['comment']); ?></td>
 	</tr>
 </table>
+<p><a class="btn" href="<?php echo $this->Html->url("/My/edit"); ?>">プロフィールへんこう</a></p>
 
 
-<h2>はしったきろく</h2>
+<h2><?php echo h($data['User']['username']);?> せんしゅがはしったきろく</h2>
 
 <table class="table table-striped table-bordered">
 <tr>
-		<th><?php echo $this->Paginator->sort('record_id', 'きろくID'); ?></th>
-		<th><?php echo $this->Paginator->sort('comment', 'コメント'); ?></th>
-		<th><?php echo $this->Paginator->sort('tags', 'タグ'); ?></th>
-		<th><?php echo $this->Paginator->sort('register_date', 'はしった日'); ?></th>
+	<th><?php echo $this->Paginator->sort('record_id', 'きろくID'); ?></th>
+	<th><?php echo $this->Paginator->sort('comment', 'コメント'); ?></th>
+	<th><?php echo $this->Paginator->sort('tags', 'タグ'); ?></th>
+	<th><?php echo $this->Paginator->sort('register_date', 'はしった日'); ?></th>
 </tr>
 <?php foreach ($records as $record): ?>
 <tr>
-	<td><?php echo $this->Html->link(h($record['Record']['record_id']), array('controller' => 'records', 'action' => 'view', $record['Record']['record_id'])); ?></td>
+	<td><?php echo $this->Html->link(h($record['Record']['record_id']), array('controller' => 'My', 'action' => 'record_view', $record['Record']['record_id'])); ?></td>
 	<td><?php echo h($record['Record']['comment']); ?>&nbsp;</td>
 	<td>
 		<?php 

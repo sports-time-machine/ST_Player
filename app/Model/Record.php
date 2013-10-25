@@ -165,6 +165,30 @@ class Record extends AppModel
 		$this->unbindModel($bind, false);
 	}
     
+
+	// recordsEdit用bind
+	public function bindForRecordsEdit() {
+		$bind = array(
+			'hasMany' => array(
+				'RecordImage' => array(
+					'className' => 'RecordImage',
+					'fields' => array('record_id', 'image_id'),
+					//'order' => 'RecordImage.no',
+				),
+				'RecordObject' => array(
+					'className' => 'RecordObject',
+					'fields' => array('record_id', 'image_id'),
+					//'order' => 'RecordObject.no',
+				),
+				'Partner' => array(
+					'className' => 'Partner',
+					'fields' => array('record_id', 'partner_id'),
+				),
+			),
+		);
+		$this->bindModel($bind, false);
+	}
+	
     // Viewに渡すために整形
     public function setForView($records){
 

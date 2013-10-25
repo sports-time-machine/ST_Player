@@ -13,24 +13,10 @@ class MyController extends AppController {
 		parent::beforeFilter();
 	}
 
-	// Myページ
+	// Myページ n/id = profile/viewId へリダイレクト
 	function index() {
-		// player_id が直接取れない？
-		$user_id = $this->Auth->user('id');
-		$r = $this->User->findById($user_id);
-		$player_id = $r['User']['player_id'];
-
-		$conditions = array('user_id' => $user_id);
-		// ページネーションと記録データの整形
-		$records = $this->Record->setForView($this->paginate('Record', $conditions));
-
-		$this->User->bindForView();
-		$user = $this->User->findByPlayer_id($player_id);
-		$this->set(compact('user'));
-
-
-
-		$this->set('records', $records);
+		$loginUser = $this->Session->read('LOGIN_USER');
+		$this->redirect("/n/{$loginUser['User']['id']}");
 	}
 
 	// 選手名編集
@@ -55,6 +41,17 @@ class MyController extends AppController {
 		
 		$this->User->bindForView();
 		$this->request->data = $this->User->findById($loginUser['User']['id']);
+	}
+	
+	// 記録の一括編集
+	public function recordsEdit() {
+		$loginUser = $this->Session->read('LOGIN_USER');
+		$this->Record->bindForRecordsEdit();
+		
+		$conditions = array('Record.player_id' => $loginUser['User']['player_id']);
+		//$data = $this->Record->find('all', array('conditions' => $conditions));
+		$data = $this->Paginate('Record', $conditions);
+		$this->set('data', $data);
 	}
 
 	// 記録の表示

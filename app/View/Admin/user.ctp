@@ -50,7 +50,7 @@
 		<tr>
 			<th>性別</th>
 			<td>
-				<?php echo h($user['Profile']['sex']); ?>
+				<?php echo h($user['Profile']['gender']); ?>
 				&nbsp;
 			</td>
 		</tr>
