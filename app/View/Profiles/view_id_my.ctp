@@ -2,7 +2,10 @@
 
 <h1>マイページ</h1>
 
-<h2><?php echo h($data['User']['username']);?> せんしゅ</h2>
+<h2>
+	<?php echo h($data['User']['username']);?> <span class="sub">せんしゅ</span>
+	<a class="btn" href="<?php echo $this->Html->url("/My/edit"); ?>">プロフィールへんこう</a>
+</h2>
 
 <table class="table table-striped table-bordered">
 	<tr>
@@ -42,10 +45,9 @@
 		<td><?php echo h($data['Profile']['comment']); ?></td>
 	</tr>
 </table>
-<p><a class="btn" href="<?php echo $this->Html->url("/My/edit"); ?>">プロフィールへんこう</a></p>
 
 
-<h2><?php echo h($data['User']['username']);?> せんしゅがはしったきろく</h2>
+<h2><?php echo h($data['User']['username']);?> <span class="sub">せんしゅがはしったきろく</span></h2>
 
 <table class="table table-striped table-bordered">
 <tr>
@@ -56,7 +58,7 @@
 </tr>
 <?php foreach ($records as $record): ?>
 <tr>
-	<td><?php echo $this->Html->link(h($record['Record']['record_id']), array('controller' => 'My', 'action' => 'record_view', $record['Record']['record_id'])); ?></td>
+	<td><?php echo $this->Html->link(h($record['Record']['record_id']), array('controller' => 'records', 'action' => 'view', $record['Record']['record_id'])); ?></td>
 	<td><?php echo h($record['Record']['comment']); ?>&nbsp;</td>
 	<td>
 		<?php 

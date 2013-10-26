@@ -1,6 +1,33 @@
 <h1>はしったきろく</h1>
 
 
+<?php if ($data['Record']['is_public'] == ACCESS_LEVEL_SELF): ?>
+<div class="alert alert-block">
+	<h3>こうかいはんい： じぶん</h3>
+	このきろくデータは、ほかの人が見ることができません<br />
+	<br />
+	スポーツタイムマシン会場と、せんしゅとうろくをした人に見てもらいたいきろくデータは、こうかいはんいを「せんしゅ」にしてください<br />
+	全宇宙に見てもらいたいきろくデータは、こうかいはんいを「全宇宙」にしてください<br />
+</div>
+<?php elseif ($data['Record']['is_public'] == ACCESS_LEVEL_PLAYER): ?>
+<div class="alert alert-success">
+	<h3>こうかいはんい： せんしゅ</h3>
+	このきろくデータは、スポーツタイムマシン会場と、せんしゅとうろくをした人だけが見ることができます<br />
+	<br />
+	ほかの人に見られたくないきろくデータは、こうかいはんいを「じぶん」にしてください<br />
+	全宇宙に見てもらいたいきろくデータは、こうかいはんいを「全宇宙」にしてください<br />
+</div>
+<?php elseif ($data['Record']['is_public'] == ACCESS_LEVEL_UNIVERSE): ?>
+<div class="alert alert-info">
+	<h3>こうかいはんい： 全宇宙</h3>
+	このきろくデータは、全宇宙から見ることができます。すばらしい！<br />
+	<br />
+	ほかの人に見られたくないきろくデータは、こうかいはんいを「じぶん」にしてください<br />
+	スポーツタイムマシン会場と、せんしゅとうろくをした人に見てもらいたいきろくデータは、こうかいはんいを「せんしゅ」にしてください<br />
+</div>
+<?php endif; ?>
+
+
 <h2>
 	<!-- 選手名 -->
 	<?php echo $this->Stm->getUserNickname($data); ?>
@@ -10,6 +37,8 @@
 		<?php echo $this->Stm->s2w($data['Record']['register_date']); ?>
 		に走ったきろく
 	</span>
+
+	<a class="btn" href="<?php echo $this->Html->url("/My/record_edit/".h($data['Record']['record_id'])); ?>">きろくデータへんこう</a>
 </h2>
 
 <table class="table table-striped table-bordered">
@@ -125,4 +154,4 @@
 <?php endforeach; ?>
 </ul>
 
-<div class="center"><a class="btn" href="<?php echo $this->Html->url("/n/{$data['Record']['user_id']}"); ?>">せんしゅのページにもどる</a></div>
+<div class="center"><a class="btn" href="<?php echo $this->Html->url("/My/"); ?>">マイページにもどる</a></div>

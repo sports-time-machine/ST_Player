@@ -48,61 +48,57 @@ class RecordsController extends AppController {
 	
 	// 記録の表示
 	public function view($record_id) {
+		$loginUser = $this->Session->read('LOGIN_USER');
 		$data = array();
 		
 		// bind
 		$this->Record->bindForView();
+		$data = $this->Record->findByRecord_id($record_id);
+		//pr($data);
 		
-		// DBから読み込む
-		$records = $this->Record->findAllByRecord_id($record_id);
-		if (empty($records)) {
+		if (empty($data)) {
 			// データが無いときは検索画面へ
 			$this->Session->setFlash('記録データがみつかりません', SET_FLASH_WARNING);
 			$this->redirect(array('controller' => 'records', 'action' => 'search'));
 		}
-        
-        //非公開の記録
-        if ($records[0]['Record']['is_public'] == false){
-            $this->render('private');   //非公開ビューへ変更
+		
+		// 画像の並べ替え
+		$data = $this->view_sortRecordImages($data);
+		
+		// パートナー情報のセット
+		//pr($data['Partner']);
+		$partner = $this->Partner->getPartnerInfo($data['Partner'][0]['partner_id']);
+		//pr($partner);
+		$data['Partner'][0] = $partner;
+		
+		// タグの分割
+		$data['Record']['tags'] = $this->Record->extractTags($data['Record']['tags']);
+		
+		$this->set('data', $data);
+		if ($data['Record']['user_id'] == $loginUser['User']['id']) {
+			// user_idが自分自身の場合はマイページをレンダリング
+			$this->render('view_my');
+			return;
+		}
+        if ($data['Record']['is_public'] == false){
+			// 非公開の場合は非公開ビューをレンダリング
+            $this->render('view_private');
             return;
         }
-		
-  		// 記録データの整形
-        $records = $this->Record->setForView($records);     
-		
-		// 画像データの並べ替え
-		if (!empty($records[0]['RecordImage'])) {
+	}
+
+	// RecordImagesの並べ替え
+	public function view_sortRecordImages($data) {
+		if (!empty($data['RecordImage'])) {
 			$recordImage = array();
-			foreach($records[0]['RecordImage'] as $k => $v) {
+			foreach($data['RecordImage'] as $k => $v) {
 				$n = substr($v['Image']['filename'], strrpos($v['Image']['filename'], '-') + 1);
 				$recordImage[$n] = $v;
 			}
 			ksort($recordImage);
-			$records[0]['RecordImage'] = $recordImage;
+			$data['RecordImage'] = $recordImage;
 		}
-		
-        //Partnerとのアソシエーション
-        $bind = array(
-			'hasOne' => array(
-				'Partner' => array(
-					'className' => 'Partner',
-					'foreignKey' => 'record_id',
-				),
-			),
-		);
-		$this->Record->bindModel($bind);
-        //パートナー情報を検索
-        $partner = $this->Partner->getPartner($records[0]['Partner'][0]['partner_id']);
-        //$partner = $this->Record->findByRecordId($records[0]['Partner'][0]['partner_id']);
-        
-		$this->set('record',$records[0]);
-        if ($partner){
-            $this->set('partner',$partner);
-			
-			$data['Partner'] = $partner;
-        }
-		
-		$this->set('data', $data);
+		return $data;
 	}
     
     //オブジェクトデータのダウンロード
