@@ -56,6 +56,10 @@ class MyController extends AppController {
 
 	// 記録の表示
 	public function record_view($record_id) {
+		// Records/view へリダイレクト
+		$this->redirect("/r/{$record_id}");
+		
+		/*
 		// bind
 		$this->Record->bindForView();
 
@@ -99,6 +103,7 @@ class MyController extends AppController {
 		if ($partner) {
 			$this->set('partner', $partner);
 		}
+		*/
 	}
 
 	// 記録の編集

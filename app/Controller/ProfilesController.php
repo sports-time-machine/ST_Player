@@ -54,7 +54,8 @@ class ProfilesController extends AppController {
 		
 		
 		// 走った記録
-		$conditions = array('user_id' => $data['User']['id']);
+		$conditions = array('Record.user_id' => $data['User']['id']);
+		
 		// ページネーションと記録データの整形
 		$r = $this->paginate('Record', $conditions);
 		$records = $this->Record->setForView($r);

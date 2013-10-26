@@ -80,11 +80,16 @@ class RecordsController extends AppController {
 			$this->render('view_my');
 			return;
 		}
-        if ($data['Record']['is_public'] == false){
-			// 非公開の場合は非公開ビューをレンダリング
+		if (empty($loginUser) && $data['Record']['is_public'] == ACCESS_LEVEL_PLAYER || $data['Record']['is_public'] == ACCESS_LEVEL_SELF) {
+			// ログインしていない、かつせんしゅに公開、じぶんに公開の場合は非公開
             $this->render('view_private');
             return;
-        }
+		}
+		if (!empty($loginUser) && $data['Record']['is_public'] == ACCESS_LEVEL_SELF) {
+			// ログインしている、かつじぶんに公開の場合は非公開
+            $this->render('view_private');
+            return;
+		}
 	}
 
 	// RecordImagesの並べ替え

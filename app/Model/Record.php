@@ -85,7 +85,7 @@ class Record extends AppModel {
 				'RecordImage' => array(
 					'className' => 'RecordImage',
 					'fields' => array('record_id', 'image_id'),
-				//'order' => 'RecordImage.no',
+					//'order' => 'RecordImage.no',
 				),
 			),
 		);
