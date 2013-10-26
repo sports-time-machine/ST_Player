@@ -42,7 +42,6 @@ function AuthQRCodeAjax(id) {
 			if (html == "OK"){
 				location.href = "<?php echo $this->Html->webroot . 'users/'; ?>";
 			} else {
-                alert(html);
 				showModal("<div>ログインに失敗しました</div>選手名が違うか、QRコードが正しく読み取られていません");
 			}
 		}
