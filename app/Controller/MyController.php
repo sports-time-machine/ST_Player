@@ -103,48 +103,58 @@ class MyController extends AppController {
 
 	// 記録の編集
 	public function record_edit($record_id) {
+		$loginUser = $this->Session->read('LOGIN_USER');
 
 		//編集結果が来たら
-		if ($this->request->is('post')) {
-			//タグデータを文字列に変換 
+		if (!empty($this->request->data)) {
+			$r = $this->Record->findById($this->request->data['Record']['id']);
+			
+			// 自分の記録かどうかチェック
+			if ($r['Record']['user_id'] != $loginUser['User']['id']) {
+				// 違うユーザの記録は変更できない
+				$this->Session->setFlash('自分の記録データではありません', SET_FLASH_WARNING);
+				$this->redirect(array('controller' => 'My', 'action' => 'index'));
+			}
+			
+			// タグをカンマ区切りの文字列に変換 
 			$tags_str = trim(mb_convert_kana(h($this->request->data['Record']['tags']), "as", "UTF-8"));
 			$tags_str = preg_replace("/\s+/", ' ', $tags_str);
-
-			$record = $this->Record->findById(h($this->request->data['Record']['id']));
+			$tags_str = str_replace(' ', ',', $tags_str);
+			
+			$record = array();
 			$record['Record']['tags'] = h($tags_str);
 			$record['Record']['comment'] = h($this->request->data['Record']['comment']);
-
 			$record['Record']['is_public'] = h($this->request->data['Record']['is_public']);
-
-			$this->Record->set($record);
-			$this->Record->save();
+			$record['Record']['register_date'] = $r['Record']['register_date'];
+			
+			$this->Record->id = $this->request->data['Record']['id'];
+			$this->Record->save($record);
 			$this->Session->setFlash('きろくデータをへんこうしました！', SET_FLASH_SUCCESS);
-			$this->redirect('/My/record_view/' . h($record['Record']['record_id']));
+			
+			$this->redirect("/r/{$r['Record']['record_id']}");
 		}
 
 		// DBから読み込む
-		$records = $this->Record->findAllByRecord_id($record_id);
+		$this->Record->bindForView();
+		$data = $this->Record->findByRecord_id($record_id);
 
-		// player_id が直接取れない？
-		$user_id = $this->Auth->user('id');
-
-		if (empty($records)) {
+		if (empty($data)) {
 			// データが無いときはマイページへ
 			$this->Session->setFlash('記録データがみつかりません', SET_FLASH_WARNING);
 			$this->redirect(array('controller' => 'My', 'action' => 'index'));
 		}
 
-		if ($user_id !== $records[0]['Record']['user_id']) {
-			//違うユーザからのアクセスだったらマイページに戻す
-			$this->Session->setFlash('記録データをへんしゅうできません', SET_FLASH_WARNING);
+		if ($loginUser['User']['id'] != $data['Record']['user_id']) {
+			// 違うユーザの記録は変更できない
+			$this->Session->setFlash('自分の記録データではありません', SET_FLASH_WARNING);
 			$this->redirect(array('controller' => 'My', 'action' => 'index'));
 		}
-
-		// 記録データの整形
-		$records = $this->Record->setForView($records);
-		// タグをスペースで区切る
-		$records[0]['Record']['tags'] = implode(',', $records[0]['Record']['tags']);
-		$this->set('record', $records[0]);
+		
+		// タグをスペース区切りに変換
+		$data['Record']['tags'] = str_replace(',', ' ', $data['Record']['tags']);
+		$data['Record']['tags'] = preg_replace("/\s+/", ' ', $data['Record']['tags']);
+		
+		$this->request->data = $data;
 	}
 
 	//オブジェクトデータのダウンロード

@@ -102,6 +102,53 @@ $(document).ready(function() {
 });
 
 $(function () {
+
+	// グラフテーマ
+	Highcharts.theme = {
+		xAxis: {
+			gridLineWidth: 1,
+			lineColor: '#000',
+			tickColor: '#000',
+			labels: {
+				style: {
+					color: '#000',
+					font: '11px Trebuchet MS, Verdana, sans-serif'
+				}
+			},
+			title: {
+				style: {
+					color: '#333',
+					fontWeight: 'bold',
+					fontSize: '12px',
+					fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+
+				}
+			}
+		},
+		yAxis: {
+			minorTickInterval: 'auto',
+			lineColor: '#000',
+			lineWidth: 1,
+			tickWidth: 1,
+			tickColor: '#000',
+			labels: {
+				style: {
+					color: '#000',
+					font: '11px Trebuchet MS, Verdana, sans-serif'
+				}
+			},
+			title: {
+				style: {
+					color: '#333',
+					fontWeight: 'bold',
+					fontSize: '12px',
+					fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+				}
+			}
+		}
+	};
+	var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+
 	$('#graph').highcharts({
 		chart: {
 			type: 'column'
@@ -114,6 +161,7 @@ $(function () {
 		},
 		yAxis: {
 			min: 0,
+			max: 300,
 			title: {
 				text: 'number'
 			}

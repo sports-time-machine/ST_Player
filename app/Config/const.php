@@ -73,7 +73,7 @@ for ($i = 0; $i <= 150; $i++) {
 Configure::write('AGE_LIST', $age_list);
 
 // 公開レベル　じぶん・せんしゅ・全宇宙（うちゅう）
-define('ACCESS_LEVEL_SELF',     null);
+define('ACCESS_LEVEL_SELF',     0);
 define('ACCESS_LEVEL_PLAYER',   1);
 define('ACCESS_LEVEL_UNIVERSE', 99);
 Configure::write('ACCESS_LEVEL_LIST', array(

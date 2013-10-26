@@ -12,7 +12,7 @@ class Partner extends AppModel {
 	public $validate = array();
 
 	//パートナー取得
-	public function getPartner($partner_id) {
+	public function getPartnerInfo($partner_id) {
 
 		$partner = null;
 		$this->loadModel('Record');

@@ -25,6 +25,7 @@ class StmHelper extends AppHelper {
 		$data['User']['id']			// User.id
 		$data['Access']['id'] // TODO 追加する
 	*/
+	// ユーザーのニックネームまたはidを表示
 	public function getUserNickname($data) {
 		if (!empty($data['User']['nickname'])) {
 			return $data['User']['nickname'];
@@ -32,11 +33,20 @@ class StmHelper extends AppHelper {
 			return $data['User']['id'];
 		}
 	}
+	// パートナーのニックネームまたはidを表示
 	public function getPartnerNickname($data) {
-		if (!empty($data['Partner']['nickname'])) {
-			return $data['Partner']['nickname'];
+		if (!empty($data['nickname'])) {
+			return $data['nickname'];
 		} else {
-			return $data['Partner']['user_id'];
+			return $data['user_id'];
 		}
+	}
+	
+	// 日時の和暦表示
+	public function s2w($date) {
+		$time = strtotime($date);
+		$date_str = date('Y年n月j日 G時i分', $time);
+		
+		return $date_str;
 	}
 }

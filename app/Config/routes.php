@@ -34,6 +34,9 @@
 	// User.idでのアクセス
 	Router::connect('/N/:user_id', array('controller' => 'Profiles', 'action' => 'viewId'), array('pass' => array('user_id')));
 	Router::connect('/n/:user_id', array('controller' => 'Profiles', 'action' => 'viewId'), array('pass' => array('user_id')));
+	// record_idでのアクセス
+	Router::connect('/R/:record_id', array('controller' => 'Records', 'action' => 'view'), array('pass' => array('record_id')));
+	Router::connect('/r/:record_id', array('controller' => 'Records', 'action' => 'view'), array('pass' => array('record_id')));
     
 	//Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
   	Router::connect('/', array('controller' => 'users', 'action' => 'index2'));
