@@ -101,22 +101,22 @@ class UsersController extends AppController {
 		if (!empty($this->request->data['User']['player_id'])) {
 			$this->request->data['User']['player_id'] = $this->Stm->generateShortPlayerId($this->request->data['User']['player_id']);
 		}
-		// せんしゅ名をtrim
-		if (!empty($this->request->data['User']['username'])) {
-			$this->request->data['User']['username'] = trim($this->request->data['User']['username']);
-		}
-		
-		
+        		
 		if ($this->request->is('ajax')) {
 			//QRコードを利用してログイン
 			$this->autoRender = false;
+                        
 			// POSTデータがなかったらNG
 			if (empty($this->request->data)) {
 				echo "NG";
 			}
 			
 			$this->log($this->request->data);
-			
+            
+            // 選手コードから選手名を逆引き
+            $user = $this->User->findByPlayerId($this->request->data['User']['player_id']);
+			$this->request->data['User']['username'] = $user['User']['username'];
+            
 			if ($this->Auth->login()) {
 				// ユーザー情報をセッションにセット
 				$this->_setLoginUser($this->request->data['User']['player_id']);
@@ -125,6 +125,12 @@ class UsersController extends AppController {
 				echo "NG";
 			}
 		} else if ($this->request->is('post')) {
+            
+            // 選手名をtrim
+            if (!empty($this->request->data['User']['username'])) {
+                $this->request->data['User']['username'] = trim($this->request->data['User']['username']);
+            }
+        
 			//パスワードを利用してログイン
 			$this->passwordLogin();
 		}

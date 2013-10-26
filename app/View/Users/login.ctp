@@ -29,9 +29,9 @@ function showModal(mes){
     $("#errorModal").modal("show");
 }
 
-function AuthQRCodeAjax(name, id) {
+function AuthQRCodeAjax(id) {
 	var url = "<?php echo $this->Html->webroot . 'users/login'; ?>";
-	var data = { User : {username : name , player_id : id }};
+	var data = { User : { player_id : id }};
 	
 	$.ajax({
 		type: "POST",
@@ -42,6 +42,7 @@ function AuthQRCodeAjax(name, id) {
 			if (html == "OK"){
 				location.href = "<?php echo $this->Html->webroot . 'users/'; ?>";
 			} else {
+                alert(html);
 				showModal("<div>ログインに失敗しました</div>選手名が違うか、QRコードが正しく読み取られていません");
 			}
 		}
@@ -94,7 +95,7 @@ $(function(){
             //非同期通信時にタイムアウトや読み込みを防ぐため
             clearInterval(intervalId);
             clearTimeout(timeoutId);        
-			AuthQRCodeAjax($("#username").val(), result);
+			AuthQRCodeAjax(result);
 		}
 	};
 
@@ -141,10 +142,6 @@ $(function(){
 	<span id="errorMessage"></span>
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 </div>
-
-
-<div>選手名を入力してください</div>
-<?php echo $this->Form->text('username', array('label' => false, 'value' => "")); ?>
 
 <div id="camera">
 	<video id="video" autoplay width="480" height="360"></video> 
