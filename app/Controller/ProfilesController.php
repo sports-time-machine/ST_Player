@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class ProfilesController extends AppController {
 
-	public $uses = array('Profile', 'User', 'Record', 'RecordImage', 'Image', 'Stm');
+	public $uses = array('Profile', 'User', 'Record', 'RecordImage', 'Image', 'Partner', 'Stm');
 	public $layout = 'stm';
 
 	public function beforeFilter() {
@@ -50,17 +50,20 @@ class ProfilesController extends AppController {
 		//pr($data);
 		// 見ている人に合わせて、表示項目の公開レベルを適用した結果を表示
 		$data = $this->Profile->applyAccessLevel($data, $loginUser);
-		$this->set('data', $data);
 		
 		
 		// 走った記録
 		$conditions = array('Record.user_id' => $data['User']['id']);
+		$r = $this->Record->find('all', array('conditions' => $conditions, 'order' => array('register_date' => 'desc')));
+		$data['records'] = $r;
 		
-		// ページネーションと記録データの整形
-		$r = $this->paginate('Record', $conditions);
-		$records = $this->Record->setForView($r);
-		$this->set('records', $records);
 		
+		// 一緒にはしった人
+		$partners = $this->Partner->findPartnersByUserId($data['User']['id']);
+		$data['partners'] = $partners;
+		
+		
+		$this->set('data', $data);
 		
 		if ($user_id == $loginUser['User']['id']) {
 			// idが自分自身の場合はマイページをレンダリング

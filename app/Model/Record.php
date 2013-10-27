@@ -78,7 +78,7 @@ class Record extends AppModel {
 			'belongsTo' => array(
 				'User' => array(
 					'className' => 'User',
-					'fields' => array(/* 'player_id', */'username'), // IDとパスワードの組みなのでplayer_idは見せないようにする
+					'fields' => array('id', 'username', 'nickname', 'nickname_is_public'), // IDとパスワードの組みなのでplayer_idは見せないようにする
 				),
 			),
 			'hasMany' => array(
@@ -183,7 +183,7 @@ class Record extends AppModel {
 		);
 		$this->bindModel($bind, false);
 	}
-
+	
 	// Viewに渡すために整形
 	public function setForView($records) {
 

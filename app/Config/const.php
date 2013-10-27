@@ -78,6 +78,19 @@ define('ACCESS_LEVEL_PLAYER',   1);
 define('ACCESS_LEVEL_UNIVERSE', 99);
 Configure::write('ACCESS_LEVEL_LIST', array(
 	ACCESS_LEVEL_SELF     => 'じぶん　',
-	ACCESS_LEVEL_PLAYER   => 'せんしゅ　',
+	ACCESS_LEVEL_PLAYER   => '全せんしゅ　',
 	ACCESS_LEVEL_UNIVERSE => '全宇宙　',
 ));
+// アクセス拒否メッセージ
+define('MESSAGE_ACCESS_DENIED', '<span class="access-denied">公開されていません</span>');
+
+// スペシャルパートナーリスト
+Configure::write('SPECIAL_PARTNER_LIST', array(
+	'M:CHEETAH-1'   => 'チーター',
+	'M:ELEPHANT-3'  => 'アフリカゾウ',
+	'M:MUSAGI'      => 'ミナコウサギ',
+	'M:MIZUESAIBOU' => '水江未来 細胞',
+	'M:PETER-1'     => 'Peter Millard 1',
+	'M:PETER-2'     => 'Peter Millard 2',
+));
+

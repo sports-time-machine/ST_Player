@@ -58,52 +58,6 @@ class MyController extends AppController {
 	public function record_view($record_id) {
 		// Records/view へリダイレクト
 		$this->redirect("/r/{$record_id}");
-		
-		/*
-		// bind
-		$this->Record->bindForView();
-
-		// DBから読み込む
-		$records = $this->Record->findAllByRecord_id($record_id);
-		if (empty($records)) {
-			// データが無いときは検索画面へ
-			$this->Session->setFlash('記録データがみつかりません', SET_FLASH_WARNING);
-			$this->redirect(array('controller' => 'My', 'action' => 'index'));
-		}
-
-		// 記録データの整形
-		$records = $this->Record->setForView($records);
-
-		// 画像データの並べ替え
-		if (!empty($records[0]['RecordImage'])) {
-			$recordImage = array();
-			foreach ($records[0]['RecordImage'] as $k => $v) {
-				$n = substr($v['Image']['filename'], strrpos($v['Image']['filename'], '-') + 1);
-				$recordImage[$n] = $v;
-			}
-			ksort($recordImage);
-			$records[0]['RecordImage'] = $recordImage;
-		}
-
-		//Partnerとのアソシエーション
-		$bind = array(
-			'hasOne' => array(
-				'Partner' => array(
-					'className' => 'Partner',
-					'foreignKey' => 'record_id',
-				),
-			),
-		);
-		$this->Record->bindModel($bind);
-		//パートナー情報を検索
-		$partner = $this->Partner->getPartner($records[0]['Partner'][0]['partner_id']);
-		//$partner = $this->Record->findByRecordId($records[0]['Partner'][0]['partner_id']);
-
-		$this->set('record', $records[0]);
-		if ($partner) {
-			$this->set('partner', $partner);
-		}
-		*/
 	}
 
 	// 記録の編集

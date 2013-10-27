@@ -7,7 +7,7 @@
 	<!-- 走った日時 -->
 	<span class="sub">
 		が
-		<?php echo $this->Stm->s2w($data['Record']['register_date']); ?>
+		<?php echo $this->Stm->getRecordRegisterDateJ($data); ?>
 		に走ったきろく
 	</span>
 </h2>
@@ -16,22 +16,12 @@
 	<tr>
 		<th class="span2">はしった人</th>
 		<td class="span4">
-			<?php
-				$nickname = h($this->Stm->getUserNickname($data));
-				echo $this->Html->link($nickname,"/n/".h($data['User']['id']));
-			?>
+			<?php echo $this->Stm->getUserNicknameLink($data); ?>
 		</td>
 
 		<th class="span2">いっしょに<br/>はしった人</th>
 		<td class="span4">
-			<?php
-				$nickname = h($this->Stm->getPartnerNickname($data['Partner'][0]));
-				if ($data['Partner'][0]['is_linked']) {
-					echo $this->Html->link($nickname,"/n/".h($data['Partner'][0]['user_id']));
-				} else {
-					echo $nickname;
-				}
-			?>
+			<?php echo $this->Stm->getPartnerNicknameLink($data['partners'][0]); ?>
 		</td>
 	</tr>
 	<tr>

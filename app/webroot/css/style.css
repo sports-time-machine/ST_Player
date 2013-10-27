@@ -145,7 +145,7 @@ h2 {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 h2 span.sub {
-	font-size: 80%;
+	font-size: 75%;
 }
 h2 a {
 	font-weight: normal;
@@ -213,6 +213,41 @@ h2 a {
 div.profiles.viewId .disabled {
 	color: #999999;
 }
+div.profiles.viewId .access-denied {
+	color: #999999;
+}
+/* せんしゅの記録 */
+.profiles .records .count {
+	font-size: 120%;
+	color: #ffff00;
+}
+.profiles .partners .count {
+	font-size: 120%;
+	color: #ffff00;
+}
+.profiles .records .register_date, .profiles .partners .register_date {
+	font-size: 11pt;
+	color: #666666;
+	margin-bottom: 4px;
+}
+.profiles .records .profile, .profiles .partners .profile {
+	font-size: 11pt;
+}
+.profiles .records .record_id, .profiles .partners .record_id {
+	text-align: center;
+}
+/* 記録のコメントとタグ */
+.profiles .records .comment {
+	padding: 4px;
+}
+.profiles .records .tags {
+	margin-top: 4px;
+	background: rgba(0, 0, 0, 0.1);
+}
+.profiles .records .tags a {
+	margin: 4px;
+}
+
 
 /* サムネイル */
 .thumbnail {

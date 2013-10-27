@@ -10,7 +10,70 @@ class Partner extends AppModel {
 	// app_model.phpでconfig/column_list/Partner.php, config/validate/Partner.phpを読み込み
 	public $column_list = array();
 	public $validate = array();
-
+	
+	// ある選手と一緒にに走った人
+	public function findPartnersByUserId($user_id) {
+		if (empty($user_id)) {
+			return array();
+		}
+		
+		$sql = "SELECT 
+					`Partner`.`partner_id`,
+					`Record`.player_id,
+					`Record`.record_id,
+					`Record`.register_date,
+					`Record`.tags,
+					`Record`.comment,
+					`User`.id,
+					`User`.player_id,
+					`User`.username,
+					`User`.nickname,
+					`User`.nickname_is_public,
+					`Profile`.*
+				FROM partners AS `Partner`
+				LEFT JOIN records AS `Record` ON `Partner`.record_id = `Record`.id
+				LEFT JOIN users AS `User` ON `Record`.user_id = `User`.id
+				LEFT JOIN profiles AS `Profile` ON `Profile`.user_id = `User`.id
+				WHERE `Partner`.partner_id IN (
+					SELECT records.record_id FROM records WHERE records.user_id = {$user_id}
+				)
+				ORDER BY `Record`.created DESC
+				";
+		$r = $this->query($sql);
+		
+		return $r;
+	}
+	
+	// ある記録と一緒にに走った人 // Record.idの数字を指定すること
+	public function getPartnerByRecordId($id) {
+		if (empty($id)) {
+			return array();
+		}
+		
+		$sql = "SELECT 
+					`Partner`.`partner_id`,
+					`Record`.player_id,
+					`Record`.record_id,
+					`Record`.register_date,
+					`Record`.tags,
+					`Record`.comment,
+					`User`.id,
+					`User`.player_id,
+					`User`.username,
+					`User`.nickname,
+					`User`.nickname_is_public,
+					`Profile`.*
+				FROM partners AS `Partner`
+				LEFT JOIN records AS `Record` ON `Partner`.partner_id = `Record`.record_id
+				LEFT JOIN users AS `User` ON `Record`.user_id = `User`.id
+				LEFT JOIN profiles AS `Profile` ON `Profile`.user_id = `User`.id
+				WHERE `Partner`.record_id = '{$id}'
+				";
+		$r = $this->query($sql);
+		
+		return $r;
+	}
+	
 	//パートナー取得
 	public function getPartnerInfo($partner_id) {
 

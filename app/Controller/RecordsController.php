@@ -71,8 +71,14 @@ class RecordsController extends AppController {
 		//pr($partner);
 		$data['Partner'][0] = $partner;
 		
+		$partners = $this->Partner->getPartnerByRecordId($data['Record']['id']);
+		//pr($partners);
+		$data['partners'] = $partners;
+		
+		
 		// タグの分割
 		$data['Record']['tags'] = $this->Record->extractTags($data['Record']['tags']);
+		
 		
 		$this->set('data', $data);
 		if ($data['Record']['user_id'] == $loginUser['User']['id']) {

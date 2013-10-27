@@ -21,6 +21,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 App::uses('Controller', 'Controller');
+App::import('Vendor', 'phpqrcode/qrlib');   //QRコード表示
 
 /**
  * Application Controller
@@ -76,5 +77,7 @@ class AppController extends Controller {
 		$this->set('AGE_SELECT_LIST', $age_select_list);
 		// 公開レベルリスト
 		$this->set('ACCESS_LEVEL_LIST', Configure::read('ACCESS_LEVEL_LIST'));
+		// スペシャルパートナーリスト
+		$this->set('SPECIAL_PARTNER_LIST', Configure::read('SPECIAL_PARTNER_LIST'));
 	}
 }

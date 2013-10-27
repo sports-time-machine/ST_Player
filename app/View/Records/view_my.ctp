@@ -6,7 +6,7 @@
 	<h3>こうかいはんい： じぶん</h3>
 	このきろくデータは、ほかの人が見ることができません<br />
 	<br />
-	スポーツタイムマシン会場と、せんしゅとうろくをした人に見てもらいたいきろくデータは、こうかいはんいを「せんしゅ」にしてください<br />
+	スポーツタイムマシン会場と、せんしゅとうろくをした人に見てもらいたいきろくデータは、こうかいはんいを「全せんしゅ」にしてください<br />
 	全宇宙に見てもらいたいきろくデータは、こうかいはんいを「全宇宙」にしてください<br />
 </div>
 <?php elseif ($data['Record']['is_public'] == ACCESS_LEVEL_PLAYER): ?>
@@ -23,7 +23,7 @@
 	このきろくデータは、全宇宙から見ることができます。すばらしい！<br />
 	<br />
 	ほかの人に見られたくないきろくデータは、こうかいはんいを「じぶん」にしてください<br />
-	スポーツタイムマシン会場と、せんしゅとうろくをした人に見てもらいたいきろくデータは、こうかいはんいを「せんしゅ」にしてください<br />
+	スポーツタイムマシン会場と、せんしゅとうろくをした人に見てもらいたいきろくデータは、こうかいはんいを「全せんしゅ」にしてください<br />
 </div>
 <?php endif; ?>
 
@@ -34,7 +34,7 @@
 	<!-- 走った日時 -->
 	<span class="sub">
 		が
-		<?php echo $this->Stm->s2w($data['Record']['register_date']); ?>
+		<?php echo $this->Stm->getRecordRegisterDateJ($data); ?>
 		に走ったきろく
 	</span>
 
@@ -53,14 +53,7 @@
 
 		<th class="span2">いっしょに<br/>はしった人</th>
 		<td class="span4">
-			<?php
-				$nickname = h($this->Stm->getPartnerNickname($data['Partner'][0]));
-				if ($data['Partner'][0]['is_linked']) {
-					echo $this->Html->link($nickname,"/n/".h($data['Partner'][0]['user_id']));
-				} else {
-					echo $nickname;
-				}
-			?>
+			<?php echo $this->Stm->getPartnerNicknameLink($data['partners'][0]); ?>
 		</td>
 	</tr>
 	<tr>

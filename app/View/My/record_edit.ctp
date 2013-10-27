@@ -22,7 +22,7 @@
 	<tr>
 		<th>はしった日</th>
 		<td>
-			<?php echo $this->Stm->s2w($this->request->data['Record']['register_date']); ?>
+			<?php echo $this->Stm->getRecordRegisterDateJ($this->request->data); ?>
 			<?php echo $this->Form->hidden('Record.register_date'); ?>
 		</td>
 	</tr>
