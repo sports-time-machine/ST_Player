@@ -73,23 +73,21 @@ class Record extends AppModel {
 
 	// search用bind
 	public function bindForSearch() {
-
 		$bind = array(
 			'belongsTo' => array(
 				'User' => array(
 					'className' => 'User',
 					'fields' => array('id', 'username', 'nickname', 'nickname_is_public'), // IDとパスワードの組みなのでplayer_idは見せないようにする
 				),
-			),
-			'hasMany' => array(
-				'RecordImage' => array(
-					'className' => 'RecordImage',
-					'fields' => array('record_id', 'image_id'),
-					//'order' => 'RecordImage.no',
+				'Profile' => array(
+					'className' => 'Profile',
+					'foreignKey' => 'user_id',
+					//'fields' => array('id', 'username', 'nickname', 'nickname_is_public'), // IDとパスワードの組みなのでplayer_idは見せないようにする
 				),
 			),
 		);
 		$this->bindModel($bind, false);
+		$this->Profile->primaryKey = 'user_id'; // ProfileをJOINするため
 	}
 
 	public function unbindForSearch() {
@@ -216,4 +214,37 @@ class Record extends AppModel {
 		
 		return $tag_list;
 	}
+	
+	// ------------------------------------------------------------
+	// ランキング
+	// ------------------------------------------------------------
+	public function getRankingOfRunCountByPlayerId() {
+		$sql = "SELECT `User`.player_id, `User`.username, count(records.id) as count
+				FROM
+					users AS `User`
+				LEFT JOIN
+					records ON records.user_id = `User`.id
+				GROUP BY `User`.player_id, `User`.username
+				ORDER BY username DESC
+				LIMIT 50;
+				";
+		$r = $this->query($sql);
+		return $r;
+	}
+	public function getRankingOfRunCountByUsername() {
+		$sql = "SELECT DISTINCT `User`.player_id, `User`.username, count(records.id) as count
+				FROM
+					users AS `User`
+				LEFT JOIN
+					records ON records.user_id = `User`.id
+				WHERE
+					`User`.username IS NOT NULL
+				GROUP BY replace(replace(`User`.username, ' ', ''), '　','')
+				ORDER BY count DESC
+				LIMIT 50
+				";
+		$r = $this->query($sql);
+		return $r;
+	}
+			
 }

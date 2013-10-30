@@ -106,7 +106,7 @@ $(function () {
 	// グラフテーマ
 	Highcharts.theme = {
 		xAxis: {
-			gridLineWidth: 1,
+			gridLineWidth: 0,
 			lineColor: '#000',
 			tickColor: '#000',
 			labels: {

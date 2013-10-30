@@ -225,26 +225,26 @@ div.profiles.viewId .access-denied {
 	font-size: 120%;
 	color: #ffff00;
 }
-.profiles .records .register_date, .profiles .partners .register_date {
+.profiles .records .register_date, .profiles .partners .register_date, .records.search .register_date {
 	font-size: 11pt;
 	color: #666666;
 	margin-bottom: 4px;
 }
-.profiles .records .profile, .profiles .partners .profile {
+.profiles .records .profile, .profiles .partners .profile, .records.search .profile {
 	font-size: 11pt;
 }
-.profiles .records .record_id, .profiles .partners .record_id {
+.profiles .records .record_id, .profiles .partners .record_id, .records.search .record_id {
 	text-align: center;
 }
 /* 記録のコメントとタグ */
-.profiles .records .comment {
+.profiles .records .comment, .records.search .comment {
 	padding: 4px;
 }
-.profiles .records .tags {
+.profiles .records .tags, .records.search .tags {
 	margin-top: 4px;
 	background: rgba(0, 0, 0, 0.1);
 }
-.profiles .records .tags a {
+.profiles .records .tags a, .records.search .tags a {
 	margin: 4px;
 }
 

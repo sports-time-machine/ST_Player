@@ -1,42 +1,61 @@
 <script type="text/javascript">
 $(function() {
 	// 初期フォーカス
-	$('#RecordUsername').focus();
+	$('#RecordKeyword').focus();
 });
 </script>
 
 <div class="records search">
 
-    <h1>きろくけんさく</h1>
-    
+	<h1>きろくけんさく</h1>
+
 	<h2>きろくいちらん</h2>
 
 	<table class="table table-striped table-bordered">
 	<tr>
-			<th style="width: 40px;">画像</th>
-			<th style="width: 140px;"><?php echo $this->Paginator->sort('record_id', 'きろくID'); ?></th>
-			<th><?php echo $this->Paginator->sort('comment', 'コメント'); ?></th>
-			<th><?php echo $this->Paginator->sort('tags', 'タグ'); ?></th>
-			<th style="width: 260px;"><?php echo $this->Paginator->sort('register_date', 'はしった日'); ?></th>
+			<th style="width: 120px;">画像</th>
+			<th>きろく</th>
+			<th class="span3">きろくID</th>
 	</tr>
-	<?php foreach ($records as $record): ?>
+	<?php foreach ($data as $item): ?>
 	<tr>
 		<td>
-			<?php if (!empty($record['RecordImage'])): ?>
-				★
-			<?php endif; ?>
+			<div class="search-image">
+			<?php 
+				if (!empty($item['RecordImage'])) {
+					echo $this->Stm->image($item['Record']['player_id'], $item['Image']['filename'] . '.' . $item['Image']['ext'], array('title' => $item['Image']['filename'] . '.' . $item['Image']['ext'], 'style' => 'width: 120px; margin-bottom: 6px;'));
+				} else {
+					echo "<img src='{$this->Html->webroot}/img/space.gif' style='width: 120px; height: 1px;'></img>";
+				}
+			?>
+			</div>
 		</td>
-		<td><?php echo $this->Html->link(h($record['Record']['record_id']), array('action' => 'view', $record['Record']['record_id'])); ?></td>
-		<td><?php echo h($record['Record']['comment']); ?>&nbsp;</td>
 		<td>
-            <?php 
-            foreach ($record['Record']['tags'] as $tag){
-                echo $this->Html->link(h($tag), array('controller' => 'records', 'action' => 'search', 'tag' => h($tag)));
-                echo " ";
-            }
-            ?>
-        </td>
-		<td><?php echo h($record['Record']['register_date']); ?></td>
+			<div class="clearfix">
+				<!-- ニックネーム -->
+				<div style="float: left;">
+					<?php echo $this->Stm->getUserNicknameLink($item); ?> せんしゅのきろく
+				</div>
+				<!-- 時間 -->
+				<div class="register_date" style="float: right;">
+					<?php echo $this->Stm->getRecordRegisterDateJ($item); ?>
+				</div>
+			</div>
+			<!-- コメント -->
+			<div class="comment">
+				<?php echo $this->Stm->getRecordComment($item); ?>
+			</div>
+			<!-- タグ -->
+			<div class="tags">
+				<?php echo $this->Stm->getRecordTagsLink($item); ?>
+			</div>
+		</td>
+		<td>
+			<!-- きろくID -->
+			<div class="record_id">
+				<a style="width: 140px;" class="btn btn-large btn-success" href="<?php echo $this->Html->url("/r/{$item['Record']['record_id']}"); ?>"><?php echo $item['Record']['record_id']; ?></a>
+			</div>
+		</td>
 	</tr>
 	<?php endforeach; ?>
 	</table>
