@@ -33,7 +33,7 @@
 	<?php echo $this->Stm->getUserNickname($data); ?>
 	<!-- 走った日時 -->
 	<span class="sub">
-		が
+		せんしゅが
 		<?php echo $this->Stm->getRecordRegisterDateJ($data); ?>
 		に走ったきろく
 	</span>
