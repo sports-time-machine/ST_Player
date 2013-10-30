@@ -25,7 +25,7 @@ $(function() {
 				if (!empty($item['RecordImage'])) {
 					echo $this->Stm->image($item['Record']['player_id'], $item['Image']['filename'] . '.' . $item['Image']['ext'], array('title' => $item['Image']['filename'] . '.' . $item['Image']['ext'], 'style' => 'width: 120px; margin-bottom: 6px;'));
 				} else {
-					echo "<img src='{$this->Html->webroot}/img/space.gif' style='width: 120px; height: 1px;'></img>";
+					//echo "<img src='{$this->Html->webroot}/img/space.gif' style='width: 120px; height: 1px;'></img>";
 				}
 			?>
 			</div>
