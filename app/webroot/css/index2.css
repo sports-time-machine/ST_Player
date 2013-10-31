@@ -1,0 +1,199 @@
+body {
+  font-family: "Lucida Grande","Hiragino Kaku Gothic Pro","ÉqÉâÉMÉmäpÉS Pro W3","ÉÅÉCÉäÉI",Meiryo,"ÇlÇr ÇoÉSÉVÉbÉN",Verdana,Arial,sans-serif; 
+  font-size: 18px;
+  color: #666;
+  margin:0;
+  padding:0;
+}
+a{
+  color:#29aedb;
+  text-decoration:none;
+}
+table{
+  max-width:600px;
+  margin:0 auto;
+  text-align:left;
+  border-collapse: collapse;
+}
+tr,td{
+  border:1px solid #00aa9b;
+}
+td{
+  padding:10px 20px;
+}
+a:hover{
+  text-decoration:underline;
+}
+.header{ 
+  position:relative;
+  line-height:90px;
+  border-bottom:1px solid #ddd;  
+}
+.wrapper { 
+  border-bottom:1px solid #ddd;  
+  padding:50px 0;
+}
+.wrapper-inner {
+  position:relative; 
+  max-width: 950px; 
+  margin:0 auto; 
+}
+.catch{
+  position:relative;
+  height:450px;
+}
+.right{
+  text-align:right;
+}
+.center{
+  display:block;
+  width:100%;
+  text-align:center;
+}
+.w50{
+  display:inline-block;
+  margin-bottom: 25px;
+  width:400px;
+  padding:0 25px;
+  vertical-align:top;
+}
+.mt100{
+  margin-top:100px;
+}
+.impact{
+  font-size:36px;
+  font-weight:bold;
+  color: #f79122;
+}
+.btn{
+  padding: 10px 20px;
+  background-color: #29aedb;
+  color: white !important;
+  font-size: 18px;
+  border: none;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+#card{
+  position:absolute;
+  top:15px;
+  right:120px;
+}
+.fade{
+  display:none;
+}
+
+#button{
+  margin:0;
+}
+
+#button li{
+  list-style-type:none;
+}
+#button li a{
+  display:block;
+  position:absolute;
+}
+#button li a img{
+  border-style:none;
+}
+#button li a:hover{
+  cursor: pointer;
+  animation:stop;
+  -moz-animation:stop; /* Firefox */
+  -webkit-animation:stop; /* Safari and Chrome */
+  -o-animation:stop; /* Opera */
+  opacity: 0.8;
+  filter: alpha(opacity=0.8);
+  -ms-filter: "alpha( opacity=80 )";  
+  transform: scale(0.98);
+  -moz-transform: scale(0.98);
+  -webkit-transform: scale(0.98);
+  -o-transform: scale(0.98);
+  transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  }
+
+#button .search a{
+  right:0;
+  top:0;
+  width:280px;
+  height:280px;
+  background:url(img/bg-search.png) no-repeat left top;
+  animation:  ani-search 0.4s steps(4) infinite;
+  -moz-animation:  ani-search 0.4s steps(4) infinite; /* Firefox */
+  -webkit-animation:  ani-search 0.4s steps(4) infinite; /* Safari and Chrome */
+}
+@keyframes ani-search {
+  0%{ background-position:0 0;}
+  100%{ background-position:-1120px 0;}
+}
+@-moz-keyframes ani-search{
+  0%{ background-position:0 0;}
+  100%{ background-position:-1120px 0;}
+}
+@-webkit-keyframes ani-search{
+  0%{ background-position:0 0;}
+  100%{ background-position:-1120px 0;}
+}
+@-o-keyframes ani-search{
+  0%{ background-position:0 0;}
+  100%{ background-position:-1120px 0;}
+}
+#button .blog a{
+  right:280px;
+  top:80px;
+  width:220px;
+  height:220px;
+  background:url(img/bg-blog.png) no-repeat left top;
+  animation:  ani-blog 0.4s steps(4) infinite;
+  -moz-animation:  ani-blog 0.4s steps(4) infinite; /* Firefox */
+  -webkit-animation:  ani-blog 0.4s steps(4) infinite; /* Safari and Chrome */
+}
+@keyframes ani-blog {
+  0%{ background-position:0 0;}
+  100%{ background-position:-880px 0;}
+}
+@-moz-keyframes ani-blog{
+  0%{ background-position:0 0;}
+  100%{ background-position:-880px 0;}
+}
+@-webkit-keyframes ani-blog{
+  0%{ background-position:0 0;}
+  100%{ background-position:-880px 0;}
+}
+@-o-keyframes ani-blog{
+  0%{ background-position:0 0;}
+  100%{ background-position:-880px 0;}
+}
+
+#button .ycam a{
+  right:158px;
+  bottom:0;
+  width:195px;
+  height:195px;
+  background:url(img/bg-ycam.png) no-repeat left top;
+  animation:  ani-ycam 0.4s steps(4) infinite;
+  -moz-animation:  ani-ycam 0.4s steps(4) infinite; /* Firefox */
+  -webkit-animation:  ani-ycam 0.4s steps(4) infinite; /* Safari and Chrome */
+}
+@keyframes ani-ycam {
+  0%{ background-position:0 0;}
+  100%{ background-position:-780px 0;}
+}
+@-moz-keyframes ani-ycam{
+  0%{ background-position:0 0;}
+  100%{ background-position:-780px 0;}
+}
+@-webkit-keyframes ani-ycam{
+  0%{ background-position:0 0;}
+  100%{ background-position:-780px 0;}
+}
+@-o-keyframes ani-ycam{
+  0%{ background-position:0 0;}
+  100%{ background-position:-780px 0;}
+}

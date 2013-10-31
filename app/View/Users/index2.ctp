@@ -7,95 +7,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript" ></script>
 <script src="js/highcharts/highcharts.js" type="text/javascript" ></script>
 <script src="js/highcharts/modules/exporting.js" type="text/javascript" ></script>
-<style type="text/css">
-body {
-  font-family: "Lucida Grande","Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック",Verdana,Arial,sans-serif; 
-  font-size: 18px;
-  color: #666;
-  margin:0;
-  padding:0;
-}
-a{
-  color:#29aedb;
-  text-decoration:none;
-}
-table{
-  max-width:600px;
-  margin:0 auto;
-  text-align:left;
-  border-collapse: collapse;
-}
-tr,td{
-  border:1px solid #00aa9b;
-}
-td{
-  padding:10px 20px;
-}
-a:hover{
-  text-decoration:underline;
-}
-.header{ 
-  position:relative;
-  line-height:90px;
-  border-bottom:1px solid #ddd;  
-}
-.wrapper { 
-  border-bottom:1px solid #ddd;  
-  padding:50px 0;
-}
-.wrapper-inner {
-  position:relative; 
-  max-width: 950px; 
-  margin:0 auto; 
-}
-.catch{
-  height:450px;
-}
-.right{
-  text-align:right;
-}
-.center{
-  display:block;
-  width:100%;
-  text-align:center;
-}
-.w50{
-  display:inline-block;
-  margin-bottom: 25px;
-  width:400px;
-  padding:0 25px;
-  vertical-align:top;
-}
-.mt100{
-  margin-top:100px;
-}
-.impact{
-  font-size:36px;
-  font-weight:bold;
-  color: #f79122;
-}
-.btn{
-  padding: 10px 20px;
-  background-color: #29aedb;
-  color: white !important;
-  font-size: 18px;
-  border: none;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  text-decoration: none;
-}
+<link type="text/css" href="css/index2.css" media="all" rel="stylesheet" />
 
-#card{
-  position:absolute;
-  top:15px;
-  right:120px;
-}
-.fade{
-  display:none;
-}
-
-
-</style>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.fade').delay(800).fadeIn("slow");
@@ -218,7 +131,12 @@ $(function () {
   <div class="wrapper-inner catch">
     <div class="fade">
     <img src="./img/stm-logo.png" align="left" />
-    <img src="./img/ycam10th.gif" align="right" />
+    <ul id="button">
+      <li class="search"><a href="http://www.sptmy.net/records/search/"><img src="./img/txt-search.png" /></a></li>
+      <li class="blog"><a href="http://sportstimemacine.blogspot.jp/"><img src="./img/txt-blog.png" /></a></li>
+      <li class="ycam"><a href="http://10th.ycam.jp/"><img src="./img/txt-ycam.png" /></a></li>
+    </ul>
+    <!--img src="./img/ycam10th.gif" align="right" /-->
     </div>
   </div>
   <div class="wrapper-inner">
@@ -253,13 +171,15 @@ $(function () {
       <p>
       このタイムマシンをみんなで作り、長い期間大切に運営していくプロジェクトです。
       </p>
-    </div>
-    <div class="w50">
-      <iframe width="400" height="283" src="//www.youtube.com/embed/klkpkFE4Obo?list=UU1kmLlEbNZRamO7wJtk4fng" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div class="w50">
-      <p>2013年7月6日から始まる<a href="http://10th.ycam.jp/" target="_blank">山口情報芸術センター(YCAM)10周年記念祭</a>で、世界初の「スポーツタイムマシン」を体験することができます。
+      <p>2013年7月6日から9月1日まで行われた<a href="http://10th.ycam.jp/" target="_blank">山口情報芸術センター(YCAM)10周年記念祭</a>で、世界初の「スポーツタイムマシン」をお披露目しました。
       </p>
+    </div>
+    <div class="w50">
+      <iframe width="400" height="283" src="//www.youtube.com/embed/s46iI-XN3do" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="w50">
+      <p>7月6日から9月1日までに 2386 人が登録し、7888 回走りました。</p>
+      <p>11月1日から始まる10周年記念祭第2期では、さらにバージョンアップした「スポーツタイムマシン」で遊ぶことができます。</p>
       <p>家族や友達と一緒に「スポーツタイムマシン」を楽しんでください！
       </p>
     </div>
@@ -275,7 +195,8 @@ $(function () {
     </div>
     <div class="w50">
       <h2>走るあいてをえらぶ</h2>
-      <p>どうぶつや、スポーツ選手、前に走ったお友達など、いろんな記録を選べるよ！
+      <p>どうぶつや、スポーツ選手、前に走ったお友達など、いろんな記録を選べるよ！</p>
+      <p>スマートフォンやタブレットを使って、インターネットからも記録を選べるよ→<a href="http://www.sptmy.net/records/search/">きろくけんさく</a>
       </p>
     </div>    
     <div class="w50">
@@ -297,6 +218,7 @@ $(function () {
     <div class="w50">
       <h2>さいごに</h2>
       <p>自分の走った記録にコメントをつけて、<br />壁に貼ろう。
+      </p>
     </div>
     <div class="w50">
       <img src="./img/play4.png" />
@@ -314,7 +236,9 @@ $(function () {
     <table>
       <tr>
         <td>期間</td>
-	<td>7月6日(土)～9月1日(日) 10時～19時 ※火曜定休</td>
+	<td>第2期：11月1日(金)～12月1日(日) 10時～19時<br/>
+	    ※火曜定休
+	</td>
       </tr>
       <tr>
         <td>会場</td>
@@ -359,5 +283,17 @@ $(function () {
     
 　</div>
 </div><!-- /contact -->
+
+<!-- analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45317450-1', 'sptmy.net');
+  ga('send', 'pageview');
+
+</script><!-- /analytics -->
 
 </body></html>
