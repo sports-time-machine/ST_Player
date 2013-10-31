@@ -127,6 +127,7 @@ a:hover{
   animation:  ani-search 0.4s steps(4) infinite;
   -moz-animation:  ani-search 0.4s steps(4) infinite; /* Firefox */
   -webkit-animation:  ani-search 0.4s steps(4) infinite; /* Safari and Chrome */
+  -o-animation:  ani-search 0.4s steps(4) infinite; /* Safari and Chrome */
 }
 @keyframes ani-search {
   0%{ background-position:0 0;}
@@ -153,6 +154,7 @@ a:hover{
   animation:  ani-blog 0.4s steps(4) infinite;
   -moz-animation:  ani-blog 0.4s steps(4) infinite; /* Firefox */
   -webkit-animation:  ani-blog 0.4s steps(4) infinite; /* Safari and Chrome */
+  -o-animation:  ani-blog 0.4s steps(4) infinite; /* Safari and Chrome */
 }
 @keyframes ani-blog {
   0%{ background-position:0 0;}
@@ -180,6 +182,7 @@ a:hover{
   animation:  ani-ycam 0.4s steps(4) infinite;
   -moz-animation:  ani-ycam 0.4s steps(4) infinite; /* Firefox */
   -webkit-animation:  ani-ycam 0.4s steps(4) infinite; /* Safari and Chrome */
+  -o-animation:  ani-ycam 0.4s steps(4) infinite; /* Safari and Chrome */
 }
 @keyframes ani-ycam {
   0%{ background-position:0 0;}
