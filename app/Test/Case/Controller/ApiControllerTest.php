@@ -99,6 +99,10 @@ class ApiControllerTest extends ControllerTestCase {
 				'player_id'  => 'ABCD',
 				'username' => 'やまぐちたろう',
 			),
+			'Profile' => array(
+				'gender'  => '男性',
+				'age' => '12',
+			),
 		);
 		$data = array('json' => json_encode($array));
 		$r = $this->myTestAction('/api/userSave', array('data' => $data, 'method' => 'post'));
@@ -109,13 +113,16 @@ class ApiControllerTest extends ControllerTestCase {
 			);
 		$this->assertEquals($expected, json_decode($r, true));
 		
-		
 		// 選手データ登録
-		echo "userSave - OK 重複は更新";
+		echo "userSave - OK 重複は更新。Profileは更新しない";
 		$array = array(
 			'User' => array(
 				'player_id'  => 'ABCD',
 				'username' => 'やまぐちたろう2',
+			),
+			'Profile' => array(
+				'gender'  => '男性',
+				'age' => '12',
 			),
 		);
 		$data = array('json' => json_encode($array));

@@ -54,7 +54,7 @@ class Stm extends AppModel
 	
 	// 選手データを保存する
 	public function userSave($data) {
-		$this->loadModel(array('User'));
+		$this->loadModel(array('User', 'Profile'));
 		
 		// 関連付けるUserデータ
 		$conditions = array('player_id' => $this->generateShortPlayerId($data['User']['player_id']));
@@ -75,7 +75,16 @@ class Stm extends AppModel
 			$this->User->id = $user['User']['id'];
 			$result = $this->User->save($data['User'], true, $fields);
 		}
-        
+		
+		// プロフィールを保存
+		$profile = $this->Profile->findByUser_id($this->User->id);
+		if (empty($profile)) {
+			$profile['Profile']['user_id'] = $this->User->id;
+			$profile['Profile']['gender']  = !empty($data['Profile']['gender']) ? $data['Profile']['gender'] : null;
+			$profile['Profile']['age']     = !empty($data['Profile']['age']) ? $data['Profile']['age'] : null;
+			$this->Profile->save($profile);
+		}
+		
 		if (!is_array($result)) {
 			return false;
 		}
