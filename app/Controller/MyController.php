@@ -27,6 +27,7 @@ class MyController extends AppController {
 		if ($this->request->is('post')) {
 			$this->request->data['User']['id'] = $loginUser['User']['id'];
 			$this->request->data['Profile']['id'] = $loginUser['Profile']['id'];
+			$this->request->data['Profile']['user_id'] = $loginUser['User']['id'];
 			//pr($this->request->data);exit;
 			// TODO バリデーションチェック
 			
