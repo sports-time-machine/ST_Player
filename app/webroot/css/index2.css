@@ -1,5 +1,5 @@
 body {
-  font-family: "Lucida Grande","Hiragino Kaku Gothic Pro","ƒqƒ‰ƒMƒmŠpƒS Pro W3","ƒƒCƒŠƒI",Meiryo,"‚l‚r ‚oƒSƒVƒbƒN",Verdana,Arial,sans-serif; 
+  font-family: "Lucida Grande","Hiragino Kaku Gothic Pro","ãƒ’ãƒ©ã‚®ãƒè§’ã‚´ Pro W3","ãƒ¡ã‚¤ãƒªã‚ª",Meiryo,"ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯",Verdana,Arial,sans-serif; 
   font-size: 18px;
   color: #666;
   margin:0;
@@ -123,7 +123,7 @@ a:hover{
   top:0;
   width:280px;
   height:280px;
-  background:url(img/bg-search.png) no-repeat left top;
+  background:url(../img/bg-search.png) no-repeat left top;
   animation:  ani-search 0.4s steps(4) infinite;
   -moz-animation:  ani-search 0.4s steps(4) infinite; /* Firefox */
   -webkit-animation:  ani-search 0.4s steps(4) infinite; /* Safari and Chrome */
@@ -149,7 +149,7 @@ a:hover{
   top:80px;
   width:220px;
   height:220px;
-  background:url(img/bg-blog.png) no-repeat left top;
+  background:url(../img/bg-blog.png) no-repeat left top;
   animation:  ani-blog 0.4s steps(4) infinite;
   -moz-animation:  ani-blog 0.4s steps(4) infinite; /* Firefox */
   -webkit-animation:  ani-blog 0.4s steps(4) infinite; /* Safari and Chrome */
@@ -176,7 +176,7 @@ a:hover{
   bottom:0;
   width:195px;
   height:195px;
-  background:url(img/bg-ycam.png) no-repeat left top;
+  background:url(../img/bg-ycam.png) no-repeat left top;
   animation:  ani-ycam 0.4s steps(4) infinite;
   -moz-animation:  ani-ycam 0.4s steps(4) infinite; /* Firefox */
   -webkit-animation:  ani-ycam 0.4s steps(4) infinite; /* Safari and Chrome */
