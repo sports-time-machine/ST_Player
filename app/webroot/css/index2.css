@@ -104,7 +104,6 @@ a:hover{
   animation:stop;
   -moz-animation:stop; /* Firefox */
   -webkit-animation:stop; /* Safari and Chrome */
-  -o-animation:stop; /* Opera */
   opacity: 0.8;
   filter: alpha(opacity=0.8);
   -ms-filter: "alpha( opacity=80 )";  
@@ -125,9 +124,9 @@ a:hover{
   height:280px;
   background:url(../img/bg-search.png) no-repeat left top;
   animation:  ani-search 0.4s steps(4) infinite;
-  -moz-animation:  ani-search 0.4s steps(4) infinite; /* Firefox */
-  -webkit-animation:  ani-search 0.4s steps(4) infinite; /* Safari and Chrome */
-  -o-animation:  ani-search 0.4s steps(4) infinite; /* Safari and Chrome */
+  //-moz-animation:  ani-search 0.4s steps(4) infinite; /* Firefox */
+  //-webkit-animation:  ani-search 0.4s steps(4) infinite; /* Safari and Chrome */
+  //-o-animation:stop; /* Opera */
 }
 @keyframes ani-search {
   0%{ background-position:0 0;}
@@ -141,10 +140,6 @@ a:hover{
   0%{ background-position:0 0;}
   100%{ background-position:-1120px 0;}
 }
-@-o-keyframes ani-search{
-  0%{ background-position:0 0;}
-  100%{ background-position:-1120px 0;}
-}
 #button .blog a{
   right:280px;
   top:80px;
@@ -152,9 +147,9 @@ a:hover{
   height:220px;
   background:url(../img/bg-blog.png) no-repeat left top;
   animation:  ani-blog 0.4s steps(4) infinite;
-  -moz-animation:  ani-blog 0.4s steps(4) infinite; /* Firefox */
-  -webkit-animation:  ani-blog 0.4s steps(4) infinite; /* Safari and Chrome */
-  -o-animation:  ani-blog 0.4s steps(4) infinite; /* Safari and Chrome */
+  //-moz-animation:  ani-blog 0.4s steps(4) infinite; /* Firefox */
+  //-webkit-animation:  ani-blog 0.4s steps(4) infinite; /* Safari and Chrome */
+  //-o-animation:stop; /* Opera */
 }
 @keyframes ani-blog {
   0%{ background-position:0 0;}
@@ -168,10 +163,6 @@ a:hover{
   0%{ background-position:0 0;}
   100%{ background-position:-880px 0;}
 }
-@-o-keyframes ani-blog{
-  0%{ background-position:0 0;}
-  100%{ background-position:-880px 0;}
-}
 
 #button .ycam a{
   right:158px;
@@ -179,10 +170,9 @@ a:hover{
   width:195px;
   height:195px;
   background:url(../img/bg-ycam.png) no-repeat left top;
-  animation:  ani-ycam 0.4s steps(4) infinite;
-  -moz-animation:  ani-ycam 0.4s steps(4) infinite; /* Firefox */
-  -webkit-animation:  ani-ycam 0.4s steps(4) infinite; /* Safari and Chrome */
-  -o-animation:  ani-ycam 0.4s steps(4) infinite; /* Safari and Chrome */
+  //animation:  ani-ycam 0.4s steps(4) infinite;
+  //-moz-animation:  ani-ycam 0.4s steps(4) infinite; /* Firefox */
+  //-webkit-animation:  ani-ycam 0.4s steps(4) infinite; /* Safari and Chrome */
 }
 @keyframes ani-ycam {
   0%{ background-position:0 0;}
@@ -193,10 +183,6 @@ a:hover{
   100%{ background-position:-780px 0;}
 }
 @-webkit-keyframes ani-ycam{
-  0%{ background-position:0 0;}
-  100%{ background-position:-780px 0;}
-}
-@-o-keyframes ani-ycam{
   0%{ background-position:0 0;}
   100%{ background-position:-780px 0;}
 }
