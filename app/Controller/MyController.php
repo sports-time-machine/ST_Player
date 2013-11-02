@@ -31,8 +31,9 @@ class MyController extends AppController {
 			//pr($this->request->data);exit;
 			// TODO バリデーションチェック
 			
-			
+			$this->User->id = $loginUser['User']['id'];
 			$this->User->save($this->request->data);
+			$this->Profile->id = $loginUser['Profile']['id'];
 			$this->Profile->save($this->request->data);
 			
 			
