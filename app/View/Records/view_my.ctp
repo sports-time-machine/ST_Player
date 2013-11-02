@@ -148,7 +148,7 @@
 <ul>
 <?php foreach ($data['RecordObject'] as $key => $recordObject): ?>
 	<li>
-		<a href="../download/<?php echo $data['Record']['player_id'] ?>/<?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext'] ?>" ><?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext']; ?></a>
+		<a href="../records/download/<?php echo $data['Record']['player_id'] ?>/<?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext'] ?>" ><?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext']; ?></a>
 	</li>
 <?php endforeach; ?>
 </ul>
