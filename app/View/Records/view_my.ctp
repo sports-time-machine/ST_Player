@@ -61,11 +61,13 @@
 		<td>
 			<div style="float: left;">
 			<?php 
-				ob_start();
-				QRCode::png(h($data['Record']['record_id']), null, 'H', 5, 2);
-				$img_base64 = base64_encode( ob_get_contents() );
-				ob_end_clean();
-				echo $this->Html->div('qrcode', "<img src='" .sprintf('data:image/png;base64,%s', $img_base64). "'/>");
+				if (!empty($data['Partner'][0]['record_id'])) {
+					ob_start();
+					QRCode::png(h($data['Record']['record_id']), null, 'H', 5, 2);
+					$img_base64 = base64_encode( ob_get_contents() );
+					ob_end_clean();
+					echo $this->Html->div('qrcode', "<img src='" .sprintf('data:image/png;base64,%s', $img_base64). "'/>");
+				}
 			?>
 			</div>
 			<div style="padding-left: 16px; height: 145px; display: table-cell; vertical-align: middle;">
