@@ -26,14 +26,17 @@ class MyController extends AppController {
 		//編集結果が来たら
 		if ($this->request->is('post')) {
 			$this->request->data['User']['id'] = $loginUser['User']['id'];
-			$this->request->data['Profile']['id'] = $loginUser['Profile']['id'];
 			$this->request->data['Profile']['user_id'] = $loginUser['User']['id'];
 			//pr($this->request->data);exit;
 			// TODO バリデーションチェック
 			
 			$this->User->id = $loginUser['User']['id'];
 			$this->User->save($this->request->data);
-			$this->Profile->id = $loginUser['Profile']['id'];
+			
+			$profile = $this->Profile->findByUser_id($loginUser['User']['id']);
+			if (!empty($profile['Profile']['id'])) {
+				$this->Profile->id = $profile['Profile']['id'];
+			}
 			$this->Profile->save($this->request->data);
 			
 			
