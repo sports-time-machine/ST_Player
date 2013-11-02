@@ -71,6 +71,9 @@ class StmHelper extends AppHelper {
 	
 	// パートナーの名前とURLへのリンク
 	public function getPartnerNicknameLink($item) {
+		if (empty($item)) {
+			return null;
+		}
 		$special_partner_list = Configure::read('SPECIAL_PARTNER_LIST');
 		$special_partner_id_list = array_keys($special_partner_list);
 		$html = '';

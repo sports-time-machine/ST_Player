@@ -102,13 +102,21 @@ class RecordsController extends AppController {
 
 		// パートナー情報のセット
 		//pr($data['Partner']);
-		$partner = $this->Partner->getPartnerInfo($data['Partner'][0]['partner_id']);
-		//pr($partner);
-		$data['Partner'][0] = $partner;
+		if (!empty($data['Partner'][0]['partner_id'])) {
+			$partner = $this->Partner->getPartnerInfo($data['Partner'][0]['partner_id']);
+			//pr($partner);
+			$data['Partner'][0] = $partner;
+		} else {
+			$data['Partner'][0] = array();
+		}
 
 		$partners = $this->Partner->getPartnerByRecordId($data['Record']['id']);
 		//pr($partners);
-		$data['partners'] = $partners;
+		if (!empty($partners)) {
+			$data['partners'] = $partners;
+		} else {
+			$data['partners'][0] = array();
+		}
 
 
 		// タグの分割
