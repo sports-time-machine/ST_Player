@@ -136,23 +136,28 @@ $(function(){
 });
 </script>
 
-<!-- メッセージ -->
-<div id="errorDialog" class="alert alert-error fade in" style="display: none;">
-	<span id="errorMessage"></span>
-	<button type="button" class="close" data-dismiss="alert">&times;</button>
-</div>
+<div class="cameraLogin">
+	<!-- メッセージ -->
+	<div id="errorDialog" class="alert alert-error fade in" style="display: none;">
+		<span id="errorMessage"></span>
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+	</div>
 
-<div id="camera">
-	<video id="video" autoplay width="480" height="360"></video> 
-	<canvas id="canvas" style="display: none;"></canvas>
-</div>
+	<div class="camera">
+		<video id="video" autoplay width="480" height="360"></video> 
+		<canvas id="canvas" style="display: none;"></canvas>
+	</div>
 
-<div id="info">
-    <div>選手カードにあるQRコードをかざして</div>
-    <div>ログインボタンを押してください</div>
-</div>
-<?php echo $this->Form->button('ログイン',array('type' => 'button', 'div' => false, 'id' => 'read', 'class' => 'btn')) ?>
+	<div class="info">
+		せんしゅカードのQRコードをうつして<br />
+		「よみこみ」ボタンを押してください
+	</div>
 
-<div class="modal hide fade" id="errorModal">
-    <div class="error modal-body" id="result"></div>
+	<div class="info">
+		<?php echo $this->Form->button('よみこみ',array('type' => 'button', 'div' => false, 'id' => 'read', 'class' => 'btn')) ?>
+	</div>
+
+	<div class="modal hide fade" id="errorModal">
+		<div class="error modal-body" id="result"></div>
+	</div>
 </div>

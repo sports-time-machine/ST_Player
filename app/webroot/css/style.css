@@ -190,21 +190,39 @@ h2 a {
 }
 
 /* ログイン画面 */
-#camera {
-	width: 480px;
-	height: 360px;
-}
-
-#camera video {
-	width: 480px;
-	height: 360px;
-	/*
-	border: 3px solid #cccccc;
+div.cameraLogin div.camera{
+	width: 400px;
+	height: 300px;
+	margin: 0 auto;
+	border: 5px solid #ffffff;
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px; 
-    */
+	-moz-border-radius: 10px;
 }
+
+div.cameraLogin div.info {
+	margin: 0 auto;
+	padding: 10px 0px; 
+
+	text-align: center;
+	font-size: 28px;
+	line-height: 32px;
+}
+div.cameraLogin #read {
+	font-size: 35px;
+	width: 250px;
+	height: 50px;
+}
+
+div.camera video {
+	width: 400px;
+	height: 300px;
+}
+
+div.camera canvas {
+	display:none;
+}
+
 
 /* ユーザプロフィール */
 #profile {
