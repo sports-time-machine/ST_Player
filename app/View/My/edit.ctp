@@ -12,7 +12,7 @@
 	<tr>
 		<th>せんしゅ名</th>
 		<td>
-			<?php echo $this->Form->text('User.username', array('style' => '')); ?>
+			<?php echo $this->Form->text('User.username', array('style' => '', 'autocomplete' => 'off')); ?>
 		</td>
 		<td>
 			<input type="radio" id="ProfileUserUsernameIsPublic" checked="checked"></input><label for="ProfileUserUsernameIsPublic">じぶん</label>
@@ -21,7 +21,7 @@
 	<tr>
 		<th>ニックネーム</th>
 		<td>
-			<?php echo $this->Form->text('User.nickname', array('style' => '')); ?>
+			<?php echo $this->Form->text('User.nickname', array('style' => '', 'autocomplete' => 'off')); ?>
 		</td>
 		<td>
 			<?php echo $this->Form->radio('User.nickname_is_public', $ACCESS_LEVEL_LIST, array('legend' => false, 'style' => '')); ?>
@@ -45,7 +45,7 @@
 	<tr>
 		<th>Twitter ID</th>
 		<td>
-			<?php echo $this->Form->text('Profile.twitter_id', array('style' => '')); ?>
+			<?php echo $this->Form->text('Profile.twitter_id', array('style' => '', 'autocomplete' => 'off')); ?>
 		</td>
 		<td>
 			<?php echo $this->Form->radio('Profile.twitter_id_is_public', $ACCESS_LEVEL_LIST, array('legend' => false, 'style' => '')); ?>
@@ -72,7 +72,7 @@
 	<tr>
 		<th>コメント</th>
 		<td>
-			<?php echo $this->Form->text('Profile.comment', array('style' => 'width: 400px;')); ?>
+			<?php echo $this->Form->text('Profile.comment', array('style' => 'width: 400px;', 'autocomplete' => 'off')); ?>
 		</td>
 		<td>
 			<?php echo $this->Form->radio('Profile.comment_is_public', $ACCESS_LEVEL_LIST, array('legend' => false, 'style' => '')); ?>
