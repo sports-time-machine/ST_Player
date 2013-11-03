@@ -204,6 +204,30 @@ class ApiController extends AppController {
 		return $this->outputHandler(API_SUCCESS);
 	}
 	
+	// 走った記録にオブジェクトを追加
+	public function recordMovieAdd() {
+		$json = null;
+		if (!empty($this->request->data['json'])) {
+			$json = $this->request->data['json'];
+		}
+		$data = json_decode($json, true);
+		
+		// データがあるかどうか
+		if (empty($data)) {
+			return $this->outputHandler(API_ERROR_NO_POST_DATA);
+		}
+		
+		// 新しい記録データかどうか
+		if ($this->Stm->isNewRecord($data)) {
+			return $this->outputHandler(API_ERROR_NOT_EXIST_DATA);
+		}
+		
+		// 登録処理
+		$r = $this->Stm->recordMovieAdd($data);
+		
+		return $this->outputHandler(API_SUCCESS);
+	}
+	
 	// 選手登録
 	// 未登録の場合は新規登録
 	// 登録済みの場合は選手名をアップデート

@@ -36,6 +36,7 @@ class ApiControllerTest extends ControllerTestCase {
 		$this->Stm->query('DELETE FROM records;');
 		$this->Stm->query('DELETE FROM record_images;');
 		$this->Stm->query('DELETE FROM record_objects;');
+		$this->Stm->query('DELETE FROM record_movies;');
 		$this->Stm->query('DELETE FROM partners;');
 		$this->Stm->query('DELETE FROM images;');
 	}
@@ -340,6 +341,38 @@ class ApiControllerTest extends ControllerTestCase {
 			'result' => array('message' => 'success', 'data' => null),
 			);
 		$this->assertEquals($expected, json_decode($r, true));
+		
+		
+		
+		
+		
+		$image = base64_encode(file_get_contents(APP . 'webroot' . DS . 'img' . DS . '00000YDXD1-1.zip'));
+		
+		// オブジェクトデータ追加
+		echo "recordMovieAdd - OK";
+		$array = array(
+			'Record' => array( // 走った記録
+				'record_id' => 'ABCD3',			// 記録ID(QRコード)
+				),
+			'Movie' => array( // 動画 1個
+				0 => array(
+					'filename' => '00000YDXD1-1',		// ファイル名 文字列
+					'ext' => 'zip',				// 拡張子 文字列
+					'mime' => 'application/octet-stream',	// 
+					'data' => $image,			// オブジェクトデータをBASE64エンコードしたもの 文字列
+					),
+				),
+			);
+		
+		$data = array('json' => json_encode($array));
+		$r = $this->myTestAction('/api/recordMovieAdd', array('data' => $data, 'method' => 'post'));
+		pr($r);
+		$expected = array(
+			'code' => '200',
+			'result' => array('message' => 'success', 'data' => null),
+			);
+		$this->assertEquals($expected, json_decode($r, true));
+		
 		
 	}
 }
