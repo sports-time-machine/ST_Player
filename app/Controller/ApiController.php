@@ -206,11 +206,11 @@ class ApiController extends AppController {
 	
 	// 走った記録にオブジェクトを追加
 	public function recordMovieAdd() {
-		$json = null;
-		if (!empty($this->request->data['json'])) {
-			$json = $this->request->data['json'];
+		$data = null;
+		if (!empty($this->request->data)) {
+			$data = $this->request->data;
 		}
-		$data = json_decode($json, true);
+		//pr($data);exit;
 		
 		// データがあるかどうか
 		if (empty($data)) {

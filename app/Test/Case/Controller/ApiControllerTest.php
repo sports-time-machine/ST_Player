@@ -346,7 +346,8 @@ class ApiControllerTest extends ControllerTestCase {
 		
 		
 		
-		$image = base64_encode(file_get_contents(APP . 'webroot' . DS . 'img' . DS . '00000YDXD1-1.zip'));
+		//$image = base64_encode(file_get_contents(APP . 'webroot' . DS . 'img' . DS . '00000YDXD1-1.zip'));
+		$image = base64_encode(file_get_contents("C:\\ST\\Movie\\0\\0\\2\\S\\H\\0\\0\\0\\0\\0\\00000HS200.zip"));
 		
 		// オブジェクトデータ追加
 		echo "recordMovieAdd - OK";
@@ -360,11 +361,12 @@ class ApiControllerTest extends ControllerTestCase {
 					'ext' => 'zip',				// 拡張子 文字列
 					'mime' => 'application/octet-stream',	// 
 					'data' => $image,			// オブジェクトデータをBASE64エンコードしたもの 文字列
+					'size' => filesize("C:\\ST\\Movie\\0\\0\\2\\S\\H\\0\\0\\0\\0\\0\\00000HS200.zip"),
 					),
 				),
 			);
 		
-		$data = array('json' => json_encode($array));
+		$data = array('data' => $array);
 		$r = $this->myTestAction('/api/recordMovieAdd', array('data' => $data, 'method' => 'post'));
 		pr($r);
 		$expected = array(
