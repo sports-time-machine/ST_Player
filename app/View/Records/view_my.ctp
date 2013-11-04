@@ -153,4 +153,10 @@
 <?php endforeach; ?>
 </ul>
 
+<h2>3Dムービー</h2>
+
+<ul>
+近日公開予定！
+</ul>
+
 <div class="center"><a class="btn" href="<?php echo $this->Html->url("/My/"); ?>">マイページにもどる</a></div>
