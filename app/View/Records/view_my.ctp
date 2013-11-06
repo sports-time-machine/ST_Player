@@ -145,23 +145,18 @@
 
 <h2>3Dオブジェクト</h2>
 
-<ul>
 <?php foreach ($data['RecordObject'] as $key => $recordObject): ?>
-	<li>
-		<a href="../my/download/<?php echo $data['Record']['player_id'] ?>/<?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext'] ?>" ><?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext']; ?></a>
-	</li>
+	<div style="margin-bottom: 6px;">
+		<a class="btn" href="../my/download/<?php echo $data['Record']['player_id'] ?>/<?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext'] ?>" ><?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext']; ?></a>
+	</div>
 <?php endforeach; ?>
-</ul>
 
 <h2>3Dムービー</h2>
 
-<ul>
 <?php if (!empty($data['RecordMovie'][0]['image_id'])): ?>
 
 	<?php foreach ($data['RecordMovie'] as $key => $item): ?>
-		<li>
-			<a href="<?php echo $this->Stm->url($data['Record']['player_id'], $item['Image']['filename'] . '.' . $item['Image']['ext']); ?>"><?php echo $item['Image']['filename'] . '.' . $item['Image']['ext']; ?></a>
-		</li>
+		<a class="btn" href="<?php echo $this->Stm->url($data['Record']['player_id'], $item['Image']['filename'] . '.' . $item['Image']['ext']); ?>"><?php echo $item['Image']['filename'] . '.' . $item['Image']['ext']; ?></a>
 	<?php endforeach; ?>
 
 	<div class="alert alert-block" style="margin-top: 20px; line-height: 30px;">
@@ -181,6 +176,5 @@
 <?php else: ?>
 近日公開予定！
 <?php endif; ?>
-</ul>
 
 <div class="center"><a class="btn" href="<?php echo $this->Html->url("/My/"); ?>">マイページにもどる</a></div>
