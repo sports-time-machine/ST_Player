@@ -142,6 +142,10 @@ class Record extends AppModel {
 					'fields' => array('record_id', 'image_id'),
 				//'order' => 'RecordObject.no',
 				),
+				'RecordMovie' => array(
+					'className' => 'RecordMovie',
+					'fields' => array('record_id', 'image_id'),
+				),
 				'Partner' => array(
 					'className' => 'Partner',
 					'fields' => array('record_id', 'partner_id'),

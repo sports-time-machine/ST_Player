@@ -113,18 +113,35 @@
 
 <h2>3Dオブジェクト</h2>
 
-<ul>
 <?php foreach ($data['RecordObject'] as $key => $recordObject): ?>
-	<li>
-		<a href="../records/download/<?php echo $data['Record']['player_id'] ?>/<?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext'] ?>" ><?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext']; ?></a>
-	</li>
+	<div style="margin-bottom: 6px;">
+		<a class="btn" href="../records/download/<?php echo $data['Record']['player_id'] ?>/<?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext'] ?>" ><?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext']; ?></a>
+	</div>
 <?php endforeach; ?>
-</ul>
 
 <h2>3Dムービー</h2>
 
-<ul>
+<?php if (!empty($data['RecordMovie'][0]['image_id'])): ?>
+	<?php foreach ($data['RecordMovie'] as $key => $item): ?>
+		<a class="btn" href="<?php echo $this->Stm->url($data['Record']['player_id'], $item['Image']['filename'] . '.' . $item['Image']['ext']); ?>"><?php echo $item['Image']['filename'] . '.' . $item['Image']['ext']; ?></a>
+	<?php endforeach; ?>
+
+	<div class="alert alert-block" style="margin-top: 20px; line-height: 30px;">
+		<h3>3Dムービーの再生方法</h3>
+		1. <a class="btn" href="<?php echo $this->Stm->url($data['Record']['player_id'], $item['Image']['filename'] . '.' . $item['Image']['ext']); ?>"><?php echo $item['Image']['filename'] . '.' . $item['Image']['ext']; ?></a>
+		ボタンを押して3Dムービーデータをダウンロードします<br />
+
+		2. <a href="<?php echo $this->base . '/upload/ST_Viewer-0810-1041.zip'?>">3Dムービービューアー</a>をダウンロードします<br />
+
+		3. 3Dムービービューアーを展開してできた ST_Viewer-0810-1041.exe に、3Dムービーデータの1つをドラッグ＆ドロップします<br />
+
+		4. F1キーを押すと再生がはじまります<br />
+
+		&nbsp;&nbsp;&nbsp;&nbsp;再生中に数字の1~6, 0, 9を押すとカメラの位置が変わります<br />
+		<br/>
+	</div>
+<?php else: ?>
 近日公開予定！
-</ul>
+<?php endif; ?>
 
 <div class="center"><a class="btn" href="<?php echo $this->Html->url("/n/{$data['Record']['user_id']}"); ?>">せんしゅのページにもどる</a></div>

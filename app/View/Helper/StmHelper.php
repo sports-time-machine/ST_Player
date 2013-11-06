@@ -14,7 +14,7 @@ class StmHelper extends AppHelper {
 		$char_array = str_split(strrev($record_id));
 		$path = implode('/', $char_array);
 		
-		$filePath = '../upload/' . $path . '/' . $filename;
+		$filePath = $this->base . '/upload/' . $path . '/' . $filename;
 
 		return $filePath;
 	}
@@ -103,6 +103,10 @@ class StmHelper extends AppHelper {
 		}
 	}
 	
+	// 3Dムービーへのリンク
+	public function getRecordMovieUrl($data) {
+		pr($data);
+	}
 	
 	
 	// nicknameか、無ければUser.idを表示。非公開の場合は非公開表示
