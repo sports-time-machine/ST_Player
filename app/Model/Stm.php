@@ -523,6 +523,72 @@ class Stm extends AppModel
 		return true;
 	}
 	
+	// 走った記録にムービーデータを追加する
+	public function recordMovieAddWithoutFile($data) {
+		//pr($data);exit;
+		// 新規データは対象外
+		if ($this->isNewRecord($data)) {
+			return false;
+		}
+		$this->loadModel(array('User', 'Record', 'RecordMovie', 'Partner', 'Image'));
+		$result = true;
+		
+		// 記録の呼び出し(Userも呼び出す)
+		$this->Record->bindForAddImage();
+		$record = $this->Record->findByRecord_id($data['Record']['record_id']);
+		//pr($record);exit;
+		
+		// 以前のオブジェクトをすべて削除する
+		$this->recordMovieDelete($record);
+		
+		
+		// トランザクション開始
+		$this->begin();
+		
+		// 記録オブジェクトの保存
+		foreach($data['Movie'] as $image) {
+			$this->Image->create();
+			$r = $this->Image->save($image);
+			//pr($image);
+			//pr($this->Image->id);
+			if ($r === false) {
+				$result = false;
+			}
+			
+			// オブジェクトと記録の関連付け
+			$recordMovie = array('record_id' => $record['Record']['id'], 'image_id' => $this->Image->id);
+			$this->RecordMovie->create();
+			$r = $this->RecordMovie->save($recordMovie);
+			if ($r === false) {
+				$result = false;
+			}
+		}
+		
+		// トランザクション終了
+		if ($result === false) {
+			$this->rollback();
+			return false;
+		}
+		$this->commit();
+		/*
+		// オブジェクトを保存
+		if (!empty($data['Movie'])) {
+			// ディレクトリを作成
+			$path = $this->generateImagePathFromPlayerId($record['User']['player_id']);
+			$fullPath = $this->IMAGE_DIR . DS . $path;
+			@mkdir($fullPath, 0755, true);
+			
+			foreach($data['Movie'] as $image) {
+				$file = $fullPath . DS . $image['filename'] . '.' . $image['ext'];
+				//pr($file);
+				$data = base64_decode($image['data']);
+				file_put_contents($file, $data);
+			}
+		}
+		*/
+		return true;
+	}
+	
 	// 走った記録を削除する
 	public function recordDelete($record_id) {
 		
