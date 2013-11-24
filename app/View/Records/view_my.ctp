@@ -161,6 +161,11 @@
 
 	<div class="alert alert-block" style="margin-top: 20px; line-height: 30px;">
 		<h3>3Dムービーの再生方法</h3>
+
+		<div>
+		<iframe width="560" height="315" src="//www.youtube.com/embed/JlcB3EOTXSg" frameborder="0" allowfullscreen></iframe>
+		</div>
+
 		1. <a class="btn" href="<?php echo $this->Stm->url($data['Record']['player_id'], $item['Image']['filename'] . '.' . $item['Image']['ext']); ?>"><?php echo $item['Image']['filename'] . '.' . $item['Image']['ext']; ?></a>
 		ボタンを押して3Dムービーデータをダウンロードします<br />
 
