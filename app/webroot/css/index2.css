@@ -117,73 +117,90 @@ a:hover{
   -o-transition: 0.3s ease-in-out;
   }
 
-#button .search a{
+#button .btn1 a{
   right:0;
   top:0;
   width:280px;
   height:280px;
-  background:url(../img/bg-search.png) no-repeat left top;
-  //animation:  ani-search 0.4s steps(4) infinite;
-  //-moz-animation:  ani-search 0.4s steps(4) infinite; /* Firefox */
-  //-webkit-animation:  ani-search 0.4s steps(4) infinite; /* Safari and Chrome */
-  //-o-animation:stop; /* Opera */
+  background:url(../img/bg-btn1.png) no-repeat left top;
+  //animation:  ani-btn1 0.4s steps(4) infinite;
+  //-moz-animation:  ani-btn1 0.4s steps(4) infinite; /* Firefox */
+  //-webkit-animation:  ani-btn1 0.4s steps(4) infinite; /* Safari and Chrome */
 }
-@keyframes ani-search {
+@keyframes ani-btn1 {
   0%{ background-position:0 0;}
   100%{ background-position:-1120px 0;}
 }
-@-moz-keyframes ani-search{
+@-moz-keyframes ani-btn1{
   0%{ background-position:0 0;}
   100%{ background-position:-1120px 0;}
 }
-@-webkit-keyframes ani-search{
+@-webkit-keyframes ani-btn1{
   0%{ background-position:0 0;}
   100%{ background-position:-1120px 0;}
 }
-#button .blog a{
+@-o-keyframes ani-btn1{
+  0%{ background-position:0 0;}
+  100%{ background-position:-1120px 0;}
+}
+#button .btn2 a{
   right:280px;
   top:80px;
   width:220px;
   height:220px;
-  background:url(../img/bg-blog.png) no-repeat left top;
-  //animation:  ani-blog 0.4s steps(4) infinite;
-  //-moz-animation:  ani-blog 0.4s steps(4) infinite; /* Firefox */
-  //-webkit-animation:  ani-blog 0.4s steps(4) infinite; /* Safari and Chrome */
-  //-o-animation:stop; /* Opera */
+  background:url(../img/bg-btn2.png) no-repeat left top;
+  //animation:  ani-btn2 0.4s steps(4) infinite;
+  //-moz-animation:  ani-btn2 0.4s steps(4) infinite; /* Firefox */
+  //-webkit-animation:  ani-btn2 0.4s steps(4) infinite; /* Safari and Chrome */
 }
-@keyframes ani-blog {
+@keyframes ani-btn2 {
   0%{ background-position:0 0;}
   100%{ background-position:-880px 0;}
 }
-@-moz-keyframes ani-blog{
+@-moz-keyframes ani-btn2{
   0%{ background-position:0 0;}
   100%{ background-position:-880px 0;}
 }
-@-webkit-keyframes ani-blog{
+@-webkit-keyframes ani-btn2{
+  0%{ background-position:0 0;}
+  100%{ background-position:-880px 0;}
+}
+@-o-keyframes ani-btn2{
   0%{ background-position:0 0;}
   100%{ background-position:-880px 0;}
 }
 
-#button .ycam a{
+#button .btn3 a{
   right:158px;
   bottom:0;
   width:195px;
   height:195px;
-  background:url(../img/bg-ycam.png) no-repeat left top;
-  //animation:  ani-ycam 0.4s steps(4) infinite;
-  //-moz-animation:  ani-ycam 0.4s steps(4) infinite; /* Firefox */
-  //-webkit-animation:  ani-ycam 0.4s steps(4) infinite; /* Safari and Chrome */
-  //-o-animation:stop; /* Opera */
+  background:url(../img/bg-btn3.png) no-repeat left top;
+  //animation:  ani-btn3 0.4s steps(4) infinite;
+  //-moz-animation:  ani-btn3 0.4s steps(4) infinite; /* Firefox */
+  //-webkit-animation:  ani-btn3 0.4s steps(4) infinite; /* Safari and Chrome */
 }
-@keyframes ani-ycam {
+@keyframes ani-btn3 {
   0%{ background-position:0 0;}
   100%{ background-position:-780px 0;}
 }
-@-moz-keyframes ani-ycam{
+@-moz-keyframes ani-btn3{
   0%{ background-position:0 0;}
   100%{ background-position:-780px 0;}
 }
-@-webkit-keyframes ani-ycam{
+@-webkit-keyframes ani-btn3{
   0%{ background-position:0 0;}
   100%{ background-position:-780px 0;}
+}
+@-o-keyframes ani-btn3{
+  0%{ background-position:0 0;}
+  100%{ background-position:-780px 0;}
+}
+
+#button .mediaarts a{
+  right:10px;
+  top:0;
+  width:280px;
+  height:280px;
+  background:url(../img/mediaarts.png) no-repeat left top;
 }

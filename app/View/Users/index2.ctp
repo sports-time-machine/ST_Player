@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="canonical" href="http://www.sptmy.net/" />
 <title>スポーツタイムマシン山口事務局</title>
+<meta name="description" content="山口情報芸術センター［YCAM］10周年記念祭「LIFE by MEDIA 国際コンペティション」をきっかけに、山口市道場門前商店街に作られた、世界で最初の“スポーツのタイムマシン”です。">
+<meta name="keywords" content="山口,情報芸術センター,YCAM,スポーツ,タイムマシン,犬飼博士,安藤僚子">
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript" ></script>
 <script src="js/highcharts/highcharts.js" type="text/javascript" ></script>
 <script src="js/highcharts/modules/exporting.js" type="text/javascript" ></script>
@@ -132,9 +135,10 @@ $(function () {
     <div class="fade">
     <img src="./img/stm-logo.png" align="left" />
     <ul id="button">
-      <li class="search"><a href="http://www.sptmy.net/records/search/"><img src="./img/txt-search.png" /></a></li>
-      <li class="blog"><a href="http://sportstimemacine.blogspot.jp/"><img src="./img/txt-blog.png" /></a></li>
-      <li class="ycam"><a href="http://10th.ycam.jp/"><img src="./img/txt-ycam.png" /></a></li>
+      <li class="mediaarts"><a href="http://j-mediaarts.jp/awards/excellence_award?locale=ja&section_id=2"><img src="./img/txt-mediaarts.png" /></a></li>
+      <!--li class="btn1"><a href="http://www.sptmy.net/records/search/"><img src="./img/txt-btn1.png" /></a></li-->
+      <li class="btn2"><a href="http://sportstimemacine.blogspot.jp/"><img src="./img/txt-btn2.png" /></a></li>
+      <li class="btn3"><a href="http://www.sptmy.net/records/search/"><img src="./img/txt-btn3.png" /></a></li>
     </ul>
     <!--img src="./img/ycam10th.gif" align="right" /-->
     </div>
@@ -168,20 +172,25 @@ $(function () {
       <p>スクリーンに映し出される昔の記録と「かけっこ」できる装置です。
       自分の記録だけではなく、家族や友達、動物の記録に挑戦することができます。
       </p>
-      <p>
-      このタイムマシンをみんなで作り、長い期間大切に運営していくプロジェクトです。
+      <p>2013年の夏、<a href="http://10th.ycam.jp/" target="_blank">山口情報芸術センター［YCAM］10周年記念祭</a>をきっかけに、世界で最初の“スポーツのタイムマシン”が誕生しました。
       </p>
-      <p>2013年7月6日から9月1日まで行われた<a href="http://10th.ycam.jp/" target="_blank">山口情報芸術センター(YCAM)10周年記念祭</a>で、世界初の「スポーツタイムマシン」をお披露目しました。
+      <p>7月6日から12月1日までに 3178 人が登録し、11149 回走りました。</p>
+    </div>
+    <div class="w50">
+      <img src="./img/stm-pic2.jpg" />
+    </div>
+    <div class="w50">
+      <p>山口市道場門前商店街に作られたスポーツタイムマシンは、たくさんの人に利用され、たくさんの笑顔を生みだしました。</p>
+      <p>2013年12月5日、山口のスポーツタイムマシンは、<a href="http://j-mediaarts.jp/awards/excellence_award?locale=ja&section_id=2" target="_blank">第17回文化庁メディア芸術祭 エンターテインメント部門「優秀賞」</a>を受賞しました。</p>
+      <p>2014年2月には、東京のどこかでスポーツタイムマシンを体験することが出来るかも知れません。
       </p>
     </div>
     <div class="w50">
-      <iframe width="400" height="283" src="//www.youtube.com/embed/s46iI-XN3do" frameborder="0" allowfullscreen></iframe>
+      <img src="./img/stm-pic3.jpg" />
     </div>
     <div class="w50">
-      <p>7月6日から9月1日までに 2386 人が登録し、7888 回走りました。</p>
-      <p>11月1日から始まる10周年記念祭第2期では、さらにバージョンアップした「スポーツタイムマシン」で遊ぶことができます。</p>
-      <p>家族や友達と一緒に「スポーツタイムマシン」を楽しんでください！
-      </p>
+      <p>山口では、スポーツタイムマシンの楽しさを忘れられない人たちが「スポーツタイムマシン保存会(仮)」を発足しました。</p>
+      <p>来年も楽しく走るにはどうしたらいいでしょう？みんなで一緒に考えましょう。</p>
     </div>
   </div>
 </div><!-- /about -->
@@ -233,22 +242,7 @@ $(function () {
 
   <div class="wrapper-inner center">
     <p>YCAM10周年記念祭 LIFE by MEDIA 国際コンペティション 受賞・展示作品</p>
-    <table>
-      <tr>
-        <td>期間</td>
-	<td>第2期：11月1日(金)～12月1日(日) 10時～19時<br/>
-	    ※火曜定休
-	</td>
-      </tr>
-      <tr>
-        <td>会場</td>
-	<td>山口市道場門前商店街 オアシスどうもん横</td>
-      </tr>
-      <tr>
-        <td>料金</td>
-	<td>無料</td>
-      </tr>
-    </table>
+    <p>第17回文化庁メディア芸術祭 エンターテインメント部門「優秀賞」受賞</a>
     <p>オフィシャルブログ：<a href="http://sportstimemacine.blogspot.jp/" target="_blank">スポーツタイムマシンをつくろう！</a>
 　</div>
 </div><!-- info -->
