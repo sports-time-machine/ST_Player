@@ -531,6 +531,12 @@ class Stm extends AppModel
 			return false;
 		}
 		$this->loadModel(array('User', 'Record', 'RecordMovie', 'Partner', 'Image'));
+		$result = true;
+		
+		// 記録の呼び出し(Userも呼び出す)
+		$this->Record->bindForAddImage();
+		$record = $this->Record->findByRecord_id($data['Record']['record_id']);
+		//pr($record);exit;
 		
 		// ファイルが存在するなら継続
 		if (!empty($data['Movie'])) {
@@ -548,13 +554,6 @@ class Stm extends AppModel
 				$this->log("exists {$file}");
 			}
 		}
-		
-		$result = true;
-		
-		// 記録の呼び出し(Userも呼び出す)
-		$this->Record->bindForAddImage();
-		$record = $this->Record->findByRecord_id($data['Record']['record_id']);
-		//pr($record);exit;
 		
 		// 以前のオブジェクトをすべて削除する
 		$this->recordMovieDelete($record);
