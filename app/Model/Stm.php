@@ -531,6 +531,24 @@ class Stm extends AppModel
 			return false;
 		}
 		$this->loadModel(array('User', 'Record', 'RecordMovie', 'Partner', 'Image'));
+		
+		// ファイルが存在するなら継続
+		if (!empty($data['Movie'])) {
+			// ディレクトリを作成
+			$path = $this->generateImagePathFromPlayerId($record['User']['player_id']);
+			$fullPath = $this->IMAGE_DIR . DS . $path;
+			@mkdir($fullPath, 0755, true);
+			
+			foreach($data['Movie'] as $image) {
+				$file = $fullPath . DS . $image['filename'] . '.' . $image['ext'];
+				if (!file_exists($file)) {
+					$this->log("not exists {$file}");
+					return false;
+				}
+				$this->log("exists {$file}");
+			}
+		}
+		
 		$result = true;
 		
 		// 記録の呼び出し(Userも呼び出す)
@@ -570,22 +588,7 @@ class Stm extends AppModel
 			return false;
 		}
 		$this->commit();
-		/*
-		// オブジェクトを保存
-		if (!empty($data['Movie'])) {
-			// ディレクトリを作成
-			$path = $this->generateImagePathFromPlayerId($record['User']['player_id']);
-			$fullPath = $this->IMAGE_DIR . DS . $path;
-			@mkdir($fullPath, 0755, true);
-			
-			foreach($data['Movie'] as $image) {
-				$file = $fullPath . DS . $image['filename'] . '.' . $image['ext'];
-				//pr($file);
-				$data = base64_decode($image['data']);
-				file_put_contents($file, $data);
-			}
-		}
-		*/
+		
 		return true;
 	}
 	
