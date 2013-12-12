@@ -248,6 +248,9 @@ class ApiController extends AppController {
 		
 		// 登録処理
 		$r = $this->Stm->recordMovieAddWithoutFile($data);
+		if ($r === false) {
+			return $this->outputHandler(API_ERROR_NOT_EXIST_DATA);
+		}
 		
 		return $this->outputHandler(API_SUCCESS);
 	}
