@@ -556,7 +556,7 @@ class Stm extends AppModel
 		}
 		
 		// 以前のオブジェクトをすべて削除する
-		$this->recordMovieDelete($record);
+		$this->recordMovieDeleteWithoutFile($record);
 		
 		
 		// トランザクション開始
@@ -649,6 +649,22 @@ class Stm extends AppModel
 			$file = $fullPath . DS . $recordImage['Image']['filename'] . '.' . $recordImage['Image']['ext'];
 			unlink($file);
 			
+			$this->Image->delete($recordImage['Image']['id']);
+			$this->RecordMovie->delete($recordImage['RecordMovie']['id']);
+		}
+		
+		return true;
+	}
+	
+	// 走った記録のムービーを、レコードだけ削除する
+	public function recordMovieDeleteWithoutFile($record) {
+		$this->loadModel(array('RecordMovie', 'Image'));
+		$recordImages = $this->RecordMovie->find('all', array('conditions' => array('record_id' => $record['Record']['id'])));
+		
+		$path = $this->generateImagePathFromPlayerId($record['User']['player_id']);
+		$fullPath = $this->IMAGE_DIR . DS . $path;
+		
+		foreach($recordImages as $recordImage) {
 			$this->Image->delete($recordImage['Image']['id']);
 			$this->RecordMovie->delete($recordImage['RecordMovie']['id']);
 		}
