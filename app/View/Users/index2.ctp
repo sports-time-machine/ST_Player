@@ -155,11 +155,10 @@ $(function () {
 
   <div class="wrapper-inner center">
     <p>
-    	2月5日(水)から2月14日（金）まで東京ミッドタウンで体験できます！<br>
+    	2月5日(水)から2月14日（金）まで東京ミッドタウン ガレリアB1Fで体験できます！<br>
     	
-		<iframe style="border: 1px solid #444444" width="570" height="120" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?q=35.666558,139.730945&amp;hl=ja&amp;gl=jp&amp;ie=UTF8&amp;t=m&amp;z=14&amp;brcurrent=3,0x60188b789709cb65:0xe977258f4bc349,0&amp;ll=35.666558,139.730945&amp;output=embed"></iframe><br />
-	</p>
-	<p>
+		<iframe style="margin: 12px 0px; border: 1px solid #444444;" width="680" height="120" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?q=35.666558,139.730945&amp;hl=ja&amp;gl=jp&amp;ie=UTF8&amp;t=m&amp;z=14&amp;brcurrent=3,0x60188b789709cb65:0xe977258f4bc349,0&amp;ll=35.666558,139.730945&amp;output=embed"></iframe><br />
+
     	現在までに <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました
     </p>
     <p></p>
