@@ -154,7 +154,11 @@ $(function () {
   <p class="center impact">スポーツタイムマシンのいま</p>
 
   <div class="wrapper-inner center">
-    <p>7月6日から現在までに <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました</p>
+    <p>
+    	2月5日(水)から2月14日（金）まで東京ミッドタウンで体験できます！<br>
+    	現在までに <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました
+    </p>
+    <p></p>
     <p><div id="graph2"></div></p>
     <p><div id="graph"></div></p>
 　</div>

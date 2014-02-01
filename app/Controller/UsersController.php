@@ -24,10 +24,10 @@ class UsersController extends AppController {
 		}
 		
 		// 日々のデータ
-		$sql = "SELECT DATE_FORMAT(created, '%Y-%m-%d') AS date, count(id) AS count FROM st_player.records WHERE '2013-07-06' < created GROUP BY DATE_FORMAT(created, '%Y%m%d');";
+		$sql = "SELECT DATE_FORMAT(created, '%Y-%m-%d') AS date, count(id) AS count FROM st_player.records WHERE '2014-02-05' < created GROUP BY DATE_FORMAT(created, '%Y%m%d');";
 		$count_records = $this->User->query($sql);
 		$count_records = Set::combine($count_records, '{n}.0.date', '{n}.0.count');
-		$sql = "SELECT DATE_FORMAT(created, '%Y-%m-%d') AS date, count(id) AS count FROM st_player.users WHERE '2013-07-06' < created GROUP BY DATE_FORMAT(created, '%Y%m%d');";
+		$sql = "SELECT DATE_FORMAT(created, '%Y-%m-%d') AS date, count(id) AS count FROM st_player.users WHERE '2014-02-05' < created GROUP BY DATE_FORMAT(created, '%Y%m%d');";
 		$count_users = $this->User->query($sql);
 		$count_users = Set::combine($count_users, '{n}.0.date', '{n}.0.count');
 		/*
@@ -35,8 +35,8 @@ class UsersController extends AppController {
 		pr($count_users);
 		*/
 		// カウンター表示用
-		$start_time = strtotime('2013-07-06') + 43200;
-		$end_time   = strtotime('2013-12-01') + 43200;
+		$start_time = strtotime('2014-02-05') + 43200;
+		$end_time   = strtotime('2014-02-14') + 43200;
 		
 		$count_records_sum  = 0;
 		$count_users_sum    = 0;
@@ -52,8 +52,8 @@ class UsersController extends AppController {
 		
 		$keys = array();
 		// グラフ表示用
-		$start_time = strtotime('2013-11-01') + 43200;
-		$end_time   = strtotime('2013-12-01') + 43200;
+		$start_time = strtotime('2014-02-05') + 43200;
+		$end_time   = strtotime('2014-02-14') + 43200;
 		$count_records_full = array();
 		$count_users_full   = array();
 		
