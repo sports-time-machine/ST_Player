@@ -156,6 +156,10 @@ $(function () {
   <div class="wrapper-inner center">
     <p>
     	2月5日(水)から2月14日（金）まで東京ミッドタウンで体験できます！<br>
+    	
+		<iframe style="border: 1px solid #444444" width="570" height="120" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?q=35.666558,139.730945&amp;hl=ja&amp;gl=jp&amp;ie=UTF8&amp;t=m&amp;z=14&amp;brcurrent=3,0x60188b789709cb65:0xe977258f4bc349,0&amp;ll=35.666558,139.730945&amp;output=embed"></iframe><br />
+	</p>
+	<p>
     	現在までに <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました
     </p>
     <p></p>
@@ -169,6 +173,11 @@ $(function () {
 <div class="wrapper" id="about">
   <p class="center impact">スポーツタイムマシンとは？</p>
   <div class="wrapper-inner">
+    
+    <p style="width: 560px; margin: 20px auto;">
+    	<iframe width="560" height="315" src="//www.youtube.com/embed/P5KlRJnz79g" frameborder="0" allowfullscreen></iframe>
+    </p>
+
     <div class="w50">
       <img src="./img/stm-400px.jpg" />
     </div>
