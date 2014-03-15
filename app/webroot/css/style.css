@@ -168,6 +168,13 @@ h2 a {
 	left: 32px;
 }
 
+#header .language {
+	text-align: right;
+	position: absolute;
+	top: 22px;
+	right: 460px;
+}
+
 #header .welcome {
 	text-align: right;
 	position: absolute;

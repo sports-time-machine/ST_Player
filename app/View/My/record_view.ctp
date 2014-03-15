@@ -1,19 +1,19 @@
-<h1>マイページ</h1>
+<h1><?php echo __('マイページ'); ?></h1>
 
 <h2>
-    きろくデータ
+	<?php echo __('きろくデータ'); ?>
 </h2>
 
 <?php if (h($record['Record']['is_public']) == false){ ?>
 <div class="alert alert-block">
-    このきろくデータは、ほかの人がみることができません<br />
-    ほかの人がみることができるようにするには、「きろくデータへんこう」から「きろくをこうかいする」にチェックをいれてください
+	<?php echo __('このきろくデータは、ほかの人がみることができません'); ?><br />
+	<?php echo __('ほかの人がみることができるようにするには、「きろくデータへんこう」から「きろくをこうかいする」にチェックをいれてください'); ?>
 </div>
 <?php } ?>
 
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span3">きろくID</th>
+		<th class="span3"><?php echo __('きろくID'); ?></th>
 		<td>
         <?php 
             echo h($record['Record']['record_id']); 
@@ -26,12 +26,12 @@
         </td>
 	</tr>
 	<tr>
-		<th>はしった日</th>
+		<th><?php echo __('はしった日'); ?></th>
 		<td><?php echo h($record['Record']['register_date']); ?></td>
 	</tr>
     <?php if (isset($partner)) {?>
     <tr>
-		<th>いっしょにはしった人</th>
+		<th><?php echo __('いっしょにはしった人'); ?></th>
 		<td>
             <?php
                 if ($partner['is_linked'] == true){
@@ -43,7 +43,7 @@
         </td>
 	</tr>
     <tr>
-		<th>いっしょにはしった人のきろくID</th>
+		<th><?php echo __('いっしょにはしった人のきろくID'); ?></th>
 		<td>
         <?php 
         if(isset($partner)){
@@ -59,7 +59,7 @@
 	</tr>
     <?php } ?>
 	<tr>
-		<th>タグ</th>
+		<th><?php echo __('タグ'); ?></th>
 		<td>       
             <?php 
             foreach ($record['Record']['tags'] as $tag){
@@ -70,15 +70,15 @@
         </td>
 	</tr>
 	<tr>
-		<th>コメント</th>
+		<th><?php echo __('コメント'); ?></th>
 		<td><?php echo h($record['Record']['comment']); ?></td>
 	</tr>
 </table>
 <?php if ($record['Record']['user_id'] == $LOGIN_USER['User']['id']) : ?>
-    <p><a class="btn" href="<?php echo $this->Html->url("/My/record_edit/".h($record['Record']['record_id'])); ?>">きろくデータへんこう</a></p>
+    <p><a class="btn" href="<?php echo $this->Html->url("/My/record_edit/".h($record['Record']['record_id'])); ?>"><?php echo __('きろくデータへんこう'); ?></a></p>
 <?php endif?>
 
-<h2>サムネイル</h2>
+<h2><?php echo __('サムネイル'); ?></h2>
 
 <div style="width: 1000px;">
     <?php
@@ -102,7 +102,7 @@
     ?>
 </div>
 
-<h2>3Dオブジェクト</h2>
+<h2><?php echo __('3Dオブジェクト'); ?></h2>
 
 <ul>
 <?php foreach ($record['RecordObject'] as $key => $recordObject): ?>
@@ -112,4 +112,4 @@
 <?php endforeach; ?>
 </ul>
 
-<div class="center"><a class="btn" href="<?php echo $this->Html->url("/My/"); ?>">マイページにもどる</a></div>
+<div class="center"><a class="btn" href="<?php echo $this->Html->url("/My/"); ?>"><?php echo __('マイページにもどる'); ?></a></div>

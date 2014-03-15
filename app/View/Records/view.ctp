@@ -1,4 +1,4 @@
-<h1>はしったきろく</h1>
+<h1><?php echo __('はしったきろく'); ?></h1>
 
 
 <h2>
@@ -14,7 +14,7 @@
 
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span2">はしった人</th>
+		<th class="span2"><?php echo __('はしった人'); ?></th>
 		<td class="span4">
 			<?php echo $this->Stm->getUserNicknameLink($data); ?>
 		</td>
@@ -25,7 +25,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th>きろくID</th>
+		<th><?php echo __('きろくID'); ?></th>
 		<td>
 			<div style="float: left;">
 			<?php 
@@ -52,7 +52,7 @@
 					ob_end_clean();
 					echo $this->Html->div('qrcode', "<img src='" .sprintf('data:image/png;base64,%s', $img_base64). "'/>");
 				} else {
-					echo "記録データが見つかりません！";
+					echo __("記録データが見つかりません！");
 				}
 			?>
 			</div>
@@ -71,7 +71,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th>タグ</th>
+		<th><?php echo __('タグ'); ?></th>
 		<td colspan="3">
 			<?php 
 			foreach ($data['Record']['tags'] as $tag){
@@ -82,12 +82,12 @@
 		</td>
 	</tr>
 	<tr>
-		<th>コメント</th>
+		<th><?php echo __('コメント'); ?></th>
 		<td colspan="3"><?php echo h($data['Record']['comment']); ?></td>
 	</tr>
 </table>
 
-<h2>サムネイル</h2>
+<h2><?php echo __('サムネイル'); ?></h2>
 
 <div style="width: 1000px;">
 	<?php
@@ -111,7 +111,7 @@
 	?>
 </div>
 
-<h2>3Dオブジェクト</h2>
+<h2><?php echo __('3Dオブジェクト'); ?></h2>
 
 <?php foreach ($data['RecordObject'] as $key => $recordObject): ?>
 	<div style="margin-bottom: 6px;">
@@ -119,7 +119,7 @@
 	</div>
 <?php endforeach; ?>
 
-<h2>3Dムービー</h2>
+<h2><?php echo __('3Dムービー'); ?></h2>
 
 <?php if (!empty($data['RecordMovie'][0]['image_id'])): ?>
 	<?php foreach ($data['RecordMovie'] as $key => $item): ?>
@@ -127,7 +127,7 @@
 	<?php endforeach; ?>
 
 	<div class="alert alert-block" style="margin-top: 20px; line-height: 30px;">
-		<h3>3Dムービーの再生方法</h3>
+		<h3><?php echo __('3Dムービーの再生方法'); ?></h3>
 
 		<div>
 		<iframe width="560" height="315" src="//www.youtube.com/embed/JlcB3EOTXSg" frameborder="0" allowfullscreen></iframe>
@@ -146,7 +146,7 @@
 		<br/>
 	</div>
 <?php else: ?>
-近日公開予定！
+<?php echo __('近日公開予定！'); ?>
 <?php endif; ?>
 
-<div class="center"><a class="btn" href="<?php echo $this->Html->url("/n/{$data['Record']['user_id']}"); ?>">せんしゅのページにもどる</a></div>
+<div class="center"><a class="btn" href="<?php echo $this->Html->url("/n/{$data['Record']['user_id']}"); ?>"><?php echo __('せんしゅのページにもどる'); ?></a></div>

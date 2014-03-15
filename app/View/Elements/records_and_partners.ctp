@@ -3,11 +3,11 @@
 <div style="width: 100%;">
 	<div class="records" style="float: left; width: 50%;">
 		<div style="margin-right: 10px;">
-			<h2><?php echo $this->Stm->getUserNickname($data); ?> <span class="sub">せんしゅがはしったきろく (<span class="count"><?php echo count($data['records']); ?></span>回)</span></h2>
+			<h2><?php echo $this->Stm->getUserNickname($data); ?> <span class="sub"><?php echo __('せんしゅがはしったきろく'); ?> (<span class="count"><?php echo count($data['records']); ?></span>回)</span></h2>
 			<table class="table table-striped table-bordered">
 				<tr>
- 					<th>タグ・コメント</th>
-					<th class="span3">きろくID</th>
+ 					<th><?php echo __('タグ・コメント'); ?></th>
+					<th class="span3"><?php echo __('きろくID'); ?></th>
 				</tr>
 			<?php foreach ($data['records'] as $key => $item): ?>
 				<?php if ($key < 20): ?>
@@ -41,7 +41,7 @@
 				<tr id="records_display_all">
 					<td colspan="2">
 						<div style="text-align: center;">
-							<a href="#" class="btn btn-large btn-warning" onclick="$('#records_display_all').hide(); $('.records .item').show('slow'); return false;">ぜんぶ見る</a>
+							<a href="#" class="btn btn-large btn-warning" onclick="$('#records_display_all').hide(); $('.records .item').show('slow'); return false;"><?php echo __('ぜんぶ見る'); ?></a>
 						</div>
 					</td>
 				</tr>
@@ -52,12 +52,12 @@
 	</div>
 	<div class="partners" style="float: left; width: 50%;">
 		<div style="margin-left: 10px;">
-			<h2><?php echo $this->Stm->getUserNickname($data);?> <span class="sub">せんしゅといっしょにはしった人 (<span class="count"><?php echo count($data['partners']); ?></span>人)</span></h2>
+			<h2><?php echo $this->Stm->getUserNickname($data);?> <span class="sub"><?php echo __('せんしゅといっしょにはしった人'); ?> (<span class="count"><?php echo count($data['partners']); ?></span>人)</span></h2>
 
 			<table class="table table-striped table-bordered">
 				<tr>
- 					<th>はしった人</th>
-					<th class="span3">きろくID</th>
+ 					<th><?php echo __('はしった人'); ?></th>
+					<th class="span3"><?php echo __('きろくID'); ?></th>
 				</tr>
 			<?php foreach ($data['partners'] as $key => $item): ?>
 				<?php if ($key < 20): ?>
@@ -87,7 +87,7 @@
 				<tr id="partners_display_all">
 					<td colspan="2">
 						<div style="text-align: center;">
-							<a href="#" class="btn btn-large btn-warning" onclick="$('#partners_display_all').hide(); $('.partners .item').show('slow'); return false;">ぜんぶ見る</a>
+							<a href="#" class="btn btn-large btn-warning" onclick="$('#partners_display_all').hide(); $('.partners .item').show('slow'); return false;"><?php echo __('ぜんぶ見る'); ?></a>
 						</div>
 					</td>
 				</tr>

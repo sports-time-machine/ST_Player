@@ -1,13 +1,13 @@
-<h1>きろく <span style="font-size: 70%;">のせってい</span></h1>
+<h1><?php echo __('きろく'); ?> <span style="font-size: 70%;"><?php echo __('のせってい'); ?></span></h1>
 
-<h2><?php echo h($LOGIN_USER['User']['username']);?> <span style="font-size: 70%;">せんしゅがはしったきろく</span></h2>
+<h2><?php echo h($LOGIN_USER['User']['username']);?> <span style="font-size: 70%;"><?php echo __('せんしゅがはしったきろく'); ?></span></h2>
 
 <table class="table table-striped table-bordered">
 	<tr>
-		<th><?php echo $this->Paginator->sort('record_id', 'きろくID'); ?></th>
-		<th><?php echo $this->Paginator->sort('comment', 'コメント'); ?></th>
-		<th><?php echo $this->Paginator->sort('tags', 'タグ'); ?></th>
-		<th><?php echo $this->Paginator->sort('register_date', 'はしった日'); ?></th>
+		<th><?php echo $this->Paginator->sort('record_id', __('きろくID')); ?></th>
+		<th><?php echo $this->Paginator->sort('comment', __('コメント')); ?></th>
+		<th><?php echo $this->Paginator->sort('tags', __('タグ')); ?></th>
+		<th><?php echo $this->Paginator->sort('register_date', __('はしった日')); ?></th>
 	</tr>
 <?php foreach ($data as $record): ?>
 <tr>

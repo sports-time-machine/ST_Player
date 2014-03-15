@@ -1,12 +1,12 @@
-<h1>せんしゅページ</h1>
+<h1><?php echo __('せんしゅページ'); ?></h1>
 
 <h2>
-	せんしゅデータ
+	<?php echo __('せんしゅデータ'); ?>
 </h2>
 
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span3">せんしゅ名</th>
+		<th class="span3"><?php echo __('せんしゅ名'); ?></th>
 		<td>
 			<?php if (!empty($data['User']['nickname'])): ?>
 				<?php echo $data['User']['nickname']; ?>
@@ -16,20 +16,20 @@
 		</td>
 	</tr>
 	<tr>
-		<th>コメント</th>
+		<th><?php echo __('コメント'); ?></th>
 		<td><?php echo h($data['Profile']['comment']); ?></td>
 	</tr>
 </table>
 
 
-<h2>はしったきろく</h2>
+<h2><?php echo __('はしったきろく'); ?></h2>
 
 <table class="table table-striped table-bordered">
 <tr>
-		<th><?php echo $this->Paginator->sort('record_id', 'きろくID'); ?></th>
-		<th><?php echo $this->Paginator->sort('comment', 'コメント'); ?></th>
-		<th><?php echo $this->Paginator->sort('tags', 'タグ'); ?></th>
-		<th><?php echo $this->Paginator->sort('register_date', 'はしった日'); ?></th>
+		<th><?php echo $this->Paginator->sort('record_id', __('きろくID')); ?></th>
+		<th><?php echo $this->Paginator->sort('comment', __('コメント')); ?></th>
+		<th><?php echo $this->Paginator->sort('tags', __('タグ')); ?></th>
+		<th><?php echo $this->Paginator->sort('register_date', __('はしった日')); ?></th>
 </tr>
 <?php foreach ($records as $record): ?>
 <tr>

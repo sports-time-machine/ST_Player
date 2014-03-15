@@ -7,15 +7,15 @@ $(function() {
 
 <div class="records search">
 
-	<h1>きろくけんさく</h1>
+	<h1><?php echo __('きろくけんさく'); ?></h1>
 
-	<h2>きろくいちらん</h2>
+	<h2><?php echo __('きろくいちらん'); ?></h2>
 
 	<table class="table table-striped table-bordered">
 	<tr>
-			<th style="width: 120px;">画像</th>
-			<th>きろく</th>
-			<th class="span3">きろくID</th>
+			<th style="width: 120px;"><?php echo __('画像'); ?></th>
+			<th><?php echo __('きろく'); ?></th>
+			<th class="span3"><?php echo __('きろくID'); ?></th>
 	</tr>
 	<?php foreach ($data as $item): ?>
 	<tr>
@@ -33,7 +33,7 @@ $(function() {
 			<div class="clearfix">
 				<!-- ニックネーム -->
 				<div style="float: left;">
-					<?php echo $this->Stm->getUserNicknameLink($item); ?> せんしゅのきろく
+					<?php echo $this->Stm->getUserNicknameLink($item); ?><?php echo __(' せんしゅのきろく'); ?>
 				</div>
 				<!-- 時間 -->
 				<div class="register_date" style="float: right;">

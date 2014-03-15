@@ -60,9 +60,9 @@ Configure::write('LOG_ACTION_LIST', array(
 
 // 性別一覧
 Configure::write('GENDER_LIST', array(
-	'男性' => '男性（おとこのこ）',
-	'女性' => '女性（おんなのこ）',
-	'その他' => 'その他（そのた）',
+	'男性' => __('男性（おとこのこ）'),
+	'女性' => __('女性（おんなのこ）'),
+	'その他' => __('その他（そのた）'),
 ));
 
 // 年齢一覧
@@ -77,20 +77,20 @@ define('ACCESS_LEVEL_SELF',     0);
 define('ACCESS_LEVEL_PLAYER',   1);
 define('ACCESS_LEVEL_UNIVERSE', 99);
 Configure::write('ACCESS_LEVEL_LIST', array(
-	ACCESS_LEVEL_SELF     => 'じぶん　',
-	ACCESS_LEVEL_PLAYER   => '全せんしゅ　',
-	ACCESS_LEVEL_UNIVERSE => '全宇宙　',
+	ACCESS_LEVEL_SELF     => __('じぶん　'),
+	ACCESS_LEVEL_PLAYER   => __('全せんしゅ　'),
+	ACCESS_LEVEL_UNIVERSE => __('全宇宙　'),
 ));
 // アクセス拒否メッセージ
-define('MESSAGE_ACCESS_DENIED', '<span class="access-denied">公開されていません</span>');
+define('MESSAGE_ACCESS_DENIED', '<span class="access-denied">'.__('公開されていません').'</span>');
 
 // スペシャルパートナーリスト
 Configure::write('SPECIAL_PARTNER_LIST', array(
-	'M:CHEETAH-1'   => 'チーター',
-	'M:ELEPHANT-3'  => 'アフリカゾウ',
-	'M:MUSAGI'      => 'ミナコウサギ',
-	'M:MIZUESAIBOU' => '水江未来 細胞',
-	'M:PETER-1'     => 'Peter Millard 1',
-	'M:PETER-2'     => 'Peter Millard 2',
+	'M:CHEETAH-1'   => __('チーター'),
+	'M:ELEPHANT-3'  => __('アフリカゾウ'),
+	'M:MUSAGI'      => __('ミナコウサギ'),
+	'M:MIZUESAIBOU' => __('水江未来 細胞'),
+	'M:PETER-1'     => __('Peter Millard 1'),
+	'M:PETER-2'     => __('Peter Millard 2'),
 ));
 

@@ -1,13 +1,13 @@
-<h1>マイページ</h1>
+<h1><?php echo __('マイページ'); ?></h1>
 
 <h2>
-	きろくデータへんこう
+	<?php echo __('きろくデータへんこう'); ?>
 </h2>
 
 <?php echo $this->Form->create('Record',array('type' => 'post', 'class' => 'form-inline')); ?>
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span3">きろくID</th>
+		<th class="span3"><?php echo __('きろくID'); ?></th>
 		<td>
 		<?php 
 			echo h($this->request->data['Record']['record_id']); 
@@ -20,21 +20,21 @@
 		</td>
 	</tr>
 	<tr>
-		<th>はしった日</th>
+		<th><?php echo __('はしった日'); ?></th>
 		<td>
 			<?php echo $this->Stm->getRecordRegisterDateJ($this->request->data); ?>
 			<?php echo $this->Form->hidden('Record.register_date'); ?>
 		</td>
 	</tr>
 	<tr>
-		<th>タグ</th>
+		<th><?php echo __('タグ'); ?></th>
 		<td>
 			<?php echo $this->Form->text('Record.tags', array('style' => 'width: 90%;', 'maxlength'=>'255')); ?>
-			<div style="margin-top: 4px; font-size: 80%; color: #333333;">タグはスペースで区切って入力してください（例：小学生 男子 山口）</div>
+			<div style="margin-top: 4px; font-size: 80%; color: #333333;"><?php echo __('タグはスペースで区切って入力してください（例：小学生 男子 山口）'); ?></div>
 		</td>
 	</tr>
 	<tr>
-		<th>コメント</th>
+		<th><?php echo __('コメント'); ?></th>
 		<td>
 		<?php 
 			echo $this->Form->text('Record.comment', array('style' => 'width: 90%;')); 
@@ -42,7 +42,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th>こうかいはんい</th>
+		<th><?php echo __('こうかいはんい'); ?></th>
 		<td>
 			<?php echo $this->Form->radio('Record.is_public', $ACCESS_LEVEL_LIST, array('legend' => false, 'style' => '')); ?>
 		</td>
@@ -50,7 +50,7 @@
 </table>
 <?php echo $this->Form->hidden('Record.id'); ?>
 
-<?php echo $this->Form->submit("けってい", array('class' => 'btn decide', 'div' => false)); ?>
-<a class="btn decide" href="<?php echo $this->Html->url("/r/".h($this->request->data['Record']['record_id'])); ?>">もどる</a>
+<?php echo $this->Form->submit(__('けってい'), array('class' => 'btn decide', 'div' => false)); ?>
+<a class="btn decide" href="<?php echo $this->Html->url("/r/".h($this->request->data['Record']['record_id'])); ?>"><?php echo __('もどる'); ?></a>
 
 <?php echo $this->Form->end(); ?>

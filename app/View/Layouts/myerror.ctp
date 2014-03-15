@@ -23,7 +23,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo "スポーツタイムマシン" ?>:
+		<?php echo __('スポーツタイムマシン'); ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
@@ -61,7 +61,7 @@ $(function() {
 	<!-- contents -->
 	<div id="contents" class="clear">
 		<?php echo $this->Session->flash(); ?>
-		エラーが発生しました！
+		<?php echo __('エラーが発生しました！'); ?>
 		<!--
 		<?php echo $this->fetch('content'); ?>
 		-->

@@ -23,9 +23,7 @@
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo "スポーツタイムマシン" ?>
-	</title>
+	<title><?php echo __('スポーツタイムマシン'); ?></title>
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->script('jquery-1.9.1.min', array('inline' => false));

@@ -98,10 +98,10 @@ $(function(){
 
 <div id="register_name">
     <div id="disp_id"></div>
-    <div>選手名を入力してください</div>
+    <div><?php echo __('選手名を入力してください'); ?></div>
     <?php echo $this->Form->text('username',array('label' => false, 'value' => "")); ?>
     <?php echo $this->Form->hidden('player_id'); ?>
-    <?php echo $this->Form->submit('登録',array('label' => false)); ?>
+    <?php echo $this->Form->submit(__('登録'),array('label' => false)); ?>
     </div>
 <div  class="error" id="result"></div>
-<?php echo $this->Html->link('選手ログイン画面へ',array('action' => 'login')) ?>
+<?php echo $this->Html->link(__('選手ログイン画面へ'),array('action' => 'login')) ?>

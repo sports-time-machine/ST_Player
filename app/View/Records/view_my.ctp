@@ -1,29 +1,29 @@
-<h1>はしったきろく</h1>
+<h1><?php echo __('はしったきろく'); ?></h1>
 
 
 <?php if ($data['Record']['is_public'] == ACCESS_LEVEL_SELF): ?>
 <div class="alert alert-block">
-	<h3>こうかいはんい： じぶん</h3>
-	このきろくデータは、ほかの人が見ることができません<br />
+	<h3><?php echo __('こうかいはんい： じぶん'); ?></h3>
+	<?php echo __('このきろくデータは、ほかの人が見ることができません'); ?><br />
 	<br />
-	スポーツタイムマシン会場と、せんしゅとうろくをした人に見てもらいたいきろくデータは、こうかいはんいを「全せんしゅ」にしてください<br />
-	全宇宙に見てもらいたいきろくデータは、こうかいはんいを「全宇宙」にしてください<br />
+	<?php echo __('スポーツタイムマシン会場と、せんしゅとうろくをした人に見てもらいたいきろくデータは、こうかいはんいを「全せんしゅ」にしてください'); ?><br />
+	<?php echo __('全宇宙に見てもらいたいきろくデータは、こうかいはんいを「全宇宙」にしてください'); ?><br />
 </div>
 <?php elseif ($data['Record']['is_public'] == ACCESS_LEVEL_PLAYER): ?>
 <div class="alert alert-success">
-	<h3>こうかいはんい： せんしゅ</h3>
-	このきろくデータは、スポーツタイムマシン会場と、せんしゅとうろくをした人だけが見ることができます<br />
+	<h3><?php echo __('こうかいはんい： せんしゅ'); ?></h3>
+	<?php echo __('このきろくデータは、スポーツタイムマシン会場と、せんしゅとうろくをした人だけが見ることができます'); ?><br />
 	<br />
-	ほかの人に見られたくないきろくデータは、こうかいはんいを「じぶん」にしてください<br />
-	全宇宙に見てもらいたいきろくデータは、こうかいはんいを「全宇宙」にしてください<br />
+	<?php echo __('ほかの人に見られたくないきろくデータは、こうかいはんいを「じぶん」にしてください'); ?><br />
+	<?php echo __('全宇宙に見てもらいたいきろくデータは、こうかいはんいを「全宇宙」にしてください'); ?><br />
 </div>
 <?php elseif ($data['Record']['is_public'] == ACCESS_LEVEL_UNIVERSE): ?>
 <div class="alert alert-info">
-	<h3>こうかいはんい： 全宇宙</h3>
-	このきろくデータは、全宇宙から見ることができます<br />
+	<h3><?php echo __('こうかいはんい： 全宇宙'); ?></h3>
+	<?php echo __('このきろくデータは、全宇宙から見ることができます'); ?><br />
 	<br />
-	ほかの人に見られたくないきろくデータは、こうかいはんいを「じぶん」にしてください<br />
-	スポーツタイムマシン会場と、せんしゅとうろくをした人に見てもらいたいきろくデータは、こうかいはんいを「全せんしゅ」にしてください<br />
+	<?php echo __('ほかの人に見られたくないきろくデータは、こうかいはんいを「じぶん」にしてください'); ?><br />
+	<?php echo __('スポーツタイムマシン会場と、せんしゅとうろくをした人に見てもらいたいきろくデータは、こうかいはんいを「全せんしゅ」にしてください'); ?><br />
 </div>
 <?php endif; ?>
 
@@ -38,12 +38,12 @@
 		に走ったきろく
 	</span>
 
-	<a class="btn" href="<?php echo $this->Html->url("/My/record_edit/".h($data['Record']['record_id'])); ?>">きろくデータへんこう</a>
+	<a class="btn" href="<?php echo $this->Html->url("/My/record_edit/".h($data['Record']['record_id'])); ?>"><?php echo __('きろくデータへんこう'); ?></a>
 </h2>
 
 <table class="table table-striped table-bordered">
 	<tr>
-		<th class="span2">はしった人</th>
+		<th class="span2"><?php echo __('はしった人'); ?></th>
 		<td class="span4">
 			<?php
 				$nickname = h($this->Stm->getUserNickname($data));
@@ -57,7 +57,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th>きろくID</th>
+		<th><?php echo __('きろくID'); ?></th>
 		<td>
 			<div style="float: left;">
 			<?php 
@@ -84,7 +84,7 @@
 					ob_end_clean();
 					echo $this->Html->div('qrcode', "<img src='" .sprintf('data:image/png;base64,%s', $img_base64). "'/>");
 				} else {
-					echo "記録データが見つかりません！";
+					echo __("記録データが見つかりません！");
 				}
 			?>
 			</div>
@@ -103,7 +103,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th>タグ</th>
+		<th><?php echo __('タグ'); ?></th>
 		<td colspan="3">
 			<?php 
 			foreach ($data['Record']['tags'] as $tag){
@@ -114,12 +114,12 @@
 		</td>
 	</tr>
 	<tr>
-		<th>コメント</th>
+		<th><?php echo __('コメント'); ?></th>
 		<td colspan="3"><?php echo h($data['Record']['comment']); ?></td>
 	</tr>
 </table>
 
-<h2>サムネイル</h2>
+<h2><?php echo __('サムネイル'); ?></h2>
 
 <div style="width: 1000px;">
 	<?php
@@ -143,7 +143,7 @@
 	?>
 </div>
 
-<h2>3Dオブジェクト</h2>
+<h2><?php echo __('3Dオブジェクト'); ?></h2>
 
 <?php foreach ($data['RecordObject'] as $key => $recordObject): ?>
 	<div style="margin-bottom: 6px;">
@@ -151,7 +151,7 @@
 	</div>
 <?php endforeach; ?>
 
-<h2>3Dムービー</h2>
+<h2><?php echo __('3Dムービー'); ?></h2>
 
 <?php if (!empty($data['RecordMovie'][0]['image_id'])): ?>
 
@@ -179,7 +179,7 @@
 		<br/>
 	</div>
 <?php else: ?>
-近日公開予定！
+<?php echo __('近日公開予定！'); ?>
 <?php endif; ?>
 
-<div class="center"><a class="btn" href="<?php echo $this->Html->url("/My/"); ?>">マイページにもどる</a></div>
+<div class="center"><a class="btn" href="<?php echo $this->Html->url("/My/"); ?>"><?php echo __('マイページにもどる'); ?></a></div>

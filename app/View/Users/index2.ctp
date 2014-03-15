@@ -144,14 +144,14 @@ $(function () {
     </div>
   </div>
   <div class="wrapper-inner">
-    <a href="#about" class="center">スポーツタイムマシンとは？</a>
+    <a href="#about" class="center"><?php echo __('スポーツタイムマシンとは？'); ?></a>
   </div>
 </div><!-- /catch -->
 
 
 <!-- now -->
 <div class="wrapper" id="now">  
-  <p class="center impact">スポーツタイムマシンのいま</p>
+  <p class="center impact"><?php echo __('スポーツタイムマシンのいま'); ?></p>
 
   <div class="wrapper-inner center">
     <p>
@@ -170,7 +170,7 @@ $(function () {
 
 <!-- about -->
 <div class="wrapper" id="about">
-  <p class="center impact">スポーツタイムマシンとは？</p>
+  <p class="center impact"><?php echo __('スポーツタイムマシンとは？'); ?></p>
   <div class="wrapper-inner">
     
     <p style="width: 560px; margin: 20px auto;">
