@@ -30,15 +30,15 @@ msgstr "Other"
 
 #: Config/const.php:80
 msgid "じぶん　"
-msgstr ""
+msgstr "Myself "
 
 #: Config/const.php:81
 msgid "全せんしゅ　"
-msgstr "All players"
+msgstr "Players "
 
 #: Config/const.php:82
 msgid "全宇宙　"
-msgstr "Whole Universe"
+msgstr "Universe "
 
 #: Config/const.php:85
 msgid "公開されていません"
@@ -118,7 +118,7 @@ msgstr ""
 
 #: View/Admin/user.ctp:8
 msgid "削除"
-msgstr ""
+msgstr "Delete"
 
 #: View/Admin/user.ctp:8
 msgid "%s を削除しますか？"
@@ -195,17 +195,17 @@ msgstr "Sports Time Machine"
 #: View/Elements/header.ctp:14
 #: View/Records/search.ctp:10
 msgid "きろくけんさく"
-msgstr "Records Search"
+msgstr "Search Records"
 
 #: View/Elements/header.ctp:27
 msgid "ようこそ！ "
-msgstr "Welcome!"
+msgstr "Welcome! "
 
 #: View/Elements/header.ctp:27
 # ここはようこそ○○せんしゅ！のところなのでせんしゅ！に該当するところはいらない？
 # Welcome! ○○! で良いような気がします。
 msgid " せんしゅ！"
-msgstr "!"
+msgstr " !"
 
 #: View/Elements/header.ctp:30
 msgid "ログアウト"
@@ -225,7 +225,7 @@ msgstr "Back to Top page"
 
 #: View/Elements/pagination.ctp:4
 msgid "{:count} 件中 {:start} ～ {:end} 件"
-msgstr "total: {:count} / {:start} - {:end}"
+msgstr "{:start} - {:end} / total: {:count}"
 
 #: View/Elements/records_and_partners.ctp:6
 #: View/My/records_edit.ctp:3
@@ -298,7 +298,7 @@ msgstr "Player name"
 
 #: View/My/edit.ctp:18
 msgid "じぶん"
-msgstr ""
+msgstr "Myself"
 
 #: View/My/edit.ctp:22
 #: View/Profiles/view_id.ctp:11
@@ -342,7 +342,7 @@ msgstr "Comment"
 
 #: View/My/edit.ctp:83
 msgid "※せんしゅ名を変えると、もとのせんしゅ名でログインできなくなります。きをつけてへんこうしてください。"
-msgstr ""
+msgstr "If you change your Player Name, you can’t login old Player Name. Be careful!"
 
 #: View/My/edit.ctp:85
 #: View/My/record_edit.ctp:53

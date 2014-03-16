@@ -145,5 +145,5 @@ if (stripos($_SERVER['SERVER_ADDR'], '127.') === 0
 	));
 }
 
-// アプリ用の定数定義
+// システム用の定数定義
 config('const');

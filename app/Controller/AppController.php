@@ -53,10 +53,9 @@ class AppController extends Controller {
 		App::import('Core', 'L10n');
 		$this->L10n = new L10n();
 		$this->__setLang();
-			//$lang = 'ja';
-			//Configure::write('Config.language', $lang);
-			//$this->L10n->get($lang);
-			//$this->Session->write('lang', $lang);
+		
+		// アプリ用の定数定義（言語設定の反映後）
+		config('const_app');
 		
 		// 認証情報をモデルに渡す
 		if (!empty($this->Auth)) {
