@@ -1,0 +1,569 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2014-03-15 23:00+0900\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Config/const.php:63
+msgid "男性（おとこのこ）"
+msgstr ""
+
+#: Config/const.php:64
+msgid "女性（おんなのこ）"
+msgstr ""
+
+#: Config/const.php:65
+msgid "その他（そのた）"
+msgstr ""
+
+#: Config/const.php:80
+msgid "じぶん　"
+msgstr ""
+
+#: Config/const.php:81
+msgid "全せんしゅ　"
+msgstr ""
+
+#: Config/const.php:82
+msgid "全宇宙　"
+msgstr ""
+
+#: Config/const.php:85
+msgid "公開されていません"
+msgstr ""
+
+#: Config/const.php:89
+msgid "チーター"
+msgstr ""
+
+#: Config/const.php:90
+msgid "アフリカゾウ"
+msgstr ""
+
+#: Config/const.php:91
+msgid "ミナコウサギ"
+msgstr ""
+
+#: Config/const.php:92
+msgid "水江未来 細胞"
+msgstr ""
+
+#: Config/const.php:93
+msgid "Peter Millard 1"
+msgstr ""
+
+#: Config/const.php:94
+msgid "Peter Millard 2"
+msgstr ""
+
+#: Controller/AdminController.php:88
+msgid "The user has been saved"
+msgstr ""
+
+#: Controller/AdminController.php:91
+msgid "The user could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/AdminController.php:107
+msgid "User deleted"
+msgstr ""
+
+#: Controller/AdminController.php:110
+msgid "User was not deleted"
+msgstr ""
+
+#: Controller/AdminController.php:189
+msgid "UserImage delete OK!\n"
+msgstr ""
+
+#: Controller/AdminController.php:192
+msgid "Image delete OK!\n"
+msgstr ""
+
+#: Controller/AdminController.php:195
+msgid "Image delete NG! rollbacked\n"
+msgstr ""
+
+#: Controller/AdminController.php:199
+msgid "UserImage delete NG! rollbacked\n"
+msgstr ""
+
+#: Plugin/PearLocal/Console/Command/PearLocalShell.php:50
+msgid "PEAR Initialize.."
+msgstr ""
+
+#: Plugin/PearLocal/Console/Command/PearLocalShell.php:91
+msgid "Writeing bootstrap.php "
+msgstr ""
+
+#: Plugin/PearLocal/Console/Command/PearLocalShell.php:102;107
+msgid "Set "
+msgstr ""
+
+#: Plugin/PearLocal/Console/Command/PearLocalShell.php:145
+msgid "PEAR Local for CakePHP"
+msgstr ""
+
+#: View/Admin/user.ctp:8
+msgid "削除"
+msgstr ""
+
+#: View/Admin/user.ctp:8
+msgid "%s を削除しますか？"
+msgstr ""
+
+#: View/Admin/user_add.ctp:4
+msgid "Add Bean"
+msgstr ""
+
+#: View/Admin/user_add.ctp:29
+#: View/Admin/user_edit.ctp:27
+msgid "Submit"
+msgstr ""
+
+#: View/Admin/user_add.ctp:32
+#: View/Admin/user_edit.ctp:30
+#: View/Admin/users.ctp:32
+msgid "Actions"
+msgstr ""
+
+#: View/Admin/user_add.ctp:35
+#: View/Admin/user_edit.ctp:34
+msgid "List Beans"
+msgstr ""
+
+#: View/Admin/user_add.ctp:36
+#: View/Admin/user_edit.ctp:35
+msgid "List Bean Images"
+msgstr ""
+
+#: View/Admin/user_add.ctp:37
+#: View/Admin/user_edit.ctp:36
+msgid "New Bean Image"
+msgstr ""
+
+#: View/Admin/user_add.ctp:38
+#: View/Admin/user_edit.ctp:37
+msgid "List Recipes"
+msgstr ""
+
+#: View/Admin/user_add.ctp:39
+#: View/Admin/user_edit.ctp:38
+msgid "New Recipe"
+msgstr ""
+
+#: View/Admin/user_edit.ctp:4
+msgid "Edit Bean"
+msgstr ""
+
+#: View/Admin/user_edit.ctp:33
+#: View/Admin/users.ctp:43
+msgid "Delete"
+msgstr ""
+
+#: View/Admin/user_edit.ctp:33
+#: View/Admin/users.ctp:43
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: View/Admin/users.ctp:41
+msgid "View"
+msgstr ""
+
+#: View/Admin/users.ctp:42
+msgid "Edit"
+msgstr ""
+
+#: View/Elements/header.ctp:3
+#: View/Layouts/myerror.ctp:26
+#: View/Layouts/stm.ctp:26
+msgid "スポーツタイムマシン"
+msgstr ""
+
+#: View/Elements/header.ctp:14
+#: View/Records/search.ctp:10
+msgid "きろくけんさく"
+msgstr ""
+
+#: View/Elements/header.ctp:27
+msgid "ようこそ！ "
+msgstr ""
+
+#: View/Elements/header.ctp:27
+msgid " せんしゅ！"
+msgstr ""
+
+#: View/Elements/header.ctp:30
+msgid "ログアウト"
+msgstr ""
+
+#: View/Elements/header.ctp:34
+msgid "せんしゅカードでログイン"
+msgstr ""
+
+#: View/Elements/header.ctp:35
+msgid "せんしゅばんごうでログイン"
+msgstr ""
+
+#: View/Elements/header.ctp:38
+msgid "トップにもどる"
+msgstr ""
+
+#: View/Elements/pagination.ctp:4
+msgid "{:count} 件中 {:start} ～ {:end} 件"
+msgstr ""
+
+#: View/Elements/records_and_partners.ctp:6
+#: View/My/records_edit.ctp:3
+msgid "せんしゅがはしったきろく"
+msgstr ""
+
+#: View/Elements/records_and_partners.ctp:9
+msgid "タグ・コメント"
+msgstr ""
+
+#: View/Elements/records_and_partners.ctp:10;60
+#: View/My/record_edit.ctp:10
+#: View/My/record_view.ctp:16
+#: View/My/records_edit.ctp:7
+#: View/Profiles/view.ctp:29
+#: View/Records/search.ctp:18
+#: View/Records/view.ctp:28
+#: View/Records/view_my.ctp:60
+msgid "きろくID"
+msgstr ""
+
+#: View/Elements/records_and_partners.ctp:44;90
+msgid "ぜんぶ見る"
+msgstr ""
+
+#: View/Elements/records_and_partners.ctp:55
+msgid "せんしゅといっしょにはしった人"
+msgstr ""
+
+#: View/Elements/records_and_partners.ctp:59
+#: View/Records/view.ctp:17
+#: View/Records/view_my.ctp:46
+msgid "はしった人"
+msgstr ""
+
+#: View/Layouts/myerror.ctp:64
+msgid "エラーが発生しました！"
+msgstr ""
+
+#: View/My/edit.ctp:1
+#: View/My/record_edit.ctp:1
+#: View/My/record_view.ctp:1
+#: View/Profiles/view_id_my.ctp:3
+msgid "マイページ"
+msgstr ""
+
+#: View/My/edit.ctp:3
+#: View/Profiles/view_id_my.ctp:7
+msgid "プロフィールへんこう"
+msgstr ""
+
+#: View/My/edit.ctp:8
+msgid "こうもく"
+msgstr ""
+
+#: View/My/edit.ctp:9
+msgid "せってい"
+msgstr ""
+
+#: View/My/edit.ctp:10
+#: View/My/record_edit.ctp:45
+msgid "こうかいはんい"
+msgstr ""
+
+#: View/My/edit.ctp:13
+#: View/Profiles/view.ctp:9
+#: View/Profiles/view_id_my.ctp:17
+msgid "せんしゅ名"
+msgstr ""
+
+#: View/My/edit.ctp:18
+msgid "じぶん"
+msgstr ""
+
+#: View/My/edit.ctp:22
+#: View/Profiles/view_id.ctp:11
+#: View/Profiles/view_id_my.ctp:22
+msgid "ニックネーム"
+msgstr ""
+
+#: View/My/edit.ctp:46
+#: View/Profiles/view_id.ctp:15
+#: View/Profiles/view_id_my.ctp:27
+msgid "Twitter ID"
+msgstr ""
+
+#: View/My/edit.ctp:55
+#: View/Profiles/view_id.ctp:19
+#: View/Profiles/view_id_my.ctp:32
+msgid "ねんれい"
+msgstr ""
+
+#: View/My/edit.ctp:57
+msgid " 歳（さい）"
+msgstr ""
+
+#: View/My/edit.ctp:64
+#: View/Profiles/view_id.ctp:23
+#: View/Profiles/view_id_my.ctp:37
+msgid "せいべつ"
+msgstr ""
+
+#: View/My/edit.ctp:73
+#: View/My/record_edit.ctp:37
+#: View/My/record_view.ctp:73
+#: View/My/records_edit.ctp:8
+#: View/Profiles/view.ctp:19;30
+#: View/Profiles/view_id.ctp:27
+#: View/Profiles/view_id_my.ctp:42
+#: View/Records/view.ctp:85
+#: View/Records/view_my.ctp:117
+msgid "コメント"
+msgstr ""
+
+#: View/My/edit.ctp:83
+msgid "※せんしゅ名を変えると、もとのせんしゅ名でログインできなくなります。きをつけてへんこうしてください。"
+msgstr ""
+
+#: View/My/edit.ctp:85
+#: View/My/record_edit.ctp:53
+msgid "けってい"
+msgstr ""
+
+#: View/My/edit.ctp:86
+#: View/My/record_edit.ctp:54
+msgid "もどる"
+msgstr ""
+
+#: View/My/record_edit.ctp:4
+#: View/My/record_view.ctp:78
+#: View/Records/view_my.ctp:41
+msgid "きろくデータへんこう"
+msgstr ""
+
+#: View/My/record_edit.ctp:23
+#: View/My/record_view.ctp:29
+#: View/My/records_edit.ctp:10
+#: View/Profiles/view.ctp:32
+msgid "はしった日"
+msgstr ""
+
+#: View/My/record_edit.ctp:30
+#: View/My/record_view.ctp:62
+#: View/My/records_edit.ctp:9
+#: View/Profiles/view.ctp:31
+#: View/Records/view.ctp:74
+#: View/Records/view_my.ctp:106
+msgid "タグ"
+msgstr ""
+
+#: View/My/record_edit.ctp:33
+msgid "タグはスペースで区切って入力してください（例：小学生 男子 山口）"
+msgstr ""
+
+#: View/My/record_view.ctp:4
+msgid "きろくデータ"
+msgstr ""
+
+#: View/My/record_view.ctp:9
+msgid "このきろくデータは、ほかの人がみることができません"
+msgstr ""
+
+#: View/My/record_view.ctp:10
+msgid "ほかの人がみることができるようにするには、「きろくデータへんこう」から「きろくをこうかいする」にチェックをいれてください"
+msgstr ""
+
+#: View/My/record_view.ctp:34
+msgid "いっしょにはしった人"
+msgstr ""
+
+#: View/My/record_view.ctp:46
+msgid "いっしょにはしった人のきろくID"
+msgstr ""
+
+#: View/My/record_view.ctp:81
+#: View/Records/view.ctp:90
+#: View/Records/view_my.ctp:122
+msgid "サムネイル"
+msgstr ""
+
+#: View/My/record_view.ctp:105
+#: View/Records/view.ctp:114
+#: View/Records/view_my.ctp:146
+msgid "3Dオブジェクト"
+msgstr ""
+
+#: View/My/record_view.ctp:115
+#: View/Records/view_my.ctp:185
+msgid "マイページにもどる"
+msgstr ""
+
+#: View/My/records_edit.ctp:1
+#: View/Records/search.ctp:17
+msgid "きろく"
+msgstr ""
+
+#: View/My/records_edit.ctp:1
+msgid "のせってい"
+msgstr ""
+
+#: View/Profiles/view.ctp:1
+#: View/Profiles/view_id.ctp:3
+msgid "せんしゅページ"
+msgstr ""
+
+#: View/Profiles/view.ctp:4
+#: View/Profiles/view_id.ctp:6
+msgid "せんしゅデータ"
+msgstr ""
+
+#: View/Profiles/view.ctp:25
+#: View/Records/view.ctp:1
+#: View/Records/view_my.ctp:1
+msgid "はしったきろく"
+msgstr ""
+
+#: View/Profiles/view_id_my.ctp:6
+msgid "せんしゅ"
+msgstr ""
+
+#: View/Profiles/view_id_my.ctp:12
+msgid "せんしゅID"
+msgstr ""
+
+#: View/Profiles/view_id_my.ctp:14;19
+msgid "じぶん に公開"
+msgstr ""
+
+#: View/Records/search.ctp:12
+msgid "きろくいちらん"
+msgstr ""
+
+#: View/Records/search.ctp:16
+msgid "画像"
+msgstr ""
+
+#: View/Records/search.ctp:36
+msgid " せんしゅのきろく"
+msgstr ""
+
+#: View/Records/view.ctp:55
+#: View/Records/view_my.ctp:87
+msgid "記録データが見つかりません！"
+msgstr ""
+
+#: View/Records/view.ctp:122
+#: View/Records/view_my.ctp:154
+msgid "3Dムービー"
+msgstr ""
+
+#: View/Records/view.ctp:130
+msgid "3Dムービーの再生方法"
+msgstr ""
+
+#: View/Records/view.ctp:149
+#: View/Records/view_my.ctp:182
+msgid "近日公開予定！"
+msgstr ""
+
+#: View/Records/view.ctp:152
+#: View/Records/view_private.ctp:5
+msgid "せんしゅのページにもどる"
+msgstr ""
+
+#: View/Records/view_my.ctp:6
+msgid "こうかいはんい： じぶん"
+msgstr ""
+
+#: View/Records/view_my.ctp:7
+msgid "このきろくデータは、ほかの人が見ることができません"
+msgstr ""
+
+#: View/Records/view_my.ctp:9;26
+msgid "スポーツタイムマシン会場と、せんしゅとうろくをした人に見てもらいたいきろくデータは、こうかいはんいを「全せんしゅ」にしてください"
+msgstr ""
+
+#: View/Records/view_my.ctp:10;18
+msgid "全宇宙に見てもらいたいきろくデータは、こうかいはんいを「全宇宙」にしてください"
+msgstr ""
+
+#: View/Records/view_my.ctp:14
+msgid "こうかいはんい： せんしゅ"
+msgstr ""
+
+#: View/Records/view_my.ctp:15
+msgid "このきろくデータは、スポーツタイムマシン会場と、せんしゅとうろくをした人だけが見ることができます"
+msgstr ""
+
+#: View/Records/view_my.ctp:17;25
+msgid "ほかの人に見られたくないきろくデータは、こうかいはんいを「じぶん」にしてください"
+msgstr ""
+
+#: View/Records/view_my.ctp:22
+msgid "こうかいはんい： 全宇宙"
+msgstr ""
+
+#: View/Records/view_my.ctp:23
+msgid "このきろくデータは、全宇宙から見ることができます"
+msgstr ""
+
+#: View/Records/view_private.ctp:2
+msgid "このきろくはこうかいされていません"
+msgstr ""
+
+#: View/Users/add.ctp:101
+msgid "選手名を入力してください"
+msgstr ""
+
+#: View/Users/add.ctp:104
+msgid "登録"
+msgstr ""
+
+#: View/Users/add.ctp:107
+msgid "選手ログイン画面へ"
+msgstr ""
+
+#: View/Users/admin_login.ctp:5
+msgid "ユーザー名を入力してください"
+msgstr ""
+
+#: View/Users/admin_login.ctp:7
+msgid "パスワードを入力してください"
+msgstr ""
+
+#: View/Users/admin_login.ctp:9
+#: View/Users/password_login.ctp:9
+msgid "ログイン"
+msgstr ""
+
+#: View/Users/index2.ctp:147;173
+msgid "スポーツタイムマシンとは？"
+msgstr ""
+
+#: View/Users/index2.ctp:154
+msgid "スポーツタイムマシンのいま"
+msgstr ""
+
+#: View/Users/password_login.ctp:5
+msgid "せんしゅ名を入力してください（例：やまぐちたろう）"
+msgstr ""
+
+#: View/Users/password_login.ctp:7
+msgid "せんしゅばんごうを入力してください（例：ABCD）"
+msgstr ""
+

@@ -49,6 +49,15 @@ class AppController extends Controller {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		
+		// 言語の設定
+		App::import('Core', 'L10n');
+		$this->L10n = new L10n();
+		$this->__setLang();
+			//$lang = 'ja';
+			//Configure::write('Config.language', $lang);
+			//$this->L10n->get($lang);
+			//$this->Session->write('lang', $lang);
+		
 		// 認証情報をモデルに渡す
 		if (!empty($this->Auth)) {
 			Configure::write('LOGIN_USER', $this->Session->read('LOGIN_USER'));
@@ -80,4 +89,22 @@ class AppController extends Controller {
 		// スペシャルパートナーリスト
 		$this->set('SPECIAL_PARTNER_LIST', Configure::read('SPECIAL_PARTNER_LIST'));
 	}
+	
+	private function __setLang() {
+		if (!empty($this->params['named']['lang'])) {
+			$lang = $this->params['named']['lang'];
+			$this->L10n->get($lang);  
+			$this->Session->write('lang', $lang);  
+			$this->redirect($this->referer()); 
+		} else if ($this->Session->read('lang')) {
+			$lang = $this->Session->read('lang');
+		}
+
+		if (isset($lang)) {
+			$this->L10n->get($lang);
+			$this->Session->write('lang', $lang);
+			Configure::write('Config.language', $lang);
+		}
+	}
+
 }
