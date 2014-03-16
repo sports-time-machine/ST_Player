@@ -173,8 +173,8 @@ $(function () {
   <p class="center impact"><?php echo __('スポーツタイムマシンとは？'); ?></p>
   <div class="wrapper-inner">
     
-    <p style="width: 560px; margin: 20px auto;">
-    	<iframe width="560" height="315" src="//www.youtube.com/embed/P5KlRJnz79g" frameborder="0" allowfullscreen></iframe>
+    <p style="width: 896px; margin: 20px auto;">
+    	<iframe width="896" height="504" src="//www.youtube.com/embed/P5KlRJnz79g" frameborder="0" allowfullscreen></iframe>
     </p>
 
     <div class="w50">
