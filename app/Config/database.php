@@ -67,6 +67,18 @@ class DATABASE_CONFIG {
 		'encoding' => 'utf8',
 	);
 
+	public $mikage_server = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
+		'host' => '127.0.0.1',
+		'login' => 'st_player',
+		'password' => 'z1EJWIgvKxIzGIrX6Yxz',
+		'database' => 'st_player',
+		'prefix' => '',
+		'port' => '3306',
+		'encoding' => 'utf8',
+	);
+
 	public $test = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
@@ -78,4 +90,10 @@ class DATABASE_CONFIG {
 		'port' => '3306',
 		'encoding' => 'utf8',
 	);
+	
+	public function __construct() {
+		if ($_SERVER['SERVER_ADDR'] == '192.168.1.22') {
+			$this->default = $this->mikage_server;
+		}
+	}
 }

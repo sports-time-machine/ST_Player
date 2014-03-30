@@ -129,10 +129,11 @@ CakePlugin::load('Search');
 // ------------------------------------------------------------
 // 本番環境の切り替え
 // ------------------------------------------------------------
-if (stripos($_SERVER['SERVER_ADDR'], '127.') === 0
-		|| stripos($_SERVER['SERVER_ADDR'], '192.168.') === 0
-		|| $_SERVER['SERVER_ADDR'] === '::1'
-		) {
+if ($_SERVER['SERVER_ADDR'] !== '192.168.1.22' &&
+		(stripos($_SERVER['SERVER_ADDR'], '127.') === 0
+			|| stripos($_SERVER['SERVER_ADDR'], '192.168.') === 0
+			|| $_SERVER['SERVER_ADDR'] === '::1'
+		)) {
 	define('PRODUCTION', false);
 } else {
 	define('PRODUCTION', true);
