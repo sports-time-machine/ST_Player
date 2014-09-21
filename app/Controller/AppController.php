@@ -50,8 +50,8 @@ class AppController extends Controller {
 		parent::beforeFilter();
 		
 		// 言語の設定
-		App::import('Core', 'L10n');
-		$this->L10n = new L10n();
+		//App::import('Core', 'L10n');
+		//$this->L10n = new L10n();
 		$this->__setLang();
 		
 		// アプリ用の定数定義（言語設定の反映後）
@@ -92,7 +92,7 @@ class AppController extends Controller {
 	private function __setLang() {
 		if (!empty($this->params['named']['lang'])) {
 			$lang = $this->params['named']['lang'];
-			$this->L10n->get($lang);  
+			//$this->L10n->get($lang);  
 			$this->Session->write('lang', $lang);  
 			$this->redirect($this->referer()); 
 		} else if ($this->Session->read('lang')) {
@@ -100,7 +100,7 @@ class AppController extends Controller {
 		}
 
 		if (isset($lang)) {
-			$this->L10n->get($lang);
+			//$this->L10n->get($lang);
 			$this->Session->write('lang', $lang);
 			Configure::write('Config.language', $lang);
 		}
