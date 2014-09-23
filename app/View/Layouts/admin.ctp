@@ -82,5 +82,10 @@ $(function(){
 	</div>
 	<div id="footer">
 	</div>
+
+	
+<!-- analytics -->
+<?php echo $this->element('analytics'); ?>
+
 </body>
 </html>

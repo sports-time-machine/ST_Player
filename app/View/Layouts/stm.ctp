@@ -81,5 +81,9 @@ $(function() {
 		<div id="copyright" style="text-align: center; margin-top: 10px;">Sports Time Machine !</div>
 	</div>
 </div>
+	
+<!-- analytics -->
+<?php echo $this->element('analytics'); ?>
+
 </body>
 </html>
