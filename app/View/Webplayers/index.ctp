@@ -19,7 +19,7 @@ document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/
 	var sendParams = "";
 
 	jQuery(function() {
-		sendParams = jQuery("#userId").val() + "," + jQuery("#sptmId").val() +"," + jQuery("#hash").val();
+		sendParams = jQuery("#playerId").val() + "," + jQuery("#recordId").val() +"," + jQuery("#hash").val();
 		var $missingScreen = jQuery("#unityPlayer").find(".missing");
 		var $brokenScreen = jQuery("#unityPlayer").find(".broken");
 		$missingScreen.hide();
@@ -99,6 +99,8 @@ div#unityPlayer {
 -->
 </style>
 <div class="content">
+	<div class="center">スポーツタイムマシンウェブプレイヤー</div>
+	<br />
 	<div id="unityPlayer">
 		<div class="missing">
 			<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
@@ -113,7 +115,7 @@ div#unityPlayer {
 	</div>
 </div>
 <form action="" method="get">
-	<input type="hidden" name="userId" id="userId" value="<?php echo $userId; ?>">
-	<input type="hidden" name="sptmId" id="sptmId" value="<?php echo $sptmId; ?>">
+	<input type="hidden" name="playerId" id="playerId" value="<?php echo $playerId; ?>">
+	<input type="hidden" name="recordId" id="recordId" value="<?php echo $recordId; ?>">
 	<input type="hidden" name="hash" id="hash" value="<?php echo $hash; ?>">
 </form> 
