@@ -155,9 +155,10 @@ $(function () {
 
   <div class="wrapper-inner center">
     <p>
-    	2月5日(水)から2月14日（金）まで東京ミッドタウン ガレリアB1Fで体験できます！<br>
+    	10月1日(水)から10月13日（月）まで十勝帯広 <a href="http://www.tmf.jp/">十勝千年の森</a>で体験できます！<br>
     	
-		<iframe style="margin: 12px 0px; border: 1px solid #444444;" width="680" height="120" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?q=35.666558,139.730945&amp;hl=ja&amp;gl=jp&amp;ie=UTF8&amp;t=m&amp;z=14&amp;brcurrent=3,0x60188b789709cb65:0xe977258f4bc349,0&amp;ll=35.666558,139.730945&amp;output=embed"></iframe><br />
+		<iframe src="https://www.google.com/maps/embed?pb=!1m29!1m12!1m3!1d186881.62753983476!2d142.88992165039315!3d42.956668510976506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m14!1i0!3e0!4m5!1s0x5f739941aefa8de5%3A0x303de371d222396d!2z5biv5bqD6aeF77yI5YyX5rW36YGT77yJ!3m2!1d42.918006!2d143.202064!4m5!1s0x5f7379279f17f1a9%3A0x1915e7ba536cca74!2z5Y2B5Yud5Y2D5bm044Gu5qOuLCDjgJIwODktMDM1NiDljJfmtbfpgZPkuIrlt53pg6HmuIXmsLTnlLrlrZfnvr3luK_ljZfvvJHvvJDnt5rvvJHvvJDvvJPiiJLvvJY!3m2!1d42.935412!2d142.869093!5e0!3m2!1sja!2sjp!4v1411780380014" width="740" height="250" frameborder="0" style="margin: 12px 0px; border: 1px solid #444444;"></iframe>
+		<br />
 
     	現在までに <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました
     </p>

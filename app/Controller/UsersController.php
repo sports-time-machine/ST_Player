@@ -35,8 +35,8 @@ class UsersController extends AppController {
 		pr($count_users);
 		*/
 		// カウンター表示用
-		$start_time = strtotime('2014-02-05') + 43200;
-		$end_time   = strtotime('2014-02-14') + 43200;
+		$start_time = strtotime('2014-10-01') + 43200;
+		$end_time   = strtotime('2014-10-13') + 43200;
 		
 		$count_records_sum  = 0;
 		$count_users_sum    = 0;
@@ -52,8 +52,8 @@ class UsersController extends AppController {
 		
 		$keys = array();
 		// グラフ表示用
-		$start_time = strtotime('2014-02-05') + 43200;
-		$end_time   = strtotime('2014-02-14') + 43200;
+		$start_time = strtotime('2014-10-01') + 43200;
+		$end_time   = strtotime('2014-10-13') + 43200;
 		$count_records_full = array();
 		$count_users_full   = array();
 		
