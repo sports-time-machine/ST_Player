@@ -155,7 +155,7 @@ $(function () {
 
   <div class="wrapper-inner center">
     <p>
-    	2015年10月下旬から11月15日まで鹿児島で体験できます！<br>
+    	2015年10月24日から11月15日までアミュプラザ鹿児島 B1階 きらら通りで体験できます！<br>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3398.811909253555!2d130.54211403572097!3d31.584205421997936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x353e6745b0189d3b%3A0x9f6c9b15d696dd2f!2z6bm_5YWQ5bO25Lit5aSu6aeF!5e0!3m2!1sja!2sjp!4v1444188127602" width="740" height="250" frameborder="0" style="margin: 12px 0px; border: 1px solid #444444;"></iframe>
 		<br />
 
