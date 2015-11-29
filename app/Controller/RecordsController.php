@@ -26,7 +26,7 @@ class RecordsController extends AppController {
 
 	public function search() {
 		$loginUser = $this->Session->read('LOGIN_USER');
-		
+
 		// 検索フォームのバリデーションを無効化
 		$this->Record->validate = array();
 		// 検索条件をビューでセットするための指定
@@ -53,14 +53,14 @@ class RecordsController extends AppController {
 			$conditions[] = array('Record.is_public' => ACCESS_LEVEL_UNIVERSE);
 		}
 		//pr($conditions);
-		
-		
+
+
 		// ページネーションと記録データの整形
 		//$records = $this->Record->setForView($this->paginate('Record', $conditions));
 		$records = $this->paginate('Record', $conditions);
 		$this->set('records', $records);
-		
-		
+
+
 		// 検索結果に画像データを追加
 		$record_id_list = Set::combine($records, '{n}.Record.id', '{n}.Record.id');
 		$conditions = array('RecordImage.record_id' => $record_id_list);
@@ -170,6 +170,19 @@ class RecordsController extends AppController {
 
 		$this->response->file($filePath);
 		$this->response->download($filename);
+	}
+	
+	//オブジェクトデータの再生
+	public function obj_view($record_id, $filename) {
+		$this->layout = false;
+
+		$record_id = strtoupper($record_id);
+		// 逆から1文字ずつフォルダ階層にする
+		$char_array = str_split(strrev($record_id));
+		$path = implode('/', $char_array);
+		$filePath = $this->webroot . 'upload/' . $path . '/' . $filename;
+
+		$this->set('filePath', $filePath);
 	}
 
 }

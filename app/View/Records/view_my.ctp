@@ -60,7 +60,7 @@
 		<th><?php echo __('きろくID'); ?></th>
 		<td>
 			<div style="float: left;">
-			<?php 
+			<?php
 				ob_start();
 				QRCode::png(h($data['Record']['record_id']), null, 'H', 5, 2);
 				$img_base64 = base64_encode( ob_get_contents() );
@@ -76,7 +76,7 @@
 		<th>いっしょに<br/>はしった人の<br/>きろくID</th>
 		<td>
 			<div style="float: left;">
-			<?php 
+			<?php
 				if (!empty($data['Partner'][0]['record_id'])) {
 					ob_start();
 					QRCode::png(h($data['Partner'][0]['record_id']), null, 'H', 5, 2);
@@ -105,7 +105,7 @@
 	<tr>
 		<th><?php echo __('タグ'); ?></th>
 		<td colspan="3">
-			<?php 
+			<?php
 			foreach ($data['Record']['tags'] as $tag){
 				echo $this->Html->link(h($tag), array('controller' => 'records', 'action' => 'search', 'tag' => h($tag)));
 				echo " ";
@@ -148,6 +148,7 @@
 <?php foreach ($data['RecordObject'] as $key => $recordObject): ?>
 	<div style="margin-bottom: 6px;">
 		<a class="btn" href="../my/download/<?php echo $data['Record']['player_id'] ?>/<?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext'] ?>" ><?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext']; ?></a>
+		<a class="btn" target="_blank" href="../my/obj_view/<?php echo $data['Record']['player_id'] ?>/<?php echo $recordObject['Image']['filename'] . '.' . $recordObject['Image']['ext'] ?>" >見る</a>
 	</div>
 <?php endforeach; ?>
 
