@@ -77,7 +77,7 @@ $(function () {
 		},
 		yAxis: {
 			min: 0,
-			max: 300,
+			max: 250,
 			title: {
 				text: 'number'
 			}
@@ -155,19 +155,19 @@ $(function () {
 
   <div class="wrapper-inner center">
     <p>
-    	2015年10月24日から11月15日までアミュプラザ鹿児島 B1階 きらら通りで体験できます！<br>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3398.811909253555!2d130.54211403572097!3d31.584205421997936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x353e6745b0189d3b%3A0x9f6c9b15d696dd2f!2z6bm_5YWQ5bO25Lit5aSu6aeF!5e0!3m2!1sja!2sjp!4v1444188127602" width="740" height="250" frameborder="0" style="margin: 12px 0px; border: 1px solid #444444;"></iframe>
-		<br />
+      2015年12月13日、19日、20日にYCAMで体験できます！<br>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13204.363904573811!2d131.4673082!3d34.1695916!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6ed7c8e5de31533f!2z5bGx5Y-j5oOF5aCx6Iq46KGT44K744Oz44K_44O8!5e0!3m2!1sja!2sjp!4v1449634012523" width="740" height="250" frameborder="0" style="margin: 12px 0px; border: 1px solid #444444;"></iframe>
+    <br />
 
-    	現在までに <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました
+      現在までに <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました
     </p>
 
     <p></p>
-    <p><div id="graph2"></div></p>
     <p><div id="graph"></div></p>
 
-　</div>
-</div><!-- /now -->
+ 　</div>
+</div>
+<!-- /now -->
 
 
 <!-- about -->
