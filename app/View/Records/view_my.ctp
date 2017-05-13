@@ -154,11 +154,8 @@
 
 <h2><?php echo __('3Dムービー'); ?></h2>
 
-<?php if (!empty($data['RecordMovie'][0]['image_id'])): ?>
-
-	<?php foreach ($data['RecordMovie'] as $key => $item): ?>
-		<a class="btn" href="<?php echo $this->Stm->url($data['Record']['player_id'], $item['Image']['filename'] . '.' . $item['Image']['ext']); ?>"><?php echo $item['Image']['filename'] . '.' . $item['Image']['ext']; ?></a>
-	<?php endforeach; ?>
+<?php if (file_exists($this->Stm->getRecordMoviePath($data))): ?>
+	<a class="btn" href="<?php echo $this->Stm->getRecordMovieUrl($data); ?>"><?php echo $data['Record']['record_id'] . '.zip'; ?></a>
 
 	<div class="alert alert-block" style="margin-top: 20px; line-height: 30px;">
 		<h3>3Dムービーの再生方法</h3>
