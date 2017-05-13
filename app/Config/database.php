@@ -90,9 +90,9 @@ class DATABASE_CONFIG {
 		'port' => '3306',
 		'encoding' => 'utf8',
 	);
-	
+
 	public function __construct() {
-		if ($_SERVER['SERVER_ADDR'] == '192.168.1.22') {
+		if ($_SERVER['SERVER_ADDR'] == '192.168.1.24') {
 			$this->default = $this->mikage_server;
 		}
 	}
