@@ -7,7 +7,7 @@
 <meta name="description" content="山口情報芸術センター［YCAM］10周年記念祭「LIFE by MEDIA 国際コンペティション」をきっかけに、山口市道場門前商店街に作られた、世界で最初の“スポーツのタイムマシン”です。">
 <meta name="keywords" content="山口,情報芸術センター,YCAM,スポーツ,タイムマシン,犬飼博士,安藤僚子">
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript" ></script>
 <script src="js/highcharts/highcharts.js" type="text/javascript" ></script>
 <script src="js/highcharts/modules/exporting.js" type="text/javascript" ></script>
 <link type="text/css" href="css/index2.css" media="all" rel="stylesheet" />
