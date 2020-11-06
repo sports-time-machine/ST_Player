@@ -571,4 +571,6 @@ msgstr "Player Name (ex. John Smith)"
 msgid "せんしゅばんごうを入力してください（例：ABCD）"
 msgstr "Player ID (ex. ABCD)"
 
-
+#: View/Users/login.ctp:94
+msgid "せんしゅカードのQRコードをうつしてください"
+msgstr ""
