@@ -114,7 +114,7 @@ class StmHelper extends AppHelper {
 		$char_array = str_split(strrev($player_id));
 		$path = implode('/', $char_array);
 
-		$filePath = 'http://www.sptmy.net/upload/' . $path . '/' . $data['Record']['record_id'] . '.zip';
+		$filePath = 'https://www.sptmy.net/upload/' . $path . '/' . $data['Record']['record_id'] . '.zip';
 
 		return $filePath;
 	}

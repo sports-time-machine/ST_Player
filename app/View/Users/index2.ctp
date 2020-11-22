@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="canonical" href="http://www.sptmy.net/" />
+<link rel="canonical" href="https://www.sptmy.net/" />
 <title>スポーツタイムマシンWEB</title>
 <meta name="description" content="山口情報芸術センター［YCAM］10周年記念祭「LIFE by MEDIA 国際コンペティション」をきっかけに、山口市道場門前商店街に作られた、世界で最初の“スポーツのタイムマシン”です。">
 <meta name="keywords" content="山口,情報芸術センター,YCAM,スポーツ,タイムマシン,犬飼博士,安藤僚子">
