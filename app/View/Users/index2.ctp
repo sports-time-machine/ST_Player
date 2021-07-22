@@ -77,7 +77,7 @@ $(function () {
 		},
 		yAxis: {
 			min: 0,
-			max: 250,
+			max: 100,
 			title: {
 				text: 'number'
 			}
