@@ -155,11 +155,16 @@ $(function () {
 
   <div class="wrapper-inner center">
     <p>
-      2015年12月13日、19日、20日にYCAMで体験できます！<br>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13204.363904573811!2d131.4673082!3d34.1695916!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6ed7c8e5de31533f!2z5bGx5Y-j5oOF5aCx6Iq46KGT44K744Oz44K_44O8!5e0!3m2!1sja!2sjp!4v1449634012523" width="740" height="250" frameborder="0" style="margin: 12px 0px; border: 1px solid #444444;"></iframe>
-    <br />
+      2021年7月24日(土)～8月31日(火) サイエンスヒルズこまつで体験できます！<br>
+      <!-- 地図を開いて共有＞地図を埋め込む -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3211.316467125814!2d136.45373804079742!3d36.40153789263254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff851aadd1d1a37%3A0x6cb3031381837e5e!2z44K144Kk44Ko44Oz44K544OS44Or44K644GT44G-44GkIOOBsuOBqOOBqOOCguOBruOBpeOBj-OCiuenkeWtpumkqA!5e0!3m2!1sja!2sjp!4v1626942034124!5m2!1sja!2sjp" width="740" height="250" frameborder="0" style="margin: 12px 0px; border: 1px solid #444444;" allowfullscreen="" loading="lazy"></iframe>
+      <br />
 
-      現在までに <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました
+      <!-- 合計カウントを出力 -->
+      これまでに <?php echo($count_users_total['0']['0']['count']); ?> 人が登録し、<?php echo($count_records_total['0']['0']['count']); ?> 回走りました<br />
+
+      <br />
+      サイエンスヒルズこまつで <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました<br />
     </p>
 
     <p></p>

@@ -69,6 +69,15 @@ class UsersController extends AppController {
 			$count_records_sum += @$count_records[$date];
 			$count_users_sum   += @$count_users[$date];
 		}
+
+		// トータルのカウント
+		$count_users_total   = $this->User->query("SELECT count(id) AS count FROM st_player.users");
+		$count_records_total = $this->User->query("SELECT count(id) AS count FROM st_player.records");
+		/*
+		pr($count_users_total);
+		pr($count_records_total);
+		*/
+
 		/*
 		pr($count_records_full);
 		pr($count_users_full);
@@ -79,6 +88,8 @@ class UsersController extends AppController {
 		$this->set('keys', $keys);
 		$this->set('count_records_full', $count_records_full);
 		$this->set('count_users_full', $count_users_full);
+		$this->set('count_records_total', $count_records_total);
+		$this->set('count_users_total', $count_users_total);
 	}
 
 	// Myページへ
