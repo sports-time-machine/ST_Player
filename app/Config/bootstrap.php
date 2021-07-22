@@ -137,7 +137,7 @@ if ($_SERVER['SERVER_ADDR'] !== '192.168.1.24' &&
 	define('PRODUCTION', false);
 } else {
 	define('PRODUCTION', true);
-	Configure::write('debug', 0); // debug = 0 にする
+	Configure::write('debug', 0); // debug = 0 にする. 2にするとpr等でデバッグできる
 	// エラーハンドリングを追加
 	Configure::write('Exception', array(
 		'handler' => 'ErrorHandler::handleException',

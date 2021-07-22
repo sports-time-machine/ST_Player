@@ -77,7 +77,7 @@ $(function () {
 		},
 		yAxis: {
 			min: 0,
-			max: 250,
+			max: 100,
 			title: {
 				text: 'number'
 			}
@@ -155,11 +155,16 @@ $(function () {
 
   <div class="wrapper-inner center">
     <p>
-      2015年12月13日、19日、20日にYCAMで体験できます！<br>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13204.363904573811!2d131.4673082!3d34.1695916!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6ed7c8e5de31533f!2z5bGx5Y-j5oOF5aCx6Iq46KGT44K744Oz44K_44O8!5e0!3m2!1sja!2sjp!4v1449634012523" width="740" height="250" frameborder="0" style="margin: 12px 0px; border: 1px solid #444444;"></iframe>
-    <br />
+      2021年7月24日(土)～8月31日(火) サイエンスヒルズこまつで体験できます！<br>
+      <!-- 地図を開いて共有＞地図を埋め込む -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3211.316467125814!2d136.45373804079742!3d36.40153789263254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff851aadd1d1a37%3A0x6cb3031381837e5e!2z44K144Kk44Ko44Oz44K544OS44Or44K644GT44G-44GkIOOBsuOBqOOBqOOCguOBruOBpeOBj-OCiuenkeWtpumkqA!5e0!3m2!1sja!2sjp!4v1626942034124!5m2!1sja!2sjp" width="740" height="250" frameborder="0" style="margin: 12px 0px; border: 1px solid #444444;" allowfullscreen="" loading="lazy"></iframe>
+      <br />
 
-      現在までに <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました
+      <!-- 合計カウントを出力 -->
+      これまでに <?php echo($count_users_total['0']['0']['count']); ?> 人が登録し、<?php echo($count_records_total['0']['0']['count']); ?> 回走りました<br />
+
+      <br />
+      サイエンスヒルズこまつで <?php echo $count_users_sum; ?> 人が登録し、<?php echo $count_records_sum; ?> 回走りました<br />
     </p>
 
     <p></p>
@@ -183,28 +188,23 @@ $(function () {
       <img src="./img/stm-400px.jpg" />
     </div>
     <div class="w50">
-      <p>スクリーンに映し出される昔の記録と「かけっこ」できる装置です。
-      自分の記録だけではなく、家族や友達、動物の記録に挑戦することができます。
+      <p>スクリーンに映し出される昔の記録と「かけっこ」できる装置です。</p>
+      <p>自分の記録だけではなく、家族や友達、動物の記録に挑戦することができ、自分の走った記録は3Dデータで保存されます。
       </p>
-      <p>2013年の夏、<a href="http://10th.ycam.jp/" target="_blank">山口情報芸術センター［YCAM］10周年記念祭</a>をきっかけに、世界で最初の“スポーツのタイムマシン”が誕生しました。
-      </p>
-      <p>7月6日から12月1日までに 3178 人が登録し、11149 回走りました。</p>
     </div>
     <div class="w50">
       <img src="./img/stm-pic2.jpg" />
     </div>
     <div class="w50">
-      <p>山口市道場門前商店街に作られたスポーツタイムマシンは、たくさんの人に利用され、たくさんの笑顔を生みだしました。</p>
-      <p>2013年12月5日、山口のスポーツタイムマシンは、<a href="http://j-mediaarts.jp/awards/excellence_award?locale=ja&section_id=2" target="_blank">第17回文化庁メディア芸術祭 エンターテインメント部門「優秀賞」</a>を受賞しました。</p>
-      <p>2014年2月には、東京のどこかでスポーツタイムマシンを体験することが出来るかも知れません。
-      </p>
+      <p>2013年の夏、<a href="https://special.ycam.jp/10th/" target="_blank">山口情報芸術センター［YCAM］10周年記念祭</a>をきっかけに、世界で最初の“スポーツのタイムマシン”が誕生。同年、スポーツタイムマシンは、第17回文化庁メディア芸術祭 エンターテインメント部門「優秀賞」を受賞。<br />スポーツとメディアアートを融合した作品として2013年の誕生より、幅広い層に支持されてきました。
+      2013年から2020年までに7031人が登録し、16343回走られています。</p>
     </div>
     <div class="w50">
       <img src="./img/stm-pic3.jpg" />
     </div>
     <div class="w50">
-      <p>山口では、スポーツタイムマシンの楽しさを忘れられない人たちが「スポーツタイムマシン保存会(仮)」を発足しました。</p>
-      <p>来年も楽しく走るにはどうしたらいいでしょう？みんなで一緒に考えましょう。</p>
+      <p>この作品は、「走る」という行為が「思い出」だけでなく、共有できる「情報」として存在し続けることの面白さに着目。</p>
+      <p>スポーツを通じて、過去、現在、未来を横断した情報社会ならではの身体コミュニケーションを提供します。</p>
     </div>
   </div>
 </div><!-- /about -->

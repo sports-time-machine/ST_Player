@@ -35,8 +35,8 @@ class UsersController extends AppController {
 		pr($count_users);
 		*/
 		// カウンター表示用
-		$start_time = strtotime('2015-12-12') + 43200;
-		$end_time   = strtotime('2015-12-20') + 43200;
+		$start_time = strtotime('2021-07-24') + 43200;
+		$end_time   = strtotime('2021-08-31') + 43200;
 
 		$count_records_sum  = 0;
 		$count_users_sum    = 0;
@@ -52,8 +52,8 @@ class UsersController extends AppController {
 
 		$keys = array();
 		// グラフ表示用
-		$start_time = strtotime('2015-12-12') + 43200;
-		$end_time   = strtotime('2015-12-20') + 43200;
+		$start_time = strtotime('2021-07-24') + 43200;
+		$end_time   = strtotime('2021-08-31') + 43200;
 		$count_records_full = array();
 		$count_users_full   = array();
 
@@ -69,6 +69,15 @@ class UsersController extends AppController {
 			$count_records_sum += @$count_records[$date];
 			$count_users_sum   += @$count_users[$date];
 		}
+
+		// トータルのカウント
+		$count_users_total   = $this->User->query("SELECT count(id) AS count FROM st_player.users");
+		$count_records_total = $this->User->query("SELECT count(id) AS count FROM st_player.records");
+		/*
+		pr($count_users_total);
+		pr($count_records_total);
+		*/
+
 		/*
 		pr($count_records_full);
 		pr($count_users_full);
@@ -79,6 +88,8 @@ class UsersController extends AppController {
 		$this->set('keys', $keys);
 		$this->set('count_records_full', $count_records_full);
 		$this->set('count_users_full', $count_users_full);
+		$this->set('count_records_total', $count_records_total);
+		$this->set('count_users_total', $count_users_total);
 	}
 
 	// Myページへ
