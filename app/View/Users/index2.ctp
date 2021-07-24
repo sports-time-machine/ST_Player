@@ -135,7 +135,7 @@ $(function () {
     <div class="fade">
     <img src="./img/stm-logo.png" align="left" />
     <ul id="button">
-      <li class="mediaarts"><a href="http://j-mediaarts.jp/awards/excellence_award?locale=ja&section_id=2"><img src="./img/txt-mediaarts.png" /></a></li>
+      <li class="mediaarts"><a href="http://archive.j-mediaarts.jp/festival/2013/entertainment/works/17e_Sports_Time_Machine/" target="_blank"><img src="./img/txt-mediaarts.png" /></a></li>
       <!--li class="btn1"><a href="http://www.sptmy.net/records/search/"><img src="./img/txt-btn1.png" /></a></li-->
       <li class="btn2"><a href="http://sportstimemacine.blogspot.jp/"><img src="./img/txt-btn2.png" /></a></li>
       <li class="btn3"><a href="http://www.sptmy.net/records/search/"><img src="./img/txt-btn3.png" /></a></li>
@@ -196,7 +196,7 @@ $(function () {
       <img src="./img/stm-pic2.jpg" />
     </div>
     <div class="w50">
-      <p>2013年の夏、<a href="https://special.ycam.jp/10th/" target="_blank">山口情報芸術センター［YCAM］10周年記念祭</a>をきっかけに、世界で最初の“スポーツのタイムマシン”が誕生。同年、スポーツタイムマシンは、第17回文化庁メディア芸術祭 エンターテインメント部門「優秀賞」を受賞。<br />スポーツとメディアアートを融合した作品として2013年の誕生より、幅広い層に支持されてきました。
+      <p>2013年の夏、<a href="https://special.ycam.jp/10th/" target="_blank">山口情報芸術センター［YCAM］10周年記念祭</a>をきっかけに、世界で最初の“スポーツのタイムマシン”が誕生。同年、スポーツタイムマシンは、<a href="http://archive.j-mediaarts.jp/festival/2013/entertainment/works/17e_Sports_Time_Machine/" target="_blank">第17回文化庁メディア芸術祭 エンターテインメント部門「優秀賞」</a>を受賞。<br />スポーツとメディアアートを融合した作品として2013年の誕生より、幅広い層に支持されてきました。
       2013年から2020年までに7031人が登録し、16343回走られています。</p>
     </div>
     <div class="w50">
